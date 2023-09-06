@@ -1,0 +1,25 @@
+{
+  "name": "a_team_proj",
+  "version": "1.0.0",
+  "description": "A팀 프로젝트",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sesacproj1/A_Team_Proj.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sesacproj1/A_Team_Proj/issues"
+  },
+  "homepage": "https://github.com/sesacproj1/A_Team_Proj#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.0"
+  }
+}
