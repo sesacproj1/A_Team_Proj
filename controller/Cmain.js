@@ -4,6 +4,8 @@ const output = {
   },
 };
 
-const input = {};
+const input = {
+  login: (req, res) => {},
+};
 
 module.exports = { output, input };
