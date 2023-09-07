@@ -1,6 +1,6 @@
 const User = (Sequelize, DataTypes) => {
   const user = Sequelize.define(
-    'User',
+    'user',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -25,7 +25,7 @@ const User = (Sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'User',
+      tableName: 'user',
       freezeTableName: true,
       timestamps: true,
     }

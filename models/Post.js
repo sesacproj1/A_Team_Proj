@@ -1,8 +1,8 @@
 const Post = (Sequelize, DataTypes) => {
   const post = Sequelize.define(
-    'Post',
+    'post',
     {
-      PostNo: {
+      postNo: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -17,7 +17,7 @@ const Post = (Sequelize, DataTypes) => {
         allowNull: false,
       },
       postContent: {
-        type: DataTypes.Text('medium'),
+        type: DataTypes.TEXT('medium'),
         allowNull: false,
         comment: '편지내용',
       },
@@ -37,7 +37,7 @@ const Post = (Sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'Post',
+      tableName: 'post',
       freezeTableName: true,
       timestamps: true,
     }

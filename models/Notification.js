@@ -1,8 +1,8 @@
 const Notification = (Sequelize, DataTypes) => {
   const notification = Sequelize.define(
-    'Notification',
+    'notification',
     {
-      NotificationId: {
+      notificationId: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -32,7 +32,7 @@ const Notification = (Sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'Notification',
+      tableName: 'notification',
       freezeTableName: true,
       timestamps: true,
     }

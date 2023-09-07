@@ -1,6 +1,6 @@
 const MyLetter = (Sequelize, DataTypes) => {
   const myLetter = Sequelize.define(
-    'MyLetter',
+    'myLetter',
     {
       letterNo: {
         type: DataTypes.INTEGER,
@@ -14,7 +14,7 @@ const MyLetter = (Sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'MyLetter',
+      tableName: 'myLetter',
       freezeTableName: true,
       timestamps: false,
     }
