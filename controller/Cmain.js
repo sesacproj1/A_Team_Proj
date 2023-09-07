@@ -1,11 +1,98 @@
+const {
+  Admin,
+  Friend,
+  MyLetter,
+  Notice,
+  Notification,
+  Post,
+  Profile,
+  User,
+} = require('../models');
+
 const output = {
   index: (req, res) => {
     res.render('index');
+    // 메인 루트 페이지 렌더링하는 기능입니다.
+  },
+
+  noticePost: async (req, res) => {
+    res.render('notice/noticeWrite');
+  },
+
+  noticeDetail: async (req, res) => {
+    // 공지사항 페이지에서 전체 글들 리스트 불러오기
+    const result1 = await Notice.findAll();
+    return res.render('notice/notice', {
+      data: result1,
+    });
+  },
+
+  noticeOne: async (req, res) => {
+    // 공지사항 긴글을 보고싶을 시 클릭하면 특정한 id 글 가져오기
+    const result1 = await Notice.findOne({
+      where: {
+        noticeNo: req.params.noticeNo,
+      },
+    });
+    console.log(result1);
+    return res.render('notice/noticeDetail', {
+      data: result1,
+    });
+  },
+
+  noticeUpdate: async (req, res) => {
+    // 공지사항 업데이트 페이지 렌더링
+    const result1 = await Notice.findOne({
+      where: {
+        noticeNo: req.params.noticeNo,
+      },
+    });
+    console.log(result1);
+    return res.render('notice/noticeUpdate', {
+      data: result1,
+    });
   },
 };
 
 const input = {
-  login: (req, res) => {},
+  noticePost: async (req, res) => {
+    // 공지사항 글쓰는 기능입니다.
+    const result1 = await Admin.findOne({
+      where: {
+        adminId: 1,
+      },
+    });
+    console.log(result1);
+    if (result1.adminRole === 1) {
+      const result2 = await Notice.create({
+        noticeHeader: req.body.noticeHeader,
+        noticeContent: req.body.noticeContent,
+        id: result1.id,
+        adminId: result1.id,
+      });
+      console.log(result2);
+      return res.send({
+        data: result2,
+        success: true,
+      });
+    } else {
+      return res.send({
+        success: false,
+      });
+    }
+  },
+
+  noticeDelete: async (req, res) => {
+    const result = await Notice.destroy({
+      where: {
+        noticeNo: req.body.noticeNo,
+      },
+    });
+    console.log(result);
+    if (result === 1) {
+      return res.send('성공');
+    }
+  },
 };
 
 module.exports = { output, input };
