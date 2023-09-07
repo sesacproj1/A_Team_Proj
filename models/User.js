@@ -1,0 +1,36 @@
+const User = (Sequelize, DataTypes) => {
+  const user = Sequelize.define(
+    'User',
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+
+      userId: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        comment: '유저 아이디',
+      },
+      password: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+        comment: '패스워드',
+      },
+      nickname: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        comment: '닉네임',
+      },
+    },
+    {
+      tableName: 'User',
+      freezeTableName: true,
+      timestamps: true,
+    }
+  );
+  return user;
+};
+
+module.exports = User;
