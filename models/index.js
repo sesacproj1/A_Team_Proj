@@ -67,7 +67,7 @@ Notice.belongsTo(Admin, { foreignKey: 'adminId', targetKey: 'adminId' });
 Post.hasOne(Notification, {
   foreignKey: 'postNo',
   sourceKey: 'postNo',
-  onUpdate: 'CASCADE',
+  onDelete: 'CASCADE',
 });
 Notification.belongsTo(Post, { foreignKey: 'postNo', targetKey: 'postNo' });
 
