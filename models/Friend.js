@@ -1,6 +1,6 @@
 const Friend = (Sequelize, DataTypes) => {
   const friend = Sequelize.define(
-    'Friend',
+    'friend',
     {
       friendNo: {
         type: DataTypes.INTEGER,
@@ -19,7 +19,7 @@ const Friend = (Sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'Profile',
+      tableName: 'profile',
       freezeTableName: true,
       timestamps: false,
     }
