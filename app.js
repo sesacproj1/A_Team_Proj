@@ -13,7 +13,10 @@ app.use(
     resave: false, // 세션 데이터를 변경되지 않았더라도 항상 저장할지 여부
     saveUninitialized: true, // 초기화되지 않은 세션을 저장할지 여부
     name: 'mySessions',
-    cookie: { secure: false }, // 다른 옵션도 필요에 따라 설정 가능
+    cookie: {
+      maxAge: 60 * 1000, // 1m
+      secure: false,
+    }, // 다른 옵션도 필요에 따라 설정 가능
   })
 );
 app.use(express.urlencoded({ extended: true }));
