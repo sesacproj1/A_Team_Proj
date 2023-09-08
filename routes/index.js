@@ -11,4 +11,8 @@ router.get('/register', controllerUser.output.register);
 //회원가입
 router.post('/register', controllerUser.input.postRegister);
 
+//로그인
+router.get('/login', controllerUser.output.login);
+router.post('/login', controllerUser.input.postLogin);
+
 module.exports = router;

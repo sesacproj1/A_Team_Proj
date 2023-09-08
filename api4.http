@@ -14,7 +14,7 @@ Content-Type: application/json; charset=UTF-8
     "nickname":"홍민영"
 }
 
-### 
+### user 추가 (중복 test)
 POST {{server}}/register
 Content-Type: application/json; charset=UTF-8
 
@@ -22,4 +22,31 @@ Content-Type: application/json; charset=UTF-8
     "userId":"minyung1241",
     "pw":"1111",
     "nickname":"홍민영"
+}
+
+### 로그인 성공경우
+POST {{server}}/login
+Content-Type: application/json; charset=UTF-8
+
+{
+    "id":"minyung1240",
+    "pw":"1111"
+}
+
+### 로그인 실패 (비밀번호 오류)
+POST {{server}}/login
+Content-Type: application/json; charset=UTF-8
+
+{
+    "id":"minyung1240",
+    "pw":"1112"
+}
+
+### 로그인 실패 (아이디)
+POST {{server}}/login
+Content-Type: application/json; charset=UTF-8
+
+{
+    "id":"minyung1241",
+    "pw":"1112"
 }
