@@ -103,14 +103,22 @@ const input = {
   //마이페이지에서 수정하기
   patchProfile: async (req, res) => {
     try {
-      const { pw, nickname, id } = req.body;
-      const secretPw = hashPassword(pw);
-      await User.update(
-        { nickname: nickname, password: secretPw },
-        { where: { userId: id } }
-      );
-
-      res.send({ result: true, message: '마이페이지 수정완료' });
+      console.log('req.body는 >>>>>>', req.body);
+      const secretPw = hashPassword(req.body.pw);
+      const isNickname = await User.findOne({
+        where: { nickname: req.body.nickname },
+      });
+      //닉네임 변경안하고 수정누르면 내 닉네임인데 중복뜸 어떡하쥐
+      console.log('isNickname >>>>', isNickname);
+      if (isNickname) {
+        res.send({ result: false, message: '이미 존재하는 닉네임입니다.' });
+      } else {
+        await User.update(
+          { nickname: req.body.nickname, password: secretPw },
+          { where: { userId: req.body.id } }
+        );
+        res.send({ result: true, message: '마이페이지 수정완료' });
+      }
     } catch (err) {
       console.error(err);
       res.send('Internal Sever Error');
