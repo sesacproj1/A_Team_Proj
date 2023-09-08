@@ -46,10 +46,4 @@
   border: 2px solid black;
   height: 85%;
   width: 90%;
-  background: linear-gradient(
-    90deg,
-    rgba(15, 61, 134, 1) 0%,
-    rgba(15, 44, 89, 1) 47%,
-    rgba(4, 22, 50, 1) 100%
-  );
 }
