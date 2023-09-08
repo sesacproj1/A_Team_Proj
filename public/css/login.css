@@ -1,3 +1,7 @@
+*{
+    letter-spacing: -3px;
+}
+
 #main-container {
   height: 900px;
 }
@@ -12,6 +16,13 @@
   border-right: 2px solid black;
 }
 
+#login_name {
+    color :rgba(15, 44, 89, 1);
+    font-size: 40px;
+    font-weight: 700;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 .logo_container1 {
   margin-top: 10px;
   border-radius: 10px;
@@ -20,6 +31,12 @@
   box-shadow: 15px 10px 33px 3px rgba(0, 0, 0, 0.72);
   -webkit-box-shadow: 15px 10px 33px 3px rgba(0, 0, 0, 0.72);
   -moz-box-shadow: 15px 10px 33px 3px rgba(0, 0, 0, 0.72);
+  background: linear-gradient(
+    90deg,
+    rgba(15, 61, 134, 1) 0%,
+    rgba(15, 44, 89, 1) 47%,
+    rgba(4, 22, 50, 1) 100%
+  );
 }
 
 .login_container1 {
@@ -38,6 +55,7 @@
   border: 2px solid black;
   height: 85%;
   width: 90%;
+  
 }
 
 .logo_container2 {
@@ -46,10 +64,83 @@
   border: 2px solid black;
   height: 85%;
   width: 90%;
-  background: linear-gradient(
-    90deg,
-    rgba(15, 61, 134, 1) 0%,
-    rgba(15, 44, 89, 1) 47%,
-    rgba(4, 22, 50, 1) 100%
-  );
+ 
+}
+
+#findIdPassword {
+    font-weight: 700;
+    text-decoration: none;
+    color : dodgerblue;
+}
+
+#userId_container {
+    display: flex;
+}
+#userId_container > div > i{
+    font-size: 35px;
+    color : rgba(15, 44, 89, 1);
+    margin-right : 10px;
+}
+
+#password_container {
+    margin-top: 30px;
+    display: flex;
+}
+
+#password_container > div > i{
+    font-size: 35px;
+    color : rgba(15, 44, 89, 1);
+    margin-right : 10px;
+}
+
+#loginBtn {
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    border: none;
+    background:  rgba(15, 44, 89, 1);
+    color : white;
+    font-size: 30px;
+    font-weight: 700;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#userId {
+    width: 100%;
+    height: 50px;
+    background: #faffbc;
+}
+
+#password {
+    width: 100%;
+    height: 50px;
+    background: #faffbc;
+}
+
+
+/* 여기부터 로고부분 */
+
+.logo_container2 > div > div > p {
+    font-size: 35px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+}
+
+.logo_container2 > div >div > #userLetter {
+    font-size: 25px;
+}
+
+#register {
+    margin: 0 auto;
+    width: 100px;
+    height: 50px;
+    border: 2px solid white;
+}
+
+#register > a{
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+    margin-left : 3px;
 }

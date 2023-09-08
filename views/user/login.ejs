@@ -11,44 +11,66 @@
     <!-- 메인 컨테이너 -->
     <div class="container-fluid" id="main-container">
       <div class="row">
+
         <!-- 로고 부분 -->
         <div class="col-md-6" id="col-logo">
           <div class="container logo_container1">
-            <div class="container logo_container2"></div>
+            <div class="container logo_container2">
+              <div style="margin-top: 50px;">
+              <div><p>송편지</p></div>
+              <div><p>회원이신가요?</p></div>
+              <div><p id="userLetter">회원이 되어 자신만의 트리를 꾸며보세요</p></div>
+              <div id="register"><a href="#">회원가입</a></div>
+              <div><img src="img/추석.png" alt=""></div>
+              </div>
+            </div>
           </div>
         </div>
+
         <!-- 로그인 부분 -->
         <div class="col-md-6" id="col-login">
           <div class="conatiner login_container1">
             <div class="container login_container2">
-              <p>로그인</p>
+              <div style="margin-top: 120px;">
+              <p id="login_name">로그인</p>
               <form name="loginForm">
-                <div>
-                  <div></div>
+                <div id="userId_container">
+                  <div><i class="bi bi-person-circle"></i></div>
                   <input
                     type="text"
                     placeholder="아이디를 입력해주세요"
+                    name="userId"
+                    id="userId"
                     required
                   />
                 </div>
-                <div>
-                  <div></div>
+                <div id="password_container">
+                  <div><i class="bi bi-key-fill"></i></div>
                   <input
                     type="password"
                     placeholder="비밀번호를 입력해주세요"
+                    name="password"
+                    id="password"
                     required
                   />
                 </div>
-                <div>
-                  <button type="button" onclick="loginAxios()">로그인</button>
+                <div style="margin-top: 15px;">
+                  <input type="checkbox" name="saveId">
+                  <label for="saveId" style="color:black;">아이디 저장</label>
                 </div>
-                <div>
-                  <a href="#">아이디/비밀번호를 잊어버리셨나요?</a>
+                <div style="margin-top: 15px;">
+                  <button type="button" onclick="loginAxios()" id="loginBtn">로그인</button>
+                </div>
+                <div style="margin-top: 15px;">
+                  <a href="#" id="findIdPassword">아이디/비밀번호를 잊어버리셨나요?</a>
                 </div>
               </form>
+              </div>
             </div>
           </div>
         </div>
+
+
       </div>
     </div>
   </body>
