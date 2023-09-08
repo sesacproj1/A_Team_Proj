@@ -3,10 +3,128 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>HOME</title>
+    <style>
+      .background {
+        overflow: hidden;
+        background-color: #0C356A;
+        height: 100%;
+        margin: 0;
+        color: aliceblue;
+      }
+      img {
+        width: 200px;
+        height: 200px;
+      }
+      .star {
+        position: relative;
+      }
+      .btnClass{
+        display: flex;
+        justify-content: center;
+      }
+      button{
+        width: 100px;
+        height: 100px;
+        border: none;
+       
+      }
+      button img{
+        width: 100px;
+        height: 100px;
+
+      }
+    </style>
   </head>
   <body>
     <%- include('./header')%>
-    <h1>hello world</h1>
+    <div class="container-fluid background">
+      <h1>프로젝트 제목</h1>
+      <h3>멘트</h3>
+
+      <div class="row">
+        <div class="col-2"></div>
+          <div class="col-4">
+            <img src="../public/img/background/STAR.png" alt="" id="img" />
+            <p>닉네임</p>
+          </div>
+          <div class="col-3">
+            <img src="../public/img/background/STAR.png" alt="" id="img" />
+            <p>닉네임</p>
+          </div>
+            <div class="col-3">
+              <img src="../public/img/background/STAR.png" alt="" id="img" />
+              <p>닉네임</p>
+            </div>
+      </div>
+
+        <div class="row">
+          <div class="col-1"></div>
+
+          <div class="col-3">
+            <img src="../public/img/background/STAR.png" alt="" id="img" />
+            <p>닉네임</p>
+          </div>
+          <div class="col-4">
+            <img src="../public/img/background/STAR.png" alt="" id="img" />
+            <p>닉네임</p>
+          </div>
+          <div class="col-5">
+            <img src="../public/img/background/STAR.png" alt="" id="img" />
+            <p>닉네임</p>
+          </div>
+        </div>
+
+        <div class="row" >
+          <div class="col-5">
+            <img src="../public/img/background/STAR.png" alt="" id="img" />
+            <p>닉네임</p>
+          </div>
+          <div class="col">
+            <img src="../public/img/background/STAR.png" alt="" id="img" />
+            <p>닉네임</p>
+          </div>
+          <div class="col">
+            <img src="../public/img/background/STAR.png" alt="" id="img" />
+            <p>닉네임</p>
+          </div>
+        </div>
+          <div class="btnClass">
+            <button id="btnleft"><img src="../public/img/headerIcons/left.png" alt=""></button>
+            <button id="btnResister">회원가입</button>
+            <button id="btnLogin">로그인</button>
+            <button id="btnRight"><img src="../public/img/headerIcons/right.png" alt=""></button>
+          </div>
+      </div>
+    </div>
+    <script>
+      // for (let i = 1; i <= 10; i++) {
+      //   const star = document.querySelector(`.star${i}`);
+      //   const curLeft = parseInt(star.style.left || 0, 10);
+      //   const curTop = parseInt(star.style.top || 0, 10);
+      //   console.log(star);
+      //   console.log(curTop);
+      //   console.log(curLeft);
+
+      //   star.style.left = curLeft + i * 100 + "px";
+      //   if (i % 2 == 0) {
+      //     // 짝수 별이라면
+      //     star.style.top = 30 * i + "px";
+      //   } else {
+      //     star.style.top = -30 * i + "px";
+      //     star.style.left = curLeft + i * 30 + "px";
+      //   }
+      //   console.log(star.style.top);
+      // }
+
+      // <!-- data 항목 추가해서 고치기 -->
+      // <% for (let i=1; i<=10; i++ ) { %>
+      // <div class="star star<%=i%>">
+      //   <img src="../public/img/background/STAR.png" alt="" id="img" />
+      //   <p>닉네임</p>
+      //   <!-- </a> -->
+      // </div>
+      // <%}%>
+    </script>
   </body>
 </html>
