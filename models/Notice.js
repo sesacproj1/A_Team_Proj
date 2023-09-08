@@ -26,11 +26,6 @@ const Notice = (Sequelize, DataTypes) => {
         allowNull: false,
         comment: '공지내용',
       },
-      noticeTime: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        comment: '공지시간',
-      },
     },
     {
       tableName: 'notice',

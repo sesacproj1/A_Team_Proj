@@ -1,0 +1,34 @@
+@server = http://localhost:8000
+
+### 전체 
+
+// 전체 글 조회 하기
+GET {{server}}/notice
+### 
+//공지사항 글쓰기
+POST {{server}}/noticePost
+Content-Type: application/json; charset=utf-8
+
+{
+    "noticeHeader" : "랍스타입니다3",
+    "noticeContent" : "랍스터가 해냈습니다3",
+    "id" : 1,
+    "adminId" : 1
+}
+
+###
+//공지사항 글 삭제
+
+DELETE {{server}}/noticeDelete/1
+
+
+###
+// 공지사항 업데이트
+
+PATCH  {{server}}/noticeUpdate/1
+Content-Type: application/json; charset=utf-8
+
+{
+    "noticeHeader" : "안녕하세요",
+    "noticeContent": "안녕히계세요"
+}
