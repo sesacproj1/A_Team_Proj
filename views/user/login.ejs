@@ -20,7 +20,33 @@
         <!-- 로그인 부분 -->
         <div class="col-md-6" id="col-login">
           <div class="conatiner login_container1">
-            <div class="container login_container2"></div>
+            <div class="container login_container2">
+              <p>로그인</p>
+              <form name="loginForm">
+                <div>
+                  <div></div>
+                  <input
+                    type="text"
+                    placeholder="아이디를 입력해주세요"
+                    required
+                  />
+                </div>
+                <div>
+                  <div></div>
+                  <input
+                    type="password"
+                    placeholder="비밀번호를 입력해주세요"
+                    required
+                  />
+                </div>
+                <div>
+                  <button type="button" onclick="loginAxios()">로그인</button>
+                </div>
+                <div>
+                  <a href="#">아이디/비밀번호를 잊어버리셨나요?</a>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
