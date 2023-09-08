@@ -9,9 +9,9 @@ POST {{server}}/register
 Content-Type: application/json; charset=UTF-8
 
 {
-    "userId":"minyung1240",
+    "userId":"banana",
     "pw":"1111",
-    "nickname":"홍민영"
+    "nickname":"바나나"
 }
 
 ### user 추가 (중복 test)
@@ -19,7 +19,7 @@ POST {{server}}/register
 Content-Type: application/json; charset=UTF-8
 
 {
-    "userId":"minyung1241",
+    "userId":"banana",
     "pw":"1111",
     "nickname":"홍민영"
 }
@@ -29,8 +29,8 @@ POST {{server}}/login
 Content-Type: application/json; charset=UTF-8
 
 {
-    "id":"minyung1240",
-    "pw":"1111"
+    "id":"banana",
+    "pw":"1106"
 }
 
 ### 로그인 실패 (비밀번호 오류)
@@ -38,7 +38,7 @@ POST {{server}}/login
 Content-Type: application/json; charset=UTF-8
 
 {
-    "id":"minyung1240",
+    "id":"banana",
     "pw":"1112"
 }
 
@@ -49,4 +49,22 @@ Content-Type: application/json; charset=UTF-8
 {
     "id":"minyung1241",
     "pw":"1112"
+}
+
+### 마이페이지에서 닉네임 변경
+PATCH {{server}}/profile/edit
+Content-Type: application/json; charset=UTF-8
+
+{   "id":"banana",
+    "nickname":"홍기범",
+    "pw":"1111"
+}
+
+### 마이페이지에서 비밀번호 변경
+PATCH {{server}}/profile/edit
+Content-Type: application/json; charset=UTF-8
+
+{   "id":"banana",
+    "nickname":"홍기범",
+    "pw":"1106"
 }

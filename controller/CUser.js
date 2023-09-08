@@ -30,6 +30,9 @@ const output = {
   register: (req, res) => {
     res.render('register');
   },
+  profile: (req, res) => {
+    res.render('profile');
+  },
 };
 
 const input = {
@@ -95,6 +98,22 @@ const input = {
         nickname: nickname,
       });
       res.send({ result: true });
+    }
+  },
+  //마이페이지에서 수정하기
+  patchProfile: async (req, res) => {
+    try {
+      const { pw, nickname, id } = req.body;
+      const secretPw = hashPassword(pw);
+      await User.update(
+        { nickname: nickname, password: secretPw },
+        { where: { userId: id } }
+      );
+
+      res.send({ result: true, message: '마이페이지 수정완료' });
+    } catch (err) {
+      console.error(err);
+      res.send('Internal Sever Error');
     }
   },
 };

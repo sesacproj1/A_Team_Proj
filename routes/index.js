@@ -15,4 +15,7 @@ router.post('/register', controllerUser.input.postRegister);
 router.get('/login', controllerUser.output.login);
 router.post('/login', controllerUser.input.postLogin);
 
+//TODO 마이페이지에서 닉네임 /pw 수정
+router.get('/profile', controllerUser.output.profile);
+router.patch('/profile/edit', controllerUser.input.patchProfile);
 module.exports = router;
