@@ -10,6 +10,6 @@ router.get('/noticeDetail/:noticeNo', controller.output.noticeOne); // 공지사
 router.get('/noticeUpdate/:noticeNo', controller.output.noticeUpdate); //공지사항 업데이트 페이지 뷰
 //기능부분
 router.post('/noticePost', controller.input.noticePost);
-router.delete('/noticeDelete', controller.input.noticeDelete);
-router.patch('/noticeUpdate', controller.input.noticeUpdate);
+router.delete('/noticeDelete/:noticeNo', controller.input.noticeDelete);
+router.patch('/noticeUpdate/:noticeNo', controller.input.noticeUpdate);
 module.exports = router;

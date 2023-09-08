@@ -22,7 +22,7 @@ const output = {
   noticeDetail: async (req, res) => {
     // 공지사항 페이지에서 전체 글들 리스트 불러오기
     const result1 = await Notice.findAll();
-    return res.render('notice/notice', {
+    return res.send({
       data: result1,
     });
   },
@@ -56,36 +56,21 @@ const output = {
 
 const input = {
   noticePost: async (req, res) => {
-    // 공지사항 글쓰는 기능입니다.
-    const result1 = await Admin.findOne({
-      where: {
-        adminId: 1,
-      },
+    const result2 = await Notice.create({
+      noticeHeader: req.body.noticeHeader,
+      noticeContent: req.body.noticeContent,
+      id: req.body.id,
+      adminId: req.body.id,
     });
-    console.log(result1);
-    if (result1.adminRole === 1) {
-      const result2 = await Notice.create({
-        noticeHeader: req.body.noticeHeader,
-        noticeContent: req.body.noticeContent,
-        id: result1.id,
-        adminId: result1.id,
-      });
-      console.log(result2);
-      return res.send({
-        data: result2,
-        success: true,
-      });
-    } else {
-      return res.send({
-        success: false,
-      });
-    }
+    console.log(result2);
+    return res.send(result2);
   },
 
   noticeDelete: async (req, res) => {
+    // 공지사항 지우는 메서드
     const result = await Notice.destroy({
       where: {
-        noticeNo: req.body.noticeNo,
+        noticeNo: req.params.noticeNo,
       },
     });
     console.log(result);
@@ -95,6 +80,7 @@ const input = {
   },
 
   noticeUpdate: async (req, res) => {
+    //공지사항 업데이트하는 메서드
     const result = await Notice.update(
       {
         noticeHeader: req.body.noticeHeader,
@@ -102,15 +88,13 @@ const input = {
       },
       {
         where: {
-          noticeNo: req.body.noticeNo,
+          noticeNo: req.params.noticeNo,
         },
       }
     );
 
     console.log(result);
-    return res.send({
-      data: result,
-    });
+    return res.send(result);
   },
 };
 
