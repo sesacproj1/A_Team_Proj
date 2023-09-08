@@ -9,6 +9,7 @@
   <body>
     <%- include('../header')%>
     <form name="resultForm">
+      <input type="hidden" name="noticeNo" value="<%=data.noticeNo%>" />
       <input
         type="text"
         placeholder="제목을 입력하세요"
@@ -29,6 +30,7 @@
       const data = {
         noticeHeader: form.noticeHeader.value,
         noticeContent: form.noticeContent.value,
+        noticeNo: form.noticeNo.value,
       };
       axios({
         method: 'post',
@@ -37,6 +39,8 @@
       })
         .then((res) => {
           console.log(res.data);
+          alert('완성되셨습니다');
+          location.href = '/notice';
         })
         .catch((error) => {
           console.error(error);

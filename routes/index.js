@@ -11,4 +11,5 @@ router.get('/noticeUpdate/:noticeNo', controller.output.noticeUpdate); //공지�
 //기능부분
 router.post('/noticePost', controller.input.noticePost);
 router.delete('/noticeDelete', controller.input.noticeDelete);
+router.patch('/noticeUpdate', controller.input.noticeUpdate);
 module.exports = router;

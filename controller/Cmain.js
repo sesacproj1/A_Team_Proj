@@ -93,6 +93,25 @@ const input = {
       return res.send('성공');
     }
   },
+
+  noticeUpdate: async (req, res) => {
+    const result = await Notice.update(
+      {
+        noticeHeader: req.body.noticeHeader,
+        noticeContent: req.body.noticeContent,
+      },
+      {
+        where: {
+          noticeNo: req.body.noticeNo,
+        },
+      }
+    );
+
+    console.log(result);
+    return res.send({
+      data: result,
+    });
+  },
 };
 
 module.exports = { output, input };
