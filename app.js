@@ -19,6 +19,7 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/public/img/", express.static("./public/img")); //이미지 애셋 위한 미들웨어
+app.use("/public/css/", express.static("./public/css")); //css 위한 미들웨어
 
 const home = require("./routes");
 app.use("/", home);

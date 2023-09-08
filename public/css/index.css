@@ -1,0 +1,28 @@
+.background {
+  overflow: hidden;
+  background-color: #0c356a;
+  height: 100%;
+  margin: 0;
+  color: aliceblue;
+  position: relative;
+}
+img {
+  width: 200px;
+  height: 200px;
+}
+.star {
+  position: absolute;
+}
+.btnClass {
+  display: flex;
+  justify-content: center;
+}
+button {
+  width: 100px;
+  height: 100px;
+  border: none;
+}
+button img {
+  width: 100px;
+  height: 100px;
+}
