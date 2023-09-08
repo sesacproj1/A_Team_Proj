@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 const { sequelize } = require('./models');
 
 sequelize
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
     app.listen(PORT, () => {
       console.log('3000 port is running');

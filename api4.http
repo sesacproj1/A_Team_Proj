@@ -1,0 +1,25 @@
+@server = http://localhost:8000
+
+### 전체 user 조회
+
+GET {{server}}/users
+
+### user 추가 (회원가입)
+POST {{server}}/register
+Content-Type: application/json; charset=UTF-8
+
+{
+    "userId":"minyung1240",
+    "pw":"1111",
+    "nickname":"홍민영"
+}
+
+### 
+POST {{server}}/register
+Content-Type: application/json; charset=UTF-8
+
+{
+    "userId":"minyung1241",
+    "pw":"1111",
+    "nickname":"홍민영"
+}
