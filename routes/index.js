@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controller/Cmain');
-const Fcontroller = require('../controller/addFriend');
+const controllerFriend = require('../controller/Cfriend');
 
 router.get('/', controller.output.index);
 
-router.post('/reqFriend/:id', Fcontroller.reqFriend);
+router.post('/reqFriend/:id', controllerFriend.input.reqFriend);
 
-router.post('/showRequest/:id', Fcontroller.showRequest);
+router.post('/showRequest/:id', controllerFriend.output.showRequest);
 
-router.post('/admitRequest/:id', Fcontroller.admitRequest);
+router.post('/admitRequest/:id', controllerFriend.output.admitRequest);
 
 module.exports = router;

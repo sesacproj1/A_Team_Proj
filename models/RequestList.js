@@ -19,7 +19,7 @@ const RequestList = (Sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'RequestList',
+      tableName: 'requestList',
       freezeTableName: true,
       timestamps: false,
     }

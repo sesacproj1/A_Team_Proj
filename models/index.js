@@ -90,6 +90,8 @@ Notification.belongsTo(Post, { foreignKey: 'postNo', targetKey: 'postNo' });
 db.User = User;
 db.Profile = Profile;
 db.Friend = Friend;
+db.toFriend = toFriend;
+db.RequestList = RequestList;
 db.MyLetter = MyLetter;
 db.Admin = Admin;
 db.Notice = Notice;
