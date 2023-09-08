@@ -1,0 +1,49 @@
+#main-container {
+  height: 900px;
+}
+
+.col-md-6 {
+  height: 800px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#col-logo {
+  border-right: 2px solid black;
+}
+
+.logo_container1 {
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 2px solid black;
+  height: 95%;
+  box-shadow: 15px 10px 33px 3px rgba(0, 0, 0, 0.72);
+  -webkit-box-shadow: 15px 10px 33px 3px rgba(0, 0, 0, 0.72);
+  -moz-box-shadow: 15px 10px 33px 3px rgba(0, 0, 0, 0.72);
+}
+
+.login_container1 {
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 2px solid black;
+  height: 95%;
+  box-shadow: 15px 10px 33px 3px rgba(0, 0, 0, 0.72);
+  -webkit-box-shadow: 15px 10px 33px 3px rgba(0, 0, 0, 0.72);
+  -moz-box-shadow: 15px 10px 33px 3px rgba(0, 0, 0, 0.72);
+}
+
+.login_container2 {
+  margin-top: 60px;
+  border-radius: 5%;
+  border: 2px solid black;
+  height: 85%;
+  width: 90%;
+}
+
+.logo_container2 {
+  margin-top: 60px;
+  border-radius: 5%;
+  border: 2px solid black;
+  height: 85%;
+  width: 90%;
+}

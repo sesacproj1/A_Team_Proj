@@ -1,0 +1,70 @@
+@server = http://localhost:8000
+
+### 전체 user 조회
+
+GET {{server}}/users
+
+### user 추가 (회원가입)
+POST {{server}}/register
+Content-Type: application/json; charset=UTF-8
+
+{
+    "userId":"nanana",
+    "pw":"1111",
+    "nickname":"바나나"
+}
+
+### user 추가 (중복 test)
+POST {{server}}/register
+Content-Type: application/json; charset=UTF-8
+
+{
+    "userId":"nana",
+    "pw":"1111",
+    "nickname":"홍"
+}
+
+### 로그인 성공경우
+POST {{server}}/login
+Content-Type: application/json; charset=UTF-8
+
+{
+    "id":"nanana",
+    "pw":"1111"
+}
+
+### 로그인 실패 (비밀번호 오류)
+POST {{server}}/login
+Content-Type: application/json; charset=UTF-8
+
+{
+    "id":"nanana",
+    "pw":"1211"
+}
+
+### 로그인 실패 (아이디)
+POST {{server}}/login
+Content-Type: application/json; charset=UTF-8
+
+{
+    "id":"minyung1241",
+    "pw":"1112"
+}
+
+### 마이페이지에서 닉네임 변경 (닉네임 중복)
+PATCH {{server}}/profile/edit
+Content-Type: application/json; charset=UTF-8
+
+{   "id":"nanana",
+    "nickname":"닉네임",
+    "pw":"1111"
+}
+
+### 마이페이지에서 비밀번호 변경
+PATCH {{server}}/profile/edit
+Content-Type: application/json; charset=UTF-8
+
+{   "id":"nanana",
+    "nickname":"홍",
+    "pw":"1112"
+}
