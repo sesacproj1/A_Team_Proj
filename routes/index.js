@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controller/Cmain');
 const controllerUser = require('../controller/CUser');
+const controllerPost = require('../controller/Cpost.js');
 
 router.get('/', controller.output.index);
 // ~~~~~~~~~~~~~~ 유저 관련 API ~~~~~~~~~~~~
@@ -23,9 +24,27 @@ router.get('/', controller.output.index); //메인 루트페이지 뷰
 router.get('/user/login', controller.output.userLogin);
 router.get('/user/register', controller.output.userRegister);
 
-//기능부분
+//관리자 페이지 - 기능부분(공지사항)
 router.post('/noticePost', controller.input.noticePost);
 router.delete('/noticeDelete/:noticeNo', controller.input.noticeDelete);
 router.patch('/noticeUpdate/:noticeNo', controller.input.noticeUpdate);
+
+// 편지함 페이지 출력
+router.get('/MyLetter/:letterNo', controllerPost.output.showMyLetter);
+
+// 편지함 페이지 - 기능 부분
+router.post('/MyLetter/:letterNo/:postNo', controllerPost.output.showPost);
+router.post(
+  '/MyLetter/:letterNo/:postNo/Register',
+  controllerPost.input.contentRegister
+);
+router.delete(
+  '/MyLetter/:letterNo/:postNo/delete',
+  controllerPost.input.contentDelete
+);
+router.patch(
+  '/MyLetter/:letterNo/:postNo/likes',
+  controllerPost.input.contentLikes
+);
 
 module.exports = router;
