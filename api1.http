@@ -2,6 +2,10 @@
 @server = http://localhost:8000
 @id = 1
 
+### id = 1 인 유저의 친구목록 보기
+POST {{server}}/friend/{{id}}
+
+
 ### id = 1 인 유저에게 'nickname = 홍민영' 인 유저가 친구요청
 POST {{server}}/reqFriend/{{id}}
 Content-Type: application/json; charset=UTF-8

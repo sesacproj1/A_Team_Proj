@@ -4,7 +4,6 @@ const controller = require('../controller/Cmain');
 const controllerFriend = require('../controller/Cfriend');
 const controllerUser = require('../controller/CUser');
 
-
 router.get('/', controller.output.index);
 // ~~~~~~~~~~~~~~ 유저 관련 API ~~~~~~~~~~~~
 // 전체회원 확인
@@ -30,10 +29,10 @@ router.post('/noticePost', controller.input.noticePost);
 router.delete('/noticeDelete/:noticeNo', controller.input.noticeDelete);
 router.patch('/noticeUpdate/:noticeNo', controller.input.noticeUpdate);
 
+// 친구 추가 관련 기능
+router.post('/friend/:id', controllerFriend.output.showFriend);
 router.post('/reqFriend/:id', controllerFriend.input.reqFriend);
-
 router.post('/showRequest/:id', controllerFriend.output.showRequest);
-
 router.post('/admitRequest/:id', controllerFriend.output.admitRequest);
 
 module.exports = router;
