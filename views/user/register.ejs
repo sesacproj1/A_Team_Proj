@@ -11,18 +11,63 @@
     <!-- 메인 컨테이너 -->
     <div class="container-fluid" id="main-container">
       <div class="row">
+
         <!-- 로고 부분 -->
         <div class="col-md-6" id="col-logo">
-          <div class="container logo_container1">
-            <div class="container logo_container2"></div>
+          <div class="container logo_container1" >
+            <div class="container logo_container2">
+              <div style="margin-top: 50px;">
+              <div><p>송편지</p></div>
+              <div><p>풍요로움이 가득한 한가위</p></div>
+              <div><p id="userLetter">따뜻한 메시지를 주고 받으세요</p></div>
+              <div style="text-align: center; margin-top: 10px;"><img src="/img/추석3.png" alt="" style="height: 300px;"></div>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- 로그인 부분 -->
+
+        <!-- 회원가입 부분 -->
         <div class="col-md-6" id="col-login">
           <div class="conatiner login_container1">
-            <div class="container login_container2"></div>
+            <div class="container login_container2">
+              <div style="margin-top: 150px;">
+              <p id="register_name">회원 가입</p>
+                <form name="registerForm">
+                  <div style="display: flex;">
+                    <div><i class="bi bi-person-circle"></i></div>
+                    <input type="text" placeholder="아이디" name="userId" id="userId" required>
+                  </div>
+                  <div id="idConfirm">아이디가 중복되셨습니다</div>
+                  <div style="display: flex;">
+                    <div><i class="bi bi-key-fill"></i></div>
+                    <input type="password" name="password" id="password" placeholder="패스워드" required>
+                  </div>
+                  
+                  <div style="display: flex; margin-top: 15px;">
+                    <div><i class="bi bi-key-fill"></i></div>
+                    <input type="password" id="passwordConfirm" placeholder="패스워드 확인" required>
+                  </div>
+                  <div>패스워드가 중복되셨습니다</div>
+                  <div style="display: flex;">
+                    <div><i class="bi bi-person-vcard-fill"></i></div>
+                    <input type="text" id="nickname" name="nickname" placeholder="닉네임" required>
+                  </div>
+                  <div id="nicknameConfirm">닉네임이 중복되셨습니다</div>
+                  <div style="display: flex;">
+                    <div><i class="bi bi-envelope-at-fill"></i></div>
+                    <input type="email" name="email" id="email" placeholder="이메일" required>
+                  </div>
+                  <div id="emailConfirm">이메일이 중복되셨습니다</div>
+                  <div>
+                    <button type="button" onclick="register()" id="registerBtn">회원가입</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
+
+
       </div>
     </div>
   </body>

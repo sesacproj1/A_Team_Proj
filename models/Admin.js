@@ -14,6 +14,7 @@ const Admin = (Sequelize, DataTypes) => {
       },
       adminRole: {
         type: DataTypes.INTEGER,
+        defaultValue : 0,
         comment: '어드민권한',
       },
     },
