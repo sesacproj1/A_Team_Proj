@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controller/Cmain');
 const controllerUser = require('../controller/CUser');
+const controllerNoti = require('../controller/CNoti');
 
 router.get('/', controller.output.index);
 // ~~~~~~~~~~~~~~ 유저 관련 API ~~~~~~~~~~~~
@@ -27,5 +28,13 @@ router.get('/user/register', controller.output.userRegister);
 router.post('/noticePost', controller.input.noticePost);
 router.delete('/noticeDelete/:noticeNo', controller.input.noticeDelete);
 router.patch('/noticeUpdate/:noticeNo', controller.input.noticeUpdate);
+
+// 알림기능
+router.post('/notification/:letterNo', controllerNoti.output.showNoti);
+router.get('/notification/:letterNo/:postNo', controllerNoti.output.movePost);
+router.delete(
+  '/notification/:letterNo/:postNo',
+  controllerNoti.input.deleteNoti
+);
 
 module.exports = router;
