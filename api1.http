@@ -7,3 +7,6 @@ POST {{server}}/notification/{{letterNo}}
 
 ### 알람클릭시 해당 글로 이동하면서 알람 삭제
 DELETE  {{server}}/notification/{{letterNo}}/{{postNo}}
+
+### 알람 삭제 기능
+DELETE {{server}}/notification/{{letterNo}}/{{postNo}}/delete
