@@ -31,9 +31,12 @@ router.patch('/noticeUpdate/:noticeNo', controller.input.noticeUpdate);
 
 // 알림기능
 router.post('/notification/:letterNo', controllerNoti.output.showNoti);
-router.get('/notification/:letterNo/:postNo', controllerNoti.output.movePost);
 router.delete(
   '/notification/:letterNo/:postNo',
+  controllerNoti.output.postNoti
+);
+router.delete(
+  '/notification/:letterNo/:postNo/delete',
   controllerNoti.input.deleteNoti
 );
 
