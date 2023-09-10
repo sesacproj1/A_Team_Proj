@@ -31,6 +31,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("*", (req, res) => {
+  res.render("404");
+});
+
 const { sequelize } = require("./models");
 
 sequelize

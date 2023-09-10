@@ -21,6 +21,7 @@
   overflow: hidden;
 }
 
+/* 상단 문장 */
 .cmtDiv {
   position: absolute;
   text-align: center;
@@ -31,22 +32,26 @@
   margin-right: auto;
   /* color: #f11a7b; */
 }
+/* .cmtDiv :first-child { */
+/* color: #f11a7b; */
+/* } */
 
+/* 별 */
 .star {
   position: absolute;
   text-align: center;
 }
 .star1 {
-  animation: animate infinite 3s linear;
+  animation: twinkle infinite 3s linear;
 }
 .star5 {
-  animation: animate infinite 2s linear;
+  animation: twinkle infinite 2s linear;
 }
 .star6 {
-  animation: animate infinite 3.5s linear;
+  animation: twinkle infinite 3.5s linear;
 }
 .star9 {
-  animation: animate infinite 2.5s linear;
+  animation: twinkle infinite 2.5s linear;
 }
 .star:hover {
   transform: scale(1.5);
@@ -56,13 +61,7 @@
   color: inherit;
 }
 
-/* 별똥별 */
-#stStar {
-  width: 10%;
-  height: 10%;
-  position: absolute;
-}
-
+/* 버튼 */
 .btnDiv {
   display: flex;
   justify-content: center;
@@ -91,8 +90,16 @@ button img {
   /* object-fit: fill; */
 }
 
+/* 별똥별 */
+#stStar {
+  width: 10%;
+  height: 10%;
+  position: absolute;
+  animation: fall 1 2s linear;
+}
+
 /* Animation */
-@keyframes animate {
+/* @keyframes twinkle {
   0% {
     opacity: 0;
   }
@@ -107,5 +114,22 @@ button img {
   }
   100% {
     opacity: 0;
+  }
+} */
+
+@keyframes fall {
+  0% {
+    top: 0;
+    left: 100%;
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    top: 80%;
+    left: 0%;
+    opacity: 0.2;
+    /* display: none; */
   }
 }
