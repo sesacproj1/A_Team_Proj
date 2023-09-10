@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'yeonsung';
+    src: url('../fonts/BMYEONSUNG_ttf.ttf') format('truetype');
+    }
+
+#noticeHeader{
+    font-family: 'yeonsung';
+}
+.notice-container {
+    border: 3px solid #9b7640; 
+    background-color: #fff;
+    width: 100%;
+    padding: 20px; 
+    margin: 0 auto; 
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    font-family: 'yeonsung';
+}
+
+.notice-time {
+    text-align: right;
+    font-size : 14px;
+}
+
+.notice-title {
+    width: 100%;
+    font-size: 20px; 
+    margin-bottom: 10px; 
+    color: #333; 
+    text-align: center;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.notice-content {
+    font-size: 16px; 
+    color: #555; 
+    text-decoration: underline;
+}
+
+.notice-author {
+    font-size: 14px; 
+    color: #777; 
+    text-align: right;
+}

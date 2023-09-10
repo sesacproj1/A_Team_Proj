@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>로그인</title>
     <%- include('../header')%>
     <link rel="stylesheet" href="/css/login.css" />
   </head>
@@ -17,7 +17,7 @@
           <div class="container logo_container1" >
             <div class="container logo_container2">
               <div style="margin-top: 50px;">
-              <div><p>송편지</p></div>
+              <div><p id="mainTitle">송편지</p></div>
               <div><p>회원이신가요?</p></div>
               <div><p id="userLetter">회원이 되어 자신만의 달을 꾸며보세요</p></div>
               <div id="register"><a href="/user/register">회원가입</a></div>
@@ -62,7 +62,7 @@
                   <button type="button" onclick="loginAxios()" id="loginBtn">로그인</button>
                 </div>
                 <div style="margin-top: 15px;">
-                  <a href="#" id="findIdPassword">아이디/비밀번호를 잊어버리셨나요?</a>
+                  <a href="/user/findUser" id="findIdPassword">아이디/비밀번호를 잊어버리셨나요?</a>
                 </div>
               </form>
               </div>

@@ -30,6 +30,10 @@ const output = {
   userRegister: (req, res) => {
     return res.render('user/register');
   },
+
+  noticeMain : (req,res)=>{
+    return res.render('notice/notice');
+  }
 };
 
 const input = {
