@@ -13,12 +13,13 @@ const output = {
     const showPost = await Post.findOne({
       where: { letterNo: letterNo, postNo: postNo },
     });
-
-    res.send({
-      postContent: showPost.postContent,
-      postNickname: showPost.postNickname,
-      postIp: showPost.postIp,
-    });
+    if (showPost) {
+      res.send({
+        postContent: showPost.postContent,
+        postNickname: showPost.postNickname,
+        postIp: showPost.postIp,
+      });
+    } else res.send('편지내용이 없음');
   },
 };
 
@@ -50,7 +51,7 @@ const input = {
 
   contentDelete: async (req, res) => {
     const { letterNo, postNo } = req.params;
-    await Post.delete({
+    await Post.destroy({
       where: { letterNo: letterNo, postNo: postNo },
     });
 
