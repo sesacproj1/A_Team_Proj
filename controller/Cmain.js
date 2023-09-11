@@ -33,6 +33,10 @@ const output = {
 
   noticeMain : (req,res)=>{
     return res.render('notice/notice');
+  },
+
+  noticePost : (req,res)=>{
+    return res.render('notice/noticePost'); 
   }
 };
 

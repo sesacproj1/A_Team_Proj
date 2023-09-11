@@ -3,6 +3,41 @@
     src: url('../fonts/BMYEONSUNG_ttf.ttf') format('truetype');
     }
 
+
+.notice-no, .notice-update {
+    text-align: center;
+}
+
+.notice-update > button {
+    border: 1px solid black;
+    background: dodgerblue;
+    border-radius: 10px;
+    width: 60px;
+}
+
+.notice-update > button > a {
+    color : black;
+    text-decoration: none;
+}
+
+/*  */
+#post{
+    margin-top: 10px;
+    text-align: center;
+}
+#post > button {
+    border: 1px solid black;
+    background: dodgerblue;
+    border-radius: 10px;
+    width: 100px;
+}
+#post > button > a {
+    color : black;
+    text-decoration: none;
+    font-family: 'yeonsung';
+}
+
+/*  */
 #noticeHeader{
     font-family: 'yeonsung';
 }
@@ -40,4 +75,11 @@
     font-size: 14px; 
     color: #777; 
     text-align: right;
+}
+
+#submitPost {
+    border-radius: 10px;
+    background: #9b7640;
+    width: 100px;
+    
 }

@@ -23,7 +23,7 @@ router.patch('/profile/edit', controllerUser.input.patchProfile);
 router.get('/user/login', controller.output.userLogin);
 router.get('/user/register', controller.output.userRegister);
 router.get('/notice', controller.output.noticeMain);
-
+router.get('/notice/post', controller.output.noticePost);
 //기능부분 (api)
 router.post('/noticePost', controller.input.noticePost);
 router.delete('/noticeDelete/:noticeNo', controller.input.noticeDelete);
