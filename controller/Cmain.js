@@ -7,11 +7,16 @@ const {
   Post,
   Profile,
   User,
-} = require('../models');
+} = require("../models");
 
 const output = {
-  index: (req, res) => {
-    res.render('index');
+  index: async (req, res) => {
+    const result = await User.findAll();
+
+    // console.log(result[1].nickname);
+    res.render("index", {
+      data: result,
+    });
     // 메인 루트 페이지 렌더링하는 기능입니다.
   },
 
@@ -33,6 +38,14 @@ const output = {
     });
   },
 
+
+  userLogin: (req, res) => {
+    return res.render("user/login");
+  },
+
+  userRegister: (req, res) => {
+    return res.render("user/register");
+
   noticePost: (req, res) => {
     return res.render('notice/noticePost');
   },
@@ -40,6 +53,7 @@ const output = {
   findUser: async (req, res) => {
     // 유저 찾는 곳
     return res.render('user/findUser');
+
   },
 };
 
@@ -65,7 +79,7 @@ const input = {
     });
     console.log(result);
     if (result === 1) {
-      return res.send('성공');
+      return res.send("성공");
     }
   },
 
