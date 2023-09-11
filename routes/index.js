@@ -39,14 +39,13 @@ router.get('/user/register', controller.output.userRegister);
 router.get('/user/findUser', controller.output.findUser);
 router.get('/notice', controller.output.noticeMain);
 router.get('/notice/post', controller.output.noticePost);
-
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 
 //기능부분 (api)
 
 router.post('/noticePost', controller.input.noticePost);
-router.delete('/noticeDelete/:noticeNo', controller.input.noticeDelete);
-router.patch('/noticeUpdate/:noticeNo', controller.input.noticeUpdate);
+router.get('/notice/delete/:noticeNo', controller.input.noticeDelete);
+router.patch('/notice/update/:noticeNo', controller.input.noticeUpdate);
 
 // 편지함 페이지 출력
 router.get('/MyLetter/:letterNo', controllerPost.output.showMyLetter);

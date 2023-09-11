@@ -3,13 +3,12 @@ function noticeUpdate() {
   const data = {
     noticeHeader: form.noticeHeader.value,
     noticeContent: form.noticeContent.value,
-    noticeNo: form.noticeNo.value,
   };
-
-  if (confirm('업데이트하시겠습니까?' === true)) {
+  const noticeNo = form.noticeNo.value;
+  if (confirm('업데이트 할것입니까?')) {
     axios({
       method: 'patch',
-      url: `/noticeUpdate/${data.noticeNo}`,
+      url: `/notice/Update/${noticeNo}`,
       data: data,
     })
       .then((res) => {
