@@ -1,4 +1,4 @@
-const { Post, PostLikes } = require('../models');
+const { Post, PostLikes, Notification } = require('../models');
 
 const output = {
   showMyLetter: async (req, res) => {
@@ -32,6 +32,17 @@ const input = {
       postContent: postContent,
       postNickname: postNickname,
       postIp: postIp,
+    });
+
+    // 글작성시 알림함에 추가
+    const postInfo = await Post.findOne({
+      where: { letterNo: letterNo, postNickname: postNickname },
+    });
+
+    await Notifiaction.create({
+      letterNo: letterNo,
+      sender: postNickname,
+      postNo: postInfo.postNo,
     });
 
     res.send({ result: 'true' });
