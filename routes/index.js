@@ -16,16 +16,20 @@ router.get("/login", controllerUser.output.login);
 router.post("/login", controllerUser.input.postLogin);
 
 //TODO 마이페이지에서 닉네임 /pw 수정
-router.get("/profile", controllerUser.output.profile);
-router.patch("/profile/edit", controllerUser.input.patchProfile);
-//view단 부분
-router.get("/", controller.output.index); //메인 루트페이지 뷰
-router.get("/user/login", controller.output.userLogin);
-router.get("/user/register", controller.output.userRegister);
+router.get('/profile', controllerUser.output.profile);
+router.patch('/profile/edit', controllerUser.input.patchProfile);
 
-//기능부분
-router.post("/noticePost", controller.input.noticePost);
-router.delete("/noticeDelete/:noticeNo", controller.input.noticeDelete);
-router.patch("/noticeUpdate/:noticeNo", controller.input.noticeUpdate);
+//view단 부분
+router.get('/user/login', controller.output.userLogin);
+router.get('/user/register', controller.output.userRegister);
+router.get('/user/findUser', controller.output.findUser);
+router.get('/notice', controller.output.noticeMain);
+router.get('/notice/post', controller.output.noticePost);
+
+//기능부분 (api)
+router.post('/noticePost', controller.input.noticePost);
+router.delete('/noticeDelete/:noticeNo', controller.input.noticeDelete);
+router.patch('/noticeUpdate/:noticeNo', controller.input.noticeUpdate);
+
 
 module.exports = router;

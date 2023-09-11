@@ -28,6 +28,11 @@ const User = (Sequelize, DataTypes) => {
         allowNull: false,
         comment: "유저 이메일",
       },
+      email: {
+        type : DataTypes.STRING(50),
+        allowNull : false,
+        comment : '유저 이메일',
+      }
     },
     {
       tableName: "user",
