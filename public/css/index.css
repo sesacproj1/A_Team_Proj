@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "pixelRoboRobo";
-  src: url("/font/pixelroborobo.otf");
+  font-family: 'pixelRoboRobo';
+  src: url('/font/pixelroborobo.otf');
 }
 
 * {
@@ -8,7 +8,7 @@
   margin: 0;
   padding: 0;
   /* background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%); */
-  background-image: url("../img/background/starBg.png");
+  background-image: url('../img/background/starBg.png');
 }
 
 .background {
@@ -17,7 +17,7 @@
   height: 100vh;
   color: #eeeeee;
   position: relative;
-  font-family: "pixelRoboRobo";
+  font-family: 'pixelRoboRobo';
   overflow: hidden;
 }
 
@@ -37,20 +37,28 @@
 /* } */
 
 /* 별 */
-.star {
+.starDiv {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  top: 20%;
+}
+.star img {
+  width: 10%;
+  height: 100%;
   position: absolute;
   text-align: center;
 }
-.star1 {
+.star0 {
   animation: twinkle infinite 3s linear;
 }
-.star5 {
+.star3 {
   animation: twinkle infinite 2s linear;
 }
-.star6 {
+.star5 {
   animation: twinkle infinite 3.5s linear;
 }
-.star9 {
+.star8 {
   animation: twinkle infinite 2.5s linear;
 }
 .star:hover {
@@ -59,6 +67,11 @@
 .starDiv a {
   text-decoration: none;
   color: inherit;
+}
+
+.starOne img {
+  width: 100px;
+  height: 100px;
 }
 
 /* 버튼 */
@@ -130,6 +143,6 @@ button img {
     top: 80%;
     left: 0%;
     opacity: 0.2;
-    /* display: none; */
+    display: none;
   }
 }

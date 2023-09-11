@@ -15,54 +15,6 @@
         <h3>멘트</h3>
       </div>
 
-      <!-- 2번 START-->
-      <!-- <div class="row">
-        <div class="col-2"></div>
-          <div class="col-4">
-              <img src="../public/img/background/STAR.png" alt="" id="img" />
-              <p>닉네임</p>
-          </div>
-          <div class="col-3">
-            <img src="../public/img/background/STAR.png" alt="" id="img" />
-            <p>닉네임</p>
-          </div>
-            <div class="col-3">
-              <img src="../public/img/background/STAR.png" alt="" id="img" />
-              <p>닉네임</p>
-            </div>
-      </div>
-      <div class="row">
-        <div class="col-1"></div>
-        <div class="col-3">
-          <img src="../public/img/background/STAR.png" alt="" id="img" />
-          <p>닉네임</p>
-        </div>
-        <div class="col-3">
-          <img src="../public/img/background/STAR.png" alt="" id="img" />
-          <p>닉네임</p>
-        </div>
-        <div class="col-5">
-          <img src="../public/img/background/STAR.png" alt="" id="img" />
-          <p>닉네임</p>
-        </div>
-      </div>
-      <div class="row" >
-        <div class="col-2"></div>
-        <div class="col-4">
-          <img src="../public/img/background/STAR.png" alt="" id="img" />
-          <p>닉네임</p>
-        </div>
-        <div class="col-4">
-          <img src="../public/img/background/STAR.png" alt="" id="img" />
-          <p>닉네임</p>
-        </div>
-        <div class="col-2">
-          <img src="../public/img/background/STAR.png" alt="" id="img" />
-          <p>닉네임</p>
-        </div>
-      </div> -->
-      <!-- 2번 END-->
-
       <!-- starDiv START -->
       <!-- 데이터 끊어서 별 배치하기: 전체/배치 별 개수 ceil 해서 for문에 추가 -->
       <!-- a 링크 추가, 닉네임 data 추가 -->
@@ -70,15 +22,39 @@
       <!-- <a href="data[i].id" || ></a>
       <p> || data[i].nickname  ||</p> -->
 
-      <div class="starDiv">
-        <% for (let i=0; i<3; i++ ) { %>
-        <a href="#">
-          <div class="star star<%=i%> row">
-            <img src="/img/background/kbStar.png" alt="" id="kbStar<%=i%>" />
-            <p><%=result.userId%></p>
+      <div class="starDiv col">
+        <div class="starOne row-5" style="background-color: aliceblue">
+          <% for (let i=0; i< 5; i) { %>
+          <div class="starImgDivOne">
+            <img src="/img/background/kbStar.png" alt="" />
           </div>
-        </a>
-        <%}%>
+          <% } %>
+        </div>
+
+        <div class="starTwo row-5" style="background-color: palegoldenrod">
+          <% for (let i=0; i< 4; i) { %>
+          <div class="starImgDivTwo">
+            <img src="/img/background/px_star.png" alt="" />
+          </div>
+          <!-- </a> -->
+          <% } %>
+        </div>
+
+        <!-- <% for (let i=0; i< data.length%9; i++ ) { %>
+        <a href="/user/letter/<%=data[i].id%>">
+          <div class="star star<%=i%>">
+            <img src="../img/background/kbStar.png" alt="" id="kbStar<%=i%>" />
+            <p><%=data[i].nickname%></p>
+          </div>
+        </a> -->
+        <!-- <a href="#">
+          <div class="star star<%=i%> row">
+            <img src="../img/background/px_star.png" alt="" id="star<%=i%>" />
+            <p><%=data[i]%></p>
+          </div>
+        </a> -->
+        <!-- <%}%> -->
+        >>>>>>> b58dcff1df28065b3a350c0e8b8a823e54467fa6
       </div>
       <!-- starDiv END -->
 
