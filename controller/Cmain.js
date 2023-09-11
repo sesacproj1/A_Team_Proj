@@ -10,8 +10,12 @@ const {
 } = require('../models');
 
 const output = {
-  index: (req, res) => {
-    res.render('index');
+  index: async (req, res) => {
+    const result = await User.findAll();
+    console.log(result),
+      res.render('index', {
+        result: result,
+      });
     // 메인 루트 페이지 렌더링하는 기능입니다.
   },
 
@@ -40,6 +44,15 @@ const output = {
   findUser: async (req, res) => {
     // 유저 찾는 곳
     return res.render('user/findUser');
+  },
+
+  noticeUpdate: async (req, res) => {
+    const result = await User.findOne({
+      where: req.params.noticeNo,
+    });
+    return res.render('notice/noticeUpdate', {
+      data: result,
+    });
   },
 };
 

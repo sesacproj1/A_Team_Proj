@@ -7,19 +7,19 @@ for (let i = 1; i <= 9; i++) {
   console.log(`star: ${star}`);
   if (i % 2 == 0) {
     // 짝수 별이라면
-    star.style.top = myHeight / 2 + "px";
-    star.style.left = ((1 * myWidth) / 12) * i + "px";
-    console.log("star.style.top", i, star.style.top);
+    star.style.top = myHeight / 2 + 'px';
+    star.style.left = ((1 * myWidth) / 12) * i + 'px';
+    console.log('star.style.top', i, star.style.top);
     console.log(i, star.style.left);
   } else {
-    star.style.top = myHeight / 5 + "px";
-    star.style.left = (myWidth / 12) * i + "px";
-    console.log("star.style.top", i, star.style.top);
+    star.style.top = myHeight / 5 + 'px';
+    star.style.left = (myWidth / 12) * i + 'px';
+    console.log('star.style.top', i, star.style.top);
     console.log(i, star.style.left);
   }
 
-  star.style.width = myWidth / 10 + "px";
-  star.style.height = myHeight / 10 + "px";
+  star.style.width = myWidth / 10 + 'px';
+  star.style.height = myHeight / 10 + 'px';
   console.log(star.style.width);
 }
 
@@ -87,13 +87,13 @@ function twinkle() {
 }
 window.setInterval(twinkle, 2000);
 
-// 별자리 애니메이션 끝난 후
-const stStar = document.querySelector("#stStar");
+//별자리 애니메이션 끝난 후
+const stStar = document.querySelector('#stStar');
 
-stStar.addEventListener("animationend", () => {
+stStar.addEventListener('animationend', () => {
   //css 애니메이션에 적용되는 animationend 속성
   // console.log("animation end");
-  stStar.style.display = "none";
+  stStar.style.display = 'none';
 });
 
 // 페이징
