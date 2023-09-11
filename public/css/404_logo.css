@@ -1,0 +1,55 @@
+@font-face {
+  font-family: "pixelRoboRobo";
+  src: url("/font/pixelroborobo.otf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  /* background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%); */
+}
+
+.background {
+  background-image: url("../img/background/starBg2.png");
+  letter-spacing: -2;
+  background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%);
+  /* background: #fb2576; */
+  height: 100vh;
+  font-family: "pixelRoboRobo";
+  overflow: hidden;
+  position: relative;
+}
+
+.contentDiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: aliceblue;
+}
+
+/* 포토샵 로고 버전 */
+.logoDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.logoDiv img {
+  width: 40%;
+  height: 10%;
+}
+
+/* 버블보블 */
+.boggleDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.boggleDiv img {
+  width: 10%;
+  height: 10%;
+  margin: 1%;
+}

@@ -1,22 +1,33 @@
+###
 @server = http://localhost:8000
-@letterNo = 1
-@postNo = 1
+@id = 1
 
-### 내 편지함 출력
-GET {{server}}/MyLetter/{{letterNo}}
-
-
-### 편지내용 보기
-POST {{server}}/MyLetter/{{letterNo}}/{{postNo}}
-
-### 편지내용 삭제
-DELETE {{server}}/MyLetter/{{letterNo}}/{{postNo}}/delete
+### id = 1 인 유저의 친구목록 보기
+POST {{server}}/friend/{{id}}
 
 
-### 좋아요 클릭시 좋아요 숫자 1증가
-PATCH  {{server}}/MyLetter/{{letterNo}}/{{postNo}}/likes
-Content-Type: application/json; charset=utf-8
+### id = 1 인 유저에게 'nickname = 홍민영' 인 유저가 친구요청
+POST {{server}}/reqFriend/{{id}}
+Content-Type: application/json; charset=UTF-8
 
 {
-    "number": 2
+    "nickname": "홍민영"
 }
+
+
+### id = 1 인 유저에게 'nickname = 홍민영' 인 유저가 친구요청한 것을 보여주기
+POST {{server}}/showRequest/{{id}}
+Content-Type: application/json; charset=UTF-8
+
+{
+    "nickname": "홍민영"
+}
+
+### "홍민영" 유저의 친구요청을 수락하면, id값이 1인 유저의 친구목록에 '홍민영' 추가/ '홍민영'유저의 친구목록에 id 값이 1인 user 추가
+POST {{server}}/admitRequest/{{id}}
+Content-Type: application/json; charset=UTF-8
+
+{
+    "nickname": "홍민영"
+}
+
