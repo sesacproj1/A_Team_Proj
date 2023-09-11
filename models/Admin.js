@@ -1,6 +1,6 @@
 const Admin = (Sequelize, DataTypes) => {
   const admin = Sequelize.define(
-    'admin',
+    "admin",
     {
       adminId: {
         type: DataTypes.INTEGER,
@@ -12,14 +12,15 @@ const Admin = (Sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+
       adminRole: {
         type: DataTypes.INTEGER,
-        defaultValue : 0,
-        comment: '어드민권한',
+        defaultValue: 0,
+        comment: "어드민권한",
       },
     },
     {
-      tableName: 'admin',
+      tableName: "admin",
       freezeTableName: true,
       timestamps: false,
     }
