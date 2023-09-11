@@ -22,8 +22,10 @@ router.patch('/profile/edit', controllerUser.input.patchProfile);
 //view단 부분
 router.get('/user/login', controller.output.userLogin);
 router.get('/user/register', controller.output.userRegister);
+router.get('/user/findUser', controller.output.findUser);
 router.get('/notice', controller.output.noticeMain);
 router.get('/notice/post', controller.output.noticePost);
+
 //기능부분 (api)
 router.post('/noticePost', controller.input.noticePost);
 router.delete('/noticeDelete/:noticeNo', controller.input.noticeDelete);

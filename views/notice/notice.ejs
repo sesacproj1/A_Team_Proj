@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>공지사항</title>
     <%- include('../header')%>
-    <link rel="stylesheet" href="/css/notice.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/css/notice.css" />
+  </head>
+  <body>
     <!-- 공지사항 메인 페이지 -->
     <div class="container-fluid topMain">
-        <div style="text-align: center;">
-            <h1 id="noticeHeader">공지사항</h1>
-        </div>
-        <div class="container" style="margin-top: 15px;">
-            <form name="resultForm">
-            <div class="notice-container">
-                <div class="notice-no" name="noticeNo" value="1">1</div>
-                <div class="notice-title">안녕하세요 송편지입니다</div>
-                <div class="notice-time">2023-09-27</div>
-                <div class="notice-content">11</div>
-                <div class="notice-author">송편지 드림</div>
-                <div class="notice-update">
-                    <button><a href="/notice/update/:noticeNo">수정</a></button>
-                    <button style="background: #e63950;"><a href="/notice/delete/:noticeNo">삭제</a></button>
-                </div>
+      <div style="text-align: center; margin-top: 10px">
+        <h1 id="noticeHeader">공지사항</h1>
+      </div>
+      <div class="container" style="margin-top: 15px">
+        <form name="resultForm">
+          <div class="notice-container">
+            <div class="notice-no" name="noticeNo" value="1">1</div>
+            <div class="notice-title">안녕하세요 송편지입니다</div>
+            <div class="notice-time">2023-09-27</div>
+            <div class="notice-content">11</div>
+            <div class="notice-author">송편지 드림</div>
+            <div class="notice-update">
+              <button><a href="/notice/update/:noticeNo">수정</a></button>
+              <button style="background: #e63950">
+                <a href="/notice/delete/:noticeNo">삭제</a>
+              </button>
             </div>
-            </form>
-        </div>
+          </div>
+        </form>
+      </div>
 
-        <div class="container" style="margin-top: 15px;">
-            <form name="resultForm">
-            <div class="notice-container">
-                <div class="notice-no" name="noticeNo">1</div>
-                <div class="notice-title">안녕하세요 송편지입니다</div>
-                <div class="notice-time">2023-09-27</div>
-                <div class="notice-content">11</div>
-                <div class="notice-author">송편지 드림</div>
-                <div class="notice-update">
-                    <button><a href="/notice/update/:noticeNo">수정</a></button>
-                    <button style="background: #e63950;"><a href="/notice/delete/:noticeNo">삭제</a></button>
-                </div>
+      <div class="container" style="margin-top: 15px">
+        <form name="resultForm">
+          <div class="notice-container">
+            <div class="notice-no" name="noticeNo">1</div>
+            <div class="notice-title">안녕하세요 송편지입니다</div>
+            <div class="notice-time">2023-09-27</div>
+            <div class="notice-content">11</div>
+            <div class="notice-author">송편지 드림</div>
+            <div class="notice-update">
+              <button><a href="/notice/update/:noticeNo">수정</a></button>
+              <button style="background: #e63950">
+                <a href="/notice/delete/:noticeNo">삭제</a>
+              </button>
             </div>
-            </form>
-        </div>
-        <div id="post">
+          </div>
+        </form>
+      </div>
+      <div id="post">
         <button><a href="/notice/post">글쓰기</a></button>
-        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
