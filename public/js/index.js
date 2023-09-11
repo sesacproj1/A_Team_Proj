@@ -17,7 +17,7 @@ for (let i = 1; i <= 9; i++) {
     console.log("star.style.top", i, star.style.top);
     console.log(i, star.style.left);
   }
-  //star size : 퍼센트로 고치기
+
   star.style.width = myWidth / 10 + "px";
   star.style.height = myHeight / 10 + "px";
   console.log(star.style.width);
@@ -48,24 +48,24 @@ function twinkle() {
         opacity: 1,
       },
     ],
-    1500
+    700
   );
   star2.animate(
     [
       {
         opacity: 0,
       },
-      {
-        opacity: 0.5,
-      },
-      {
-        opacity: 0.7,
-      },
+      // {
+      //   opacity: 0.5,
+      // },
+      // {
+      //   opacity: 0.7,
+      // },
       {
         opacity: 1,
       },
     ],
-    3000
+    2000
   );
   // star3.animate(
   //   [
@@ -75,9 +75,9 @@ function twinkle() {
   //     {
   //       opacity: 0.5,
   //     },
-  //     {
-  //       opacity: 0.7,
-  //     },
+  //     // {
+  //     //   opacity: 0.7,
+  //     // },
   //     {
   //       opacity: 1,
   //     },
@@ -85,7 +85,7 @@ function twinkle() {
   //   4000
   // );
 }
-window.setInterval(twinkle, 3000);
+window.setInterval(twinkle, 2000);
 
 // 별자리 애니메이션 끝난 후
 const stStar = document.querySelector("#stStar");
