@@ -1,7 +1,9 @@
 @server = http://localhost:8000
 
-### 전체 user 조회
+###
+GET {{server}}/
 
+### 전체 user 조회
 GET {{server}}/users
 
 ### user 추가 (회원가입)
@@ -9,9 +11,21 @@ POST {{server}}/register
 Content-Type: application/json; charset=UTF-8
 
 {
-    "userId":"nanana",
+    "userId":"hong",
     "pw":"1111",
-    "nickname":"바나나"
+    "nickname":"미녕ss",
+    "email":"minyung1240@khu.ac.kr"
+}
+
+###
+POST {{server}}/register
+Content-Type: application/json; charset=UTF-8
+
+{
+    "userId":"ss",
+    "pw":"1112",
+    "nickname":"미녕s",
+    "email":"minyung1240@khu.ac.kr"
 }
 
 ### user 추가 (중복 test)
@@ -21,7 +35,8 @@ Content-Type: application/json; charset=UTF-8
 {
     "userId":"nana",
     "pw":"1111",
-    "nickname":"홍"
+    "nickname":"홍",
+    "email":"minyung1212@naver.comr"
 }
 
 ### 로그인 성공경우
@@ -67,4 +82,49 @@ Content-Type: application/json; charset=UTF-8
 {   "id":"nanana",
     "nickname":"홍",
     "pw":"1112"
+}
+
+###회원삭제
+DELETE {{server}}/users/8
+
+###
+DELETE {{server}}/users/2
+
+###
+DELETE {{server}}/users/3
+
+###
+DELETE {{server}}/users/4
+
+###
+DELETE {{server}}/users/5
+
+###
+DELETE {{server}}/users/9
+
+### 비밀번호 찾기 test !!!
+POST {{server}}/find/password
+Content-Type: application/json; charset=UTF-8
+
+{   "id":"hong",
+    "nickname":"미녕녕",
+    "pw":"1234"
+}
+
+### 아이디 찾기 test!! 메일로 보내기 
+POST {{server}}/find/id
+Content-Type: application/json; charset=UTF-8
+
+{   
+    "nickname":"미녕",
+    "email":"minyung1240@khu.ac.kr"
+}
+
+### 아이디 찾기 test!! 메일로 보내기 
+POST {{server}}/find/id
+Content-Type: application/json; charset=UTF-8
+
+{   
+    "nickname":"홍",
+    "email":"minyung1240s@khu.ac.kr"
 }
