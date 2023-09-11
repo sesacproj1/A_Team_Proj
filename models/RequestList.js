@@ -1,8 +1,8 @@
-const Friend = (Sequelize, DataTypes) => {
-  const friend = Sequelize.define(
-    'friend',
+const RequestList = (Sequelize, DataTypes) => {
+  const requestList = Sequelize.define(
+    'requestList',
     {
-      friendNo: {
+      requestId: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -12,19 +12,19 @@ const Friend = (Sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      friendUserId: {
+      nickname: {
         type: DataTypes.STRING(50),
         allowNull: false,
-        comment: '친구목록 아이디',
+        comment: '요청 목록 아이디',
       },
     },
     {
-      tableName: 'friend',
+      tableName: 'requestList',
       freezeTableName: true,
       timestamps: false,
     }
   );
-  return friend;
+  return requestList;
 };
 
-module.exports = Friend;
+module.exports = RequestList;

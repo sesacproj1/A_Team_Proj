@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controller/Cmain");
-const controllerUser = require("../controller/CUser");
+
+const controller = require('../controller/Cmain');
+const controllerFriend = require('../controller/Cfriend');
+const controllerUser = require('../controller/CUser');
 
 router.get("/", controller.output.index);
 // ~~~~~~~~~~~~~~ 유저 관련 API ~~~~~~~~~~~~
@@ -30,6 +32,12 @@ router.get('/notice/post', controller.output.noticePost);
 router.post('/noticePost', controller.input.noticePost);
 router.delete('/noticeDelete/:noticeNo', controller.input.noticeDelete);
 router.patch('/noticeUpdate/:noticeNo', controller.input.noticeUpdate);
+
+
+router.post('/friend/:id', controllerFriend.output.showFriend);
+router.post('/reqFriend/:id', controllerFriend.input.reqFriend);
+router.post('/showRequest/:id', controllerFriend.output.showRequest);
+router.post('/admitRequest/:id', controllerFriend.output.admitRequest);
 
 
 module.exports = router;
