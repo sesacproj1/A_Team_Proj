@@ -12,6 +12,7 @@ const {
 const output = {
   index: async (req, res) => {
     const result = await User.findAll();
+
     console.log(result),
       res.render('index', {
         result: result,
@@ -37,6 +38,13 @@ const output = {
     });
   },
 
+  userLogin: (req, res) => {
+    return res.render('user/login');
+  },
+
+  userRegister: (req, res) => {
+    return res.render('user/register');
+  },
   noticePost: (req, res) => {
     return res.render('notice/noticePost');
   },
