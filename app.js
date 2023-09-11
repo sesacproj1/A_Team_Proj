@@ -12,7 +12,7 @@ app.use(
     secret: "mySession", // 세션 데이터를 암호화할 때 사용할 비밀 키 (보안을 위해 변경 필요)
     resave: false, // 세션 데이터를 변경되지 않았더라도 항상 저장할지 여부
     saveUninitialized: true, // 초기화되지 않은 세션을 저장할지 여부
-    name: 'mySessions',
+    name: "mySessions",
     cookie: {
       maxAge: 60 * 1000, // 1m
       secure: false,
@@ -29,6 +29,10 @@ app.use("/", home);
 
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.get("*", (req, res) => {
+  res.render("404");
 });
 
 const { sequelize } = require("./models");

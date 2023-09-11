@@ -1,0 +1,109 @@
+@font-face {
+  font-family: "pixelRoboRobo";
+  src: url("/font/pixelroborobo.otf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  /* background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%); */
+}
+
+.background {
+  letter-spacing: -2;
+  /* background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%); */
+  background: #fb2576;
+  height: 100vh;
+  font-family: "pixelRoboRobo";
+  overflow: hidden;
+  position: relative;
+}
+
+.contentDiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 글자 */
+.spanDiv {
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.spanDiv span {
+  font-size: 10em;
+  margin: 1%;
+  text-shadow: 15px 20px #3f0071;
+}
+/* .spanDiv span:nth-child(1) {
+  transform: rotate(10deg) skew(-10deg);
+}
+.spanDiv span:nth-child(2) {
+  /* transform: rotate(30deg) skew(-10deg); */
+/* text-shadow: 15px 20px #3f0071; */
+/* }
+.spanDiv span:nth-child(3) { */
+/* transform: rotateX(40deg) rotateY(40deg) skew(-10deg); */
+/* text-shadow: 15px 20px #3f0071;
+} */
+
+/* 버블보블 */
+.boggleDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+
+  position: relative;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+    0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+    0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+.boggleDiv img {
+  position: relative;
+  width: 10%;
+  height: 10%;
+  margin: 1%;
+}
+
+.boggleDiv :nth-child(1) {
+  animation: bounce 0.3s ease infinite alternate;
+}
+.boggleDiv :nth-child(2) {
+  animation: bounce 0.4s ease infinite alternate;
+}
+.boggleDiv :nth-child(3) {
+  animation: bounce 0.5s ease infinite alternate;
+}
+.boggleDiv :nth-child(4) {
+  animation: bounce 0.6s ease infinite alternate;
+}
+
+/* 버블보블 애니메이션 */
+@keyframes bounce {
+  100% {
+    top: -20px;
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+      0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent,
+      0 8px 0 transparent, 0 9px 0 transparent, 0 50px 25px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* 포토샵 로고 버전 */
+/* .logoDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.logoDiv img {
+  width: 50%;
+  height: 20%;
+}
+
+ */

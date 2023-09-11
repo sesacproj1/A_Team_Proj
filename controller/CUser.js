@@ -1,8 +1,8 @@
 // ~~~~~~~~~~~~~~ 유저 관련 controller ~~~~~~~~~~~~
 //User 모델 모듈 불러오기
 //bcrypt 패키지 불러오기
-const { User } = require('../models');
-const bcrypt = require('bcrypt');
+const { User } = require("../models");
+const bcrypt = require("bcrypt");
 // 비밀번호 암호화 함수
 const saltRounds = 11;
 // TODO: 비밀번호를 해싱하는 함수 정의 (bcryptPassword)
@@ -17,21 +17,22 @@ function comparePassword(password, hashedPassword) {
 
 const output = {
   login: (req, res) => {
-    res.render('login');
+    res.render("login");
   },
   getUser: async (req, res) => {
     try {
       const Users = await User.findAll();
       res.send(Users);
+      console.log(Users);
     } catch (err) {
-      res.send('Internal Server Error!');
+      res.send("Internal Server Error!");
     }
   },
   register: (req, res) => {
-    res.render('register');
+    res.render("register");
   },
   profile: (req, res) => {
-    res.render('profile');
+    res.render("profile");
   },
 };
 
@@ -55,26 +56,26 @@ const input = {
             userId: user.userId,
             nickname: user.nickname,
           }; //세션 생성
-          res.send({ result: true, data: user, message: '로그인 성공!' });
+          res.send({ result: true, data: user, message: "로그인 성공!" });
         } else {
           //비밀번호 불일치
-          res.send({ result: false, message: '비밀번호가 틀렸습니다.' });
+          res.send({ result: false, message: "비밀번호가 틀렸습니다." });
         }
       } else {
-        res.send({ result: false, message: '존재하는 사용자가 없습니다' });
+        res.send({ result: false, message: "존재하는 사용자가 없습니다" });
       }
     } catch (err) {
       console.error(err);
-      res.send('Internal Server Error');
+      res.send("Internal Server Error");
     }
   },
   //   회원가입
   postRegister: async (req, res) => {
     //TODO id중복처리
     const { nickname, userId, pw } = req.body;
-    console.log('패스워드 암호화 전 ', pw);
+    console.log("패스워드 암호화 전 ", pw);
     const secretPw = hashPassword(pw);
-    console.log('패스워드 암호화 후 ', secretPw);
+    console.log("패스워드 암호화 후 ", secretPw);
     const isId = await User.findOne({
       where: { userId: req.body.userId },
     });
@@ -86,10 +87,10 @@ const input = {
     if (isId || isNickname) {
       if (isId) {
         //isId === true -> 중복 id
-        res.send({ result1: true, message: '이미 존재하는 id 입니다.' });
+        res.send({ result1: true, message: "이미 존재하는 id 입니다." });
       } else {
         // 이미 존재하는 닉네임 를 생성하려 했을때
-        res.send({ result2: true, message: '이미 존재하는 닉네임입니다.' });
+        res.send({ result2: true, message: "이미 존재하는 닉네임입니다." });
       }
     } else {
       const make = await User.create({
@@ -103,25 +104,25 @@ const input = {
   //마이페이지에서 수정하기
   patchProfile: async (req, res) => {
     try {
-      console.log('req.body는 >>>>>>', req.body);
+      console.log("req.body는 >>>>>>", req.body);
       const secretPw = hashPassword(req.body.pw);
       const isNickname = await User.findOne({
         where: { nickname: req.body.nickname },
       });
       //닉네임 변경안하고 수정누르면 내 닉네임인데 중복뜸 어떡하쥐
-      console.log('isNickname >>>>', isNickname);
+      console.log("isNickname >>>>", isNickname);
       if (isNickname) {
-        res.send({ result: false, message: '이미 존재하는 닉네임입니다.' });
+        res.send({ result: false, message: "이미 존재하는 닉네임입니다." });
       } else {
         await User.update(
           { nickname: req.body.nickname, password: secretPw },
           { where: { userId: req.body.id } }
         );
-        res.send({ result: true, message: '마이페이지 수정완료' });
+        res.send({ result: true, message: "마이페이지 수정완료" });
       }
     } catch (err) {
       console.error(err);
-      res.send('Internal Sever Error');
+      res.send("Internal Sever Error");
     }
   },
 };
