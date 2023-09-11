@@ -1,6 +1,6 @@
 const User = (Sequelize, DataTypes) => {
   const user = Sequelize.define(
-    "user",
+    'user',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -11,26 +11,26 @@ const User = (Sequelize, DataTypes) => {
       userId: {
         type: DataTypes.STRING(50),
         allowNull: false,
-        comment: "유저 아이디",
+        comment: '유저 아이디',
       },
       password: {
         type: DataTypes.STRING(255),
         allowNull: false,
-        comment: "패스워드",
+        comment: '패스워드',
       },
       nickname: {
         type: DataTypes.STRING(50),
         allowNull: false,
-        comment: "닉네임",
+        comment: '닉네임',
       },
       email: {
         type: DataTypes.STRING(50),
         allowNull: false,
-        comment: "유저 이메일",
+        comment: '유저 이메일',
       },
     },
     {
-      tableName: "user",
+      tableName: 'user',
       freezeTableName: true,
       timestamps: true,
     }

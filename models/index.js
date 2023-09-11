@@ -18,8 +18,11 @@ const Friend = require('./Friend')(sequelize, Sequelize);
 const MyLetter = require('./MyLetter')(sequelize, Sequelize);
 const Admin = require('./Admin')(sequelize, Sequelize);
 const Post = require('./Post')(sequelize, Sequelize);
+const PostLikes = require('./PostLikes')(sequelize, Sequelize);
 const Notification = require('./Notification')(sequelize, Sequelize);
 const Notice = require('./Notice')(sequelize, Sequelize);
+const toFriend = require('./toFriend')(sequelize, Sequelize);
+const RequestList = require('./RequestList')(sequelize, Sequelize);
 
 User.hasOne(Profile, {
   foreignKey: 'id',
@@ -34,6 +37,20 @@ User.hasMany(Friend, {
   onDelete: 'CASCADE',
 });
 Friend.belongsTo(User, { foreignKey: 'id', targetKey: 'id' });
+
+User.hasMany(toFriend, {
+  foreignKey: 'id',
+  sourceKey: 'id',
+  onDelete: 'CASCADE',
+});
+toFriend.belongsTo(User, { foreignKey: 'id', targetKey: 'id' });
+
+User.hasMany(RequestList, {
+  foreignKey: 'id',
+  sourceKey: 'id',
+  onDelete: 'CASCADE',
+});
+RequestList.belongsTo(User, { foreignKey: 'id', targetKey: 'id' });
 
 User.hasOne(MyLetter, {
   foreignKey: 'id',
@@ -71,14 +88,24 @@ Post.hasOne(Notification, {
 });
 Notification.belongsTo(Post, { foreignKey: 'postNo', targetKey: 'postNo' });
 
+Post.hasOne(PostLikes, {
+  foreignKey: 'postNo',
+  sourceKey: 'postNo',
+  onDelete: 'CASCADE',
+});
+PostLikes.belongsTo(Post, { foreignKey: 'postNo', targetKey: 'postNo' });
+
 db.User = User;
 db.Profile = Profile;
 db.Friend = Friend;
+db.toFriend = toFriend;
+db.RequestList = RequestList;
 db.MyLetter = MyLetter;
 db.Admin = Admin;
 db.Notice = Notice;
 db.Notification = Notification;
 db.Post = Post;
+db.PostLikes = PostLikes;
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

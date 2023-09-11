@@ -19,7 +19,7 @@ const Friend = (Sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'profile',
+      tableName: 'friend',
       freezeTableName: true,
       timestamps: false,
     }

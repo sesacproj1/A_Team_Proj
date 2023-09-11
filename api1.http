@@ -1,0 +1,33 @@
+###
+@server = http://localhost:8000
+@id = 1
+
+### id = 1 인 유저의 친구목록 보기
+POST {{server}}/friend/{{id}}
+
+
+### id = 1 인 유저에게 'nickname = 홍민영' 인 유저가 친구요청
+POST {{server}}/reqFriend/{{id}}
+Content-Type: application/json; charset=UTF-8
+
+{
+    "nickname": "홍민영"
+}
+
+
+### id = 1 인 유저에게 'nickname = 홍민영' 인 유저가 친구요청한 것을 보여주기
+POST {{server}}/showRequest/{{id}}
+Content-Type: application/json; charset=UTF-8
+
+{
+    "nickname": "홍민영"
+}
+
+### "홍민영" 유저의 친구요청을 수락하면, id값이 1인 유저의 친구목록에 '홍민영' 추가/ '홍민영'유저의 친구목록에 id 값이 1인 user 추가
+POST {{server}}/admitRequest/{{id}}
+Content-Type: application/json; charset=UTF-8
+
+{
+    "nickname": "홍민영"
+}
+
