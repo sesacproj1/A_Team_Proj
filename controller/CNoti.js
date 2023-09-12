@@ -1,4 +1,4 @@
-const { Post, Notification } = require('../models');
+const { Post, Notification, RequestList } = require('../models');
 
 // 알람 시간 나타내는 함수
 function times(date) {
@@ -26,7 +26,23 @@ const output = {
       attributes: ['sender', 'createdAt'],
     });
 
-    res.send({ sender: showNoti.sender, postTime: times(showNoti.createdAt) });
+    const reqFriend = await RequestList.findOne({
+      where: { letterNo: receiver },
+    });
+
+    if (showNoti && reqFriend) {
+      res.send({
+        sender: showNoti.sender,
+        postTime: times(showNoti.createdAt),
+        isFrined: 'true',
+      });
+    } else if (showNoti) {
+      res.send({
+        sender: showNoti.sender,
+        postTime: times(showNoti.createdAt),
+        isFriend: 'false',
+      });
+    }
   },
 
   postNoti: async (req, res) => {
