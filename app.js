@@ -20,6 +20,7 @@ app.use(
     //   maxAge: 60 * 1000, // 1m
     //   secure: false,
     // }, // 다른 옵션도 필요에 따라 설정 가능
+
   })
 );
 app.use(express.urlencoded({ extended: true }));
