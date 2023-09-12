@@ -26,7 +26,7 @@ function comparePassword(password, hashedPassword) {
 
 const output = {
   login: (req, res) => {
-    res.render('login');
+    res.render('login', { user: req.session.userInfo.userId });
   },
   findPassword: (req, res) => {
     res.render('findPassword');
@@ -67,7 +67,7 @@ const input = {
             userId: user.userId,
             nickname: user.nickname,
           }; //세션 생성
-          console.log(req.session.userInfo);
+          // console.log(req.session.userInfo); //{ userId: 'alsdud1240', nickname: '로그인확인용' }
           res.send({ result: true, data: user, message: '로그인 성공!' });
         } else {
           //비밀번호 불일치
