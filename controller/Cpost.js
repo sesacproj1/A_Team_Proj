@@ -13,11 +13,18 @@ const output = {
     const showPost = await Post.findOne({
       where: { letterNo: letterNo, postNo: postNo },
     });
+
+    const showLikes = await PostLikes.findOne({
+      where: { letterNo: letterNo, postNo: postNo },
+      attributes: ['likesNum'],
+    });
+
     if (showPost) {
       res.send({
         postContent: showPost.postContent,
         postNickname: showPost.postNickname,
         postIp: showPost.postIp,
+        likesNum: showLikes.likesNum,
       });
     } else res.send('편지내용이 없음');
   },
@@ -40,7 +47,7 @@ const input = {
       where: { letterNo: letterNo, postNickname: postNickname },
     });
 
-    await Notifiaction.create({
+    await Notification.create({
       letterNo: letterNo,
       sender: postNickname,
       postNo: postInfo.postNo,
@@ -58,7 +65,7 @@ const input = {
     res.send({ result: 'true' });
   },
 
-  contentLikes: async (req, res) => {
+  updateLikes: async (req, res) => {
     const { letterNo, postNo } = req.params;
     const likesNum = req.body.number;
 
