@@ -7,7 +7,8 @@
   /* background-color: #0c356a; */
   margin: 0;
   padding: 0;
-  /* background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%); */
+  background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%);
+
   background-image: url('../img/background/starBg.png');
 }
 
@@ -19,6 +20,8 @@
   position: relative;
   font-family: 'pixelRoboRobo';
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* 상단 문장 */
@@ -30,48 +33,56 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  height: 20%;
   /* color: #f11a7b; */
 }
-/* .cmtDiv :first-child { */
-/* color: #f11a7b; */
-/* } */
 
 /* 별 */
 .starDiv {
   position: relative;
   display: flex;
   justify-content: space-around;
+  /* background-color: aqua; */
   top: 20%;
+  height: 60vh;
+  width: 100vw;
+}
+.starDiv a {
+  text-decoration-line: none;
+}
+
+.star {
+  /* display: flex;
+  flex-direction: column; */
+  position: absolute;
+  width: 100%;
 }
 .star img {
-  width: 10%;
+  width: 80%;
   height: 100%;
   position: absolute;
   text-align: center;
 }
-.star0 {
-  animation: twinkle infinite 3s linear;
-}
-.star3 {
-  animation: twinkle infinite 2s linear;
-}
-.star5 {
-  animation: twinkle infinite 3.5s linear;
-}
-.star8 {
-  animation: twinkle infinite 2.5s linear;
-}
-.star:hover {
-  transform: scale(1.5);
-}
-.starDiv a {
-  text-decoration: none;
-  color: inherit;
+.star p {
+  color: #eeeeee;
+  position: absolute;
+  display: block;
 }
 
-.starOne img {
-  width: 100px;
-  height: 100px;
+/* #star2 {
+  animation: twinkle infinite 3s linear;
+}
+#star4 {
+  animation: twinkle infinite 2s linear;
+}
+#star6 {
+  animation: twinkle infinite 3.5s linear;
+}
+#star9 {
+  animation: twinkle infinite 2.5s linear;
+} */
+.star img:hover {
+  transform: scale(1.5);
 }
 
 /* 버튼 */
@@ -85,6 +96,7 @@
   margin-left: auto;
   margin-right: auto;
   top: 75%;
+  height: 20%;
 }
 
 .btnDiv button {
@@ -143,6 +155,6 @@ button img {
     top: 80%;
     left: 0%;
     opacity: 0.2;
-    display: none;
+    /* display: none; */
   }
 }

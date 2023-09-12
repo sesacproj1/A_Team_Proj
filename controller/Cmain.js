@@ -15,9 +15,17 @@ const output = {
     // console.log(result[1].nickname);
     res.render('index', {
       data: result,
+      // id: result2,
     });
-    // 메인 루트 페이지 렌더링하는 기능입니다.
   },
+
+  // 다음 페이지 버튼 클릭시 다음 페이지로
+  nextPage: async (req, res) => {
+    const result2 = await User.findAll();
+    res.send({ data: result2 });
+  },
+  // 메인 루트 페이지 렌더링하는 기능입니다.
+  // },
 
   userLogin: (req, res) => {
     //유저 로그인 렌더 페이지입니다
@@ -44,6 +52,7 @@ const output = {
   userRegister: (req, res) => {
     return res.render('user/register');
   },
+
   noticePost: (req, res) => {
     return res.render('notice/noticePost');
   },
@@ -93,7 +102,6 @@ const input = {
     console.log(result);
     if (result === 1) {
       return res.redirect('/notice');
-
     }
   },
 
