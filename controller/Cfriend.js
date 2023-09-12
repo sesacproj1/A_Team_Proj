@@ -27,6 +27,17 @@ const input = {
       res.send('중복2');
     }
   },
+
+  delFriend: async (req, res) => {
+    await Friend.destroy({
+      where: { id: req.params.id },
+    });
+    await toFriend.destroy({
+      where: { id: req.params.id },
+    });
+
+    res.send('true');
+  },
 };
 
 const output = {

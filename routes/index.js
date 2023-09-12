@@ -59,9 +59,11 @@ router.patch(
   controllerPost.input.contentLikes
 );
 
+// 친구기능
 router.post('/friend/:id', controllerFriend.output.showFriend);
 router.post('/reqFriend/:id', controllerFriend.input.reqFriend);
 router.post('/showRequest/:id', controllerFriend.output.showRequest);
 router.post('/admitRequest/:id', controllerFriend.output.admitRequest);
+router.delete('/friend/:id/delete', controllerFriend.input.delFriend);
 
 module.exports = router;
