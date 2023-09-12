@@ -67,6 +67,7 @@ const input = {
             userId: user.userId,
             nickname: user.nickname,
           }; //세션 생성
+          console.log(req.session.userInfo);
           res.send({ result: true, data: user, message: '로그인 성공!' });
         } else {
           //비밀번호 불일치
@@ -81,40 +82,34 @@ const input = {
     }
   },
   isId: async (req, res) => {
-    await User.findOne({
+    const result = await User.findOne({
       where: { userId: req.body.userId },
-    }).then((result) => {
-      console.log(result);
-      if (result == null) {
-        return res.send(true);
-      } else {
-        return res.send(false);
-      }
     });
+    if (result == null) {
+      return res.send(true);
+    } else {
+      return res.send(false);
+    }
   },
   isNickname: async (req, res) => {
-    await User.findOne({
+    const result = await User.findOne({
       where: { nickname: req.body.nickname },
-    }).then((result) => {
-      console.log(result);
-      if (result == null) {
-        return res.send(true);
-      } else {
-        return res.send(false);
-      }
     });
+    if (result == null) {
+      return res.send(true);
+    } else {
+      return res.send(false);
+    }
   },
   isEmail: async (req, res) => {
-    await User.findOne({
+    const result = await User.findOne({
       where: { email: req.body.email },
-    }).then((result) => {
-      console.log(result);
-      if (result == null) {
-        return res.send(true);
-      } else {
-        return res.send(false);
-      }
     });
+    if (result == null) {
+      return res.send(true);
+    } else {
+      return res.send(false);
+    }
   },
   //   회원가입
   postRegister: async (req, res) => {
@@ -125,13 +120,13 @@ const input = {
       nickname,
       email,
       pwConfirm,
-      isId,
-      isEmail,
-      isNickname,
+      idResult,
       isPw,
+      nicknameResult,
+      emailResult,
     } = req.body;
-    console.log(isPw);
-    if (isId && isPw && isEmail && isNickname) {
+    console.log('req.body는', req.body);
+    if (idResult && isPw && nicknameResult && emailResult && pwConfirm) {
       console.log('패스워드 암호화 전 ', pw);
       const secretPw = hashPassword(pw);
       console.log('패스워드 암호화 후 ', secretPw);
