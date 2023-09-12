@@ -181,7 +181,7 @@ async function register() {
     }).then((res) => {
       console.log(res);
       if (res.data.result) {
-        // alert(`${res.data.message}`);
+        alert(`${res.data.message}`);
         //로그인 페이지 이동
         document.location.href = '/user/login';
       } else {
