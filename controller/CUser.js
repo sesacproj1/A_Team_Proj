@@ -26,7 +26,7 @@ function comparePassword(password, hashedPassword) {
 
 const output = {
   login: (req, res) => {
-    res.render('login');
+    res.render('login', { user: req.session.userInfo.userId });
   },
   findPassword: (req, res) => {
     res.render('findPassword');
@@ -53,7 +53,7 @@ const input = {
     try {
       // Step1. 아이디를 찾아서 사용자 존재 유무 체크
       const user = await User.findOne({
-        where: { userId: req.body.id },
+        where: { userId: req.body.userId },
       });
       // Step2. 입력된 비밀번호 암호화하여 기존 데이터와 비교
 
@@ -67,10 +67,11 @@ const input = {
             userId: user.userId,
             nickname: user.nickname,
           }; //세션 생성
+          // console.log(req.session.userInfo); //{ userId: 'alsdud1240', nickname: '로그인확인용' }
           res.send({ result: true, data: user, message: '로그인 성공!' });
         } else {
           //비밀번호 불일치
-          res.send({ result: false, message: '비밀번호가 틀렸습니다.' });
+          res.send({ result: false, message: '비밀번호를 다시 확인해주세요' });
         }
       } else {
         res.send({ result: false, message: '존재하는 사용자가 없습니다' });
@@ -81,40 +82,34 @@ const input = {
     }
   },
   isId: async (req, res) => {
-    await User.findOne({
+    const result = await User.findOne({
       where: { userId: req.body.userId },
-    }).then((result) => {
-      console.log(result);
-      if (result == null) {
-        return res.send(true);
-      } else {
-        return res.send(false);
-      }
     });
+    if (result == null) {
+      return res.send(true);
+    } else {
+      return res.send(false);
+    }
   },
   isNickname: async (req, res) => {
-    await User.findOne({
+    const result = await User.findOne({
       where: { nickname: req.body.nickname },
-    }).then((result) => {
-      console.log(result);
-      if (result == null) {
-        return res.send(true);
-      } else {
-        return res.send(false);
-      }
     });
+    if (result == null) {
+      return res.send(true);
+    } else {
+      return res.send(false);
+    }
   },
   isEmail: async (req, res) => {
-    await User.findOne({
+    const result = await User.findOne({
       where: { email: req.body.email },
-    }).then((result) => {
-      console.log(result);
-      if (result == null) {
-        return res.send(true);
-      } else {
-        return res.send(false);
-      }
     });
+    if (result == null) {
+      return res.send(true);
+    } else {
+      return res.send(false);
+    }
   },
   //   회원가입
   postRegister: async (req, res) => {
@@ -125,13 +120,13 @@ const input = {
       nickname,
       email,
       pwConfirm,
-      isId,
-      isEmail,
-      isNickname,
+      idResult,
       isPw,
+      nicknameResult,
+      emailResult,
     } = req.body;
-    console.log(isPw);
-    if (isId && isPw && isEmail && isNickname) {
+    console.log('req.body는', req.body);
+    if (idResult && isPw && nicknameResult && emailResult && pwConfirm) {
       console.log('패스워드 암호화 전 ', pw);
       const secretPw = hashPassword(pw);
       console.log('패스워드 암호화 후 ', secretPw);
