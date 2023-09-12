@@ -53,7 +53,7 @@ const input = {
     try {
       // Step1. 아이디를 찾아서 사용자 존재 유무 체크
       const user = await User.findOne({
-        where: { userId: req.body.id },
+        where: { userId: req.body.userId },
       });
       // Step2. 입력된 비밀번호 암호화하여 기존 데이터와 비교
 
@@ -71,7 +71,7 @@ const input = {
           res.send({ result: true, data: user, message: '로그인 성공!' });
         } else {
           //비밀번호 불일치
-          res.send({ result: false, message: '비밀번호가 틀렸습니다.' });
+          res.send({ result: false, message: '비밀번호를 다시 확인해주세요' });
         }
       } else {
         res.send({ result: false, message: '존재하는 사용자가 없습니다' });

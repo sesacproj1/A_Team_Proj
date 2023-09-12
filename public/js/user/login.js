@@ -12,24 +12,25 @@
 //     }
 // })
 async function loginAxios() {
-  const form = document.forms['registerForm'];
-  await axios({
+  const form = document.forms['loginForm'];
+  const result = await axios({
     method: 'POST',
     url: '/login',
     data: {
       userId: form.userId.value,
       pw: form.password.value,
     },
-  }).then((res) => {
-    console.log(res);
-    if (res.data.result) {
-      alert(`${res.data.message}`);
-      //메인 페이지 이동
-      document.location.href = '/';
-    } else {
-      alert(`${res.data.message}`);
-      //다시 로그인페이지 이동
-      document.location.href = '/user/login';
-    }
   });
+  const data = result.data;
+  console.log(data);
+  if (data.result) {
+    console.log(data.data.nickname);
+    alert(`${data.data.nickname}님 ${data.message} 환영합니다.`);
+    //메인 페이지 이동
+    document.location.href = '/';
+  } else {
+    alert(`${data.message}`);
+    //다시 로그인페이지 이동
+    document.location.href = '/user/login';
+  }
 }

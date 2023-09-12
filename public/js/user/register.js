@@ -180,7 +180,6 @@ async function register() {
       alert(`${data.message}`);
       // 로그인 페이지 이동
       document.location.href = '/user/login';
-      console.log('회원가입완! ');
     } else {
       alert(`${data.message}`);
       //다시 회원가입페이지 이동
