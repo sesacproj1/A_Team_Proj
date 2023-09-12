@@ -7,8 +7,8 @@ const controllerUser = require('../controller/CUser');
 const controllerNoti = require('../controller/CNoti');
 const controllerPost = require('../controller/Cpost.js');
 
-
 router.get('/', controller.output.index);
+router.get('/prevPage', controller.output.prevPage);
 router.get('/nextPage', controller.output.nextPage);
 // ~~~~~~~~~~~~~~ 유저 관련 API ~~~~~~~~~~~~
 // 전체회원 확인
@@ -48,9 +48,6 @@ router.get('/notice/post', controller.output.noticePost);
 router.get('/user/myPage', controller.output.myPage);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 
-
-
-
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 
 //기능부분 (api)
@@ -58,7 +55,6 @@ router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 router.post('/noticePost', controller.input.noticePost);
 router.get('/notice/delete/:noticeNo', controller.input.noticeDelete);
 router.patch('/notice/update/:noticeNo', controller.input.noticeUpdate);
-
 
 // 알림기능
 router.post('/notification/:letterNo', controllerNoti.output.showNoti);
@@ -95,6 +91,5 @@ router.post('/reqFriend/:id', controllerFriend.input.reqFriend);
 router.post('/showRequest/:id', controllerFriend.output.showRequest);
 router.post('/admitRequest/:id', controllerFriend.output.admitRequest);
 router.delete('/friend/:id/delete', controllerFriend.input.delFriend);
-
 
 module.exports = router;
