@@ -1,5 +1,17 @@
-###
+
 @server = http://localhost:8000
+@letterNo = 1
+@postNo = 1
+
+### 현재 작성된 글에 따라 알람기능 활성
+POST {{server}}/notification/{{letterNo}}
+
+### 알람클릭시 해당 글로 이동하면서 알람 삭제
+DELETE  {{server}}/notification/{{letterNo}}/{{postNo}}
+
+### 알람 삭제 기능
+DELETE {{server}}/notification/{{letterNo}}/{{postNo}}/delete
+
 @id = 1
 
 ### id = 1 인 유저의 친구목록 보기
