@@ -24,6 +24,7 @@ function prevPage() {
       for (let i = 1; i <= res.data.data.length; i++) {
         // console.log(res.data.data);
         p[i - 1].innerText = res.data.data[i - 1].nickname;
+        console.log(i - 1, p[i - 1].innerText);
       }
     });
   } catch (err) {
