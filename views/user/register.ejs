@@ -6,6 +6,7 @@
     <title>회원가입</title>
     <%- include('../header')%>
     <link rel="stylesheet" href="/css/register.css" />
+    <script defer src="/js/user/register.js"></script>
   </head>
   <body>
     <!-- 메인 컨테이너 -->
@@ -51,10 +52,12 @@
                       placeholder="아이디"
                       name="userId"
                       id="userId"
+                      onkeyup="isId(this);"
                       required
                     />
                   </div>
-                  <div id="idConfirm">아이디가 중복되셨습니다</div>
+                  <div id="idConfirm"></div>
+                  </div>
                   <div style="display: flex">
                     <div><i class="bi bi-key-fill"></i></div>
                     <input
@@ -62,6 +65,7 @@
                       name="password"
                       id="password"
                       placeholder="패스워드"
+                      onchange="isPw()"
                       required
                     />
                   </div>
@@ -72,10 +76,11 @@
                       type="password"
                       id="passwordConfirm"
                       placeholder="패스워드 확인"
+                      onchange="isPw()"
                       required
                     />
                   </div>
-                  <div>패스워드가 중복되셨습니다</div>
+                  <div id="check"></div>
                   <div style="display: flex">
                     <div><i class="bi bi-person-vcard-fill"></i></div>
                     <input
@@ -83,10 +88,11 @@
                       id="nickname"
                       name="nickname"
                       placeholder="닉네임"
+                      onkeyup="isNickname(this);"
                       required
                     />
                   </div>
-                  <div id="nicknameConfirm">닉네임이 중복되셨습니다</div>
+                  <div id="nicknameConfirm"></div>
                   <div style="display: flex">
                     <div><i class="bi bi-envelope-at-fill"></i></div>
                     <input
@@ -94,10 +100,11 @@
                       name="email"
                       id="email"
                       placeholder="이메일"
+                      onkeyup="isEmail(this);"
                       required
                     />
                   </div>
-                  <div id="emailConfirm">이메일이 중복되셨습니다</div>
+                  <div id="emailConfirm"></div>
                   <div>
                     <button type="button" onclick="register()" id="registerBtn">
                       회원가입

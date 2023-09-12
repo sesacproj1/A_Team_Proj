@@ -10,8 +10,11 @@ router.get('/', controller.output.index);
 // ~~~~~~~~~~~~~~ 유저 관련 API ~~~~~~~~~~~~
 // 전체회원 확인
 router.get('/users', controllerUser.output.getUser);
-router.get('/register', controllerUser.output.register);
-//회원가입
+router.get('/user/register', controllerUser.output.register);
+/*회원가입 관련 */
+router.post('/register/isId', controllerUser.input.isId);
+router.post('/register/isNickname', controllerUser.input.isNickname);
+router.post('/register/isEmail', controllerUser.input.isEmail);
 router.post('/register', controllerUser.input.postRegister);
 
 //로그인

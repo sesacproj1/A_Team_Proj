@@ -12,11 +12,10 @@ const {
 const output = {
   index: async (req, res) => {
     const result = await User.findAll();
-
-    console.log(result),
-      res.render('index', {
-        result: result,
-      });
+    // console.log(result[1].nickname);
+    res.render('index', {
+      data: result,
+    });
     // 메인 루트 페이지 렌더링하는 기능입니다.
   },
 
@@ -94,6 +93,7 @@ const input = {
     console.log(result);
     if (result === 1) {
       return res.redirect('/notice');
+
     }
   },
 
