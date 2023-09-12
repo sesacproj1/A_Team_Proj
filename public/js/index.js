@@ -2,6 +2,7 @@ const myWidth = window.innerWidth;
 const myHeight = window.innerHeight;
 
 // star position /size 정의
+
 // for (let i = 0; i <= 8; i++) {
 //   //한 페이지에 9개 배치 예정
 //   const star = document.querySelector(`.star${i}`);
@@ -89,13 +90,13 @@ function twinkle() {
 }
 window.setInterval(twinkle, 2000);
 
-// 별자리 애니메이션 끝난 후
-const stStar = document.querySelector("#stStar");
+//별자리 애니메이션 끝난 후
+const stStar = document.querySelector('#stStar');
 
-stStar.addEventListener("animationend", () => {
+stStar.addEventListener('animationend', () => {
   //css 애니메이션에 적용되는 animationend 속성
   // console.log("animation end");
-  stStar.style.display = "none";
+  stStar.style.display = 'none';
 });
 
 // 페이징

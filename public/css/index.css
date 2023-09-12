@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "pixelRoboRobo";
-  src: url("/font/pixelroborobo.otf");
+  font-family: 'pixelRoboRobo';
+  src: url('/font/pixelroborobo.otf');
 }
 
 * {
@@ -8,7 +8,7 @@
   margin: 0;
   padding: 0;
   /* background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%); */
-  background-image: url("../img/background/starBg.png");
+  background-image: url('../img/background/starBg.png');
 }
 
 .background {
@@ -17,7 +17,7 @@
   height: 100vh;
   color: #eeeeee;
   position: relative;
-  font-family: "pixelRoboRobo";
+  font-family: 'pixelRoboRobo';
   overflow: hidden;
 }
 
