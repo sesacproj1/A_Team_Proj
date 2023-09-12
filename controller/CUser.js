@@ -119,19 +119,39 @@ const input = {
   //   회원가입
   postRegister: async (req, res) => {
     //TODO id중복처리
-    const { userId, pw, nickname, email } = req.body;
-    console.log('패스워드 암호화 전 ', pw);
-    const secretPw = hashPassword(pw);
-    console.log('패스워드 암호화 후 ', secretPw);
-    await User.create({
-      userId: userId,
-      password: secretPw,
-      nickname: nickname,
-      email: email,
-    });
-    return res.send({
-      message: ` 회원가입 성공! ${nickname}님 반갑습니다.`,
-    });
+    const {
+      userId,
+      pw,
+      nickname,
+      email,
+      pwConfirm,
+      isId,
+      isEmail,
+      isNickname,
+      isPw,
+    } = req.body;
+    console.log(isPw);
+    if (isId && isPw && isEmail && isNickname) {
+      console.log('패스워드 암호화 전 ', pw);
+      const secretPw = hashPassword(pw);
+      console.log('패스워드 암호화 후 ', secretPw);
+
+      await User.create({
+        userId: userId,
+        password: secretPw,
+        nickname: nickname,
+        email: email,
+      });
+      return res.send({
+        result: true,
+        message: ` 회원가입 성공! ${nickname}님 반갑습니다.`,
+      });
+    } else {
+      return res.send({
+        result: false,
+        message: `정상적인 가입에 실패하셨습니다. 다시 입력해주세요`,
+      });
+    }
   },
   //마이페이지에서 수정하기
   patchProfile: async (req, res) => {
