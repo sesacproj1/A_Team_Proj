@@ -125,12 +125,19 @@ async function register() {
         pw: form.password.value,
         nickname: form.nickname.value,
         email: form.email.value,
+        pwConfirm: form.passwordConfirm.value,
       },
     }).then((res) => {
       console.log(res);
-      alert(`${res.data.message}`);
-      //로그인 페이지 이동
-      document.location.href = '/user/login';
+      if (res.data.result) {
+        alert(`${res.data.message}`);
+        //로그인 페이지 이동
+        document.location.href = '/user/login';
+      } else {
+        alert(`${res.data.message}`);
+        //다시 회원가입페이지 이동
+        document.location.href = '/user/register';
+      }
     });
   }
 }
