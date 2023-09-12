@@ -15,6 +15,7 @@ const Notification = (Sequelize, DataTypes) => {
       letterNo: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        comment: '수신자',
       },
       id: {
         type: DataTypes.INTEGER,
@@ -24,11 +25,6 @@ const Notification = (Sequelize, DataTypes) => {
         type: DataTypes.STRING(50),
         allowNull: false,
         comment: '발신자',
-      },
-      receiver: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
-        comment: '수신자',
       },
     },
     {

@@ -4,7 +4,9 @@ const router = express.Router();
 const controller = require('../controller/Cmain');
 const controllerFriend = require('../controller/Cfriend');
 const controllerUser = require('../controller/CUser');
+const controllerNoti = require('../controller/CNoti');
 const controllerPost = require('../controller/Cpost.js');
+
 
 router.get('/', controller.output.index);
 // ~~~~~~~~~~~~~~ 유저 관련 API ~~~~~~~~~~~~
@@ -56,6 +58,18 @@ router.post('/noticePost', controller.input.noticePost);
 router.get('/notice/delete/:noticeNo', controller.input.noticeDelete);
 router.patch('/notice/update/:noticeNo', controller.input.noticeUpdate);
 
+
+// 알림기능
+router.post('/notification/:letterNo', controllerNoti.output.showNoti);
+router.delete(
+  '/notification/:letterNo/:postNo',
+  controllerNoti.output.postNoti
+);
+router.delete(
+  '/notification/:letterNo/:postNo/delete',
+  controllerNoti.input.deleteNoti
+);
+
 // 편지함 페이지 출력
 router.get('/MyLetter/:letterNo', controllerPost.output.showMyLetter);
 
@@ -78,5 +92,6 @@ router.post('/friend/:id', controllerFriend.output.showFriend);
 router.post('/reqFriend/:id', controllerFriend.input.reqFriend);
 router.post('/showRequest/:id', controllerFriend.output.showRequest);
 router.post('/admitRequest/:id', controllerFriend.output.admitRequest);
+
 
 module.exports = router;
