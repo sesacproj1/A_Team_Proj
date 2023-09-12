@@ -12,7 +12,7 @@ const {
 const output = {
   index: async (req, res) => {
     const result = await User.findAll();
-    // console.log(result.length);
+    // console.log(result[1].nickname);
     res.render('index', {
       data: result,
       // id: result2,
@@ -61,6 +61,22 @@ const output = {
     // 유저 찾는 곳
     return res.render('user/findUser');
   },
+
+  noticeUpdate: async (req, res) => {
+    const result = await Notice.findOne({
+      where: {
+        noticeNo: req.params.noticeNo,
+      },
+    });
+    console.log('시작' + result);
+    return res.render('notice/noticeUpdate', {
+      data: result,
+    });
+  },
+
+  myPage : (req,res)=>{
+    return res.render('user/myPage');
+  }
 };
 
 const input = {
@@ -85,7 +101,7 @@ const input = {
     });
     console.log(result);
     if (result === 1) {
-      return res.send('성공');
+      return res.redirect('/notice');
     }
   },
 

@@ -31,79 +31,36 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <img
-            src="/img/추석3.png"
-            alt=""
-            width="40"
-            height="50"
-            style="margin-right: 1px"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="닉네임을 검색하세요"
-              aria-label="Search"
-              style="width: 200px"
-            />
-            <button class="searchBtn" type="submit">검색</button>
-          </form>
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="bi bi-envelope-heart-fill navIcons"></i
-                ><span class="navbarSpan">편지함</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/notice">
-                <i class="bi bi-pencil-square navIcons"></i
-                ><span class="navbarSpan">공지사항</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">
-                <i class="bi bi-house-door-fill navIcons"></i
-                ><span class="navbarSpan">홈</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">
-                <i class="bi bi-bell-fill navIcons"></i
-                ><span class="navbarSpan">알람</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">
-                <i class="bi bi-person-bounding-box navIcons"></i
-                ><span class="navbarSpan">마이페이지</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/user/login">
-                <i class="bi bi-box-arrow-right navIcons"></i
-                ><span class="navbarSpan">로그아웃</span></a
-              >
-            </li>
-          </ul>
+    <div>
+      <div id="navbar">
+        <div>
+        <img src="/img/추석3.png" alt="" width="40" height="40">
+        <p id="programName">송편지.exe</p>
+        </div>
+        <div id="clickbar">
+          <div class="bar"><img src="/img/header/window-minimize_2.png" alt="" height="85%"></div>
+          <div class="bar"><img src="/img/header/window-maximize_2.png" alt="" height="85%"></div>
+          <div class="bar"><img src="/img/header/close.png" alt="" height="85%"></div>
         </div>
       </div>
-    </nav>
+      <div id="navbar2">
+        <div id="home">
+          <a href="#"><span style="text-decoration: underline;">홈</span></a>
+        </div>
+        <div id="myLetterBox">
+          <a href="#"><span style="text-decoration: underline;">내</span><span>편지</span></a>
+        </div>
+        <div id="noticeBox">
+          <a href="#"><span style="text-decoration: underline;">공</span><span>지사항</span></a>
+        </div>
+        <div id="alarmBox">
+          <img src="/img/header/notification.png" alt="" width="30" height="30">
+          <a href="#"><span style="text-decoration: underline;">알</span><span>림</span></a>
+        </div>
+        <div id="loginBox">
+          <a href="#"><span style="text-decoration: underline;">로</span><span>그인</span></a>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

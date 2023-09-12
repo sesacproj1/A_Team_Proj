@@ -40,7 +40,7 @@ const output = {
     }
   },
   register: (req, res) => {
-    res.render('register');
+    res.render('user/register');
   },
   profile: (req, res) => {
     res.render('profile');
@@ -80,45 +80,63 @@ const input = {
       res.send('Internal Server Error');
     }
   },
+  isId: async (req, res) => {
+    await User.findOne({
+      where: { userId: req.body.userId },
+    }).then((result) => {
+      console.log(result);
+      if (result == null) {
+        return res.send(true);
+      } else {
+        return res.send(false);
+      }
+    });
+  },
+  isNickname: async (req, res) => {
+    await User.findOne({
+      where: { nickname: req.body.nickname },
+    }).then((result) => {
+      console.log(result);
+      if (result == null) {
+        return res.send(true);
+      } else {
+        return res.send(false);
+      }
+    });
+  },
+  isEmail: async (req, res) => {
+    await User.findOne({
+      where: { email: req.body.email },
+    }).then((result) => {
+      console.log(result);
+      if (result == null) {
+        return res.send(true);
+      } else {
+        return res.send(false);
+      }
+    });
+  },
   //   회원가입
   postRegister: async (req, res) => {
     //TODO id중복처리
-    const { userId, pw, nickname, email } = req.body;
-    console.log('패스워드 암호화 전 ', pw);
-    const secretPw = hashPassword(pw);
-    console.log('패스워드 암호화 후 ', secretPw);
-    const isId = await User.findOne({
-      where: { userId: userId },
-    });
-    const isNickname = await User.findOne({
-      where: { nickname: nickname },
-    });
-    const isEmail = await User.findOne({
-      where: { email: email },
-    });
-    // result1 -> 중복 id
-    // result2 -> 중복 닉네임
-    // result3 -> 중복 이메일
+    const {
+      userId,
+      pw,
+      nickname,
+      email,
+      pwConfirm,
+      isId,
+      isEmail,
+      isNickname,
+      isPw,
+    } = req.body;
+    console.log(isPw);
+    if (isId && isPw && isEmail && isNickname) {
+      console.log('패스워드 암호화 전 ', pw);
+      const secretPw = hashPassword(pw);
+      console.log('패스워드 암호화 후 ', secretPw);
 
-    if (isId) {
-      //isId === true -> 중복 id
-      return res.send({ result1: true, message: '이미 존재하는 id 입니다.' });
-    }
-    if (isNickname) {
-      // 이미 존재하는 닉네임 를 생성하려 했을때
-      return res.send({
-        result2: true,
-        message: '이미 존재하는 닉네임입니다.',
-      });
-    }
-    if (isEmail) {
-      return res.send({
-        result3: true,
-        message: '이미 존재하는 이메일입니다.',
-      });
-    }
-    if (!isId && !isNickname && !isEmail) {
-      const make = await User.create({
+      await User.create({
         userId: userId,
         password: secretPw,
         nickname: nickname,
@@ -127,6 +145,11 @@ const input = {
       return res.send({
         result: true,
         message: ` 회원가입 성공! ${nickname}님 반갑습니다.`,
+      });
+    } else {
+      return res.send({
+        result: false,
+        message: `정상적인 가입에 실패하셨습니다. 다시 입력해주세요`,
       });
     }
   },

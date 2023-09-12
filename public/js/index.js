@@ -75,9 +75,17 @@ btnLogin.addEventListener('click', () => {
 });
 
 // star position /size 정의
+
 for (let i = 1; i <= starCnt; i++) {
   const star = document.querySelector(`.star${i}`);
   const p = document.querySelector(`#p${i}`);
+
+
+// for (let i = 0; i <= 8; i++) {
+//   //한 페이지에 9개 배치 예정
+//   const star = document.querySelector(`.star${i}`);
+//   console.log(`star${i}: ${star}`);
+
 
   if (i % 2 == 0) {
     // 짝수 별이라면
@@ -153,7 +161,9 @@ function twinkle() {
 }
 window.setInterval(twinkle, 2000);
 
+
 // 별자리 애니메이션 끝난 후
+
 const stStar = document.querySelector('#stStar');
 
 stStar.addEventListener('animationend', () => {
