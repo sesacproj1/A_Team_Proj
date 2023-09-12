@@ -1,6 +1,6 @@
 * {
   letter-spacing: -2px;
-  font-family: 'pixel1';
+  font-family: 'pixel2';
 }
 
 @font-face {
@@ -10,8 +10,9 @@
 
 @font-face {
   font-family: 'pixel2';
-  src: url('../fonts/pixelroborobo.otf') format('truetype');
+  src: url('../font/PF스타더스트\ Bold.ttf') format('truetype');
 }
+
 
 #main-container {
   height: 900px;

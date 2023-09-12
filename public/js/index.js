@@ -12,54 +12,60 @@ const btnLogin = document.querySelector('#btnLogin');
 btnLeft.addEventListener('click', prevPage);
 btnRight.addEventListener('click', nextPage);
 
-function prevPage() {
-  const a = document.querySelectorAll('a');
-  const p = document.querySelectorAll('p');
+let currentPage = 1; // 현재 페이지
 
-  try {
-    axios({
-      method: 'GET',
-      url: '/nextPage',
-    }).then((res) => {
-      for (let i = 1; i <= res.data.data.length; i++) {
-        // console.log(res.data.data);
-        p[i - 1].innerText = res.data.data[i - 1].nickname;
-      }
-    });
-  } catch (err) {
-    console.log('Error', err);
+function prevPage() {
+  if (currentPage > 1) { // 현재 페이지가 1보다 큰 경우에만 이전 페이지로 이동
+    const p = document.querySelectorAll('p');
+
+    try {
+      axios({
+        method: 'GET',
+        url: `/prevPage?page=${currentPage}`,
+      }).then((res) => {
+        const data = res.data.data;
+        const startIndex = (currentPage - 1) * 7; // 시작 인덱스 계산
+
+        for (let i = 0; i < p.length; i++) {
+          const dataIndex = startIndex + i;
+          // 데이터가 있으면 데이터를 출력하고, 없으면 빈 객체로 대체하여 출력
+          if (data[dataIndex]) {
+            p[i].innerText = data[dataIndex].nickname;
+          } else {
+            p[i].innerText = ''; // 빈 객체로 처리
+          }
+        }
+
+        currentPage--; // 이전 페이지로 이동
+      });
+    } catch (err) {
+      console.log('Error', err);
+    }
   }
 }
 
 function nextPage() {
-  const a = document.querySelectorAll('a');
   const p = document.querySelectorAll('p');
-  // a.href="/user/Myletter/<%=data[i+7].id%>"
-  // p.textContent = '<%=data[i+2].nickname%>';
-  // console.log(p[0].innerText);
 
   try {
     axios({
       method: 'GET',
-      url: '/nextPage',
-      // params: data,
+      url: `/nextPage?page=${currentPage}`,
     }).then((res) => {
-      // 1) a태그 내 링크 수정
+      const data = res.data.data;
+      const startIndex = (currentPage - 1) * 7; // 시작 인덱스 계산
 
-      // 2) p태그 내 닉네임 수정
-      // console.log(res);
-      // let { nickname } = res.data.data;
-      // console.log('nickname', nickname);
-      for (let i = 0; i < res.data.data.length - 1; i++) {
-        console.log(i, res.data.data[i].nickname);
-        p[i].innerText = res.data.data[i + 7].nickname;
-        if (i + 7 > res.data.data.length) {
-          // p[i].innerText = res.data.data[p.length - 1].nickname;
-          // p[i].innerText = res.data.data[].nickname;
-          p[i].innerText = '';
-          console.log('i', i);
+      for (let i = 0; i < p.length; i++) {
+        const dataIndex = startIndex + i;
+        // 데이터가 있으면 데이터를 출력하고, 없으면 빈 객체로 대체하여 출력
+        if (data[dataIndex]) {
+          p[i].innerText = data[dataIndex].nickname;
+        } else {
+          p[i].innerText = ''; // 빈 객체로 처리
         }
       }
+
+      currentPage++; // 다음 페이지로 이동
     });
   } catch (err) {
     console.log('Error', err);

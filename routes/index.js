@@ -9,6 +9,7 @@ const controllerPost = require('../controller/Cpost.js');
 
 
 router.get('/', controller.output.index);
+router.get('/prevPage', controller.output.prevPage);
 router.get('/nextPage', controller.output.nextPage);
 // ~~~~~~~~~~~~~~ 유저 관련 API ~~~~~~~~~~~~
 // 전체회원 확인

@@ -24,8 +24,12 @@ const output = {
     const result2 = await User.findAll();
     res.send({ data: result2 });
   },
-  // 메인 루트 페이지 렌더링하는 기능입니다.
-  // },
+
+  prevPage: async (req,res) =>{
+    const result = await User.findAll();
+    res.send({data: result});
+  },
+  
 
   userLogin: (req, res) => {
     //유저 로그인 렌더 페이지입니다
