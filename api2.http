@@ -1,0 +1,6 @@
+@server = http://localhost:8000
+### 전체 회원 조회
+GET {{server}}/user
+
+// id 통한 한 명의 편지함 이동
+# GET {{server}}/newUrl

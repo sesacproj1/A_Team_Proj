@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HOME</title>
     <link rel="stylesheet" href="/css/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <%- include('./header') %>
@@ -18,48 +19,44 @@
       <!-- starDiv START -->
       <!-- 데이터 끊어서 별 배치하기: 전체/배치 별 개수 ceil 해서 for문에 추가 -->
       <!-- a 링크 추가, 닉네임 data 추가 -->
-      <!-- 다음 버튼 클릭시 a href 속성, p innertext i+9(배치 별 개수) 하면 되려나 -->
-      <!-- <a href="data[i].id" || ></a>
+      <!-- 다음 버튼 클릭시 a href 속성, p innertext i+9(배치 별 개수) 하면 되려나 
       <p> || data[i].nickname  ||</p> -->
 
-      <div class="starDiv col">
-        <div class="starOne row-5" style="background-color: aliceblue">
-          <% for (let i=0; i< 5; i) { %>
-          <div class="starImgDivOne">
-            <img src="/img/background/kbStar.png" alt="" />
-          </div>
-          <% } %>
-        </div>
-
-        <div class="starTwo row-5" style="background-color: palegoldenrod">
-          <% for (let i=0; i< 4; i) { %>
-          <div class="starImgDivTwo">
-            <img src="/img/background/px_star.png" alt="" />
-          </div>
-          <!-- </a> -->
-          <% } %>
-        </div>
-
-        <!-- <% for (let i=0; i< data.length%9; i++ ) { %>
+      <!-- 한 페이지당 별 9개 배치 예정 -->
+      <!-- 총 회원 수가 7의 배수일 때 (화면에 가득 찰 때) -->
+      <div class="starDiv">
+        <% if(data.length %7 ==0) { %> <% for (let i=0; i<= 6; i++ ) { %>
         <a href="/user/letter/<%=data[i].id%>">
-          <div class="star star<%=i%>">
-            <img src="../img/background/kbStar.png" alt="" id="kbStar<%=i%>" />
-            <p><%=data[i].nickname%></p>
+          <div class="star star<%=i+1%>">
+            <!-- 3의 배수인 별은 일반 이미지 -->
+            <% if ( i%3==0 ) {%>
+            <img src="../img/background/kbStar.png" alt="" id="star<%=i+1%>" />
+            <% }else{ %>
+            <img src="../img/background/px_star.png" alt="" id="star<%=i+1%>" />
+            <% } %>
+            <p id="p<%=i+1%>"><%=data[i].nickname%></p>
           </div>
-        </a> -->
-        <!-- <a href="#">
-          <div class="star star<%=i%> row">
-            <img src="../img/background/px_star.png" alt="" id="star<%=i%>" />
-            <p><%=data[i]%></p>
+        </a>
+        <% } } %>
+
+        <!-- 총 회원 수가 9의 배수가 아닐 때 (화면에 일부만 찰 때) -->
+        <% if(data.length %7 !=0) { %> <% for (let i=0; i<=6; i++ ) { %>
+        <a href="/user/Myletter/<%=data[i].id%>">
+          <div class="star star<%=i+1%>">
+            <% if ( i%3==0 ) {%>
+            <img src="../img/background/kbStar.png" alt="" id="star<%=i+1%>" />
+            <% }else{ %>
+            <img src="../img/background/px_star.png" alt="" id="star<%=i+1%>" />
+            <% } %>
+            <p id="p<%=i+1%>"><%=data[i].nickname%></p>
           </div>
-        </a> -->
-        <!-- <%}%> -->
+        </a>
+        <% } }%>
       </div>
-      <!-- starDiv END -->
 
       <!-- btnDiv START -->
       <div class="btnDiv">
-        <button id="btnleft">
+        <button id="btnLeft">
           <img src="/img/header/left.png" alt="" />
         </button>
         <button id="btnResister">회원가입</button>
