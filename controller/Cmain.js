@@ -54,6 +54,10 @@ const output = {
       data: result,
     });
   },
+
+  myPage : (req,res)=>{
+    return res.render('user/myPage');
+  }
 };
 
 const input = {

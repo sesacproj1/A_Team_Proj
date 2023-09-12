@@ -40,7 +40,7 @@ router.get('/user/register', controller.output.userRegister);
 router.get('/user/findUser', controller.output.findUser);
 router.get('/notice', controller.output.noticeMain);
 router.get('/notice/post', controller.output.noticePost);
-
+router.get('/user/myPage', controller.output.myPage);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 
 
