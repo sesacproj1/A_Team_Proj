@@ -119,18 +119,19 @@ const input = {
   //   회원가입
   postRegister: async (req, res) => {
     //TODO id중복처리
-    const { userId, pw, nickname, email, pwConfirm } = req.body;
-    const isId = await User.findOne({
-      where: { userId: userId },
-    });
-    const isPw = pw === pwConfirm;
-    const isEmail = await User.findOne({
-      where: { email: email },
-    });
-    const isNickname = await User.findOne({
-      where: { nickname: nickname },
-    });
-    if (!isId && isPw && !isEmail && !isNickname) {
+    const {
+      userId,
+      pw,
+      nickname,
+      email,
+      pwConfirm,
+      isId,
+      isEmail,
+      isNickname,
+      isPw,
+    } = req.body;
+    console.log(isPw);
+    if (isId && isPw && isEmail && isNickname) {
       console.log('패스워드 암호화 전 ', pw);
       const secretPw = hashPassword(pw);
       console.log('패스워드 암호화 후 ', secretPw);
