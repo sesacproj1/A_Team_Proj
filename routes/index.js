@@ -29,7 +29,6 @@ router.post('/find/password', controllerUser.input.postFindPassword); // 비밀�
 router.post('/find/id', controllerUser.input.postFindId); // 아이디 찾기 실행
 // router.get('/logout', controllerUser.output.logout); //로그아웃
 
-
 //TODO 마이페이지에서 닉네임 /pw 수정
 router.get('/profile', controllerUser.output.profile);
 router.patch('/profile/edit', controllerUser.input.patchProfile);
@@ -45,11 +44,14 @@ router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 
 
 
+
+router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
+
 //기능부분 (api)
 
 router.post('/noticePost', controller.input.noticePost);
-router.delete('/noticeDelete/:noticeNo', controller.input.noticeDelete);
-router.patch('/noticeUpdate/:noticeNo', controller.input.noticeUpdate);
+router.get('/notice/delete/:noticeNo', controller.input.noticeDelete);
+router.patch('/notice/update/:noticeNo', controller.input.noticeUpdate);
 
 // 편지함 페이지 출력
 router.get('/MyLetter/:letterNo', controllerPost.output.showMyLetter);
