@@ -3,10 +3,9 @@ const { Post, PostLikes, Notification } = require('../models');
 const output = {
   showMyLetter: async (req, res) => {
     const userInfo = req.session.userInfo;
-
-    const letterNo = userInfo.id;
+    const id = userInfo.id;
     await MyLetter.create({
-      letterNo: letterNo,
+      id: id,
     });
 
     res.send('myletter page 출력!');
@@ -26,14 +25,19 @@ const output = {
     });
 
     if (showPost) {
-      res.send({
+      res.render('posts', {
         postContent: showPost.postContent,
         postNickname: showPost.postNickname,
         postIp: showPost.postIp,
         likesNum: showLikes.likesNum,
       });
     } else {
-      res.send('편지내용이 없음');
+      res.render('posts', {
+        postContent: '',
+        postNickname: '',
+        postIp: '',
+        likesNum: 0,
+      });
     }
   },
 };

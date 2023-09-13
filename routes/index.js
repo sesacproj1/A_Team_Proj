@@ -44,10 +44,9 @@ router.patch('/noticeUpdate/:noticeNo', controller.input.noticeUpdate);
 // 편지함 페이지 출력
 router.get('/MyLetter/:letterNo', controllerPost.output.showMyLetter);
 // 편지 출력
-router.get('/MyLetter/:letterNo/:postNo', controllerPost.output.content);
+router.post('/MyLetter/:letterNo/:postNo', controllerPost.output.showPost);
 
 // 편지함 페이지 - 기능 부분
-router.post('/MyLetter/:letterNo/:postNo', controllerPost.output.showPost);
 router.post(
   '/MyLetter/:letterNo/:postNo/Register',
   controllerPost.input.contentRegister
