@@ -64,6 +64,7 @@ const input = {
           //비밀번호 일치할 경우
           //    userInfo 키 값으로 세션 생성 (userInfo는 nickname키와 userId 키를 갖는 "객체")
           req.session.userInfo = {
+            id: user.id,
             userId: user.userId,
             nickname: user.nickname,
           }; //세션 생성
