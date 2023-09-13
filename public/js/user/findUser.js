@@ -2,7 +2,22 @@ let idResult = false,
   nicknameResult = false,
   user;
 //email
-function findId() {}
+async function finduserId() {
+  const form = document.forms['findId'];
+  const result = await axios({
+    method: 'POST',
+    url: '/find/id',
+    data: {
+      email: form.email.value,
+    },
+  });
+  alert(`${result.data.message}`);
+  if (result.data.result) {
+    document.location.href = '/';
+  } else {
+    document.location.href = '/user/findUser';
+  }
+}
 //userId,nickname
 const myModal = new bootstrap.Modal('#exampleModal');
 function findPw() {

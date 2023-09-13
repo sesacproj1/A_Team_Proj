@@ -179,7 +179,7 @@ const input = {
   // 1. 유저가 이메일 입력해서 이메일이 db에존재한다면 해당 아이디를 이메일 메일로 전송
 
   postFindId: async (req, res) => {
-    //받는값 -> 닉네임, 이메일
+    //받는값 -> 이메일
     const { email_service, user, pass } = process.env;
 
     const transporter = nodemailer.createTransport({
@@ -193,33 +193,35 @@ const input = {
 
     try {
       const result = await User.findOne({
-        where: { nickname: req.body.nickname },
+        where: { email: req.body.email },
       });
-      console.log(result);
       if (result) {
         //닉네임일치시 이메일을 받아서 이메일 일치시 이메일로 아이디 전송
-        if (result.email === req.body.email) {
-          const id = result.userId;
-          const mailOptions = {
-            from: user,
-            to: `${result.email}`,
-            subject: `[송편지] ${req.body.nickname}님 아이디찾기`,
-            text: `${req.body.nickname}님의 id는 ${id} 입니다. ^_^*`,
-          };
+        const id = result.userId;
+        const mailOptions = {
+          from: user,
+          to: `${result.email}`,
+          subject: `[송편지] ${result.nickname}님 아이디찾기`,
+          text: `${result.nickname}님의 id는 ${id} 입니다. ^_^*`,
+        };
 
-          transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-              console.error(error);
-            } else {
-              console.log('Email Sent : ', info);
-            }
-          });
-          res.send({ message: '이메일로 아이디 전송!' });
-        } else {
-          res.send({ message: '잘못된 이메일입니다.' });
-        }
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            console.error(error);
+          } else {
+            console.log('Email Sent : ', info);
+          }
+        });
+
+        res.send({
+          result: true,
+          message: '이메일로 아이디를 전송해드렸습니다.',
+        });
       } else {
-        res.send({ message: '해당 닉네임이 존재하지 않습니다.' });
+        res.send({
+          result: false,
+          message: '해당 이메일을 가진 회원이 존재하지 않습니다.',
+        });
       }
     } catch (err) {
       console.error(err);
