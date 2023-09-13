@@ -8,7 +8,6 @@ const controllerNoti = require('../controller/CNoti');
 const controllerPost = require('../controller/Cpost.js');
 const controllerLetter = require('../controller/CLetter');
 
-
 router.get('/', controller.output.index);
 router.get('/prevPage', controller.output.prevPage);
 router.get('/nextPage', controller.output.nextPage);
@@ -17,8 +16,8 @@ router.get('/nextPage', controller.output.nextPage);
 router.get('/users', controllerUser.output.getUser);
 router.get('/user/register', controllerUser.output.register);
 /*회원가입 관련 */
-router.post('/register/isId', controllerUser.input.isId);
-router.post('/register/isNickname', controllerUser.input.isNickname);
+router.post('/isId', controllerUser.input.isId);
+router.post('/isNickname', controllerUser.input.isNickname);
 router.post('/register/isEmail', controllerUser.input.isEmail);
 router.post('/register', controllerUser.input.postRegister);
 
