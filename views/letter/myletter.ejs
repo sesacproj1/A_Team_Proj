@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>내 편지함</title>
     <%- include('../header')%>
-    <link rel="stylesheet" href="/css/myLetter.css" />
+    <link rel="stylesheet" href="/css/myletter.css" />
   </head>
   <body>
     <div class="container-fluid row">
       <div class="titleDiv col-md-2">
         <h1>해순님의<br>편지함</h1>
       </div>
-
+     
       <div class="letterDiv col-md-8">
         <div class="imgDiv">
           <img src="/img/background/moon.png" alt="" id="moon" />
+          <% for (let i=1; i<=5; i++ ){ %>
+            <div class="letters" id='letter<%= i %>'>
+              <img src="/img/letterIcons/px_apple.png" alt="" id="moon" />
+              <p id='writerNickname<%=i%>'>봉미선</p>
+            </div>
+            <% } %>
         </div>
 
         <div class="btnDiv">
@@ -42,6 +48,6 @@
           <p>친구 신청 내역</p>
         </div>
     </div>
-    <script src="/js/letter/myLetter.js"></script>
+    <script src="/js/letter/myletter.js"></script>
   </body>
 </html>

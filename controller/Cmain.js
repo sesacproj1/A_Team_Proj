@@ -15,7 +15,6 @@ const output = {
     // console.log(result[1].nickname);
     res.render('index', {
       data: result,
-      // id: result2,
     });
   },
 
@@ -30,11 +29,10 @@ const output = {
     res.send({ data: result2 });
   },
 
-  prevPage: async (req,res) =>{
+  prevPage: async (req, res) => {
     const result = await User.findAll();
-    res.send({data: result});
+    res.send({ data: result });
   },
-  
 
   userLogin: (req, res) => {
     //유저 로그인 렌더 페이지입니다

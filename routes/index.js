@@ -8,7 +8,6 @@ const controllerNoti = require('../controller/CNoti');
 const controllerPost = require('../controller/Cpost.js');
 const controllerLetter = require('../controller/CLetter');
 
-
 router.get('/', controller.output.index);
 router.get('/prevPage', controller.output.prevPage);
 router.get('/nextPage', controller.output.nextPage);

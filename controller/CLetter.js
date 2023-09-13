@@ -1,30 +1,28 @@
 const {
-    Admin,
-    Friend,
-    MyLetter,
-    Notice,
-    Notification,
-    Post,
-    Profile,
-    User,
-  } = require('../models');
+  Admin,
+  Friend,
+  MyLetter,
+  Notice,
+  Notification,
+  Post,
+  Profile,
+  User,
+} = require('../models');
 
-  const output = {
-    friends : (req,res)=>{
-        res.render('letter/friends');
-    },
+const output = {
+  friends: (req, res) => {
+    res.render('letter/friends');
+  },
 
-   friendConfirm : (req,res)=>{
-        res.render('letter/friendConfirm');
-   }, 
+  friendConfirm: (req, res) => {
+    res.render('letter/friendConfirm');
+  },
 
-   myLetter : (req,res)=>{
-      res.render('letter/myletter');
-   }
-  }
+  myLetter: (req, res) => {
+    res.render('letter/myletter');
+  },
+};
 
-  const input = {
+const input = {};
 
-  }
-
-  module.exports = {output, input};
+module.exports = { output, input };

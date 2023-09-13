@@ -11,7 +11,6 @@ const btnLogin = document.querySelector('#btnLogin');
 btnLeft.addEventListener('click', prevPage);
 btnRight.addEventListener('click', nextPage);
 
-
 // 페이징
 let curPage = 1;
 
@@ -57,7 +56,6 @@ function prevPage() {
         }
         // curPage--;
         // console.log('curPage', curPage);
-
       });
     } catch (err) {
       console.log('Error', err);
@@ -67,6 +65,7 @@ function prevPage() {
 
 function nextPage() {
   const p = document.querySelectorAll('p');
+  const star = document.querySelectorAll(`.star`);
 
   try {
     axios({
@@ -86,11 +85,11 @@ function nextPage() {
           p[i].innerText = data[dataIndex].nickname;
         } else {
           p[i].innerText = '';
+          star[i].innerHTML = ''; //별도 없애기 => 의견 필요
         }
       }
       curPage++;
       console.log('curPage', curPage);
-
     });
   } catch (err) {
     console.log('Error', err);
