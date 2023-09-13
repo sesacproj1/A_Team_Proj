@@ -91,7 +91,7 @@ router.post('/friend/:id', controllerFriend.output.showFriend);
 router.post('/MyLetter/:letterNo/reqFriend', controllerFriend.input.reqFriend);
 router.post('/showRequest/:id', controllerFriend.output.showRequest);
 router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
-router.post('/showRequest/:id/reject', controllerFriend.input.rejectRequest);
+router.delete('/showRequest/:id/reject', controllerFriend.input.rejectRequest);
 router.delete('/friend/:id/delete', controllerFriend.input.delFriend);
 
 module.exports = router;
