@@ -2,7 +2,7 @@ let idResult = false,
   nicknameResult = false,
   user;
 //email
-// function findId() {}
+function findId() {}
 //userId,nickname
 const myModal = new bootstrap.Modal('#exampleModal');
 function findPw() {
