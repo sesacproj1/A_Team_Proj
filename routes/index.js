@@ -8,7 +8,6 @@ const controllerNoti = require('../controller/CNoti');
 const controllerPost = require('../controller/Cpost.js');
 const controllerLetter = require('../controller/CLetter');
 
-
 router.get('/', controller.output.index);
 router.get('/prevPage', controller.output.prevPage);
 router.get('/nextPage', controller.output.nextPage);
@@ -89,9 +88,10 @@ router.patch(
 
 // 친구기능
 router.post('/friend/:id', controllerFriend.output.showFriend);
-router.post('/reqFriend/:id', controllerFriend.input.reqFriend);
+router.post('/MyLetter/:letterNo/reqFriend', controllerFriend.input.reqFriend);
 router.post('/showRequest/:id', controllerFriend.output.showRequest);
-router.post('/admitRequest/:id', controllerFriend.output.admitRequest);
+router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
+router.post('/showRequest/:id/reject', controllerFriend.input.rejectRequest);
 router.delete('/friend/:id/delete', controllerFriend.input.delFriend);
 
 module.exports = router;
