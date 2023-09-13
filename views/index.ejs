@@ -11,6 +11,10 @@
     <%- include('./header') %>
 
     <div class="container-fluid background">
+      <!-- 로딩 화면-->
+      <div class="loading"></div>
+
+      <!-- 메인 화면 -->
       <div class="cmtDiv">
         <h1>송편지</h1>
         <h3>멘트</h3>
@@ -50,7 +54,6 @@
             <% } %>
             <p id="p<%=i+1%>"><%=data[i].nickname%></p>
           </div>
-
         </a>
         <% } }%>
       </div>
@@ -60,8 +63,8 @@
         <button id="btnLeft">
           <img src="/img/header/left.png" alt="" />
         </button>
-        <button id="btnResister">회원가입</button>
-        <button id="btnLogin">로그인</button>
+        <button id="btnResister"><span>회원가입</span></button>
+        <button id="btnLogin"><span>로그인</span></button>
         <button id="btnRight">
           <img src="/img/header/right.png" alt="" />
         </button>
@@ -71,5 +74,15 @@
 
     <!-- btnDiv END -->
     <script src="/js/index.js"></script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.155.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.155.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="js/loading.js"></script>
   </body>
 </html>

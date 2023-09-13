@@ -1,7 +1,6 @@
 const myWidth = window.innerWidth;
 const myHeight = window.innerHeight;
 const starCnt = document.querySelectorAll('.star').length; //현재 화면 내 별 개수
-const starPerPage = 7; // 한 페이지에 배치할 별의 개수
 const btnLeft = document.querySelector('#btnLeft');
 const btnRight = document.querySelector('#btnRight');
 const btnResister = document.querySelector('#btnResister');
@@ -12,61 +11,89 @@ const btnLogin = document.querySelector('#btnLogin');
 btnLeft.addEventListener('click', prevPage);
 btnRight.addEventListener('click', nextPage);
 
-function prevPage() {
-  const a = document.querySelectorAll('a');
-  const p = document.querySelectorAll('p');
+// 페이징
+let curPage = 1;
 
-  try {
-    axios({
-      method: 'GET',
-      url: '/nextPage',
-    }).then((res) => {
-      for (let i = 1; i <= res.data.data.length; i++) {
-        // console.log(res.data.data);
-        p[i - 1].innerText = res.data.data[i - 1].nickname;
-      }
-    });
-  } catch (err) {
-    console.log('Error', err);
+function prevPage() {
+  if (curPage > 1) {
+    //현재 페이지가 1보다 큰 경우에만 이전 페이지로
+    // 데이터 -7(별 개수)
+    const p = document.querySelectorAll('p');
+    try {
+      axios({
+        method: 'GET',
+        url: `/prevPage?page=${curPage}`,
+      }).then((res) => {
+        // step 1) a태그 내 링크 수정
+
+        // step 2) p태그 내 닉네임 수정
+        curPage--; //앞에서 빼주어야 올바른 현재 페이지(이전 페이지)로 이동
+        console.log('curPage', curPage); //1
+
+        const data = res.data.data;
+        // console.log(data.length); //8
+        const startIndex = (curPage - 1) * starCnt; //0
+        // console.log('start prev', startIndex); //0
+
+        for (let i = 0; i < p.length; i++) {
+          //data.length는 8이라 p 인덱스에러 나니까 p.length로 수정
+          const dataIndex = startIndex + i; //0~6
+          // console.log('data prev', dataIndex); //0~8
+
+          if (data[dataIndex]) {
+            //데이터 있을 때 출력
+            // console.log(i, data[i]);
+            // console.log(i, p[i]); //7 undefined
+            p[i].innerText = data[dataIndex].nickname;
+          } else {
+            if (i < 0) {
+              alert('i<0');
+            }
+            // else {
+            //   p[i].innerText = '';
+            // }
+          }
+        }
+        // curPage--;
+        // console.log('curPage', curPage);
+      });
+    } catch (err) {
+      console.log('Error', err);
+    }
   }
 }
 
 function nextPage() {
-  const a = document.querySelectorAll('a');
   const p = document.querySelectorAll('p');
-  // a.href="/user/Myletter/<%=data[i+7].id%>"
-  // p.textContent = '<%=data[i+2].nickname%>';
-  // console.log(p[0].innerText);
 
   try {
     axios({
       method: 'GET',
-      url: '/nextPage',
-      // params: data,
+      url: `nextPage?page=${curPage}`,
     }).then((res) => {
-      // 1) a태그 내 링크 수정
+      const data = res.data.data;
+      const startIndex = curPage * starCnt;
+      //curPage가 1부터 시작하므로 curPage -1 안 해야 알맞게 다음pg 데이터 인덱싱
+      // console.log('start next', startIndex);
 
-      // 2) p태그 내 닉네임 수정
-      // console.log(res);
-      // let { nickname } = res.data.data;
-      // console.log('nickname', nickname);
-      for (let i = 0; i < res.data.data.length - 1; i++) {
-        console.log(i, res.data.data[i].nickname);
-        p[i].innerText = res.data.data[i + 7].nickname;
-        if (i + 7 > res.data.data.length) {
-          // p[i].innerText = res.data.data[p.length - 1].nickname;
-          // p[i].innerText = res.data.data[].nickname;
+      for (let i = 0; i < p.length; i++) {
+        const dataIndex = startIndex + i;
+        // console.log('data next', dataIndex);
+
+        if (data[dataIndex]) {
+          p[i].innerText = data[dataIndex].nickname;
+        } else {
           p[i].innerText = '';
-          console.log('i', i);
         }
       }
+      curPage++;
+      console.log('curPage', curPage);
     });
   } catch (err) {
     console.log('Error', err);
   }
 }
 
-// 회원가입 & 로그인 이동
 btnResister.addEventListener('click', () => {
   document.location.href = '/user/register';
 });
@@ -75,17 +102,14 @@ btnLogin.addEventListener('click', () => {
 });
 
 // star position /size 정의
-
 for (let i = 1; i <= starCnt; i++) {
   const star = document.querySelector(`.star${i}`);
   const p = document.querySelector(`#p${i}`);
 
-
-// for (let i = 0; i <= 8; i++) {
-//   //한 페이지에 9개 배치 예정
-//   const star = document.querySelector(`.star${i}`);
-//   console.log(`star${i}: ${star}`);
-
+  // for (let i = 0; i <= 8; i++) {
+  //   //한 페이지에 9개 배치 예정
+  //   const star = document.querySelector(`.star${i}`);
+  //   console.log(`star${i}: ${star}`);
 
   if (i % 2 == 0) {
     // 짝수 별이라면
@@ -100,7 +124,7 @@ for (let i = 1; i <= starCnt; i++) {
   } else {
     //홀수 별이라면
     if (myWidth <= 480) {
-      // 모바일용
+      // 모바일용 크기
       star.style.top = myHeight / 20 + 'px';
       star.style.left = (myWidth / 11) * i + 'px';
     } else {
@@ -161,9 +185,7 @@ function twinkle() {
 }
 window.setInterval(twinkle, 2000);
 
-
 // 별자리 애니메이션 끝난 후
-
 const stStar = document.querySelector('#stStar');
 
 stStar.addEventListener('animationend', () => {

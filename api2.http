@@ -2,5 +2,11 @@
 ### 전체 회원 조회
 GET {{server}}/user
 
+// 페이징
+// 1) a 태그에 각 편지함 링크 넣기
+
+// 2) p태그에 닉네임 넣기 
+# GET {{server}}/prevPage
+# GET {{server}}/nextPage
 // id 통한 한 명의 편지함 이동
 # GET {{server}}/newUrl

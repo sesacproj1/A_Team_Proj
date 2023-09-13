@@ -19,7 +19,12 @@ const output = {
     });
   },
 
-  // 다음 페이지 버튼 클릭시 다음 페이지로
+  // 페이징
+  prevPage: async (req, res) => {
+    const result2 = await User.findAll();
+    res.send({ data: result2 });
+  },
+
   nextPage: async (req, res) => {
     const result2 = await User.findAll();
     res.send({ data: result2 });
@@ -74,9 +79,9 @@ const output = {
     });
   },
 
-  myPage : (req,res)=>{
+  myPage: (req, res) => {
     return res.render('user/myPage');
-  }
+  },
 };
 
 const input = {
