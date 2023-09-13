@@ -3,8 +3,9 @@ const { User, Friend, toFriend, RequestList } = require('../models');
 const input = {
   reqFriend: async (req, res) => {
     const toId = req.params.id;
+    const userInfo = req.session.userInfo;
+    const fromNickname = userInfo.nickname;
 
-    const fromNickname = req.body.nickname;
     const checkFriend = await toFriend.findOne({
       where: { id: toId, toFriendUserId: fromNickname },
     });
@@ -20,11 +21,9 @@ const input = {
       });
       res.send({ result: 'true' });
     } else if (checkFriend) {
-      // 이미 추가된 친구입니다.
-      res.send('중복1');
+      res.send({ result: 'false', message: '이미 추가된 송편입니다.' });
     } else if (checkRequest) {
-      // 이미 요청한 상태입니다.
-      res.send('중복2');
+      res.send({ result: 'false', message: '이미 송편 요청한 상태입니다.' });
     }
   },
 
@@ -72,7 +71,7 @@ const output = {
 
   admitRequest: async (req, res) => {
     const nickname = req.body.nickname;
-    const id = req.params.id;
+    const id = req.session.id;
     // 요청 수락시 request 목록에서 삭제
     await RequestList.destroy({
       where: { nickname: nickname },
