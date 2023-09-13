@@ -77,10 +77,12 @@
                       id="passwordConfirm"
                       placeholder="패스워드 확인"
                       onchange="isPw()"
+                      onkeydown="isPwValidity()"
                       required
                     />
                   </div>
-                  <div id="check"></div>
+                  <div id="pwCheck1"></div>
+                  <div id="pwCheck2"></div>
                   <div style="display: flex">
                     <div><i class="bi bi-person-vcard-fill"></i></div>
                     <input

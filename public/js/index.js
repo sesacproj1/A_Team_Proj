@@ -1,7 +1,6 @@
 const myWidth = window.innerWidth;
 const myHeight = window.innerHeight;
 const starCnt = document.querySelectorAll('.star').length; //현재 화면 내 별 개수
-const starPerPage = 7; // 한 페이지에 배치할 별의 개수
 const btnLeft = document.querySelector('#btnLeft');
 const btnRight = document.querySelector('#btnRight');
 const btnResister = document.querySelector('#btnResister');
@@ -12,31 +11,53 @@ const btnLogin = document.querySelector('#btnLogin');
 btnLeft.addEventListener('click', prevPage);
 btnRight.addEventListener('click', nextPage);
 
-let currentPage = 1; // 현재 페이지
+
+// 페이징
+let curPage = 1;
 
 function prevPage() {
-  if (currentPage > 1) { // 현재 페이지가 1보다 큰 경우에만 이전 페이지로 이동
+  if (curPage > 1) {
+    //현재 페이지가 1보다 큰 경우에만 이전 페이지로
+    // 데이터 -7(별 개수)
     const p = document.querySelectorAll('p');
-
     try {
       axios({
         method: 'GET',
-        url: `/prevPage?page=${currentPage}`,
+        url: `/prevPage?page=${curPage}`,
       }).then((res) => {
+        // step 1) a태그 내 링크 수정
+
+        // step 2) p태그 내 닉네임 수정
+        curPage--; //앞에서 빼주어야 올바른 현재 페이지(이전 페이지)로 이동
+        console.log('curPage', curPage); //1
+
         const data = res.data.data;
-        const startIndex = (currentPage - 1) * 7; // 시작 인덱스 계산
+        // console.log(data.length); //8
+        const startIndex = (curPage - 1) * starCnt; //0
+        // console.log('start prev', startIndex); //0
 
         for (let i = 0; i < p.length; i++) {
-          const dataIndex = startIndex + i;
-          // 데이터가 있으면 데이터를 출력하고, 없으면 빈 객체로 대체하여 출력
+          //data.length는 8이라 p 인덱스에러 나니까 p.length로 수정
+          const dataIndex = startIndex + i; //0~6
+          // console.log('data prev', dataIndex); //0~8
+
           if (data[dataIndex]) {
+            //데이터 있을 때 출력
+            // console.log(i, data[i]);
+            // console.log(i, p[i]); //7 undefined
             p[i].innerText = data[dataIndex].nickname;
           } else {
-            p[i].innerText = ''; // 빈 객체로 처리
+            if (i < 0) {
+              alert('i<0');
+            }
+            // else {
+            //   p[i].innerText = '';
+            // }
           }
         }
+        // curPage--;
+        // console.log('curPage', curPage);
 
-        currentPage--; // 이전 페이지로 이동
       });
     } catch (err) {
       console.log('Error', err);
@@ -50,29 +71,32 @@ function nextPage() {
   try {
     axios({
       method: 'GET',
-      url: `/nextPage?page=${currentPage}`,
+      url: `nextPage?page=${curPage}`,
     }).then((res) => {
       const data = res.data.data;
-      const startIndex = (currentPage - 1) * 7; // 시작 인덱스 계산
+      const startIndex = curPage * starCnt;
+      //curPage가 1부터 시작하므로 curPage -1 안 해야 알맞게 다음pg 데이터 인덱싱
+      // console.log('start next', startIndex);
 
       for (let i = 0; i < p.length; i++) {
         const dataIndex = startIndex + i;
-        // 데이터가 있으면 데이터를 출력하고, 없으면 빈 객체로 대체하여 출력
+        // console.log('data next', dataIndex);
+
         if (data[dataIndex]) {
           p[i].innerText = data[dataIndex].nickname;
         } else {
-          p[i].innerText = ''; // 빈 객체로 처리
+          p[i].innerText = '';
         }
       }
+      curPage++;
+      console.log('curPage', curPage);
 
-      currentPage++; // 다음 페이지로 이동
     });
   } catch (err) {
     console.log('Error', err);
   }
 }
 
-// 회원가입 & 로그인 이동
 btnResister.addEventListener('click', () => {
   document.location.href = '/user/register';
 });
@@ -81,17 +105,14 @@ btnLogin.addEventListener('click', () => {
 });
 
 // star position /size 정의
-
 for (let i = 1; i <= starCnt; i++) {
   const star = document.querySelector(`.star${i}`);
   const p = document.querySelector(`#p${i}`);
 
-
-// for (let i = 0; i <= 8; i++) {
-//   //한 페이지에 9개 배치 예정
-//   const star = document.querySelector(`.star${i}`);
-//   console.log(`star${i}: ${star}`);
-
+  // for (let i = 0; i <= 8; i++) {
+  //   //한 페이지에 9개 배치 예정
+  //   const star = document.querySelector(`.star${i}`);
+  //   console.log(`star${i}: ${star}`);
 
   if (i % 2 == 0) {
     // 짝수 별이라면
@@ -106,7 +127,7 @@ for (let i = 1; i <= starCnt; i++) {
   } else {
     //홀수 별이라면
     if (myWidth <= 480) {
-      // 모바일용
+      // 모바일용 크기
       star.style.top = myHeight / 20 + 'px';
       star.style.left = (myWidth / 11) * i + 'px';
     } else {
@@ -167,9 +188,7 @@ function twinkle() {
 }
 window.setInterval(twinkle, 2000);
 
-
 // 별자리 애니메이션 끝난 후
-
 const stStar = document.querySelector('#stStar');
 
 stStar.addEventListener('animationend', () => {

@@ -8,6 +8,7 @@ const controllerNoti = require('../controller/CNoti');
 const controllerPost = require('../controller/Cpost.js');
 const controllerLetter = require('../controller/CLetter');
 
+
 router.get('/', controller.output.index);
 router.get('/prevPage', controller.output.prevPage);
 router.get('/nextPage', controller.output.nextPage);
@@ -29,8 +30,6 @@ router.post('/login', controllerUser.input.postLogin);
 router.delete('/users/:id', controllerUser.input.deleteUser);
 
 /* 로그인 및 비밀 번호 찾기 관련 */
-router.get('/login', controllerUser.output.login); // 로그인 화면
-router.post('/login', controllerUser.input.postLogin); // 로그인 실행
 // router.get('/find', controllerUser.output.findPassword); // 비밀번호 찾기
 router.post('/find/password', controllerUser.input.postFindPassword); // 비밀번호 찾기 실행
 router.post('/find/id', controllerUser.input.postFindId); // 아이디 찾기 실행
@@ -58,7 +57,6 @@ router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 router.post('/noticePost', controller.input.noticePost);
 router.get('/notice/delete/:noticeNo', controller.input.noticeDelete);
 router.patch('/notice/update/:noticeNo', controller.input.noticeUpdate);
-
 
 // 알림기능
 router.post('/notification/:letterNo', controllerNoti.output.showNoti);
@@ -95,6 +93,5 @@ router.post('/reqFriend/:id', controllerFriend.input.reqFriend);
 router.post('/showRequest/:id', controllerFriend.output.showRequest);
 router.post('/admitRequest/:id', controllerFriend.output.admitRequest);
 router.delete('/friend/:id/delete', controllerFriend.input.delFriend);
-
 
 module.exports = router;
