@@ -43,7 +43,7 @@ sequelize
   .sync({ force: false })
   .then(() => {
     app.listen(PORT, () => {
-      console.log('3000 port is running');
+      console.log('8000 port is running');
     });
   })
   .catch(() => {

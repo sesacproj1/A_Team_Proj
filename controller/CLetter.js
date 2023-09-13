@@ -20,6 +20,10 @@ const {
 
    myLetter : (req,res)=>{
       res.render('letter/myletter');
+   },
+
+   icon : (req,res)=>{
+    res.render('letter/icon');
    }
   }
 

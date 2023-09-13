@@ -50,6 +50,7 @@ router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 router.get('/letter/friends', controllerLetter.output.friends);
 router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
 router.get('/letter/myLetter', controllerLetter.output.myLetter);
+router.get('/letter/select', controllerLetter.output.icon);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 
 //기능부분 (api)
