@@ -3,16 +3,12 @@
   src: url('/font/PF스타더스트 Bold.ttf');
 }
 
-.loading {
-  background-image: url(../img/background/starBg.png);
-}
-
 * {
   /* background-color: #0c356a; */
   margin: 0;
   padding: 0;
   background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%);
-  letter-spacing : -2px;
+  letter-spacing: -2px;
   background-image: url('../img/background/starBg.png');
 }
 
@@ -70,50 +66,54 @@
   position: absolute;
   width: 100%;
 }
-.star img {
-  width: 80%;
-  height: 100%;
-  position: absolute;
-  text-align: center;
+
+@media (max-width: 480px) {
+  /* 모바일 */
+  .star img {
+    width: 85%;
+    height: 85%;
+    position: absolute;
+    text-align: center;
+  }
 }
+
+@media (min-width: 480px) {
+  /* pc */
+  .star img {
+    width: 75%;
+    height: 110%;
+    position: absolute;
+    text-align: center;
+  }
+}
+
 .star p {
   color: #eeeeee;
   position: absolute;
   display: block;
 }
 
-/* #star2 {
-  animation: twinkle infinite 3s linear;
-}
-#star4 {
-  animation: twinkle infinite 2s linear;
-}
-#star6 {
-  animation: twinkle infinite 3.5s linear;
-}
-#star9 {
-  animation: twinkle infinite 2.5s linear;
-} */
 .star img:hover {
   transform: scale(1.5);
 }
 
 /* 버튼 */
-.btnDiv {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  top: 75%;
-  height: 20%;
-}
 
 @media (max-width: 480px) {
   /* 모바일 */
+  .btnDiv {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 70%;
+    height: 20%;
+  }
+
   .btnDiv button {
     width: 50px;
     height: 50px;
@@ -135,6 +135,19 @@
 }
 @media (min-width: 480px) {
   /* pc */
+  .btnDiv {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 75%;
+    height: 20%;
+  }
+
   .btnDiv button {
     width: 80px;
     height: 80px;

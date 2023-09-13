@@ -2,7 +2,7 @@
 const loading = document.querySelector('.loading');
 setTimeout(() => {
   loading.style.display = 'none';
-}, 0);
+}, 1000);
 
 // three.js 처리
 import * as THREE from 'three';

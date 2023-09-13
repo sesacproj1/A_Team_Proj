@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>내 편지함</title>
     <%- include('../header')%>
-    <link rel="stylesheet" href="/css/myletter.css">
-</head>
-<body>
-    <div>
+    <link rel="stylesheet" href="/css/myLetter.css" />
+  </head>
+  <body>
+    <div class="container-fluid row">
+      <div class="titleDiv col-md-2">
+        <h1>해순님의<br>편지함</h1>
+      </div>
 
+      <div class="letterDiv col-md-8">
+        <div class="imgDiv">
+          <img src="/img/background/moon.png" alt="" id="moon" />
+        </div>
+
+        <div class="btnDiv">
+            <button id="btnLeft">
+            <img src="/img/header/left.png" alt="" />
+            </button>
+            <button id="btnRight">
+            <img src="/img/header/right.png" alt="" />
+            </button>
+        </div>
     </div>
-</body>
+
+    <div class="menuDiv col-md-2">
+        <div class="myPageDiv">
+          <button id="btnMypage">
+            <img src="/img/header/user.png" alt="" id="imgMypage"/>
+          </button>
+          <p>마이페이지</p>
+        </div>
+        <div class="friendsDiv">
+          <button id="btnFriends">
+            <img src="/img/header/friends.png" alt="" id="imgFriends"/>
+          </button>
+          <p>친구 신청 내역</p>
+        </div>
+    </div>
+    <script src="/js/letter/myLetter.js"></script>
+  </body>
 </html>
