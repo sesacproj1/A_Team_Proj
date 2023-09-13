@@ -55,7 +55,7 @@ function prevPage() {
           }
         }
         // curPage--;
-        console.log('curPage', curPage);
+        // console.log('curPage', curPage);
       });
     } catch (err) {
       console.log('Error', err);

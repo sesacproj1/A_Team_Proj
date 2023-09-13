@@ -11,6 +11,10 @@
     <%- include('./header') %>
 
     <div class="container-fluid background">
+      <!-- 로딩 화면-->
+      <div class="loading"></div>
+
+      <!-- 메인 화면 -->
       <div class="cmtDiv">
         <h1>송편지</h1>
         <h3>멘트</h3>
@@ -70,5 +74,15 @@
 
     <!-- btnDiv END -->
     <script src="/js/index.js"></script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.155.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.155.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="js/loading.js"></script>
   </body>
 </html>

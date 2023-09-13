@@ -3,6 +3,10 @@
   src: url('/font/PF스타더스트 Bold.ttf');
 }
 
+.loading {
+  background-image: url(../img/background/starBg.png);
+}
+
 * {
   /* background-color: #0c356a; */
   margin: 0;
@@ -22,6 +26,16 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+.loading {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  background: #fff;
+  z-index: 1000; /* 이 값으로 레이어의 위치를 조정합니다. */
 }
 
 /* 상단 문장 */
