@@ -11,6 +11,7 @@ const btnLogin = document.querySelector('#btnLogin');
 btnLeft.addEventListener('click', prevPage);
 btnRight.addEventListener('click', nextPage);
 
+
 // 페이징
 let curPage = 1;
 
@@ -56,6 +57,7 @@ function prevPage() {
         }
         // curPage--;
         // console.log('curPage', curPage);
+
       });
     } catch (err) {
       console.log('Error', err);
@@ -88,6 +90,7 @@ function nextPage() {
       }
       curPage++;
       console.log('curPage', curPage);
+
     });
   } catch (err) {
     console.log('Error', err);

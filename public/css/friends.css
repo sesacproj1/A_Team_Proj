@@ -1,0 +1,55 @@
+* {
+    letter-spacing: -2px;
+    font-family: 'pixel1';
+  }
+  
+  @font-face {
+    font-family: 'pixel1';
+    src: url('../fonts/DungGeunMo.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'pixel2';
+    src: url('../fonts/pixelroborobo.otf') format('truetype');
+  }
+
+  .friendsList > p {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .friendsList2 {
+  gap: 10px;
+  margin-left: 2vw;
+  margin-top: 0.5vh;
+
+}
+
+.col-md-4 > div {
+  border: 1px solid black;
+  background: white;
+  height: 90px;
+  width: 90px;
+  border-radius: 50%; 
+  overflow: hidden; 
+  cursor: pointer; 
+  transition: transform 0.3s;
+}
+
+.col-md-4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3vh;
+  margin-bottom: 4vh;
+}
+
+.nicknames {
+  font-size: 25px;
+}
+
+.reject {
+  margin-top: 15px;
+}

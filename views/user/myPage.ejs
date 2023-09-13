@@ -6,7 +6,6 @@
     <title>마이페이지</title>
     <link rel="stylesheet" href="/css/myPage.css">
     <%- include('../header')%>
-    <link rel="stylesheet" href="/css/myPage.css" />
   </head>
   <body>
     <div>
@@ -50,7 +49,7 @@
           <input type="hidden" name="id" value="">
           <div style="text-align: center;">
           <label for="userIdBox">아이디 </label>
-          <input type="text" name="userId" id="userIdBox" value="lobster100" style="font-size:25px;" readonly>
+          <input type="text" name="userId" id="userIdBox" value="lobster100" style="font-size:25px; margin-left: 15px;" readonly>
          </div>
         <div style="text-align: center;">
           <label for="passwordBox">패스워드 </label>
@@ -58,7 +57,7 @@
         </div>
         <div style="text-align: center;">
           <label for="nicknamBox">닉네임 </label>
-          <input type="text" name="nickname" value="" id="nicknamBox" style="font-size:25px;">
+          <input type="text" name="nickname" value="" id="nicknamBox" style="font-size:25px; margin-left: 15px;">
         </div>
         <div style="text-align: center;">
           <button type="button" onclick="userUpdate()" style="margin-top: 2vh;">수정</button>
