@@ -8,7 +8,6 @@ const controllerNoti = require('../controller/CNoti');
 const controllerPost = require('../controller/Cpost.js');
 const controllerLetter = require('../controller/CLetter');
 
-
 router.get('/', controller.output.index);
 router.get('/prevPage', controller.output.prevPage);
 router.get('/nextPage', controller.output.nextPage);
@@ -17,8 +16,8 @@ router.get('/nextPage', controller.output.nextPage);
 router.get('/users', controllerUser.output.getUser);
 router.get('/user/register', controllerUser.output.register);
 /*회원가입 관련 */
-router.post('/register/isId', controllerUser.input.isId);
-router.post('/register/isNickname', controllerUser.input.isNickname);
+router.post('/isId', controllerUser.input.isId);
+router.post('/isNickname', controllerUser.input.isNickname);
 router.post('/register/isEmail', controllerUser.input.isEmail);
 router.post('/register', controllerUser.input.postRegister);
 
@@ -90,9 +89,10 @@ router.patch(
 
 // 친구기능
 router.post('/friend/:id', controllerFriend.output.showFriend);
-router.post('/reqFriend/:id', controllerFriend.input.reqFriend);
+router.post('/MyLetter/:letterNo/reqFriend', controllerFriend.input.reqFriend);
 router.post('/showRequest/:id', controllerFriend.output.showRequest);
-router.post('/admitRequest/:id', controllerFriend.output.admitRequest);
+router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
+router.delete('/showRequest/:id/reject', controllerFriend.input.rejectRequest);
 router.delete('/friend/:id/delete', controllerFriend.input.delFriend);
 
 module.exports = router;

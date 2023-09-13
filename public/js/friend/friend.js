@@ -1,9 +1,10 @@
 function reqFriend() {
+  // const nickname = document.querySelector
   axios({
     method: 'get',
-    url: `/reqFriend/${id}`,
+    url: `/MyLetter/${letterNo}/reqFriend`,
     params: {
-      id: id,
+      letterNo: letterNo,
     },
   }).then((res) => {
     if (res.data.result) {
@@ -26,15 +27,28 @@ function delFriend() {
   });
 }
 
-function admitRequest() {
-  const form = document.forms['req_friend'];
+function confirm() {
+  const nickname = this.previousElementSibling;
   axios({
     method: 'post',
-    url: `/admitRequest/${id}`,
+    url: `/showRequest/${id}/confirm`,
     body: {
-      nickname: form.nickname.value,
+      nickname: nickname.value,
     },
   }).then((res) => {
     alert('송편 추가 되었습니다.');
+  });
+}
+
+function reject() {
+  const nickname = this.previousElementSibling.previousElementSibling;
+  axios({
+    method: 'post',
+    url: `/showRequest/${id}/reject`,
+    body: {
+      nickname: nickname.value,
+    },
+  }).then((res) => {
+    alert('송편 거절 되었습니다.');
   });
 }
