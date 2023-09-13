@@ -49,7 +49,7 @@ router.get('/notice/post', controller.output.noticePost);
 router.get('/user/myPage', controller.output.myPage);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 router.get('/letter/friends', controllerLetter.output.friends);
-
+router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 
 //기능부분 (api)

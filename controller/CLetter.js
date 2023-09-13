@@ -14,7 +14,9 @@ const {
         res.render('letter/friends');
     },
 
-
+   friendConfirm : (req,res)=>{
+        res.render('letter/friendConfirm');
+   }, 
   }
 
   const input = {

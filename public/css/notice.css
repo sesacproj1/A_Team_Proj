@@ -3,7 +3,9 @@
     src: url('../fonts/BMYEONSUNG_ttf.ttf') format('truetype');
     }
 
-
+* {
+    letter-spacing: -2px;
+}
 .notice-no, .notice-update {
     text-align: center;
 }
