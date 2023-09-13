@@ -19,6 +19,10 @@ function contentDelete() {
   axios({
     method: 'delete',
     url: `/MyLetter/${letterNo}}/${postNo}/delete`,
+    params: {
+      letterNo: letterNo,
+      postNo: postNo,
+    },
   }).then(() => {
     (form.postContent.value = ''), (form.postNickname.value = '');
   });
