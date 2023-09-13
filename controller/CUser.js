@@ -87,9 +87,9 @@ const input = {
       where: { userId: req.body.userId },
     });
     if (result == null) {
-      return res.send(true);
+      return res.send({ result: true });
     } else {
-      return res.send(false);
+      return res.send({ result: false, user: result });
     }
   },
   isNickname: async (req, res) => {
@@ -235,19 +235,18 @@ const input = {
   postFindPassword: (req, res) => {
     //result -> userid가 있는지
     User.findOne({
-      where: { userId: req.body.id },
+      where: { userId: req.body.userId },
     }).then((result) => {
       console.log('비밀번호 찾기 실행: ', result);
       if (!result) {
         return res.send({ message: '존재하지 않는 회원입니다.' });
-      }
-      if (result.nickname === req.body.nickname) {
-        //일치한다면-> 새 비밀번호 받기
-        const secretPw = hashPassword(req.body.pw);
-        User.update({ password: secretPw }, { where: { userId: req.body.id } });
-        return res.send({ message: '비밀번호 변경완료!' });
       } else {
-        return res.send({ message: '잘못된 닉네임입니다.' });
+        const secretPw = hashPassword(req.body.password);
+        User.update(
+          { password: secretPw },
+          { where: { userId: req.body.userId } }
+        );
+        return res.send({ message: '비밀번호 변경완료!' });
       }
     });
   },

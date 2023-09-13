@@ -29,7 +29,7 @@ function checkValidity() {
 async function isId(obj) {
   const response = await axios({
     method: 'POST',
-    url: '/register/isId',
+    url: '/isId',
     data: {
       userId: obj.value,
     },
@@ -136,7 +136,7 @@ function isPw() {
 async function isNickname(obj) {
   const result = await axios({
     method: 'POST',
-    url: '/register/isNickname',
+    url: '/isNickname',
     data: {
       nickname: obj.value,
     },
