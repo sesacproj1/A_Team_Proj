@@ -108,6 +108,7 @@ function isPwValidity() {
     document.getElementById('pwCheck1').style.color = 'rgb(255, 89, 89)';
     return false;
   }
+  document.getElementById('pwCheck1').innerHTML = '';
   return true;
 }
 //비밀번호 일치
