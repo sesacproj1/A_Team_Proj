@@ -1,10 +1,9 @@
 const { User, Friend, toFriend, RequestList } = require('../models');
 
-const userInfo = req.session.userInfo;
-
 const input = {
   reqFriend: async (req, res) => {
     const toId = req.params.letterNo;
+    const userInfo = req.session.userInfo;
     const fromNickname = userInfo.nickname;
 
     const checkFriend = await toFriend.findOne({
@@ -41,6 +40,7 @@ const input = {
 
   rejectRequest: async (req, res) => {
     const nickname = req.body.nickname;
+    const userInfo = req.session.userInfo;
     const id = userInfo.id;
 
     // 요청 거절시 request 목록에서 삭제
@@ -54,6 +54,7 @@ const input = {
 
 const output = {
   showFriend: async (req, res) => {
+    const userInfo = req.session.userInfo;
     const id = userInfo.id;
     // 요청을 보내서 추가된 경우 : Friend에서 id값으로 추출
     const FriendList = await Friend.findAll({
@@ -84,6 +85,7 @@ const output = {
 
   confirmRequest: async (req, res) => {
     const nickname = req.body.nickname;
+    const userInfo = req.session.userInfo;
     const id = userInfo.id;
     const toNickname = userInfo.nickname;
     // 요청 수락시 request 목록에서 삭제
