@@ -57,7 +57,7 @@ const output = {
     });
     const myFriend = [FriendList, toFriendList];
     console.log('친구목록>>', myFriend);
-    res.send({ myFriend: myFriend });
+    res.render('friend', { myFriend: myFriend });
   },
 
   showRequest: async (req, res) => {
@@ -66,7 +66,7 @@ const output = {
       where: { id: id },
     });
 
-    res.send({ requests: requests });
+    res.render('requestList', { requests: requests });
   },
 
   admitRequest: async (req, res) => {
