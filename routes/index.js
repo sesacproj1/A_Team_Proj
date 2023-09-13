@@ -88,9 +88,10 @@ router.patch(
 
 // 친구기능
 router.post('/friend/:id', controllerFriend.output.showFriend);
-router.post('/reqFriend/:id', controllerFriend.input.reqFriend);
+router.post('/MyLetter/:letterNo/reqFriend', controllerFriend.input.reqFriend);
 router.post('/showRequest/:id', controllerFriend.output.showRequest);
-router.post('/admitRequest/:id', controllerFriend.output.admitRequest);
+router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
+router.delete('/showRequest/:id/reject', controllerFriend.input.rejectRequest);
 router.delete('/friend/:id/delete', controllerFriend.input.delFriend);
 
 module.exports = router;
