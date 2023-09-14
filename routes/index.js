@@ -46,9 +46,9 @@ router.get('/notice', controller.output.noticeMain);
 router.get('/notice/post', controller.output.noticePost);
 router.get('/user/myPage', controller.output.myPage);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
-router.get('/letter/friends', controllerLetter.output.friends);
-router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
-router.get('/letter/myLetter', controllerLetter.output.myLetter);
+// router.get('/letter/friends', controllerLetter.output.friends);
+// router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
+// router.get('/letter/myLetter', controllerLetter.output.myLetter);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 
 //기능부분 (api)
@@ -87,9 +87,9 @@ router.patch(
 );
 
 // 친구기능
-router.post('/friend/:id', controllerFriend.output.showFriend);
+router.get('/friend/:id', controllerFriend.output.showFriend);
 router.post('/MyLetter/:letterNo/reqFriend', controllerFriend.input.reqFriend);
-router.post('/showRequest/:id', controllerFriend.output.showRequest);
+router.get('/showRequest/:id', controllerFriend.output.showRequest);
 router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
 router.delete('/showRequest/:id/reject', controllerFriend.input.rejectRequest);
 router.delete('/friend/:id/delete', controllerFriend.input.delFriend);

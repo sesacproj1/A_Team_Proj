@@ -3,8 +3,8 @@ const { Post, PostLikes, Notification } = require('../models');
 const output = {
   showMyLetter: async (req, res) => {
     const letterNo = req.params.letterNo;
-    res.send('myletter page 출력!');
-    // res.render('MyLetter');
+
+    res.render('letter/MyLetter');
   },
 
   showPost: async (req, res) => {
