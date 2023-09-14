@@ -77,7 +77,11 @@
               name="password"
               id="passwordBox"
               style="font-size: 25px"
+              placeholder="패스워드 (영문 대소문자/숫자
+            조합, 2자~15자)"
+              onkeydown="isPwValidity()"
             />
+            <div id="pwCheck1"></div>
           </div>
           <div style="text-align: center">
             <label for="nicknamBox">닉네임 </label>
@@ -86,6 +90,7 @@
               name="nickname"
               id="nicknamBox"
               style="font-size: 25px; margin-left: 15px"
+              placeholder="<%= data.nickname%>"
             />
           </div>
           <div style="text-align: center">
