@@ -1,13 +1,11 @@
 const form = document.forms['post'];
 
 function showPost() {
-  // const postNo = this.()
-
   axios({
-    method: 'post',
+    method: 'get',
     url: `/MyLetter/${letterNo}}/${postNo}`,
     params: {
-      letterNo: req.session.id,
+      letterNo: letterNo,
       postNo: postNo,
     },
   }).then((res) => {
@@ -20,9 +18,10 @@ function showPost() {
 }
 
 function contentRegister() {
+  // ip주소 따오기
   axios({
     method: 'post',
-    url: `/MyLetter/${letterNo}}/${postNo}/Register`,
+    url: `/MyLetter/${letterNo}}/contentWrite/Register`,
     data: {
       postNickname: form.postNickname.value,
       postContent: form.postContent.value,
@@ -50,7 +49,7 @@ function contentDelete() {
 function updateLikes() {
   const likesNum = parseInt(form.postLikes.value);
   axios({
-    method: 'post',
+    method: 'patch',
     url: `/MyLetter/${letterNo}}/${postNo}/likes`,
     data: {
       number: likesNum + 1,

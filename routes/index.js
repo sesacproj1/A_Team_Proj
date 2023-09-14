@@ -43,14 +43,18 @@ router.patch('/noticeUpdate/:noticeNo', controller.input.noticeUpdate);
 
 // 편지함 페이지 출력
 router.get('/MyLetter/:letterNo', controllerPost.output.showMyLetter);
-// 편지 출력
+
+// 글남기기
+router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
+router.post(
+  '/MyLetter/:letterNo/contentWrite/Register',
+  controllerPost.input.contentRegister
+);
+
+// 편지보기
 router.post('/MyLetter/:letterNo/:postNo', controllerPost.output.showPost);
 
 // 편지함 페이지 - 기능 부분
-router.post(
-  '/MyLetter/:letterNo/:postNo/Register',
-  controllerPost.input.contentRegister
-);
 router.delete(
   '/MyLetter/:letterNo/:postNo/delete',
   controllerPost.input.contentDelete

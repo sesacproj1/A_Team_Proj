@@ -1,6 +1,10 @@
 const { Post, PostLikes, Notification } = require('../models');
 
 const output = {
+  content: (req, res) => {
+    res.render('letter/postContent');
+  },
+
   showMyLetter: async (req, res) => {
     const userInfo = req.session.userInfo;
     const id = userInfo.id;
@@ -24,27 +28,17 @@ const output = {
       attributes: ['likesNum'],
     });
 
-    if (showPost) {
-      res.render('posts', {
-        postContent: showPost.postContent,
-        postNickname: showPost.postNickname,
-        postIp: showPost.postIp,
-        likesNum: showLikes.likesNum,
-      });
-    } else {
-      res.render('posts', {
-        postContent: '',
-        postNickname: '',
-        postIp: '',
-        likesNum: 0,
-      });
-    }
+    res.render('posts', {
+      postContent: showPost.postContent,
+      postNickname: showPost.postNickname,
+      postIp: showPost.postIp,
+      likesNum: showLikes.likesNum,
+    });
   },
 };
 
 const input = {
   contentRegister: async (req, res) => {
-    // IP 주소를 받아오는 API : <script type="text/javascript" src="https://jsonip.com"></script>
     const letterNo = req.params.letterNo;
     const { postContent, postNickname, postIp } = req.body;
     await Post.create({
@@ -55,14 +49,14 @@ const input = {
     });
 
     // 글작성시 알림함에 추가
-    const postInfo = await Post.findOne({
-      where: { letterNo: letterNo, postNickname: postNickname },
-    });
+    // const postInfo = await Post.findOne({
+    //   where: { letterNo: letterNo, postNickname: postNickname },
+    // });
 
     await Notification.create({
       letterNo: letterNo,
       sender: postNickname,
-      postNo: postInfo.postNo,
+      // postNo: postInfo.postNo,
     });
 
     res.send({ result: 'true' });
