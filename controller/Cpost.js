@@ -1,10 +1,21 @@
 const { Post, PostLikes, Notification } = require('../models');
 
 const output = {
+  content: (req, res) => {
+    res.render('letter/postContent');
+  },
+
   showMyLetter: async (req, res) => {
-    const letterNo = req.params.letterNo;
+
+    const userInfo = req.session.userInfo;
+    const id = userInfo.id;
+    await MyLetter.create({
+      id: id,
+    });
+
     res.send('myletter page 출력!');
     // res.render('MyLetter');
+
   },
 
   showPost: async (req, res) => {
@@ -13,19 +24,23 @@ const output = {
     const showPost = await Post.findOne({
       where: { letterNo: letterNo, postNo: postNo },
     });
-    if (showPost) {
-      res.send({
-        postContent: showPost.postContent,
-        postNickname: showPost.postNickname,
-        postIp: showPost.postIp,
-      });
-    } else res.send('편지내용이 없음');
+
+    const showLikes = await PostLikes.findOne({
+      where: { letterNo: letterNo, postNo: postNo },
+      attributes: ['likesNum'],
+    });
+
+    res.render('posts', {
+      postContent: showPost.postContent,
+      postNickname: showPost.postNickname,
+      postIp: showPost.postIp,
+      likesNum: showLikes.likesNum,
+    });
   },
 };
 
 const input = {
   contentRegister: async (req, res) => {
-    // IP 주소를 받아오는 API : <script type="text/javascript" src="https://jsonip.com"></script>
     const letterNo = req.params.letterNo;
     const { postContent, postNickname, postIp } = req.body;
     await Post.create({
@@ -36,14 +51,14 @@ const input = {
     });
 
     // 글작성시 알림함에 추가
-    const postInfo = await Post.findOne({
-      where: { letterNo: letterNo, postNickname: postNickname },
-    });
+    // const postInfo = await Post.findOne({
+    //   where: { letterNo: letterNo, postNickname: postNickname },
+    // });
 
-    await Notifiaction.create({
+    await Notification.create({
       letterNo: letterNo,
       sender: postNickname,
-      postNo: postInfo.postNo,
+      // postNo: postInfo.postNo,
     });
 
     res.send({ result: 'true' });
@@ -58,7 +73,7 @@ const input = {
     res.send({ result: 'true' });
   },
 
-  contentLikes: async (req, res) => {
+  updateLikes: async (req, res) => {
     const { letterNo, postNo } = req.params;
     const likesNum = req.body.number;
 
