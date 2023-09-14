@@ -1,3 +1,11 @@
+//프로필 사진 이미지 클릭시 파일
+const btn = document.querySelector('#profileBtn');
+
+btn.addEventListener('click', () => {
+  document.querySelector('#fileInput').click();
+  console.log('click!');
+});
+
 /*폼 유효성 검사 alert*/
 function checkValidity() {
   const form = document.forms['updateForm'];
