@@ -1,19 +1,6 @@
 let myWidth = window.innerWidth;
 const menuDiv = document.querySelector('.menuDiv');
 
-// 로그인 여부 가져오기=> ejs 에서 처리하거나 js에서 처리 하기
-// console.log(sessionStorage);
-// try {
-//   axios({
-//     method: 'GET',
-//     url: '/myletter',
-//   }).then((res) => {
-//     console.log('res.data', res.data);
-//   });
-// } catch (err) {
-//   console.log('err', err);
-// }
-
 // 편지 위치 배치
 const moon = document.querySelector('#moon');
 const moonWidth = moon.style.width;
@@ -24,3 +11,55 @@ console.log('moon width', moonWidth);
 console.log('moon height', moonHeight);
 
 // 편지 추가하기 => 편지 개수만큼 for문 돌려 정해진 위치 배치
+
+// 1. 편지 보여주기
+const letterModal = document.getElementById('letterModal');
+letterModal.addEventListener('show.bs.modal', (event) => {
+  // Button that triggered the modal
+  const button = event.relatedTarget;
+  // Update the modal's content.
+  const modalTitle = letterModal.querySelector('.modal-title');
+  const modalBodyInput = letterModal.querySelector('.modal-body input');
+
+  modalTitle.textContent = `내가 받은 송편지`;
+  //   modalBodyInput.value = recipient; 데이터 가져오기
+  showLetter();
+});
+
+function showLetter() {
+  try {
+    axios({
+      method: 'GET',
+      url: '/MyLetter/:letterNo/:postNo',
+    }).then((res) => {
+      console.log(res);
+    });
+  } catch (err) {
+    console.log('Err', err);
+  }
+}
+
+// 2. 좋아요 처리
+const btnLike = document.querySelector('.btnLike');
+const likeHeart = document.querySelector('#likeHeart');
+const likesNum = document.querySelector('.likesNum');
+btnLike.addEventListener('click', like);
+
+function like() {
+  likeHeart.src = '/img/header/heart2.png';
+
+  try {
+    axios({
+      method: 'GET',
+      url: '/MyLetter/:letterNo/:postNo/likes',
+      params: { letterNo: 1, postNo: 1 },
+    }).then((res) => {
+      console.log('likesNum ', res);
+      likesNum.innerText = likesNum + 1;
+    });
+  } catch (err) {
+    console.log('Err', err);
+  }
+}
+
+// 3. 페이징
