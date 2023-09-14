@@ -64,8 +64,9 @@
                       type="password"
                       name="password"
                       id="password"
-                      placeholder="패스워드"
+                      placeholder="패스워드 (영문 대소문자/숫자 조합, 2자~15자)"
                       onchange="isPw()"
+                      onkeydown="isPwValidity()"
                       required
                     />
                   </div>

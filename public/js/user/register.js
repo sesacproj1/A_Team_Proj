@@ -29,7 +29,7 @@ function checkValidity() {
 async function isId(obj) {
   const response = await axios({
     method: 'POST',
-    url: '/register/isId',
+    url: '/isId',
     data: {
       userId: obj.value,
     },
@@ -108,6 +108,7 @@ function isPwValidity() {
     document.getElementById('pwCheck1').style.color = 'rgb(255, 89, 89)';
     return false;
   }
+  document.getElementById('pwCheck1').innerHTML = '';
   return true;
 }
 //비밀번호 일치
@@ -135,7 +136,7 @@ function isPw() {
 async function isNickname(obj) {
   const result = await axios({
     method: 'POST',
-    url: '/register/isNickname',
+    url: '/isNickname',
     data: {
       nickname: obj.value,
     },

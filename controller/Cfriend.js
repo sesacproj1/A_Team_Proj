@@ -2,9 +2,10 @@ const { User, Friend, toFriend, RequestList } = require('../models');
 
 const input = {
   reqFriend: async (req, res) => {
-    const toId = req.params.id;
+    const toId = req.params.letterNo;
+    const userInfo = req.session.userInfo;
+    const fromNickname = userInfo.nickname;
 
-    const fromNickname = req.body.nickname;
     const checkFriend = await toFriend.findOne({
       where: { id: toId, toFriendUserId: fromNickname },
     });
@@ -20,11 +21,9 @@ const input = {
       });
       res.send({ result: 'true' });
     } else if (checkFriend) {
-      // 이미 추가된 친구입니다.
-      res.send('중복1');
+      res.send({ result: 'false', message: '이미 추가된 송편입니다.' });
     } else if (checkRequest) {
-      // 이미 요청한 상태입니다.
-      res.send('중복2');
+      res.send({ result: 'false', message: '이미 송편 요청한 상태입니다.' });
     }
   },
 
@@ -38,11 +37,27 @@ const input = {
 
     res.send('true');
   },
+
+  rejectRequest: async (req, res) => {
+    const nickname = req.body.nickname;
+    const userInfo = req.session.userInfo;
+    const id = userInfo.id;
+
+    // 요청 거절시 request 목록에서 삭제
+    await RequestList.destroy({
+      where: { id: id, nickname: nickname },
+    });
+
+    res.send({ result: 'true' });
+  },
 };
 
 const output = {
   showFriend: async (req, res) => {
-    const id = req.params.id;
+    const userInfo = req.session.userInfo;
+    console.log(userInfo);
+    const id = userInfo.id;
+    console.log(id);
     // 요청을 보내서 추가된 경우 : Friend에서 id값으로 추출
     const FriendList = await Friend.findAll({
       where: { id: id },
@@ -58,24 +73,27 @@ const output = {
     });
     const myFriend = [FriendList, toFriendList];
     console.log('친구목록>>', myFriend);
-    res.send({ myFriend: myFriend });
+    res.render('letter/friends', { myFriend: myFriend });
   },
 
   showRequest: async (req, res) => {
-    const id = req.params.id;
+    const userInfo = req.session.userInfo;
+    const id = userInfo.id;
     const requests = await RequestList.findAll({
       where: { id: id },
     });
 
-    res.send({ requests: requests });
+    res.render('letter/friendConfirm', { requests: requests });
   },
 
-  admitRequest: async (req, res) => {
+  confirmRequest: async (req, res) => {
     const nickname = req.body.nickname;
-    const id = req.params.id;
+    const userInfo = req.session.userInfo;
+    const id = userInfo.id;
+    const toNickname = userInfo.nickname;
     // 요청 수락시 request 목록에서 삭제
     await RequestList.destroy({
-      where: { nickname: nickname },
+      where: { id: id, nickname: nickname },
     });
     // 요청을 수락한 User의 친구목록에 nickname 추가
     await toFriend.create({
@@ -91,7 +109,7 @@ const output = {
 
     await Friend.create({
       id: addFriend.id,
-      friendUserId: nickname,
+      friendUserId: toNickname,
     });
 
     res.send({ result: 'true' });
