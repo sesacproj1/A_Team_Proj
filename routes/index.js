@@ -71,19 +71,24 @@ router.delete(
 // 편지함 페이지 출력
 router.get('/MyLetter/:letterNo', controllerPost.output.showMyLetter);
 
-// 편지함 페이지 - 기능 부분
-router.post('/MyLetter/:letterNo/:postNo', controllerPost.output.showPost);
+// 글남기기
+router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
 router.post(
-  '/MyLetter/:letterNo/:postNo/Register',
+  '/MyLetter/:letterNo/contentWrite/Register',
   controllerPost.input.contentRegister
 );
+
+// 편지보기
+router.post('/MyLetter/:letterNo/:postNo', controllerPost.output.showPost);
+
+// 편지함 페이지 - 기능 부분
 router.delete(
   '/MyLetter/:letterNo/:postNo/delete',
   controllerPost.input.contentDelete
 );
 router.patch(
   '/MyLetter/:letterNo/:postNo/likes',
-  controllerPost.input.contentLikes
+  controllerPost.input.updateLikes
 );
 
 // 친구기능
