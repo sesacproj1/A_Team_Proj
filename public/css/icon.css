@@ -112,22 +112,69 @@
   font-family: 'yeonsung';
 }
 
-.col-4 {
+.col-4 > div {
   border: 1px solid #9b7640;
   background: white;
   border-radius: 5px;
-  width: 90%;
+  width: 100px;
   height: 12vh;
 }
 
-.col-4 img {
+.col-4 > div > img {
   width: 85%;
   height: 85%;
-  width: 120px;
+}
+
+.col-4 > div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1vh;
+  cursor : pointer;
 }
 
 .col-4 {
   display: flex;
   align-items: center;
   justify-content: center;
+ 
+}
+
+#selectBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2.5vh;
+}
+
+#selectBtns > button {
+  width: 50%;
+  height: 4.5vh;
+  border: 2px solid white;
+  background: #bdbdbd;
+  font-weight: 700;
+  font-size: 2.5vh;
+}
+
+#buttonBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2.5vh;
+}
+
+#buttonBox > button {
+  height: 4.5vh;
+  border: 2px solid white;
+  background: #bdbdbd;
+  font-weight: 700;
+  font-size: 2.5vh;
+  margin-left: 1vh;
+}
+
+#buttonBox > button > a {
+  text-decoration: none;
+  color : black;
 }
