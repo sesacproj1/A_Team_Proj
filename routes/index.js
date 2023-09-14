@@ -11,6 +11,7 @@ const controllerLetter = require('../controller/CLetter');
 router.get('/', controller.output.index);
 router.get('/prevPage', controller.output.prevPage);
 router.get('/nextPage', controller.output.nextPage);
+
 // ~~~~~~~~~~~~~~ 유저 관련 API ~~~~~~~~~~~~
 // 전체회원 확인
 router.get('/users', controllerUser.output.getUser);
@@ -22,7 +23,7 @@ router.post('/register/isEmail', controllerUser.input.isEmail);
 router.post('/register', controllerUser.input.postRegister);
 
 //로그인
-router.get('/login', controllerUser.output.login);
+// router.get('/login', controllerUser.output.login);
 router.post('/login', controllerUser.input.postLogin);
 
 //회원 삭제
@@ -35,7 +36,7 @@ router.post('/find/id', controllerUser.input.postFindId); // 아이디 찾기 �
 // router.get('/logout', controllerUser.output.logout); //로그아웃
 
 //TODO 마이페이지에서 닉네임 /pw 수정
-router.get('/profile', controllerUser.output.profile);
+// router.get('/profile', controllerUser.output.profile);
 router.patch('/profile/edit', controllerUser.input.patchProfile);
 
 //view단 부분

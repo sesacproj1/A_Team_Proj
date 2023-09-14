@@ -14,20 +14,20 @@ const { User } = require('../models');
 const bcrypt = require('bcrypt');
 // 비밀번호 암호화 함수
 const saltRounds = 11;
-// TODO: 비밀번호를 해싱하는 함수 정의 (bcryptPassword)
+// 비밀번호를 해싱하는 함수 정의 (bcryptPassword)
 function hashPassword(password) {
   return bcrypt.hashSync(password, saltRounds);
 }
 
-// TODO:비밀번호와 원본 비번을를 비교하는 함수 (compareFunc)
+// 비밀번호와 원본 비번을를 비교하는 함수 (compareFunc)
 function comparePassword(password, hashedPassword) {
   return bcrypt.compareSync(password, hashedPassword);
 }
 
 const output = {
-  login: (req, res) => {
-    res.render('login', { user: req.session.userInfo.userId });
-  },
+  // login: (req, res) => {
+  //   res.render('login', { user: req.session.userInfo.userId });
+  // },
   findPassword: (req, res) => {
     res.render('findPassword');
   },
@@ -42,9 +42,10 @@ const output = {
   register: (req, res) => {
     res.render('user/register');
   },
-  profile: (req, res) => {
-    res.render('profile');
-  },
+  // profile: (req, res) => {
+
+  //   res.render('profile');
+  // },
 };
 
 const input = {
@@ -62,12 +63,8 @@ const input = {
         const result = await comparePassword(req.body.pw, user.password);
         if (result) {
           //비밀번호 일치할 경우
-          //    userInfo 키 값으로 세션 생성 (userInfo는 nickname키와 userId 키를 갖는 "객체")
-          req.session.userInfo = {
-            id: user.id,
-            userId: user.userId,
-            nickname: user.nickname,
-          }; //세션 생성
+          //    userInfo 키 값으로 세션 생성 (userInfo는  "객체")
+          req.session.userInfo = user;
           // console.log(req.session.userInfo); //{ userId: 'alsdud1240', nickname: '로그인확인용' }
           res.send({ result: true, data: user, message: '로그인 성공!' });
         } else {
@@ -82,6 +79,7 @@ const input = {
       res.send('Internal Server Error');
     }
   },
+
   isId: async (req, res) => {
     const result = await User.findOne({
       where: { userId: req.body.userId },
