@@ -17,7 +17,7 @@ app.use(
     saveUninitialized: true, // 초기화되지 않은 세션을 저장할지 여부
     name: 'mySessions',
     cookie: {
-      maxAge: 10 * 60 * 1000, // 10m
+      maxAge: 1000 * 60 * 1000, //
       secure: false,
     }, // 다른 옵션도 필요에 따라 설정 가능
   })

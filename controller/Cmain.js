@@ -106,7 +106,11 @@ const output = {
       const user = await User.findOne({
         where: { userId: req.session.userInfo.userId },
       });
-      return res.render('user/myPage', { data: user, isProfile: true });
+      return res.render('user/myPage', {
+        data: user,
+        isLogin: true,
+        isProfile: true,
+      });
     } else {
       return res.render('user/myPage', {
         isLogin: false,

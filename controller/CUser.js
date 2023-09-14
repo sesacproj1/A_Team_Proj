@@ -66,13 +66,26 @@ const input = {
           //    userInfo 키 값으로 세션 생성 (userInfo는  "객체")
           req.session.userInfo = user;
           // console.log(req.session.userInfo); //{ userId: 'alsdud1240', nickname: '로그인확인용' }
-          res.send({ result: true, data: user, message: '로그인 성공!' });
+          res.send({
+            result: true,
+            data: user,
+            isLogin: true,
+            message: '로그인 성공!',
+          });
         } else {
           //비밀번호 불일치
-          res.send({ result: false, message: '비밀번호를 다시 확인해주세요' });
+          res.send({
+            result: false,
+            isLogin: false,
+            message: '비밀번호를 다시 확인해주세요',
+          });
         }
       } else {
-        res.send({ result: false, message: '존재하는 사용자가 없습니다' });
+        res.send({
+          result: false,
+          isLogin: false,
+          message: '존재하는 사용자가 없습니다',
+        });
       }
     } catch (err) {
       console.error(err);
@@ -152,16 +165,25 @@ const input = {
     try {
       console.log('req.body는 >>>>>>', req.body);
       const secretPw = hashPassword(req.body.pw);
-      const isNickname = await User.findOne({
-        where: { nickname: req.body.nickname },
-      });
-      //TODO 닉네임 변경안하고 수정누르면 내 닉네임인데 중복뜸 어떡하쥐
-      console.log('isNickname >>>>', isNickname);
-      if (isNickname) {
-        res.send({ result: false, message: '이미 존재하는 닉네임입니다.' });
+      //만약에 수정할 닉네임과 원래닉네임 다르다면
+      console.log('original nickname은', req.body.originNickname);
+      if (req.body.nickname !== req.body.originNickname) {
+        const isNickname = await User.findOne({
+          where: { nickname: req.body.nickname },
+        });
+        if (isNickname) {
+          res.send({ result: false, message: '이미 존재하는 닉네임입니다.' });
+        } else {
+          await User.update(
+            { nickname: req.body.nickname, password: secretPw },
+            { where: { userId: req.body.id } }
+          );
+          res.send({ result: true, message: '마이페이지 수정완료' });
+        }
       } else {
+        //원래닉네임이랑 같다면
         await User.update(
-          { nickname: req.body.nickname, password: secretPw },
+          { password: secretPw },
           { where: { userId: req.body.id } }
         );
         res.send({ result: true, message: '마이페이지 수정완료' });
@@ -179,7 +201,6 @@ const input = {
   postFindId: async (req, res) => {
     //받는값 -> 이메일
     const { email_service, user, pass } = process.env;
-
     const transporter = nodemailer.createTransport({
       //보내는사람
       service: email_service,
@@ -188,7 +209,6 @@ const input = {
         pass: pass,
       },
     });
-
     try {
       const result = await User.findOne({
         where: { email: req.body.email },

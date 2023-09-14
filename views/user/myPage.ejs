@@ -14,9 +14,14 @@
       alert('<%= message %>');
       document.location.href = '/user/login';
     </script>
+    <% }else{ %>
+    <script>
+      const nickname = `<%= data.nickname%>`;
+      const id = `<%= data.userId%>`;
+    </script>
     <% } %>
     <div>
-      <div id="retroBox1"><span id="userId"></span></div>
+      <div id="retroBox1"><span id="userId"><%= data.userId%></span></div>
       <div id="retroBox2">
         <!--  -->
         <div id="profile1">
@@ -42,9 +47,9 @@
         <!--  -->
       </div>
       <div id="retroBox3">
-        <p id="userId">lobster100</p>
-        <p id="email">ghh120304045@gmail.com</p>
-        <p id="nickname">랍스타</p>
+        <p id="userId"><%= data.userId%></p>
+        <p id="email"><%= data.email%></p>
+        <p id="nickname"><%=data.nickname%></p>
       </div>
       <!--  -->
       <div id="retroBox4">
@@ -60,7 +65,7 @@
               type="text"
               name="userId"
               id="userIdBox"
-              value="lobster100"
+              value="<%= data.userId%>"
               style="font-size: 25px; margin-left: 15px"
               readonly
             />
@@ -68,9 +73,8 @@
           <div style="text-align: center">
             <label for="passwordBox">패스워드 </label>
             <input
-              type="text"
+              type="password"
               name="password"
-              value=""
               id="passwordBox"
               style="font-size: 25px"
             />
@@ -80,7 +84,6 @@
             <input
               type="text"
               name="nickname"
-              value=""
               id="nicknamBox"
               style="font-size: 25px; margin-left: 15px"
             />
