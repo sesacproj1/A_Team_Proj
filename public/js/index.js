@@ -46,12 +46,8 @@ function prevPage() {
             // console.log(i, p[i]); //7 undefined
             p[i].innerText = data[dataIndex].nickname;
           } else {
-            if (i < 0) {
-              alert('i<0');
-            }
-            // else {
-            //   p[i].innerText = '';
-            // }
+            p[i].innerText = '';
+            // star[i].innerHTML = '';
           }
         }
         // curPage--;
@@ -79,13 +75,12 @@ function nextPage() {
 
       for (let i = 0; i < p.length; i++) {
         const dataIndex = startIndex + i;
-        // console.log('data next', dataIndex);
 
         if (data[dataIndex]) {
           p[i].innerText = data[dataIndex].nickname;
         } else {
           p[i].innerText = '';
-          star[i].innerHTML = ''; //별도 없애기 => 의견 필요
+          // star[i].innerHTML = ''; //별 없애면 이전 페이지도 없어짐
         }
       }
       curPage++;

@@ -21,6 +21,10 @@ const output = {
   myLetter: (req, res) => {
     res.render('letter/myletter');
   },
+
+  yourLetter: (req, res) => {
+    res.render('letter/yourLetter');
+  },
 };
 
 const input = {};

@@ -20,13 +20,13 @@ const output = {
 
   // 페이징
   prevPage: async (req, res) => {
-    const result2 = await User.findAll();
-    res.send({ data: result2 });
+    const result = await User.findAll();
+    res.send({ data: result });
   },
 
   nextPage: async (req, res) => {
-    const result2 = await User.findAll();
-    res.send({ data: result2 });
+    const result = await User.findAll();
+    res.send({ data: result });
   },
 
   prevPage: async (req, res) => {

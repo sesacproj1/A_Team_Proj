@@ -1,18 +1,4 @@
-let myWidth = window.innerWidth;
-const menuDiv = document.querySelector('.menuDiv');
-
-// 편지 위치 배치
-const moon = document.querySelector('#moon');
-const moonWidth = moon.style.width;
-const moonHeight = moon.style.height;
-const letterDiv = document.querySelector('.letterDiv');
-
-console.log('moon width', moonWidth);
-console.log('moon height', moonHeight);
-
-// 편지 추가하기 => 편지 개수만큼 for문 돌려 정해진 위치 배치
-
-// 1. 편지 보여주기
+// 1. 편지 보여주기 & 편지함 주인 표시
 const letterModal = document.getElementById('letterModal');
 letterModal.addEventListener('show.bs.modal', (event) => {
   // Button that triggered the modal
@@ -45,21 +31,22 @@ const likeHeart = document.querySelector('#likeHeart');
 const likesNum = document.querySelector('.likesNum');
 btnLike.addEventListener('click', like);
 
-function like() {
-  likeHeart.src = '/img/header/heart2.png';
+// function like() {
+//   likeHeart.src = '/img/header/heart2.png';
 
-  try {
-    axios({
-      method: 'GET',
-      url: '/MyLetter/:letterNo/:postNo/likes',
-      params: { letterNo: 1, postNo: 1 },
-    }).then((res) => {
-      console.log('likesNum ', res);
-      likesNum.innerText = likesNum + 1;
-    });
-  } catch (err) {
-    console.log('Err', err);
-  }
-}
+//   try {
+//     axios({
+//       method: 'GET',
+//       url: `/MyLetter?letterNo=${}?postNo=${}/likes`,
+//     }).then((res) => {
+//       console.log('likesNum ', res);
+//       likesNum.innerText = likesNum + 1;
+//     });
+//   } catch (err) {
+//     console.log('Err', err);
+//   }
+// }
 
 // 3. 페이징
+// 편지 있으면 추가하고 없애면 안 넣는거 어떻게 할까....
+// 위치를 여기서 고정해야하나
