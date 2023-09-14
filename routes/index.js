@@ -58,7 +58,7 @@ router.get('/notice/delete/:noticeNo', controller.input.noticeDelete);
 router.patch('/notice/update/:noticeNo', controller.input.noticeUpdate);
 
 // 알림기능
-router.post('/notification/:letterNo', controllerNoti.output.showNoti);
+router.get('/notification/:letterNo', controllerNoti.output.showNoti);
 router.delete(
   '/notification/:letterNo/:postNo',
   controllerNoti.output.postNoti

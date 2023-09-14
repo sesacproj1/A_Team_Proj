@@ -34,7 +34,7 @@ const output = {
       res.send({
         sender: showNoti.sender,
         postTime: times(showNoti.createdAt),
-        isFrined: 'true',
+        isFriend: 'true',
       });
     } else if (showNoti) {
       res.send({
