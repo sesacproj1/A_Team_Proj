@@ -172,6 +172,7 @@
   z-index: 2;
   left: 60%;
   top: 50%;
+  background-color: aqua;
 }
 /* 편지 모달 */
 #letterModal {
