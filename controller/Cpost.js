@@ -6,16 +6,14 @@ const output = {
   },
 
   showMyLetter: async (req, res) => {
-
     const userInfo = req.session.userInfo;
     const id = userInfo.id;
     await MyLetter.create({
       id: id,
     });
 
-    res.send('myletter page 출력!');
-    // res.render('MyLetter');
-
+    // res.send('myletter page 출력!');
+    res.render('letter/myletter');
   },
 
   showPost: async (req, res) => {
