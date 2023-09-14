@@ -1,24 +1,40 @@
 @font-face {
-  font-family: "pixelRoboRobo";
-  src: url("/font/pixelroborobo.otf");
+  font-family: 'stardust';
+  src: url('/font/PF스타더스트 Bold.ttf');
+}
+
+.loading {
+  background-image: url(../img/background/starBg.png);
 }
 
 * {
   /* background-color: #0c356a; */
   margin: 0;
   padding: 0;
-  /* background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%); */
-  background-image: url("../img/background/starBg.png");
+  background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%);
+  letter-spacing : -2px;
+  background-image: url('../img/background/starBg.png');
 }
 
 .background {
-  letter-spacing: -2;
   background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%);
   height: 100vh;
   color: #eeeeee;
   position: relative;
-  font-family: "pixelRoboRobo";
+  font-family: 'stardust';
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.loading {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  background: #fff;
+  z-index: 1000; /* 이 값으로 레이어의 위치를 조정합니다. */
 }
 
 /* 상단 문장 */
@@ -30,48 +46,56 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  height: 20%;
   /* color: #f11a7b; */
 }
-/* .cmtDiv :first-child { */
-/* color: #f11a7b; */
-/* } */
 
 /* 별 */
 .starDiv {
   position: relative;
   display: flex;
   justify-content: space-around;
+  /* background-color: aqua; */
   top: 20%;
+  height: 60vh;
+  width: 100vw;
+}
+.starDiv a {
+  text-decoration-line: none;
+}
+
+.star {
+  /* display: flex;
+  flex-direction: column; */
+  position: absolute;
+  width: 100%;
 }
 .star img {
-  width: 10%;
+  width: 80%;
   height: 100%;
   position: absolute;
   text-align: center;
 }
-.star0 {
-  animation: twinkle infinite 3s linear;
-}
-.star3 {
-  animation: twinkle infinite 2s linear;
-}
-.star5 {
-  animation: twinkle infinite 3.5s linear;
-}
-.star8 {
-  animation: twinkle infinite 2.5s linear;
-}
-.star:hover {
-  transform: scale(1.5);
-}
-.starDiv a {
-  text-decoration: none;
-  color: inherit;
+.star p {
+  color: #eeeeee;
+  position: absolute;
+  display: block;
 }
 
-.starOne img {
-  width: 100px;
-  height: 100px;
+/* #star2 {
+  animation: twinkle infinite 3s linear;
+}
+#star4 {
+  animation: twinkle infinite 2s linear;
+}
+#star6 {
+  animation: twinkle infinite 3.5s linear;
+}
+#star9 {
+  animation: twinkle infinite 2.5s linear;
+} */
+.star img:hover {
+  transform: scale(1.5);
 }
 
 /* 버튼 */
@@ -85,22 +109,50 @@
   margin-left: auto;
   margin-right: auto;
   top: 75%;
+  height: 20%;
 }
 
-.btnDiv button {
-  width: 80px;
-  height: 80px;
-  border: none;
-  border-radius: 50%;
-  margin: 3vw;
-  background-color: #f11a7b;
-  /* background-color: #27e1c1; */
-  color: #eeeeee;
+@media (max-width: 480px) {
+  /* 모바일 */
+  .btnDiv button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    margin: 3vw;
+    background-color: #f11a7b;
+    /* background-color: #27e1c1; */
+    color: #eeeeee;
+  }
+  button img {
+    width: 30px;
+    height: 30px;
+    /* object-fit: fill; */
+  }
+  button span {
+    font-size: x-small;
+  }
 }
-button img {
-  width: 50px;
-  height: 50px;
-  /* object-fit: fill; */
+@media (min-width: 480px) {
+  /* pc */
+  .btnDiv button {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 50%;
+    margin: 3vw;
+    background-color: #f11a7b;
+    /* background-color: #27e1c1; */
+    color: #eeeeee;
+  }
+  button img {
+    width: 50px;
+    height: 50px;
+    /* object-fit: fill; */
+  }
+  button span {
+    font-size: medium;
+  }
 }
 
 /* 별똥별 */
@@ -143,6 +195,6 @@ button img {
     top: 80%;
     left: 0%;
     opacity: 0.2;
-    display: none;
+    /* display: none; */
   }
 }

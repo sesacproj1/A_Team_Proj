@@ -100,7 +100,7 @@ DELETE {{server}}/users/4
 DELETE {{server}}/users/5
 
 ###
-DELETE {{server}}/users/9
+DELETE {{server}}/users/23
 
 ### 비밀번호 찾기 test !!!
 POST {{server}}/find/password

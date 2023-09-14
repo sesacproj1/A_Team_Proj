@@ -6,6 +6,7 @@
     <title>내 정보 찾기</title>
     <%- include('../header')%>
     <link rel="stylesheet" href="/css/findUser.css" />
+    <script defer src="/js/user/findUser.js"></script>
   </head>
   <body>
     <!-- 메인 컨테이너 -->
@@ -27,7 +28,7 @@
                 </div>
                 <div style="text-align: center">
                   <button id="mainBtn">
-                    <a href="/">메인 페이지 둘러보기</a>
+                    <a href="/">메인 페이지</a>
                   </button>
                 </div>
                 <div style="text-align: center">
@@ -62,7 +63,11 @@
                     />
                   </div>
                   <div style="margin-top: 15px">
-                    <button type="button" onclick="findId()" id="registerBtn">
+                    <button
+                      type="button"
+                      onclick="finduserId()"
+                      id="registerBtn"
+                    >
                       메일 발송
                     </button>
                   </div>
@@ -85,11 +90,12 @@
                       name="userId"
                       id="userId"
                       placeholder="아이디"
+                      onkeyup="isId(this);"
                       required
                     />
                   </div>
                   <div>
-                    <p>현재 등록되어 있는 아이디입니다!</p>
+                    <p id="isUser"></p>
                   </div>
                   <div id="findUser" style="display: flex">
                     <div><i class="bi bi-person-vcard-fill"></i></div>
@@ -98,13 +104,15 @@
                       id="nickname"
                       name="nickname"
                       placeholder="닉네임"
+                      onkeyup="isNickname(this);"
                       required
                     />
                   </div>
+                  <p id="isNickname"></p>
                   <div style="margin-top: 15px">
                     <button
                       type="button"
-                      onclick="findPassword()"
+                      onclick="findPw()"
                       id="registerBtn"
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
@@ -147,17 +155,25 @@
             <p>새로 사용하실 비밀번호를 입력하세요</p>
             <form name="passwordForm">
               <input
-                type="text"
+                type="password"
                 name="password"
                 id="password"
-                placeholder="비밀번호"
-              /><br />
+                placeholder="비밀번호 (영문 대소문자/숫자 조합, 2자~15자)"
+                onchange="isPw()"
+                onkeydown="isPwValidity()"
+              />
+              <div id="pwCheck1"></div>
+              <br />
               <input
                 type="password"
                 name="passwordConfirm"
                 id="passwordConfirm"
                 placeholder="비밀번호 확인"
-              /><br />
+                onchange="isPw()"
+                onkeydown="isPwValidity()"
+              />
+              <div id="pwCheck2"></div>
+              <br />
               <div class="modal-footer">
                 <button
                   type="button"

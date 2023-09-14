@@ -4,7 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마이페이지</title>
+    <link rel="stylesheet" href="/css/myPage.css">
     <%- include('../header')%>
   </head>
-  <body></body>
+  <body>
+    <div>
+      <div id="retroBox1">lobster100</div>
+      <div id="retroBox2">
+        <!--  -->
+        <div id="profile1">
+          <div id="profile2">
+            <img src="/img/추석2.png" alt="" width="100%" height="100%">
+          </div>
+        </div>
+        <!--  -->
+        <div id="friends">
+          <div>
+            <p class="friendsBox1">1</p>
+            <p>편지함</p>
+          </div>
+          <div>
+            <p class="friendsBox1">11.1k</p>
+            <p>친구목록</p>
+          </div>
+          <div>
+            <p class="friendsBox1">53</p>
+            <p>알림</p>
+          </div>
+        </div>
+        <!--  -->
+      </div>
+      <div id="retroBox3">
+        <p id="userId">lobster100</p>
+        <p id="email">ghh120304045@gmail.com</p>
+        <p id="nickname">랍스타</p>
+      </div>
+      <!--  -->
+      <div id="retroBox4">
+        <div id="profileUpdates">프로필 수정</div>
+      </div>
+      <!--  -->
+      <div id="retroBox5">
+        <form name="updateForm" style="padding-top: 3vh;">
+          <input type="hidden" name="id" value="">
+          <div style="text-align: center;">
+          <label for="userIdBox">아이디 </label>
+          <input type="text" name="userId" id="userIdBox" value="lobster100" style="font-size:25px; margin-left: 15px;" readonly>
+         </div>
+        <div style="text-align: center;">
+          <label for="passwordBox">패스워드 </label>
+          <input type="text" name="password" value="" id="passwordBox" style="font-size:25px;">
+        </div>
+        <div style="text-align: center;">
+          <label for="nicknamBox">닉네임 </label>
+          <input type="text" name="nickname" value="" id="nicknamBox" style="font-size:25px; margin-left: 15px;">
+        </div>
+        <div style="text-align: center;">
+          <button type="button" onclick="userUpdate()" style="margin-top: 2vh;">수정</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>

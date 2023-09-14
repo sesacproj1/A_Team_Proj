@@ -6,6 +6,7 @@
     <title>회원가입</title>
     <%- include('../header')%>
     <link rel="stylesheet" href="/css/register.css" />
+    <script defer src="/js/user/register.js"></script>
   </head>
   <body>
     <!-- 메인 컨테이너 -->
@@ -24,7 +25,7 @@
                 </div>
                 <div style="text-align: center">
                   <button id="mainBtn">
-                    <a href="/">메인 페이지 둘러보기</a>
+                    <a href="/">메인 페이지</a>
                   </button>
                 </div>
                 <div style="text-align: center">
@@ -51,17 +52,21 @@
                       placeholder="아이디"
                       name="userId"
                       id="userId"
+                      onkeyup="isId(this);"
                       required
                     />
                   </div>
-                  <div id="idConfirm">아이디가 중복되셨습니다</div>
+                  <div id="idConfirm"></div>
+                  </div>
                   <div style="display: flex">
                     <div><i class="bi bi-key-fill"></i></div>
                     <input
                       type="password"
                       name="password"
                       id="password"
-                      placeholder="패스워드"
+                      placeholder="패스워드 (영문 대소문자/숫자 조합, 2자~15자)"
+                      onchange="isPw()"
+                      onkeydown="isPwValidity()"
                       required
                     />
                   </div>
@@ -72,10 +77,13 @@
                       type="password"
                       id="passwordConfirm"
                       placeholder="패스워드 확인"
+                      onchange="isPw()"
+                      onkeydown="isPwValidity()"
                       required
                     />
                   </div>
-                  <div>패스워드가 중복되셨습니다</div>
+                  <div id="pwCheck1"></div>
+                  <div id="pwCheck2"></div>
                   <div style="display: flex">
                     <div><i class="bi bi-person-vcard-fill"></i></div>
                     <input
@@ -83,10 +91,11 @@
                       id="nickname"
                       name="nickname"
                       placeholder="닉네임"
+                      onkeyup="isNickname(this);"
                       required
                     />
                   </div>
-                  <div id="nicknameConfirm">닉네임이 중복되셨습니다</div>
+                  <div id="nicknameConfirm"></div>
                   <div style="display: flex">
                     <div><i class="bi bi-envelope-at-fill"></i></div>
                     <input
@@ -94,11 +103,12 @@
                       name="email"
                       id="email"
                       placeholder="이메일"
+                      onkeyup="isEmail(this);"
                       required
                     />
                   </div>
-                  <div id="emailConfirm">이메일이 중복되셨습니다</div>
-                  <div>
+                  <div id="emailConfirm"></div>
+                  <div style="margin-top: 2vh;">
                     <button type="button" onclick="register()" id="registerBtn">
                       회원가입
                     </button>

@@ -12,13 +12,29 @@ const {
 const output = {
   index: async (req, res) => {
     const result = await User.findAll();
-
     // console.log(result[1].nickname);
     res.render('index', {
       data: result,
+      // id: result2,
     });
-    // 메인 루트 페이지 렌더링하는 기능입니다.
   },
+
+  // 페이징
+  prevPage: async (req, res) => {
+    const result2 = await User.findAll();
+    res.send({ data: result2 });
+  },
+
+  nextPage: async (req, res) => {
+    const result2 = await User.findAll();
+    res.send({ data: result2 });
+  },
+
+  prevPage: async (req,res) =>{
+    const result = await User.findAll();
+    res.send({data: result});
+  },
+  
 
   userLogin: (req, res) => {
     //유저 로그인 렌더 페이지입니다
@@ -45,6 +61,7 @@ const output = {
   userRegister: (req, res) => {
     return res.render('user/register');
   },
+
   noticePost: (req, res) => {
     return res.render('notice/noticePost');
   },
@@ -52,6 +69,22 @@ const output = {
   findUser: async (req, res) => {
     // 유저 찾는 곳
     return res.render('user/findUser');
+  },
+
+  noticeUpdate: async (req, res) => {
+    const result = await Notice.findOne({
+      where: {
+        noticeNo: req.params.noticeNo,
+      },
+    });
+    console.log('시작' + result);
+    return res.render('notice/noticeUpdate', {
+      data: result,
+    });
+  },
+
+  myPage: (req, res) => {
+    return res.render('user/myPage');
   },
 };
 
@@ -77,7 +110,7 @@ const input = {
     });
     console.log(result);
     if (result === 1) {
-      return res.send('성공');
+      return res.redirect('/notice');
     }
   },
 

@@ -6,6 +6,7 @@
     <title>로그인</title>
     <%- include('../header')%>
     <link rel="stylesheet" href="/css/login.css" />
+    <script defer src="/js/user/login.js"></script>
   </head>
   <body>
     <!-- 메인 컨테이너 -->
@@ -58,7 +59,12 @@
                     />
                   </div>
                   <div style="margin-top: 15px">
-                    <input type="checkbox" name="saveId" />
+                    <input
+                      type="checkbox"
+                      name="saveId"
+                      class="saveId"
+                      id="saveId"
+                    />
                     <label for="saveId" style="color: black">아이디 저장</label>
                   </div>
                   <div style="margin-top: 15px">
