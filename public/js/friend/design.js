@@ -1,7 +1,4 @@
-if(window.innerWidth >= 800){
-  document.querySelector('.beforeSelect p').style.display = 'none';
-  document.querySelector('.beforeSelect a').style.display = 'none';
-}
+
   // 이미지 클릭 시 테두리 스타일 변경
   const imgElements = document.querySelectorAll('.col-4 img');
   
