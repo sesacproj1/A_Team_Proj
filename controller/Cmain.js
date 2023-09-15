@@ -63,11 +63,30 @@ const output = {
 
   noticeMain: async (req, res) => {
     // 공지사항 페이지에서 전체 글들 리스트 불러오기
-    const result1 = await Notice.findAll();
-    return res.render('notice/notice', {
-      data: result1,
-      session: req.session.userInfo,
-    });
+
+    if (req.session.userInfo) {
+      const result1 = await Notice.findAll();
+      const result2 = await Admin.findOne({
+        where: {
+          id: req.session.userInfo.id,
+        },
+      });
+      // adminData가 없을 경우 빈 객체로 설정
+      const adminData = result2 || {};
+
+      return res.render('notice/notice', {
+        data: result1,
+        admin: true,
+        adminData: adminData, // 항상 객체가 존재하도록 함
+      });
+    } else {
+      const result1 = await Notice.findAll();
+      return res.render('notice/notice', {
+        data: result1,
+        admin: false,
+        adminData : '',
+      });
+    }
   },
 
   noticePost: (req, res) => {

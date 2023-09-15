@@ -18,6 +18,7 @@ const output = {
     res.render('letter/friendConfirm', { session: req.session.userInfo });
   },
 
+
   myLetter: (req, res) => {
     res.render('letter/myletter', { session: req.session.userInfo });
   },
@@ -25,6 +26,7 @@ const output = {
   icon: (req, res) => {
     res.render('letter/icon', { session: req.session.userInfo });
   },
+
 
   yourLetter: (req, res) => {
     res.render('letter/yourLetter', { session: req.session.userInfo });
