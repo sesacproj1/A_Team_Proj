@@ -11,23 +11,23 @@ const {
 
 const output = {
   friends: (req, res) => {
-    res.render('letter/friends');
+    res.render('letter/friends', { session: req.session.userInfo });
   },
 
   friendConfirm: (req, res) => {
-    res.render('letter/friendConfirm');
+    res.render('letter/friendConfirm', { session: req.session.userInfo });
   },
 
   myLetter: (req, res) => {
-    res.render('letter/myletter');
+    res.render('letter/myletter', { session: req.session.userInfo });
   },
 
   icon: (req, res) => {
-    res.render('letter/icon');
+    res.render('letter/icon', { session: req.session.userInfo });
   },
 
   yourLetter: (req, res) => {
-    res.render('letter/yourLetter');
+    res.render('letter/yourLetter', { session: req.session.userInfo });
   },
 };
 

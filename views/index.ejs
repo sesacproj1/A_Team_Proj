@@ -62,8 +62,21 @@
         <button id="btnLeft">
           <img src="/img/header/left.png" alt="" />
         </button>
-        <button id="btnResister"><span>회원가입</span></button>
+        <%if(typeof session === 'undefined'){%>
+        <button id="btnResister">
+          <span>회원가입</span>
+        </button>
         <button id="btnLogin"><span>로그인</span></button>
+        <button id="btnLogout" style="display: none">
+          <span>로그아웃</span>
+        </button>
+        <%}%> <%if(typeof session !== 'undefined'){%>
+        <button id="btnResister" style="display: none">
+          <span>회원가입</span>
+        </button>
+        <button id="btnLogin" style="display: none"><span>로그인</span></button>
+        <button id="btnLogout"><span>로그아웃</span></button>
+        <%}%>
         <button id="btnRight">
           <img src="/img/header/right.png" alt="" />
         </button>

@@ -5,6 +5,7 @@ const btnLeft = document.querySelector('#btnLeft');
 const btnRight = document.querySelector('#btnRight');
 const btnResister = document.querySelector('#btnResister');
 const btnLogin = document.querySelector('#btnLogin');
+// const btnLogout = document.querySelector('#btnLogout');
 
 // 상단 멘트 랜덤 배치
 const cmt = document.querySelector('#cmt');
@@ -111,8 +112,11 @@ btnResister.addEventListener('click', () => {
 btnLogin.addEventListener('click', () => {
   document.location.href = '/user/login';
 });
-
 // 2. 로그인 시 회원가입 버튼 없애고 로그인 => 로그아웃으로 변경
+
+btnLogout.addEventListener('click', () => {
+  document.location.href = '/logout';
+});
 
 // star position /size 정의
 for (let i = 1; i <= starCnt; i++) {

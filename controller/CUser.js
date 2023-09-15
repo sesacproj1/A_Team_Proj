@@ -43,6 +43,17 @@ const output = {
   register: (req, res) => {
     res.render('user/register');
   },
+  logout: (req, res) => {
+    // TODO: 세션 삭제
+    console.log(req.session);
+    req.session.destroy((err) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.redirect('/');
+    });
+  },
   // profile: (req, res) => {
 
   //   res.render('profile');
