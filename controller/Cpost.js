@@ -7,13 +7,42 @@ const output = {
 
   showMyLetter: async (req, res) => {
     const userInfo = req.session.userInfo;
-    const { id, userId, nickname } = userInfo;
+    // const { id, userId, nickname } = userInfo;
+    // await MyLetter.create({
+    //   id: id,
+    // });
+    // res.render('letter/myletter', { nickname: nickname });
+    console.log(userInfo);
+    const result2 = req.params.id; //n
+    console.log(result2);
 
-    await MyLetter.create({
-      id: id,
-    });
+    if (userInfo) {
+      if (userInfo.id == result2) {
+        const isMine = true;
+        console.log('1', isMine);
+        // 둘이 같으면 myletter
+        res.render('letter/myletter', {
+          userInfo: userInfo,
+          isLogin: true,
+          isMine: true,
+        });
+      } else {
+        // 아니면 yourLetter
+        const isMine = false;
 
-    res.render('letter/myletter', { nickname: nickname });
+        console.log('isMine', isMine);
+        res.render('letter/myletter', {
+          userInfo: userInfo,
+          isLogin: true,
+          isMine: false,
+        });
+      }
+    } else {
+      //로그인 x
+      const isLogin = false;
+      console.log('isLogin', isLogin);
+      res.render('letter/myletter', { isLogin: false, isMine: false });
+    }
   },
 
   showPost: async (req, res) => {

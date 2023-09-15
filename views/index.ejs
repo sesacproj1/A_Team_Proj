@@ -20,41 +20,20 @@
       </div>
 
       <!-- starDiv START -->
-      <!-- 데이터 끊어서 별 배치하기: 전체/배치 별 개수 ceil 해서 for문에 추가 -->
-      <!-- a 링크 추가, 닉네임 data 추가 -->
-      <!-- 다음 버튼 클릭시 a href 속성, p innertext i+9(배치 별 개수) 하면 되려나 
-      <p> || data[i].nickname  ||</p> -->
-
       <!-- 한 페이지당 별 7개 배치 예정 -->
-      <!-- 총 회원 수가 7의 배수일 때 (화면에 가득 찰 때) -->
       <div class="starDiv">
-        <% if(data.length %7 ==0) { %> <% for (let i=0; i< 7; i++ ) { %>
-        <a href="#">
+        <% for (let i=0; i < data.length; i++ ) { %>
+        <a href="/letter/MyLetter/<%= data[i].id%>" target="_self">
           <div class="star star<%=i+1%>">
-            <!-- 3의 배수인 별은 일반 이미지 -->
             <% if ( i%3==0 ) {%>
             <img src="../img/background/kbStar.png" alt="" id="star<%=i+1%>" />
-            <% }else{ %>
+            <% } else { %>
             <img src="../img/background/px_star.png" alt="" id="star<%=i+1%>" />
             <% } %>
             <p id="p<%=i+1%>"><%=data[i].nickname%></p>
           </div>
         </a>
-        <% } } %>
-
-        <!-- 총 회원 수가 7의 배수가 아닐 때 (화면에 일부만 찰 때) -->
-        <% if(data.length %7 !=0) { %> <% for (let i=0; i < 7; i++ ) { %>
-        <a href="#" target="_self">
-          <div class="star star<%=i+1%>">
-            <% if ( i%3==0 ) {%>
-            <img src="../img/background/kbStar.png" alt="" id="star<%=i+1%>" />
-            <% }else{ %>
-            <img src="../img/background/px_star.png" alt="" id="star<%=i+1%>" />
-            <% } %>
-            <p id="p<%=i+1%>"><%=data[i].nickname%></p>
-          </div>
-        </a>
-        <% } }%>
+        <% } %>
       </div>
 
       <!-- btnDiv START -->
@@ -70,7 +49,7 @@
         <button id="btnLogout" style="display: none">
           <span>로그아웃</span>
         </button>
-        <%}%> <%if(typeof session !== 'undefined'){%>
+        <% } %> <% if(typeof session !== 'undefined') { %>
         <button id="btnResister" style="display: none">
           <span>회원가입</span>
         </button>

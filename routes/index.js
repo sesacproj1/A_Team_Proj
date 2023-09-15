@@ -102,7 +102,7 @@ router.delete(
 );
 
 // 편지함 페이지 출력
-router.get('/MyLetter/:letterNo', controllerPost.output.showMyLetter);
+router.get('/letter/MyLetter/:id', controllerPost.output.showMyLetter);
 
 // 글남기기
 // router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
