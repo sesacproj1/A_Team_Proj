@@ -11,7 +11,6 @@ const btnLogin = document.querySelector('#btnLogin');
 btnLeft.addEventListener('click', prevPage);
 btnRight.addEventListener('click', nextPage);
 
-
 // 페이징
 let curPage = 1;
 
@@ -47,17 +46,12 @@ function prevPage() {
             // console.log(i, p[i]); //7 undefined
             p[i].innerText = data[dataIndex].nickname;
           } else {
-            if (i < 0) {
-              alert('i<0');
-            }
-            // else {
-            //   p[i].innerText = '';
-            // }
+            p[i].innerText = '';
+            // star[i].innerHTML = '';
           }
         }
         // curPage--;
         // console.log('curPage', curPage);
-
       });
     } catch (err) {
       console.log('Error', err);
@@ -67,6 +61,7 @@ function prevPage() {
 
 function nextPage() {
   const p = document.querySelectorAll('p');
+  const star = document.querySelectorAll(`.star`);
 
   try {
     axios({
@@ -80,17 +75,16 @@ function nextPage() {
 
       for (let i = 0; i < p.length; i++) {
         const dataIndex = startIndex + i;
-        // console.log('data next', dataIndex);
 
         if (data[dataIndex]) {
           p[i].innerText = data[dataIndex].nickname;
         } else {
           p[i].innerText = '';
+          // star[i].innerHTML = ''; //별 없애면 이전 페이지도 없어짐
         }
       }
       curPage++;
       console.log('curPage', curPage);
-
     });
   } catch (err) {
     console.log('Error', err);

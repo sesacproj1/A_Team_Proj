@@ -7,13 +7,16 @@ const output = {
 
   showMyLetter: async (req, res) => {
     const userInfo = req.session.userInfo;
-    const id = userInfo.id;
+    const { id, userId, nickname } = userInfo;
+
     await MyLetter.create({
       id: id,
     });
 
-    // res.send('myletter page 출력!');
-    res.render('letter/myletter');
+
+
+    res.render('letter/myletter', { nickname: nickname });
+
   },
 
   showPost: async (req, res) => {
