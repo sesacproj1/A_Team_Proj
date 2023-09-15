@@ -29,7 +29,7 @@
       <!-- 총 회원 수가 7의 배수일 때 (화면에 가득 찰 때) -->
       <div class="starDiv">
         <% if(data.length %7 ==0) { %> <% for (let i=0; i< 7; i++ ) { %>
-        <a href="/letter/myLetter/<%=data[i].id%>">
+        <a href="#">
           <div class="star star<%=i+1%>">
             <!-- 3의 배수인 별은 일반 이미지 -->
             <% if ( i%3==0 ) {%>
@@ -44,7 +44,7 @@
 
         <!-- 총 회원 수가 7의 배수가 아닐 때 (화면에 일부만 찰 때) -->
         <% if(data.length %7 !=0) { %> <% for (let i=0; i < 7; i++ ) { %>
-        <a href="#" id="a" target="_self">
+        <a href="#" target="_self">
           <div class="star star<%=i+1%>">
             <% if ( i%3==0 ) {%>
             <img src="../img/background/kbStar.png" alt="" id="star<%=i+1%>" />
