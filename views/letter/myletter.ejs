@@ -8,9 +8,17 @@
     <link rel="stylesheet" href="/css/myletter.css" />
   </head>
   <body>
+    <% if (!isLogin) { %>
+      <script>
+        alert('<%= message %>');
+        document.location.href = '/user/login';
+      </script>
+      <% }%>
     <div class="container-fluid row">
       <div class="titleDiv col-md-2">
-        <h1>해순님의<br/>편지함</h1>
+
+        <h1><%= data.nickname%>님의<br />편지함</h1>
+
       </div>
 
       <div class="letterDiv col-md-8">
@@ -106,7 +114,12 @@
       <div class="myPageDiv">
         <a href="/user/myPage">
           <button id="btnMypage">
-            <img src="/img/header/user.png" alt="" id="imgMypage" />
+            <% if(profile.profileLocation === 'null'){%>
+              <img src="/img/header/user.png" alt="" id="imgMypage" />
+              <%}%> 
+              <% if(profile.profileLocation !== 'null'){%>
+                <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+              <%}%>
           </button>
           <p>마이페이지</p>
         </a>
