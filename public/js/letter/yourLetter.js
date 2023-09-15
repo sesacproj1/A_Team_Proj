@@ -10,7 +10,6 @@ letterModal.addEventListener('show.bs.modal', (event) => {
   const modalTitle = letterModal.querySelector('.modal-title');
   const modalBodyInput = letterModal.querySelector('.modal-body input');
 
-  modalTitle.textContent = `내가 받은 송편지`;
   //   modalBodyInput.value = recipient; 데이터 가져오기
   showLetter();
 });
@@ -54,15 +53,15 @@ btnLike.addEventListener('click', like);
 function like() {
   likeHeart.src = '/img/header/heart2.png';
 
-  try {
-    axios({
-      method: 'GET',
-      //url: `/MyLetter?letterNo=${}?postNo=${}/likes`,
-    }).then((res) => {
-      console.log('likesNum ', res);
-      likesNum.innerText = likesNum + 1;
-    });
-  } catch (err) {
-    console.log('Err', err);
-  }
+  // try {
+  //   axios({
+  //     method: 'GET',
+  //     //url: `/MyLetter?letterNo=${}?postNo=${}/likes`,
+  //   }).then((res) => {
+  //     console.log('likesNum ', res);
+  //     likesNum.innerText = likesNum + 1;
+  //   });
+  // } catch (err) {
+  //   console.log('Err', err);
+  // }
 }
