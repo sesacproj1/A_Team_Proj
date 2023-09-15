@@ -8,21 +8,21 @@ letterModal.addEventListener('show.bs.modal', (event) => {
   const modalBodyInput = letterModal.querySelector('.modal-body input');
 
   //   modalBodyInput.value = recipient; 데이터 가져오기
-  showLetter();
+  // showLetter();
 });
 
-function showLetter() {
-  try {
-    axios({
-      method: 'GET',
-      url: '/MyLetter/:letterNo/:postNo',
-    }).then((res) => {
-      console.log(res);
-    });
-  } catch (err) {
-    console.log('Err', err);
-  }
-}
+// function showLetter() {
+//   try {
+//     axios({
+//       method: 'GET',
+//       url: '/MyLetter/:letterNo/:postNo',
+//     }).then((res) => {
+//       console.log(res);
+//     });
+//   } catch (err) {
+//     console.log('Err', err);
+//   }
+// }
 
 // 2. 좋아요 처리
 const btnLike = document.querySelector('.btnLike');

@@ -40,10 +40,10 @@ function prevPage() {
 
         // step 2) p태그 내 닉네임 수정
         curPage--; //앞에서 빼주어야 올바른 현재 페이지(이전 페이지)로 이동
-        console.log('curPage', curPage); //1
+        // console.log('curPage', curPage);
 
         const data = res.data.data;
-        // console.log(data.length); //8
+        // console.log(data.length);
         const startIndex = (curPage - 1) * starCnt; //0
         // console.log('start prev', startIndex); //0
 
@@ -83,7 +83,6 @@ function nextPage() {
       const data = res.data.data;
       const startIndex = curPage * starCnt;
       //curPage가 1부터 시작하므로 curPage -1 안 해야 알맞게 다음pg 데이터 인덱싱
-      // console.log('start next', startIndex);
 
       for (let i = 0; i < p.length; i++) {
         const dataIndex = startIndex + i;
@@ -119,11 +118,6 @@ btnLogout.addEventListener('click', () => {
 for (let i = 1; i <= starCnt; i++) {
   const star = document.querySelector(`.star${i}`);
   const p = document.querySelector(`#p${i}`);
-
-  // for (let i = 0; i <= 8; i++) {
-  //   //한 페이지에 9개 배치 예정
-  //   const star = document.querySelector(`.star${i}`);
-  //   console.log(`star${i}: ${star}`);
 
   if (i % 2 == 0) {
     // 짝수 별이라면
@@ -207,3 +201,5 @@ stStar.addEventListener('animationend', () => {
   // console.log("animation end");
   stStar.style.display = 'none';
 });
+
+// 개인 편지함으로 id 보내기

@@ -18,7 +18,7 @@ function showLetter() {
   try {
     axios({
       method: 'GET',
-      url: `/MyLetter/${letterNo}/${postNo}`,
+      url: `/letter/MyLetter/${id}/`,
     }).then((res) => {
       console.log(res.data);
     });
@@ -28,7 +28,6 @@ function showLetter() {
 }
 
 // 2. 프로필 사진 값 가져와 src 변경 : 음....
-// 3. 로그인 한 사람만 친구 신청 보이기 : isLogin으로 가져오기
 // 4. 친구 신청 날리기 : 음....
 // 5. 페이징 : 편지 작성 테이블에서 가져오기
 // - 편지 위치 배치
@@ -48,20 +47,4 @@ console.log('moon height', moonHeight);
 const btnLike = document.querySelector('.btnLike');
 const likeHeart = document.querySelector('#likeHeart');
 const likesNum = document.querySelector('.likesNum');
-btnLike.addEventListener('click', like);
-
-function like() {
-  likeHeart.src = '/img/header/heart2.png';
-
-  // try {
-  //   axios({
-  //     method: 'GET',
-  //     //url: `/MyLetter?letterNo=${}?postNo=${}/likes`,
-  //   }).then((res) => {
-  //     console.log('likesNum ', res);
-  //     likesNum.innerText = likesNum + 1;
-  //   });
-  // } catch (err) {
-  //   console.log('Err', err);
-  // }
-}
+// btnLike.addEventListener('click', updateLikes);

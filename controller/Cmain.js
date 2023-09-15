@@ -11,7 +11,11 @@ const {
 
 const output = {
   index: async (req, res) => {
-    const result = await User.findAll();
+    const result = await User.findAll({
+      // offset: 7 * (req.body.curPage - 1),
+      order: [['id', 'ASC']],
+      limit: 7,
+    });
 
     // index.ejs 랜더 (data 키로 session 객체의 userInfo 전달)
     const userSession = req.session.userInfo;
@@ -36,11 +40,6 @@ const output = {
   },
 
   // 페이징
-  prevPage: async (req, res) => {
-    const result = await User.findAll();
-    res.send({ data: result });
-  },
-
   nextPage: async (req, res) => {
     const result = await User.findAll();
     res.send({ data: result });
