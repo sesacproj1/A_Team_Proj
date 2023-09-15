@@ -12,6 +12,7 @@ const {
 const output = {
   index: async (req, res) => {
     const result = await User.findAll();
+
     // index.ejs 랜더 (data 키로 session 객체의 userInfo 전달)
     const userSession = req.session.userInfo;
     console.log(userSession);
@@ -32,17 +33,18 @@ const output = {
       });
       // id: result2,
     }
+
   },
 
   // 페이징
   prevPage: async (req, res) => {
-    const result2 = await User.findAll();
-    res.send({ data: result2 });
+    const result = await User.findAll();
+    res.send({ data: result });
   },
 
   nextPage: async (req, res) => {
-    const result2 = await User.findAll();
-    res.send({ data: result2 });
+    const result = await User.findAll();
+    res.send({ data: result });
   },
 
   prevPage: async (req, res) => {

@@ -55,7 +55,9 @@ const input = {
 const output = {
   showFriend: async (req, res) => {
     const userInfo = req.session.userInfo;
+    console.log(userInfo);
     const id = userInfo.id;
+    console.log(id);
     // 요청을 보내서 추가된 경우 : Friend에서 id값으로 추출
     const FriendList = await Friend.findAll({
       where: { id: id },
@@ -71,16 +73,17 @@ const output = {
     });
     const myFriend = [FriendList, toFriendList];
     console.log('친구목록>>', myFriend);
-    res.render('friend', { myFriend: myFriend });
+    res.render('letter/friends', { myFriend: myFriend });
   },
 
   showRequest: async (req, res) => {
+    const userInfo = req.session.userInfo;
     const id = userInfo.id;
     const requests = await RequestList.findAll({
       where: { id: id },
     });
 
-    res.render('requestList', { requests: requests });
+    res.render('letter/friendConfirm', { requests: requests });
   },
 
   confirmRequest: async (req, res) => {

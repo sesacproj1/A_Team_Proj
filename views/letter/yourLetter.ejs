@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>내 편지함</title>
+    <title>편지함</title>
     <%- include('../header')%>
-    <link rel="stylesheet" href="/css/myletter.css" />
+    <link rel="stylesheet" href="/css/yourletter.css" />
   </head>
   <body>
     <div class="container-fluid row">
       <div class="titleDiv col-md-2">
-        <h1>해순님의<br />편지함</h1>
+        <h1>해순님의<br />편지함(작성자가 보는)</h1>
       </div>
 
       <div class="letterDiv col-md-8">
@@ -85,7 +85,7 @@
                   data-bs-dismiss="modal"
                 >
                   닫기
-                </button> 
+                </button>               
               </div>
             </div>
           </div>
@@ -103,31 +103,33 @@
     </div>
 
     <div class="menuDiv col-md-2">
-      <div class="myPageDiv">
-        <a href="/user/myPage">
-          <button id="btnMypage">
-            <img src="/img/header/user.png" alt="" id="imgMypage" />
+      <div class="profilePicDiv">
+        <button id="btnProfilePicDiv" disabled>
+          <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+        </button>
+        <!-- <p id="nickname">해순</p> -->
+      </div>
+
+      <div class="writeLetterDiv">
+        <a href="#"> 
+          <!-- 편지 작성 페이지 추가 -->
+          <button id="btnWriteLetter">
+            <img src="/img/header/pen.png" alt="" id="imgWriteLetter" />
           </button>
-          <p>마이페이지</p>
+          <p>편지 쓰기</p>
         </a>
       </div>
-      <div class="friendConfirmDiv">
-        <a href="/letter/friendConfirm">
-          <button id="btnFriendConfirm">
-            <img src="/img/header/ring.png" alt="" id="imgFriendConfirm" />
-          </button>
-          <p>친구 신청</p>
-        </a>
-    </div>
-    <div class="friendsDiv">
-      <a href="/letter/friends">
-        <button id="btnFriends">
-          <img src="/img/header/friends.png" alt="" id="imgFriends" />
+
+      <div class="addFriendDiv">
+        <button id="btnAddFriend">
+          <img src="/img/header/add.png" alt="" id="imgAddFriend" />
         </button>
-        <p>친구 목록</p>
-      </a>
-  </div>
+        <p>친구 신청</p>
+      </div>
+
+      
+
     </div>
-    <script src="/js/letter/myletter.js"></script>
+    <script src="/js/letter/yourletter.js"></script>
   </body>
 </html>

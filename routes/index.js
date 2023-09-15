@@ -76,9 +76,6 @@ router.get('/notice', controller.output.noticeMain);
 router.get('/notice/post', controller.output.noticePost);
 router.get('/user/myPage', controller.output.myPage);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
-router.get('/letter/friends', controllerLetter.output.friends);
-router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
-router.get('/letter/myLetter', controllerLetter.output.myLetter);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 
 //기능부분 (api)
@@ -88,7 +85,7 @@ router.get('/notice/delete/:noticeNo', controller.input.noticeDelete);
 router.patch('/notice/update/:noticeNo', controller.input.noticeUpdate);
 
 // 알림기능
-router.post('/notification/:letterNo', controllerNoti.output.showNoti);
+router.get('/notification/:letterNo', controllerNoti.output.showNoti);
 router.delete(
   '/notification/:letterNo/:postNo',
   controllerNoti.output.postNoti
@@ -101,25 +98,30 @@ router.delete(
 // 편지함 페이지 출력
 router.get('/MyLetter/:letterNo', controllerPost.output.showMyLetter);
 
-// 편지함 페이지 - 기능 부분
-router.post('/MyLetter/:letterNo/:postNo', controllerPost.output.showPost);
+// 글남기기
+router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
 router.post(
-  '/MyLetter/:letterNo/:postNo/Register',
+  '/MyLetter/:letterNo/contentWrite/Register',
   controllerPost.input.contentRegister
 );
+
+// 편지보기
+router.post('/MyLetter/:letterNo/:postNo', controllerPost.output.showPost);
+
+// 편지함 페이지 - 기능 부분
 router.delete(
   '/MyLetter/:letterNo/:postNo/delete',
   controllerPost.input.contentDelete
 );
 router.patch(
   '/MyLetter/:letterNo/:postNo/likes',
-  controllerPost.input.contentLikes
+  controllerPost.input.updateLikes
 );
 
 // 친구기능
-router.post('/friend/:id', controllerFriend.output.showFriend);
+router.get('/friend/:id', controllerFriend.output.showFriend);
 router.post('/MyLetter/:letterNo/reqFriend', controllerFriend.input.reqFriend);
-router.post('/showRequest/:id', controllerFriend.output.showRequest);
+router.get('/showRequest/:id', controllerFriend.output.showRequest);
 router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
 router.delete('/showRequest/:id/reject', controllerFriend.input.rejectRequest);
 router.delete('/friend/:id/delete', controllerFriend.input.delFriend);
