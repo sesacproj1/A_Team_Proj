@@ -1,4 +1,4 @@
-// 로딩 화면 3초간 지속
+// 로딩 화면 1초간 지속
 const loading = document.querySelector('.loading');
 setTimeout(() => {
   loading.style.display = 'none';
@@ -46,7 +46,7 @@ myLight2.position.set(0, 20, -10);
 myScene.add(myLight2);
 myScene.add(myCamera);
 
-myScene.background = new THREE.Color('#070A52');
+myScene.background = new THREE.Color('#F266AB');
 
 /*Obj load */
 const ctrl = new OrbitControls(myCamera, myRenderer.domElement);

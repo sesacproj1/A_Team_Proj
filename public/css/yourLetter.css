@@ -19,6 +19,7 @@
   font-family: 'stardust';
   overflow: hidden;
   display: flex;
+  /* flex-direction: column; */
 }
 
 /* 제목 */
@@ -177,10 +178,6 @@
 #letterModal {
   color: #37e2d5;
 }
-.modal-content {
-  /* background-color: #337ccf; */
-  /* background-image: url('../img/background/letterBg.png'); */
-}
 .modal-footer {
   position: relative;
   display: flex;
@@ -253,17 +250,23 @@
     text-decoration-line: none;
     color: #eee;
   }
-  #imgMypage {
-    width: 30px;
-    height: 25px;
+  #imgProfilePic {
+    width: 100%;
+    height: 100%;
   }
-  #imgFriendConfirm {
-    width: 35px;
+  #imgAddFriend {
+    width: 30px;
     height: 30px;
   }
-  #imgFriends {
+  #imgWriteLetter {
     width: 40px;
-    height: 50px;
+    height: 30px;
+  }
+  #btnProfilePicDiv {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 15%;
+    box-shadow: none;
   }
   .menuDiv button {
     width: 40px;
@@ -273,6 +276,7 @@
     background-color: #37e2d5;
     box-shadow: 4px 3px #eee;
     margin: 20px;
+    overflow: hidden;
   }
 }
 @media (min-width: 768px) {
@@ -288,18 +292,27 @@
     text-decoration-line: none;
     color: #eee;
   }
-  #imgMypage {
-    width: 40px;
-    height: 35px;
+  #imgProfilePic {
+    width: 100%;
+    height: 100%;
   }
-  #imgFriendConfirm {
+
+  #imgAddFriend {
+    width: 40px;
+    height: 40px;
+  }
+  #imgWriteLetter {
     width: 50px;
     height: 40px;
   }
-  #imgFriends {
+
+  #btnProfilePicDiv {
     width: 55px;
-    height: 60px;
+    height: 55px;
+    margin-bottom: 15%;
+    box-shadow: none;
   }
+
   .menuDiv button {
     width: 50px;
     height: 50px;
@@ -308,6 +321,7 @@
     background-color: #37e2d5;
     margin: 5%;
     box-shadow: 4px 3px #eee;
+    overflow: hidden;
   }
 }
 .menuDiv button:hover {
