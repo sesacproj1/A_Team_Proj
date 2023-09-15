@@ -112,7 +112,7 @@ btnLogin.addEventListener('click', () => {
 // 2. 로그인 시 회원가입 버튼 없애고 로그인 => 로그아웃으로 변경
 
 btnLogout.addEventListener('click', () => {
-  document.location.href = '/';
+  document.location.href = '/logout';
 });
 
 // star position /size 정의

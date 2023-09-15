@@ -1,6 +1,5 @@
 const { User, Friend, toFriend, RequestList } = require('../models');
 
-
 // const userInfo = req.session.userInfo;
 
 const input = {
@@ -76,9 +75,8 @@ const output = {
     });
     const myFriend = [FriendList, toFriendList];
     console.log('친구목록>>', myFriend);
-    res.render('letter/friends', { myFriend: myFriend });
+    res.render('letter/friends', { session: req.session.userInfo });
   },
-
   showRequest: async (req, res) => {
     const userInfo = req.session.userInfo;
     const id = userInfo.id;
@@ -86,7 +84,10 @@ const output = {
       where: { id: id },
     });
 
-    res.render('letter/friendConfirm', { requests: requests });
+    res.render('letter/friendConfirm', {
+      requests: requests,
+      session: req.session.userInfo,
+    });
   },
 
   confirmRequest: async (req, res) => {
