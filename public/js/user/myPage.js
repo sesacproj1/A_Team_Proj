@@ -1,7 +1,10 @@
 // 동적 파일 업로드
 //프로필 사진 이미지 클릭시 파일
 const btn = document.querySelector('#profileBtn');
-
+const mail = document.querySelector('.mailBox');
+mail.addEventListener('click', () => {
+  document.location.href = '/letter/myLetter';
+});
 btn.addEventListener('click', () => {
   document.querySelector('#fileInput').click();
 });
