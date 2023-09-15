@@ -4,19 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마이페이지</title>
-    <link rel="stylesheet" href="/css/myPage.css">
+    <link rel="stylesheet" href="/css/myPage.css" />
+    <script defer src="/js/user/myPage.js"></script>
     <%- include('../header')%>
   </head>
   <body>
+    <% if (!isProfile) { %>
+    <script>
+      alert('<%= message %>');
+      document.location.href = '/user/login';
+    </script>
+    <% }else{ %>
+    <script>
+      const nickname = `<%= data.nickname%>`;
+      const id = `<%= data.userId%>`;
+    </script>
+    <% } %>
     <div>
-      <div id="retroBox1">lobster100</div>
+      <div id="retroBox1"><span id="userId"><%= data.userId%></span></div>
       <div id="retroBox2">
         <!--  -->
         <div id="profile1">
           <div id="profile2">
-            <img src="/img/추석2.png" alt="" width="100%" height="100%">
+            <!-- 프로필 사진  -->
+            <button
+              title="프로필 사진 바꾸기"
+              id="profileBtn"
+              style="cursor: pointer"
+            >
+              <input
+                type="file"
+                name="fileInput"
+                id="fileInput"
+                style="display: none"
+              />
+              <img
+                src="/img/추석2.png"
+                alt="프로필 사진 "
+                id="profileImage"
+                width="100%"
+                height="100%"
+              />
+            </button>
           </div>
         </div>
+
         <!--  -->
         <div id="friends">
           <div>
@@ -35,9 +67,9 @@
         <!--  -->
       </div>
       <div id="retroBox3">
-        <p id="userId">lobster100</p>
-        <p id="email">ghh120304045@gmail.com</p>
-        <p id="nickname">랍스타</p>
+        <p id="userId"><%= data.userId%></p>
+        <p id="email"><%= data.email%></p>
+        <p id="nickname"><%=data.nickname%></p>
       </div>
       <!--  -->
       <div id="retroBox4">
@@ -45,23 +77,50 @@
       </div>
       <!--  -->
       <div id="retroBox5">
-        <form name="updateForm" style="padding-top: 3vh;">
-          <input type="hidden" name="id" value="">
-          <div style="text-align: center;">
-          <label for="userIdBox">아이디 </label>
-          <input type="text" name="userId" id="userIdBox" value="lobster100" style="font-size:25px; margin-left: 15px;" readonly>
-         </div>
-        <div style="text-align: center;">
-          <label for="passwordBox">패스워드 </label>
-          <input type="text" name="password" value="" id="passwordBox" style="font-size:25px;">
-        </div>
-        <div style="text-align: center;">
-          <label for="nicknamBox">닉네임 </label>
-          <input type="text" name="nickname" value="" id="nicknamBox" style="font-size:25px; margin-left: 15px;">
-        </div>
-        <div style="text-align: center;">
-          <button type="button" onclick="userUpdate()" style="margin-top: 2vh;">수정</button>
-        </div>
+        <form name="updateForm" style="padding-top: 3vh">
+          <input type="hidden" name="id" value="" />
+          <div style="text-align: center">
+            <label for="userIdBox">아이디 </label>
+            <input
+              type="text"
+              name="userId"
+              id="userIdBox"
+              value="<%= data.userId%>"
+              style="font-size: 25px; margin-left: 15px"
+              readonly
+            />
+          </div>
+          <div style="text-align: center">
+            <label for="passwordBox">패스워드 </label>
+            <input
+              type="password"
+              name="password"
+              id="passwordBox"
+              style="font-size: 25px"
+              placeholder="패스워드 (영문 대소문자/숫자조합, 2자~15자)"
+              onkeydown="isPwValidity()"
+            />
+            <div id="pwCheck1"></div>
+          </div>
+          <div style="text-align: center">
+            <label for="nicknamBox">닉네임 </label>
+            <input
+              type="text"
+              name="nickname"
+              id="nicknamBox"
+              style="font-size: 25px; margin-left: 15px"
+              placeholder="<%= data.nickname%>"
+            />
+          </div>
+          <div style="text-align: center">
+            <button
+              type="button"
+              onclick="userUpdate()"
+              style="margin-top: 2vh"
+            >
+              수정
+            </button>
+          </div>
         </form>
       </div>
     </div>
