@@ -27,14 +27,6 @@ function showLetter() {
   }
 }
 
-// 2. 프로필 사진 값 가져와 src 변경 : 음....
-// 4. 친구 신청 날리기 : 음....
-// 5. 페이징 : 편지 작성 테이블에서 가져오기
-// - 편지 위치 배치
-// - 편지 추가하기 => 편지 개수만큼 for문 돌려 정해진 위치 배치
-// - 편지 있으면 추가하고 없애면 안 넣는거 어떻게 할까.... => div 안에 innerHTML로 이미지 넣자
-// - 위치를 css말고 여기서 html로 정해야하나
-
 const moon = document.querySelector('#moon');
 const moonWidth = moon.style.width;
 const moonHeight = moon.style.height;

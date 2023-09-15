@@ -109,19 +109,19 @@ stStar.addEventListener('animationend', () => {
 
 // 개인 편지함으로 id 보내기
 const stars = document.querySelectorAll('.star');
-for (let i = 0; i < stars.length; i++) {
-  stars[i].addEventListener('click', a);
-}
-function a() {
-  axios({
-    method: 'POST',
-    url: '/',
-    data: { curPage: 1 },
-  }).then((res) => {
-    console.log('33', res);
-    curPage++;
-  });
-}
+// for (let i = 0; i < stars.length; i++) {
+//   stars[i].addEventListener('click', a);
+// }
+// function a() {
+//   axios({
+//     method: 'POST',
+//     url: '/',
+//     data: { curPage: 1 },
+//   }).then((res) => {
+//     console.log('33', res);
+//     curPage++;
+//   });
+// }
 
 //버튼 js
 // 1. 페이징
@@ -135,26 +135,37 @@ function prevPage() {
     //현재 페이지가 1보다 큰 경우에만 이전 페이지로
     // 데이터 -7(별 개수)
     const p = document.querySelectorAll('p');
+    const a = document.querySelectorAll('.a');
     try {
       axios({
         method: 'GET',
         url: `/prevPage?page=${curPage}`,
       }).then((res) => {
-        // step 1) a태그 내 링크 수정
-
-        // step 2) p태그 내 닉네임 수정
         curPage--; //앞에서 빼주어야 올바른 현재 페이지(이전 페이지)로 이동
-        // console.log('curPage', curPage);
-
         const data = res.data.data;
         // console.log(data.length);
         const startIndex = (curPage - 1) * starCnt; //0
-        // console.log('start prev', startIndex); //0
+        console.log('start prev', startIndex); //0
 
+        // step 1) a태그 내 링크 수정
+        for (let i = 0; i < p.length; i++) {
+          const dataIndex = startIndex + i; //0~6
+          // console.log('prev startIdx', startIndex, i);
+          // console.log('prev dataIdx', dataIndex);
+
+          if (data[dataIndex]) {
+            a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
+            // console.log('a[i].href', a[i].href);
+          } else {
+            a[i].href = '#';
+          }
+        }
+
+        // step 2) p태그 내 닉네임 수정
+        // console.log('curPage', curPage);
         for (let i = 0; i < p.length; i++) {
           //data.length는 8이라 p 인덱스에러 나니까 p.length로 수정
           const dataIndex = startIndex + i; //0~6
-          // console.log('data prev', dataIndex); //0~8
 
           if (data[dataIndex]) {
             //데이터 있을 때 출력
@@ -166,8 +177,6 @@ function prevPage() {
             // star[i].innerHTML = '';
           }
         }
-        // curPage--;
-        // console.log('curPage', curPage);
       });
     } catch (err) {
       console.log('Error', err);
@@ -176,6 +185,7 @@ function prevPage() {
 }
 
 function nextPage() {
+  const a = document.querySelectorAll('.a');
   const p = document.querySelectorAll('p');
   const star = document.querySelectorAll(`.star`);
 
@@ -188,6 +198,23 @@ function nextPage() {
       const startIndex = curPage * starCnt;
       //curPage가 1부터 시작하므로 curPage -1 안 해야 알맞게 다음pg 데이터 인덱싱
 
+      // step 1) a태그 내 링크 수정
+      for (let i = 0; i < p.length; i++) {
+        const dataIndex = startIndex + i; //0~6
+        // console.log('next startIdx', startIndex, i);
+        // console.log('next dataIdx', dataIndex);
+        // console.log('data[dataIndex]', data[dataIndex]);
+
+        if (data[dataIndex]) {
+          a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
+          // console.log(`a${i}.href`, a[i].href);
+        } else {
+          a[i].href = '#';
+          // console.log(`${i},aa`);
+        }
+      }
+
+      // step 2) p 태그 내용 수정
       for (let i = 0; i < p.length; i++) {
         const dataIndex = startIndex + i;
 

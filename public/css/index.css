@@ -91,6 +91,7 @@
   color: #eeeeee;
   position: absolute;
   display: block;
+  font-size: large;
 }
 
 .star img:hover {

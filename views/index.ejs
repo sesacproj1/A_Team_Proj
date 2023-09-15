@@ -23,11 +23,7 @@
       <!-- 한 페이지당 별 7개 배치 예정 -->
       <div class="starDiv">
         <% for (let i=0; i < data.length; i++ ) { %>
-        <!-- <a href="/letter/MyLetter/<%= data[i].id%>" target="_self"> -->
-        <a
-          href="/letter/MyLetter/?curPage=<%= curPage %>&id=<%= data[i].id %>"
-          target="_self"
-        >
+        <a href="/letter/MyLetter/<%= data[i].id%>" target="_self" class="a">
           <div class="star star<%=i+1%>">
             <% if ( i%3==0 ) {%>
             <img src="../img/background/kbStar.png" alt="" id="star<%=i+1%>" />

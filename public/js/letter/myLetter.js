@@ -28,22 +28,27 @@ letterModal.addEventListener('show.bs.modal', (event) => {
 const btnLike = document.querySelector('.btnLike');
 const likeHeart = document.querySelector('#likeHeart');
 const likesNum = document.querySelector('.likesNum');
-btnLike.addEventListener('click', like);
+// btnLike.addEventListener('click', updateLikes);
 
-function like() {
-  likeHeart.src = '/img/header/heart2.png';
+// function updateLikes() {
+//   likeHeart.src = '/img/header/heart2.png';
+//   const likesNum2 = parseInt(likesNum.innerText);
+//   axios({
+//     method: 'patch',
+//     url: `/MyLetter/${letterNo}}/${postNo}/likes`, //letterNo is not defined
+//     data: {
+//       number: likesNum2 + 1,
+//     },
+//   }).then((res) => {
+//     console.log(res);
+//     // likesNum = likesNum + 1;
+//   });
+// }
 
-  //   try {
-  //     axios({
-  //       method: 'GET',
-  //       url: `/MyLetter?letterNo=${}?postNo=${}/likes`,
-  //     }).then((res) => {
-  //       console.log('likesNum ', res);
-  //       likesNum.innerText = likesNum + 1;
-  //     });
-  //   } catch (err) {
-  //     console.log('Err', err);
-  // }
-}
-
-// 3. 페이징
+// 3. 프로필 사진 값 가져와 src 변경 : 음....
+// 4. 친구 신청 날리기 : 음....
+// 5. 페이징 : 편지 작성 테이블에서 가져오기
+// - 편지 위치 배치
+// - 편지 추가하기 => 편지 개수만큼 for문 돌려 정해진 위치 배치
+// - 편지 있으면 추가하고 없애면 안 넣는거 어떻게 할까.... => div 안에 innerHTML로 이미지 넣자
+// - 위치를 css말고 여기서 html로 정해야하나
