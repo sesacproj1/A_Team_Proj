@@ -54,6 +54,7 @@ router.post(
 //로그인
 // router.get('/login', controllerUser.output.login);
 router.post('/login', controllerUser.input.postLogin);
+router.get('/logout', controllerUser.output.logout); //로그아웃
 
 //회원 삭제
 router.delete('/users/:id', controllerUser.input.deleteUser);

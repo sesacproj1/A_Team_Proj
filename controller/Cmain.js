@@ -66,24 +66,17 @@ const output = {
     const result1 = await Notice.findAll();
     return res.render('notice/notice', {
       data: result1,
+      session: req.session.userInfo,
     });
   },
 
-  userLogin: (req, res) => {
-    return res.render('user/login');
-  },
-
-  userRegister: (req, res) => {
-    return res.render('user/register');
-  },
-
   noticePost: (req, res) => {
-    return res.render('notice/noticePost');
+    return res.render('notice/noticePost', { session: req.session.userInfo });
   },
 
   findUser: async (req, res) => {
     // 유저 찾는 곳
-    return res.render('user/findUser');
+    return res.render('user/findUser', { session: req.session.userInfo });
   },
 
   noticeUpdate: async (req, res) => {
@@ -95,6 +88,7 @@ const output = {
     console.log('시작' + result);
     return res.render('notice/noticeUpdate', {
       data: result,
+      session: req.session.userInfo,
     });
   },
 
@@ -108,12 +102,14 @@ const output = {
         where: { userId: req.session.userInfo.userId },
       });
       return res.render('user/myPage', {
+        session: req.session.userInfo,
         data: user,
         isLogin: true,
         isProfile: true,
       });
     } else {
       return res.render('user/login', {
+        session: req.session.userInfo,
         isLogin: false,
         isProfile: false,
         message: '로그인해주세요!',
