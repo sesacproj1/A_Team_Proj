@@ -33,7 +33,6 @@ const output = {
       });
       // id: result2,
     }
-
   },
 
   // 페이징
@@ -114,7 +113,7 @@ const output = {
         isProfile: true,
       });
     } else {
-      return res.render('user/myPage', {
+      return res.render('user/login', {
         isLogin: false,
         isProfile: false,
         message: '로그인해주세요!',
