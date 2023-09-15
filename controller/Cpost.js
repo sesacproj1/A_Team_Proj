@@ -12,14 +12,14 @@ const output = {
     //   id: id,
     // });
     // res.render('letter/myletter', { nickname: nickname });
-    console.log(userInfo);
+    console.log('userInfo', userInfo);
     const result2 = req.params.id; //n
     console.log(result2);
 
     if (userInfo) {
       if (userInfo.id == result2) {
         const isMine = true;
-        console.log('1', isMine);
+        console.log('isMine', isMine);
         // 둘이 같으면 myletter
         res.render('letter/myletter', {
           userInfo: userInfo,
@@ -41,7 +41,10 @@ const output = {
       //로그인 x
       const isLogin = false;
       console.log('isLogin', isLogin);
-      res.render('letter/myletter', { isLogin: false, isMine: false });
+      res.render('letter/myletter', {
+        isLogin: false,
+        isMine: false,
+      });
     }
   },
 
