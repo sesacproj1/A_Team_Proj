@@ -33,7 +33,6 @@ const output = {
       });
       // id: result2,
     }
-
   },
 
   // 페이징
@@ -64,6 +63,7 @@ const output = {
 
   noticeMain: async (req, res) => {
     // 공지사항 페이지에서 전체 글들 리스트 불러오기
+
     if(req.session.userInfo){
       const result1 = await Notice.findAll();
       const result2 = await Admin.findOne({
@@ -83,23 +83,16 @@ const output = {
         admin : false,
       });
     }
-  },
 
-  userLogin: (req, res) => {
-    return res.render('user/login');
-  },
-
-  userRegister: (req, res) => {
-    return res.render('user/register');
   },
 
   noticePost: (req, res) => {
-    return res.render('notice/noticePost');
+    return res.render('notice/noticePost', { session: req.session.userInfo });
   },
 
   findUser: async (req, res) => {
     // 유저 찾는 곳
-    return res.render('user/findUser');
+    return res.render('user/findUser', { session: req.session.userInfo });
   },
 
   noticeUpdate: async (req, res) => {
@@ -111,6 +104,7 @@ const output = {
     console.log('시작' + result);
     return res.render('notice/noticeUpdate', {
       data: result,
+      session: req.session.userInfo,
     });
   },
 
@@ -124,12 +118,14 @@ const output = {
         where: { userId: req.session.userInfo.userId },
       });
       return res.render('user/myPage', {
+        session: req.session.userInfo,
         data: user,
         isLogin: true,
         isProfile: true,
       });
     } else {
-      return res.render('user/myPage', {
+      return res.render('user/login', {
+        session: req.session.userInfo,
         isLogin: false,
         isProfile: false,
         message: '로그인해주세요!',

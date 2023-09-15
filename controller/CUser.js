@@ -43,6 +43,17 @@ const output = {
   register: (req, res) => {
     res.render('user/register');
   },
+  logout: (req, res) => {
+    // TODO: 세션 삭제
+    console.log(req.session);
+    req.session.destroy((err) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.redirect('/');
+    });
+  },
   // profile: (req, res) => {
 
   //   res.render('profile');
@@ -71,6 +82,7 @@ const input = {
           //비밀번호 일치할 경우
           //    userInfo 키 값으로 세션 생성 (userInfo는  "객체")
           req.session.userInfo = user;
+
           // console.log(req.session.userInfo); //{ userId: 'alsdud1240', nickname: '로그인확인용' }
           res.send({
             result: true,

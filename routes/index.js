@@ -54,6 +54,7 @@ router.post(
 //로그인
 // router.get('/login', controllerUser.output.login);
 router.post('/login', controllerUser.input.postLogin);
+router.get('/logout', controllerUser.output.logout); //로그아웃
 
 //회원 삭제
 router.delete('/users/:id', controllerUser.input.deleteUser);
@@ -80,8 +81,8 @@ router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 router.get('/letter/friends', controllerLetter.output.friends);
 router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
 router.get('/letter/myLetter', controllerLetter.output.myLetter);
+router.get('/letter/yourLetter', controllerLetter.output.yourLetter);
 router.get('/letter/select', controllerLetter.output.icon);
-
 
 //기능부분 (api)
 

@@ -52,28 +52,45 @@
         <div id="home">
           <a href="/"><span style="text-decoration: underline">홈</span></a>
         </div>
+        <%if(typeof session !== 'undefined'){%>
         <div id="myLetterBox">
           <a href="#"
             ><span style="text-decoration: underline">내</span
             ><span>편지</span></a
           >
         </div>
+        <%}%>
         <div id="noticeBox">
           <a href="/notice"
             ><span style="text-decoration: underline">공</span
             ><span>지사항</span></a
           >
         </div>
-
+        <%if(typeof session!== 'undefined'){%>
         <div id="myPageBox">
-          <a href="/user/myPage"><span style="text-decoration: underline;">마</span><span>이페이지</span></a>
+
+        
+          <a href="/user/myPage"
+            ><span style="text-decoration: underline">마</span
+            ><span>이페이지</span></a
+          >
+
         </div>
+        <%}%> <%if(typeof session === 'undefined'){%>
         <div id="loginBox">
           <a href="/user/login" id="login"
             ><span style="text-decoration: underline">로</span
             ><span>그인</span></a
           >
         </div>
+        <%}%> <%if(typeof session !== 'undefined'){%>
+        <div id="loginBox">
+          <a href="/logout" id="logout"
+            ><span style="text-decoration: underline">로</span
+            ><span>그아웃</span></a
+          >
+        </div>
+        <%}%>
       </div>
     </div>
   </body>

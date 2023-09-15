@@ -5,6 +5,7 @@ const btnLeft = document.querySelector('#btnLeft');
 const btnRight = document.querySelector('#btnRight');
 const btnResister = document.querySelector('#btnResister');
 const btnLogin = document.querySelector('#btnLogin');
+// const btnLogout = document.querySelector('#btnLogout');
 
 // 상단 멘트 랜덤 배치
 const cmt = document.querySelector('#cmt');
@@ -14,16 +15,15 @@ const cmtArr = [
   '"추석은 야금야금 살찌는 날"',
   '"가지마 추석 연휴"',
 ];
-let randCmtNum = Math.ceil(Math.random(cmtArr.length));
-console.log('randCmtNum', randCmtNum);
+let randCmtNum = Math.floor(Math.random() * cmtArr.length);
+// console.log('randCmtNum', randCmtNum); // 0~3
 cmt.innerText = cmtArr[randCmtNum];
 
 //버튼 js
-// 이전&다음 페이지 넘어가기
+// 1. 페이징
 btnLeft.addEventListener('click', prevPage);
 btnRight.addEventListener('click', nextPage);
 
-// 페이징
 let curPage = 1;
 
 function prevPage() {
@@ -108,6 +108,11 @@ btnResister.addEventListener('click', () => {
 });
 btnLogin.addEventListener('click', () => {
   document.location.href = '/user/login';
+});
+// 2. 로그인 시 회원가입 버튼 없애고 로그인 => 로그아웃으로 변경
+
+btnLogout.addEventListener('click', () => {
+  document.location.href = '/logout';
 });
 
 // star position /size 정의
