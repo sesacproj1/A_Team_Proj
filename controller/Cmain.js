@@ -84,7 +84,7 @@ const output = {
       return res.render('notice/notice', {
         data: result1,
         admin: false,
-        adminData : '',
+        adminData: '',
       });
     }
   },
@@ -114,14 +114,22 @@ const output = {
   myPage: async (req, res) => {
     // 1. userInfo 세션에 저장된 id를 이용해 현재 로그인한 유저의 id 값으로 특정 유저 정보 하나를 조회
     // 2. mypage.ejs 랜더 + data 키로 특정 유저를 찾은 결과를 넘김
-    console.log('req.session.userInfo는~~ ', req.session.userInfo);
+
     if (req.session.userInfo !== undefined) {
       //로그인해서 세션있을 때
       const user = await User.findOne({
         where: { userId: req.session.userInfo.userId },
       });
+      console.log('req.session.userInfo는~~ ', req.session.userInfo);
+      const profile = await Profile.findOne({
+        where: { id: req.session.userInfo.id },
+      });
+      console.log('profile', profile);
+      req.session.profile = profile;
+      console.log('req.session.profile~~ ', req.session.profile);
       return res.render('user/myPage', {
         session: req.session.userInfo,
+        profile: req.session.profile,
         data: user,
         isLogin: true,
         isProfile: true,
