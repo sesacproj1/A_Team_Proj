@@ -11,7 +11,18 @@ const {
 
 const output = {
   friends: (req, res) => {
-    res.render('letter/friends', { session: req.session.userInfo });
+    if (req.session.userInfo !== undefined) {
+      res.render('letter/friends', {
+        session: req.session.userInfo,
+        profile: req.session.profile,
+      });
+    } else {
+      res.render('user/login', {
+        session: req.session.userInfo,
+        isLogin: false,
+        message: '잘못된 접근입니다. 로그인해주세요',
+      });
+    }
   },
 
   friendConfirm: (req, res) => {
