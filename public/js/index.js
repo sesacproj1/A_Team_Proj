@@ -6,6 +6,18 @@ const btnRight = document.querySelector('#btnRight');
 const btnResister = document.querySelector('#btnResister');
 const btnLogin = document.querySelector('#btnLogin');
 
+// 상단 멘트 랜덤 배치
+const cmt = document.querySelector('#cmt');
+const cmtArr = [
+  '"여름은 단번에 가을로 떨어진다."',
+  '"가을은 자연의 계절이기보다는 영혼의 계절임을 나는 알았다."',
+  '"추석은 야금야금 살찌는 날"',
+  '"가지마 추석 연휴"',
+];
+let randCmtNum = Math.ceil(Math.random(cmtArr.length));
+console.log('randCmtNum', randCmtNum);
+cmt.innerText = cmtArr[randCmtNum];
+
 //버튼 js
 // 이전&다음 페이지 넘어가기
 btnLeft.addEventListener('click', prevPage);
