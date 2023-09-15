@@ -47,6 +47,7 @@ router.get('/notice/post', controller.output.noticePost);
 router.get('/user/myPage', controller.output.myPage);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
+// router.get('/yourLetter', controllerPost.output.yourLetter);
 
 //기능부분 (api)
 

@@ -19,9 +19,9 @@ function showLetter() {
   try {
     axios({
       method: 'GET',
-      url: '/MyLetter/:letterNo/:postNo',
+      url: `/MyLetter/${letterNo}/${postNo}`,
     }).then((res) => {
-      console.log(res);
+      console.log(res.data);
     });
   } catch (err) {
     console.log('Err', err);
