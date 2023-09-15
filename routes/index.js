@@ -99,7 +99,7 @@ router.delete(
 router.get('/MyLetter/:letterNo', controllerPost.output.showMyLetter);
 
 // 글남기기
-router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
+// router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
 router.post(
   '/MyLetter/:letterNo/contentWrite/Register',
   controllerPost.input.contentRegister

@@ -13,7 +13,10 @@ const output = {
       id: id,
     });
 
+
+
     res.render('letter/myletter', { nickname: nickname });
+
   },
 
   showPost: async (req, res) => {
