@@ -12,10 +12,28 @@ const {
 const output = {
   index: async (req, res) => {
     const result = await User.findAll();
-    // console.log(result[1].nickname);
-    res.render('index', {
-      data: result,
-    });
+
+    // index.ejs 랜더 (data 키로 session 객체의 userInfo 전달)
+    const userSession = req.session.userInfo;
+    console.log(userSession);
+    if (userSession !== undefined) {
+      //로그인 했을때
+      res.render('index', {
+        isLogin: true,
+        session: req.session.userInfo,
+        data: result,
+      });
+    } else {
+      //로그인 안했을 때
+      // id: result2,
+      res.render('index', {
+        isLogin: false,
+        session: req.session.userInfo,
+        data: result,
+      });
+      // id: result2,
+    }
+
   },
 
   // 페이징
@@ -81,11 +99,29 @@ const output = {
     });
   },
 
-  myPage: (req, res) => {
-    return res.render('user/myPage');
+  myPage: async (req, res) => {
+    // 1. userInfo 세션에 저장된 id를 이용해 현재 로그인한 유저의 id 값으로 특정 유저 정보 하나를 조회
+    // 2. mypage.ejs 랜더 + data 키로 특정 유저를 찾은 결과를 넘김
+    console.log('req.session.userInfo는~~ ', req.session.userInfo);
+    if (req.session.userInfo !== undefined) {
+      //로그인해서 세션있을 때
+      const user = await User.findOne({
+        where: { userId: req.session.userInfo.userId },
+      });
+      return res.render('user/myPage', {
+        data: user,
+        isLogin: true,
+        isProfile: true,
+      });
+    } else {
+      return res.render('user/myPage', {
+        isLogin: false,
+        isProfile: false,
+        message: '로그인해주세요!',
+      });
+    }
   },
 };
-
 const input = {
   noticePost: async (req, res) => {
     // 공지사항 글쓰는 메서드
