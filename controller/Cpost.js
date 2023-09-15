@@ -13,12 +13,9 @@ const output = {
       id: id,
     });
 
-<<<<<<< HEAD
-    res.send('myletter page 출력!');
-    // res.render('MyLetter');
-=======
     res.render('letter/myletter', { nickname: nickname });
->>>>>>> 2fd76c6324961257fca579d58a444a493e10392f
+
+
   },
 
   showPost: async (req, res) => {
