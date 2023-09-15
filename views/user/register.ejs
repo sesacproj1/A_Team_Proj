@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <%- include('../header')%>
+    <link rel="stylesheet" href="/css/register.css" />
+    <script defer src="/js/user/register.js"></script>
+  </head>
+  <body>
+    <!-- 메인 컨테이너 -->
+    <div class="container-fluid" id="main-container">
+      <div class="row">
+        <!-- 로고 부분 -->
+        <div class="col-md-6" id="col-logo">
+          <div class="container logo_container1">
+            <div class="container logo_container2">
+              <div>
+                <div><p id="mainTitle">송편지</p></div>
+                <div><p>풍요로움이 가득한 한가위</p></div>
+                <div><p id="userLetter">따뜻한 메시지를 주고 받으세요</p></div>
+                <div style="text-align: center; margin-top: 10px">
+                  <img src="/img/추석3.png" alt="" style="height: 250px" />
+                </div>
+                <div style="text-align: center">
+                  <button id="mainBtn">
+                    <a href="/">메인 페이지</a>
+                  </button>
+                </div>
+                <div style="text-align: center">
+                  <button id="loginBtn">
+                    <a href="/user/login">로그인</a>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 회원가입 부분 -->
+        <div class="col-md-6" id="col-login">
+          <div class="conatiner login_container1">
+            <div class="container login_container2">
+              <div style="margin-top: 150px">
+                <p id="register_name">회원 가입</p>
+                <form name="registerForm">
+                  <div style="display: flex">
+                    <div><i class="bi bi-person-circle"></i></div>
+                    <input
+                      type="text"
+                      placeholder="아이디"
+                      name="userId"
+                      id="userId"
+                      onkeyup="isId(this);"
+                      required
+                    />
+                  </div>
+                  <div id="idConfirm"></div>
+                  </div>
+                  <div style="display: flex">
+                    <div><i class="bi bi-key-fill"></i></div>
+                    <input
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="패스워드 (영문 대소문자/숫자 조합, 2자~15자)"
+                      onchange="isPw()"
+                      onkeydown="isPwValidity()"
+                      required
+                    />
+                  </div>
+
+                  <div style="display: flex; margin-top: 15px">
+                    <div><i class="bi bi-key-fill"></i></div>
+                    <input
+                      type="password"
+                      id="passwordConfirm"
+                      placeholder="패스워드 확인"
+                      onchange="isPw()"
+                      onkeydown="isPwValidity()"
+                      required
+                    />
+                  </div>
+                  <div id="pwCheck1"></div>
+                  <div id="pwCheck2"></div>
+                  <div style="display: flex">
+                    <div><i class="bi bi-person-vcard-fill"></i></div>
+                    <input
+                      type="text"
+                      id="nickname"
+                      name="nickname"
+                      placeholder="닉네임"
+                      onkeyup="isNickname(this);"
+                      required
+                    />
+                  </div>
+                  <div id="nicknameConfirm"></div>
+                  <div style="display: flex">
+                    <div><i class="bi bi-envelope-at-fill"></i></div>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="이메일"
+                      onkeyup="isEmail(this);"
+                      required
+                    />
+                  </div>
+                  <div id="emailConfirm"></div>
+                  <div style="margin-top: 2vh;">
+                    <button type="button" onclick="register()" id="registerBtn">
+                      회원가입
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

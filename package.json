@@ -1,0 +1,36 @@
+{
+  "name": "a_team_proj",
+  "version": "1.0.0",
+  "description": "A팀 프로젝트",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sesacproj1/A_Team_Proj.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sesacproj1/A_Team_Proj/issues"
+  },
+  "homepage": "https://github.com/sesacproj1/A_Team_Proj#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.6.0",
+    "nodemailer": "^6.9.5",
+    "sequelize": "^6.32.1",
+    "sequelize-cli": "^6.6.1",
+    "three": "^0.156.1"
+  },
+  "devDependencies": {}
+}

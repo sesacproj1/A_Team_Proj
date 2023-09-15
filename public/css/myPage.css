@@ -1,0 +1,133 @@
+
+* {
+    letter-spacing: -2px;
+    font-family: 'pixel1';
+  }
+  
+  @font-face {
+    font-family: 'pixel1';
+    src: url('../fonts/DungGeunMo.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'pixel2';
+    src: url('../font/PF스타더스트\ Bold.ttf') format('truetype');
+  }
+
+#profile1 {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-left: 2vw;
+  margin-top: 0.5vh;
+
+}
+
+#profile2 {
+    border: 1px solid black;
+    background: white;
+    width: 90px; 
+    height: 90px;
+    border-radius: 50%; 
+    overflow: hidden; 
+    cursor: pointer; 
+    transition: transform 0.3s;  
+}  
+
+#retroBox1 {
+    background: #bdbdbd;
+    border-bottom: 2px solid black;
+    text-align: center;
+    font-size: 30px;
+}
+
+#retroBox2 {
+    display: flex;
+    border-top: 2px solid white;
+    background: #bdbdbd;
+}
+
+#retroBox3 {
+    background: #bdbdbd;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+
+#retroBox4 {
+    background: #bdbdbd;
+    border-top: 1px solid white;
+}
+
+#retroBox5 {
+    height: 43vh;
+    background: #bdbdbd;
+    border-bottom: 2px solid black;
+}
+
+#friends {
+    display: flex;
+    margin-left: 2vw;
+    margin-top: 1.5vw;
+}
+#friends > div {
+    margin-left: 3vw;
+}
+
+#friends > div > p {
+    font-size: 19px;
+}
+
+.friendsBox1 {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#userId {
+    font-size: 27px;
+    font-weight: 700;
+    margin-bottom: 0;
+    margin-left: 2vw;
+}
+
+#email {
+    font-size: 25px;
+    margin-bottom: 0;
+    margin-left: 2vw;
+}
+
+#nickname {
+    font-size: 25px;
+    margin-bottom: 0;
+    margin-left: 2vw;
+}
+
+#profileUpdates {
+    width: 100%;
+    height: 50px;
+    font-size: 30px;
+    border: 1px solid black; 
+    background: #c0bfc0;
+    text-align: center;
+    box-shadow: inset 0 0 0 3px #dbdbdb;  
+}
+
+input {
+    width: 50%;
+    height: 50px;
+    font-size: 30px;
+    border: 1px solid black; 
+    background: #c0bfc0;
+    text-align: center;
+    box-shadow: inset 0 0 0 3px #dbdbdb;
+}
+
+button {
+    border: 1px solid black; 
+    background: #c0bfc0;
+    text-align: center;
+    box-shadow: inset 0 0 0 3px #dbdbdb;
+    float: center;
+    
+}

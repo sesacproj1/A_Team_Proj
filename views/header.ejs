@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/header.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div style="font-family: 'pixel1'">
+      <div id="navbar">
+        <div>
+          <img src="/img/추석3.png" alt="" width="40" height="40" />
+          <span id="programName">송편지.exe</span>
+        </div>
+        <div id="clickbar">
+          <div class="bar">
+            <img src="/img/header/window-minimize_2.png" alt="" height="85%" />
+          </div>
+          <div class="bar">
+            <img src="/img/header/window-maximize_2.png" alt="" height="85%" />
+          </div>
+          <div class="bar">
+            <img src="/img/header/close.png" alt="" height="85%" />
+          </div>
+        </div>
+      </div>
+      <div id="navbar2">
+        <div id="home">
+          <a href="/"><span style="text-decoration: underline">홈</span></a>
+        </div>
+        <%if(typeof session !== 'undefined'){%>
+        <div id="myLetterBox">
+          <a href="#"
+            ><span style="text-decoration: underline">내</span
+            ><span>편지</span></a
+          >
+        </div>
+        <%}%>
+        <div id="noticeBox">
+          <a href="/notice"
+            ><span style="text-decoration: underline">공</span
+            ><span>지사항</span></a
+          >
+        </div>
+        <%if(typeof session!== 'undefined'){%>
+        <div id="myPageBox">
+
+        
+          <a href="/user/myPage"
+            ><span style="text-decoration: underline">마</span
+            ><span>이페이지</span></a
+          >
+
+        </div>
+        <%}%> <%if(typeof session === 'undefined'){%>
+        <div id="loginBox">
+          <a href="/user/login" id="login"
+            ><span style="text-decoration: underline">로</span
+            ><span>그인</span></a
+          >
+        </div>
+        <%}%> <%if(typeof session !== 'undefined'){%>
+        <div id="loginBox">
+          <a href="/logout" id="logout"
+            ><span style="text-decoration: underline">로</span
+            ><span>그아웃</span></a
+          >
+        </div>
+        <%}%>
+      </div>
+    </div>
+  </body>
+</html>
