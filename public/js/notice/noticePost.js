@@ -12,7 +12,6 @@ function noticePost() {
     data: data,
   })
     .then((res) => {
-      console.log(res.data);
       alert('등록되셨습니다');
       location.href = '/notice';
     })
