@@ -9,6 +9,11 @@
     <script defer src="/js/user/login.js"></script>
   </head>
   <body>
+    <%if(message !== undefined){%>
+    <script>
+      alert('<%= message %>');
+    </script>
+    <%}%>
     <!-- 메인 컨테이너 -->
     <div class="container-fluid" id="main-container">
       <div class="row">
