@@ -10,7 +10,7 @@ dotenv.config();
 
 //User 모델 모듈 불러오기
 //bcrypt 패키지 불러오기
-const { User } = require('../models');
+const { User, Profile } = require('../models');
 const bcrypt = require('bcrypt');
 // 비밀번호 암호화 함수
 const saltRounds = 11;
@@ -63,7 +63,31 @@ const output = {
 const input = {
   //프로필이미지
   postProfileImage: (req, res) => {
-    console.log(req.file);
+    console.log('req.session.profile는 ', req.session.profile);
+    // [profile_db] -> id,profileLocation,profileName
+    if (req.session.profile.profileName === 'null') {
+      //userprofile에 정보가 없을때
+      Profile.update(
+        {
+          profileLocation: '/img/profile/' + req.file.filename,
+          profileName: req.file.filename,
+        },
+        { where: { id: req.session.userInfo.id } }
+      );
+    } else {
+      Profile.update(
+        {
+          profileLocation: '/img/profile/' + req.file.filename,
+          profileName: req.file.filename,
+        },
+        { where: { id: req.session.userInfo.id } }
+      );
+    }
+    // console.log('req.session.userInfo는', req.session.userInfo);
+    // console.log('req.file.path는', req.file.path);
+    // console.log('req.file.filename은', req.file.filename);
+    //세션에 프로필테이블 저장
+    // req.session.profile = userProfile;
     res.send(req.file);
   },
   //로그인
@@ -161,11 +185,16 @@ const input = {
       const secretPw = hashPassword(pw);
       console.log('패스워드 암호화 후 ', secretPw);
 
-      await User.create({
+      const user = await User.create({
         userId: userId,
         password: secretPw,
         nickname: nickname,
         email: email,
+      });
+      await Profile.create({
+        id: user.id,
+        profileLocation: 'null',
+        profileName: 'null',
       });
       return res.send({
         result: true,
