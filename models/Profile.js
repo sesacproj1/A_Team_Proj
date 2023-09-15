@@ -18,7 +18,7 @@ const Profile = (Sequelize, DataTypes) => {
         comment: '저장 주소',
       },
       profileName: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(250),
         allowNull: false,
         comment: '변경 파일 이름',
       },
