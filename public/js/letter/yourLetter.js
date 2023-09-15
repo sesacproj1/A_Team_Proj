@@ -48,20 +48,4 @@ console.log('moon height', moonHeight);
 const btnLike = document.querySelector('.btnLike');
 const likeHeart = document.querySelector('#likeHeart');
 const likesNum = document.querySelector('.likesNum');
-btnLike.addEventListener('click', like);
-
-function like() {
-  likeHeart.src = '/img/header/heart2.png';
-
-  // try {
-  //   axios({
-  //     method: 'GET',
-  //     //url: `/MyLetter?letterNo=${}?postNo=${}/likes`,
-  //   }).then((res) => {
-  //     console.log('likesNum ', res);
-  //     likesNum.innerText = likesNum + 1;
-  //   });
-  // } catch (err) {
-  //   console.log('Err', err);
-  // }
-}
+// btnLike.addEventListener('click', updateLikes);

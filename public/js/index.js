@@ -83,12 +83,15 @@ function nextPage() {
       const startIndex = curPage * starCnt;
       //curPage가 1부터 시작하므로 curPage -1 안 해야 알맞게 다음pg 데이터 인덱싱
       // console.log('start next', startIndex);
+      const a = document.querySelector('#a');
 
       for (let i = 0; i < p.length; i++) {
         const dataIndex = startIndex + i;
 
         if (data[dataIndex]) {
           p[i].innerText = data[dataIndex].nickname;
+          a[i].href = `/letter/myLetter/${data[dataIndex].id}`;
+          console.log(a.href);
         } else {
           p[i].innerText = '';
           // star[i].innerHTML = ''; //별 없애면 이전 페이지도 없어짐
@@ -203,3 +206,9 @@ stStar.addEventListener('animationend', () => {
   // console.log("animation end");
   stStar.style.display = 'none';
 });
+
+// 개인 편지함으로 id 보내기
+axios({
+  method: 'POST',
+  url: `/letter/myLetter/${letterNo}`,
+}).then((res) => {});
