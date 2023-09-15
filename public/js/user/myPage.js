@@ -1,10 +1,49 @@
+// 동적 파일 업로드
 //프로필 사진 이미지 클릭시 파일
 const btn = document.querySelector('#profileBtn');
 
 btn.addEventListener('click', () => {
   document.querySelector('#fileInput').click();
-  console.log('click!');
 });
+const fileInput = document.getElementById('fileInput');
+
+fileInput.onchange = () => {
+  const selectedFile = fileInput.files[0];
+  console.log(selectedFile);
+};
+
+fileInput.addEventListener('change', fileUpload);
+
+function fileUpload() {
+  console.log('동적 파일 업로드');
+  console.log(document.querySelector('#fileInput'));
+  const file = document.querySelector('#fileInput');
+  const formData = new FormData();
+  // js 만으로 폼을 전송( 파일 데이터를 서버로 전송해야 하는 케이스)
+  //formData 객체를 활용하면 쉽게 전송 가능 !
+  console.dir(fileInput);
+  console.dir(fileInput.files); //업로드한 파일 객체
+  console.dir(fileInput.files[0]); //업로드한 첫 파일
+
+  // append(key, value)
+  formData.append('fileInput', file.files[0]);
+
+  axios({
+    method: 'POST',
+    url: '/profileImage',
+    data: formData, //백으로 보낼 데이터
+    headers: {
+      'Content-Type': 'multipart/form-data', //enctype="multipart/form-data"
+    },
+  }).then(function (res) {
+    console.log(res);
+    const { data } = res;
+    console.log(data);
+    console.log(data.path);
+    document.querySelector('#profileImage').src =
+      '/img/profile/' + data.filename;
+  });
+}
 
 /*폼 유효성 검사 alert*/
 function checkValidity() {
