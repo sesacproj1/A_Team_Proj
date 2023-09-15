@@ -100,11 +100,19 @@
   margin-left: 3vw;
 }
 
-.beforeSelect > a {
+.beforeSelect > p {
   text-decoration: none;
   color : #9b7640;
   font-family: 'pixel1';
 }
+
+.beforeSelect > a {
+  text-decoration: none;
+  color : #9b7640;
+  font-family: 'pixel1';
+  border-bottom: 1rem;
+}
+
 
 .messageBox > p{
   color : white;
@@ -179,7 +187,24 @@
   color : black;
 }
 
-#postDesign {
-  display: none;
+
+/* 800px 이하의 뷰포트에서 postMan 숨기기 */
+@media (max-width: 800px) {
+  #postMan {
+    display: none;
+  }
 }
+
+/* 800px 이상의 뷰포트에서 postMan 숨기기 */
+@media (min-width: 800px) {
+  .beforeSelect > a {
+    display: none;
+  }
+
+  .beforeSelect > p {
+    display: none;
+  }
+}
+
+
 
