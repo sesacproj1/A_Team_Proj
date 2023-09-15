@@ -14,8 +14,6 @@ const output = {
     });
 
     res.render('letter/myletter', { nickname: nickname });
-
-
   },
 
   showPost: async (req, res) => {
