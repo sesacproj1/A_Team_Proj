@@ -18,9 +18,15 @@ const output = {
     res.render('letter/friendConfirm');
   },
 
-  myLetter: (req, res) => {
-    res.render('letter/myletter');
-  },
+   myLetter : (req,res)=>{
+      res.render('letter/myletter');
+   },
+
+   icon : (req,res)=>{
+    res.render('letter/icon');
+   }
+  }
+
 
   yourLetter: (req, res) => {
     res.render('letter/yourLetter');

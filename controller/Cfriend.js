@@ -1,5 +1,8 @@
 const { User, Friend, toFriend, RequestList } = require('../models');
 
+
+// const userInfo = req.session.userInfo;
+
 const input = {
   reqFriend: async (req, res) => {
     const toId = req.params.letterNo;

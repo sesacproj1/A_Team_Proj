@@ -60,7 +60,7 @@
 }
 
 #retroBox5 {
-    height: 39vh;
+    height: 43vh;
     background: #bdbdbd;
     border-bottom: 2px solid black;
 }
@@ -75,7 +75,7 @@
 }
 
 #friends > div > p {
-    font-size: 22px;
+    font-size: 19px;
 }
 
 .friendsBox1 {

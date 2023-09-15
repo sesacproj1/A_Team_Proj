@@ -52,40 +52,40 @@ display: flex;
 
 }
 #home {
-margin-left: 2vw;
+margin-left: 3.5vw;
 }
 #home > a {
 text-decoration: none;
 color: black;
 }
 #home > a> span, #home > a> span > span {
-font-size: 23px;
+font-size: 2.5vh;
 }
 
 #myLetterBox {
-margin-left: 2vw;
+margin-left: 2.5vw;
 }
 #myLetterBox > a {
 text-decoration: none;
 color: black;
 }
 #myLetterBox > a> span, #myLetterBox > a> span > span {
-font-size: 23px;
+font-size: 2.5vh;
 }
 
 #noticeBox {
-margin-left: 2vw;
+margin-left: 3.5vw;
 }
 #noticeBox > a {
 text-decoration: none;
 color: black;
 }
 #noticeBox > a> span, #noticeBox > a> span > span {
-font-size: 23px;
+font-size: 2.5vh;
 }
 
 #loginBox {
-margin-left: 2vw;
+margin-left: 3.5vw;
 }
 
 #loginBox > a {
@@ -94,20 +94,20 @@ color: black;
 }
 
 #loginBox > a> span, #loginBox > a> span > span {
-font-size: 23px;
+font-size: 2.5vh;
 
 }
 
-#alarmBox {
-margin-left: 2vw;
+#myPageBox {
+margin-left: 3.5vw;
 }
 
-#alarmBox > a {
+#myPageBox > a {
 text-decoration: none;
 color: black;
 }
 
-#alarmBox > a> span, #alarmBox > a> span > span {
-font-size: 23px;
+#myPageBox > a> span, #myPageBox > a> span > span {
+font-size: 2.5vh;
 }
 

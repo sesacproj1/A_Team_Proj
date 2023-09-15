@@ -12,13 +12,19 @@
   font-family: 'pixel2';
   src: url('../fonts/pixelroborobo.otf') format('truetype');
 }
+/* 600px 이하의 뷰포트에서 col-logo 숨기기 */
+@media (max-width: 550px) {
+  #col-logo {
+    display: none;
+  }
+}
 
 #main-container {
-  height: 900px;
+  height: 100vh;
 }
 
 .col-md-6 {
-  height: 900px;
+  height: 100vh;
 }
 
 #col-logo {
