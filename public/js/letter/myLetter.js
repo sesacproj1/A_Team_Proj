@@ -31,7 +31,7 @@ const likesNum = document.querySelector('.likesNum');
 // btnLike.addEventListener('click', updateLikes);
 
 // function updateLikes() {
-//   likeHeart.src = '/img/header/heart2.png';
+// likeHeart.src = '/img/header/heart2.png';
 //   const likesNum2 = parseInt(likesNum.innerText);
 //   axios({
 //     method: 'patch',
