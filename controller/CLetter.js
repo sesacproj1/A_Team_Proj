@@ -10,6 +10,10 @@ const {
 } = require('../models');
 
 const output = {
+  friends : (req,res) => {
+    res.render('letter/friend', {session : req.session.userInfo});
+  },
+
   friendConfirm: (req, res) => {
     res.render('letter/friendConfirm', { session: req.session.userInfo });
   },
