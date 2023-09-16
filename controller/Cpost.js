@@ -5,7 +5,6 @@ const output = {
     res.render('letter/postContent');
   },
 
-
   showMyLetter: async (req, res) => {
     const userInfo = req.session.userInfo;
     // const { id, userId, nickname } = userInfo;
@@ -48,7 +47,6 @@ const output = {
       });
     }
   },
-
 
   showPost: async (req, res) => {
     const { letterNo, postNo } = req.params;

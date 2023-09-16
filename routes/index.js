@@ -100,6 +100,9 @@ router.delete(
   controllerNoti.input.deleteNoti
 );
 
+// 편지함 페이지 출력
+router.get('/letter/MyLetter/:letterNo', controllerPost.output.showMyLetter);
+
 // 글남기기
 // router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
 router.post(
