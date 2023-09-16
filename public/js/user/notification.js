@@ -1,26 +1,59 @@
 const form = document.forms['alarmForm'];
-const postAlarm = form.contentBox1;
-const friendAlarm = form.contentBox2;
+const postAlarm = form.querySelector('.contentBox1');
+const friendAlarm = form.querySelector('.contentBox2');
 
 const notiModal = document.getElementById('exampleModal');
+const alarmDel = document.getElementById('alarmBtn');
 
 notiModal.addEventListener('click', (event) => {
-  const modalTitle = letterModal.querySelector('.modal-title');
-  const modalBodyInput = letterModal.querySelector('.modal-body input');
-
   axios({
     method: 'get',
-    url: '',
+    url: `/user/myPage/notification/${letterNo}`,
+    params: {
+      letterNo: letterNo,
+    },
   }).then((res) => {
-    const { sender, postTime, isFriend } = res.data;
+    const { sender, postNo, postTime, isFriend } = res.data;
 
     const newPost = `
-    <div> ${sender} 님이 ${postTime}에 송편을 남겼습니다. </div>
+    <div onclick="goPost(${postNo})"> ${sender} 님이 ${postTime}에 송편을 남겼습니다. </div>
     `;
     postAlarm.insertAdjacentHTML('afterBegin', newPost);
 
     if (!isFriend) {
       friendAlarm.style.display = 'none';
+    } else {
+      friendAlarm.style.display = 'block';
     }
+  });
+});
+
+function goPost(postNo) {
+  axios({
+    method: 'delete',
+    url: `/user/myPage/notification/${letterNo}/${postNo}`,
+    params: {
+      letterNo: letterNo,
+      postNo: postNo,
+    },
+  }).then((res) => {
+    console.log(res.data);
+    document.location.href = `/letter/MyLetter/${letterNo}/${postNo}`;
+  });
+}
+
+function goFriendReq(id) {
+  document.location.href = `/MyLetter/${id}/reqFriend`;
+}
+
+alarmDel.addEventListener('click', () => {
+  axios({
+    method: 'delete',
+    url: `/user/myPage/notification/${letterNo}`,
+    params: {},
+  }).then(() => {
+    const divs = postAlarm.querySelector('div');
+    divs.forEach((div) => div.remove());
+    friendAlarm.style.display = 'none';
   });
 });

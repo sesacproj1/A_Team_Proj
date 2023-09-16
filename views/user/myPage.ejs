@@ -177,10 +177,14 @@
             <form name="alarmForm">
               <div class="container-fluid">
                 <div class="contentBox1">
-                  <div>lobster님이 <%data.id%>님에게 게시글을 남겼습니다.</div>
+                  <div>
+                    lobster님이 <%= data.id%>님에게 게시글을 남겼습니다.
+                  </div>
                 </div>
                 <div class="contentBox2">
-                  <div>친구요청이 있습니다</div>
+                  <div onclick="goFriendReq('<%= data.id%>')">
+                    친구요청이 있습니다
+                  </div>
                 </div>
               </div>
               <button type="button" id="alarmBtn">알람 삭제</button>

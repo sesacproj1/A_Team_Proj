@@ -23,7 +23,7 @@ const output = {
     const receiver = req.params.letterNo;
     const showNoti = await Notification.findAll({
       where: { letterNo: receiver },
-      attributes: ['sender', 'createdAt'],
+      attributes: ['sender', 'postNo', 'createdAt'],
     });
 
     const reqFriend = await RequestList.findOne({
@@ -33,12 +33,14 @@ const output = {
     if (showNoti && reqFriend) {
       res.send({
         sender: showNoti.sender,
+        postNo: showNoti.postNo,
         postTime: times(showNoti.createdAt),
         isFriend: 'true',
       });
     } else if (showNoti) {
       res.send({
         sender: showNoti.sender,
+        postNo: showNoti.postNo,
         postTime: times(showNoti.createdAt),
         isFriend: 'false',
       });
@@ -46,13 +48,13 @@ const output = {
   },
 
   postNoti: async (req, res) => {
-    const { receiver, postNo } = req.params;
+    const { letterNo, postNo } = req.params.postNo;
     console.log(req.params);
     await Notification.destroy({
-      where: { letterNo: receiver, postNo: postNo },
+      where: { letterNo: letterNo, postNo: postNo },
     });
 
-    res.redirect(`letter/MyLetter/${receiver}/${postNo}`);
+    res.send('true');
   },
 };
 
