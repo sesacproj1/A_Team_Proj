@@ -24,7 +24,11 @@ const output = {
     req.session.profile = profile;
     const lord = userData.map((user) => user.dataValues);
     console.log('lord는', lord);
+    // console.log('req.', req.params.id);
+
+
     if (userInfo) {
+      //로그인 했을 때
       if (userInfo.id == result2) {
         const isMine = true;
         console.log('isMine', isMine);
@@ -72,12 +76,13 @@ const output = {
       where: { letterNo: letterNo, postNo: postNo },
       attributes: ['likesNum'],
     });
-
-    res.render('posts', {
+    console.log(showPost.postContent);
+    console.log(showLikes.likesNum);
+    res.send({
       postContent: showPost.postContent,
       postNickname: showPost.postNickname,
       postIp: showPost.postIp,
-      likesNum: showLikes.likesNum,
+      likesNo: showLikes.likesNo,
     });
   },
 };

@@ -1,49 +1,56 @@
 // 1. 편지 보여주기 & 편지함 주인 표시
 const letterModal = document.getElementById('letterModal');
+
 letterModal.addEventListener('show.bs.modal', (event) => {
   // Button that triggered the modal
   const button = event.relatedTarget;
   // Update the modal's content.
-  const modalTitle = letterModal.querySelector('.modal-title');
+
   const modalBodyInput = letterModal.querySelector('.modal-body input');
+  const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
+
+  try {
+    axios({
+      method: 'get',
+      url: `/MyLetter/${letterNo}/${postNo}`,
+      params: {
+        letterNo: letterNo,
+        postNo: postNo,
+      },
+    }).then((res) => {
+      const { postContent, postNickname, postIp, likesNo } = res.data;
+      (modalBodyInput.value = postNickname),
+        (modalBodyTextarea.value = postContent);
+      likesNum.value = likesNo;
+    });
+  } catch (err) {
+    console.log('Err', err);
+  }
 
   //   modalBodyInput.value = recipient; 데이터 가져오기
-  // showLetter();
 });
-
-// function showLetter() {
-//   try {
-//     axios({
-//       method: 'GET',
-//       url: '/MyLetter/:letterNo/:postNo',
-//     }).then((res) => {
-//       console.log(res);
-//     });
-//   } catch (err) {
-//     console.log('Err', err);
-//   }
-// }
 
 // 2. 좋아요 처리
 const btnLike = document.querySelector('.btnLike');
 const likeHeart = document.querySelector('#likeHeart');
 const likesNum = document.querySelector('.likesNum');
-// btnLike.addEventListener('click', updateLikes);
 
-// function updateLikes() {
-// likeHeart.src = '/img/header/heart2.png';
-//   const likesNum2 = parseInt(likesNum.innerText);
-//   axios({
-//     method: 'patch',
-//     url: `/MyLetter/${letterNo}}/${postNo}/likes`, //letterNo is not defined
-//     data: {
-//       number: likesNum2 + 1,
-//     },
-//   }).then((res) => {
-//     console.log(res);
-//     // likesNum = likesNum + 1;
-//   });
-// }
+btnLike.addEventListener('click', updateLikes);
+
+function updateLikes() {
+  // likeHeart.src = '/img/header/heart2.png';
+  const likesNum2 = parseInt(likesNum.innerText);
+  axios({
+    method: 'patch',
+    url: `/MyLetter/${letterNo}}/${postNo}`, //letterNo is not defined
+    data: {
+      number: likesNum2 + 1,
+    },
+  }).then((res) => {
+    console.log(res);
+    likesNum = likesNum2 + 1;
+  });
+}
 
 // 3. 프로필 사진 값 가져와 src 변경 : 음....
 // 4. 친구 신청 날리기 : 음....

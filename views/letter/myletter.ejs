@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/myletter.css" />
   </head>
   <body>
- 
+   
     <div class="container-fluid row">
       <div class="titleDiv col-md-2">
 
@@ -64,13 +64,14 @@
                       type="text"
                       class="form-control"
                       id="recipient-name"
+                      readonly
                     />
                   </div>
                   <div class="mb-3">
                     <label for="message-text" class="col-form-label"
                       >편지 내용</label
                     >
-                    <textarea class="form-control" id="message-text"></textarea>
+                    <textarea class="form-control" id="message-text" readonly></textarea>
                   </div>
                 </form>
               </div>
@@ -106,16 +107,17 @@
     </div>
 
     <div class="menuDiv col-md-2">
+      <!-- 1. 로그인 했고 내 페이지일 때 -->
+      <% if (isMine && isLogin) { %>
       <div class="myPageDiv">
         <a href="/user/myPage">
           <button id="btnMypage">
-           
-              <img src="/img/header/user.png" alt="" id="imgMypage" />
-           
+            <img src="/img/header/user.png" alt="" id="imgMypage" />
           </button>
           <p>마이페이지</p>
         </a>
       </div>
+
       <div class="friendConfirmDiv">
         <a href="/letter/friendConfirm">
           <button id="btnFriendConfirm">
@@ -124,14 +126,76 @@
           <p>친구 신청</p>
         </a>
     </div>
-    <div class="friendsDiv">
+
+
+      <div class="friendsDiv">
       <a href="/letter/friends/<%=lord.id">
-        <button id="btnFriends">
-          <img src="/img/header/friends.png" alt="" id="imgFriends" />
+          <button id="btnFriends">
+            <img src="/img/header/friends.png" alt="" id="imgFriends" />
+          </button>
+          <p>친구 목록</p>
+        </a>
+      </div>
+      <% } %>
+
+      <!-- 2. 로그인 했고 남의 페이지일 때 -->
+      <% if(isLogin && ! isMine ) { %>
+      <div class="profilePicDiv">
+        <button id="btnProfilePic" disabled>
+          <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+
         </button>
-        <p>친구 목록</p>
-      </a>
-  </div>
+        <!-- <p id="nickname">해순</p> -->
+      </div>
+
+      <div class="friendsDiv">
+        <a href="/letter/friends">
+          <button id="btnFriends">
+            <img src="/img/header/friends.png" alt="" id="imgFriends" />
+          </button>
+          <p>친구 목록</p>
+        </a>
+      </div>
+
+      <div class="addFriendDiv">
+        <button id="btnAddFriend">
+          <img src="/img/header/add.png" alt="" id="imgAddFriend" />
+        </button>
+        <p>친구 신청</p>
+      </div>
+
+      <div class="writeLetterDiv">
+        <a href="#"> 
+          <!-- 편지 작성 페이지 추가 -->
+          <button id="btnWriteLetter">
+            <img src="/img/header/pen.png" alt="" id="imgWriteLetter" />
+          </button>
+          <p>편지 쓰기</p>
+        </a>
+      </div>
+      <% } %>
+    
+      <!-- 3. 로그인 안 했고 남의 페이지일 때 -->
+      <% if (!isLogin && !isMine) { %>
+        <div class="profilePicDiv">
+          <button id="btnProfilePic" disabled>
+            <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+          </button>
+          <!-- <p id="nickname">해순</p> -->
+        </div>
+  
+        <div class="writeLetterDiv">
+          <a href="#"> 
+            <!-- 편지 작성 페이지 추가 -->
+            <button id="btnWriteLetter">
+              <img src="/img/header/pen.png" alt="" id="imgWriteLetter" />
+            </button>
+            <p>편지 쓰기</p>
+          </a>
+        </div>
+        
+      <% } %>
+      
     </div>
     <script src="/js/letter/myletter.js"></script>
   </body>
