@@ -5,7 +5,6 @@ const output = {
     res.render('letter/postContent');
   },
 
-
   showMyLetter: async (req, res) => {
     const userInfo = req.session.userInfo;
     // const { id, userId, nickname } = userInfo;
@@ -15,9 +14,10 @@ const output = {
     // res.render('letter/myletter', { nickname: nickname });
     console.log('userInfo', userInfo);
     const result2 = req.params.id; //n
-    console.log(result2);
+    // console.log('req.', req.params.id);
 
     if (userInfo) {
+      //로그인 했을 때
       if (userInfo.id == result2) {
         const isMine = true;
         console.log('isMine', isMine);
@@ -49,7 +49,6 @@ const output = {
     }
   },
 
-
   showPost: async (req, res) => {
     const { letterNo, postNo } = req.params;
 
@@ -61,12 +60,13 @@ const output = {
       where: { letterNo: letterNo, postNo: postNo },
       attributes: ['likesNum'],
     });
-
-    res.render('posts', {
+    console.log(showPost.postContent);
+    console.log(showLikes.likesNum);
+    res.send({
       postContent: showPost.postContent,
       postNickname: showPost.postNickname,
       postIp: showPost.postIp,
-      likesNum: showLikes.likesNum,
+      likesNo: showLikes.likesNo,
     });
   },
 };
