@@ -84,7 +84,7 @@ router.get('/letter/myLetter', controllerLetter.output.myLetter);
 router.get('/letter/select', controllerLetter.output.icon);
 
 // 편지함 페이지 출력
-router.get('/letter/MyLetter/:letterNo', controllerPost.output.showMyLetter);
+router.get('/letter/MyLetter/:id', controllerPost.output.showMyLetter);
 //기능부분 (api)
 
 router.post('/noticePost', controller.input.noticePost);
