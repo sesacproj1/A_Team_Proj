@@ -6,20 +6,20 @@ const input = {
   reqFriend: async (req, res) => {
     const toId = req.params.letterNo;
     const userInfo = req.session.userInfo;
-    const fromNickname = userInfo.nickname;
+    const fromUserId = userInfo.userId;
 
     const checkFriend = await toFriend.findOne({
-      where: { id: toId, toFriendUserId: fromNickname },
+      where: { id: toId, toFriendUserId: fromUserId },
     });
 
     const checkRequest = await RequestList.findOne({
-      where: { id: toId, nickname: fromNickname },
+      where: { id: toId, nickname: fromUserId },
     });
 
     if (!checkFriend && !checkRequest) {
       await RequestList.create({
         id: toId,
-        nickname: fromNickname,
+        nickname: fromUserId,
       });
       res.send({ result: 'true' });
     } else if (checkFriend) {
@@ -41,13 +41,13 @@ const input = {
   },
 
   rejectRequest: async (req, res) => {
-    const nickname = req.body.nickname;
+    const userId = req.body.userId;
     const userInfo = req.session.userInfo;
     const id = userInfo.id;
 
     // 요청 거절시 request 목록에서 삭제
     await RequestList.destroy({
-      where: { id: id, nickname: nickname },
+      where: { id: id, nickname: userId },
     });
 
     res.send({ result: 'true' });
@@ -94,6 +94,8 @@ const output = {
     const id = userInfo.id;
     const requests = await RequestList.findAll({
       where: { id: id },
+      attributes: ['nickname'],
+      raw: true,
     });
 
     res.render('letter/friendConfirm', {
@@ -103,29 +105,29 @@ const output = {
   },
 
   confirmRequest: async (req, res) => {
-    const nickname = req.body.nickname;
+    const userId = req.body.userId;
     const userInfo = req.session.userInfo;
     const id = userInfo.id;
-    const toNickname = userInfo.nickname;
+    const toUserId = userInfo.userId;
     // 요청 수락시 request 목록에서 삭제
     await RequestList.destroy({
-      where: { id: id, nickname: nickname },
+      where: { id: id, nickname: userId },
     });
     // 요청을 수락한 User의 친구목록에 nickname 추가
     await toFriend.create({
       id: id,
-      toFriendUserId: nickname,
+      toFriendUserId: userId,
     });
 
     const addFriend = await User.findOne({
-      where: { nickname: nickname },
+      where: { userId: userId },
       attributes: ['id'],
     });
     // 요청을 수락받은 User의 친구목록에 수락한 User의 nickname 추가
 
     await Friend.create({
       id: addFriend.id,
-      friendUserId: toNickname,
+      friendUserId: toUserId,
     });
 
     res.send({ result: 'true' });
