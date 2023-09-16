@@ -51,8 +51,8 @@ const output = {
     await Notification.destroy({
       where: { letterNo: receiver, postNo: postNo },
     });
-    res.send('true');
-    // res.redirect('/MyLetter/:letterNo/:postNo');
+
+    res.redirect(`letter/MyLetter/${receiver}/${postNo}`);
   },
 };
 

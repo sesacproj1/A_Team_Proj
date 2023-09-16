@@ -92,13 +92,16 @@ router.get('/notice/delete/:noticeNo', controller.input.noticeDelete);
 router.patch('/notice/update/:noticeNo', controller.input.noticeUpdate);
 
 // 알림기능
-router.get('/notification/:letterNo', controllerNoti.output.showNoti);
+router.get(
+  '/user/myPage/notification/:letterNo',
+  controllerNoti.output.showNoti
+);
 router.delete(
-  '/notification/:letterNo/:postNo',
+  'user/myPage/notification/:letterNo/:postNo',
   controllerNoti.output.postNoti
 );
 router.delete(
-  '/notification/:letterNo/:postNo/delete',
+  'user/myPage/notification/:letterNo/:postNo/delete',
   controllerNoti.input.deleteNoti
 );
 
@@ -110,7 +113,10 @@ router.post(
 );
 
 // 편지보기
-router.post('/MyLetter/:letterNo/:postNo', controllerPost.output.showPost);
+router.post(
+  'letter/MyLetter/:letterNo/:postNo',
+  controllerPost.output.showPost
+);
 
 // 편지함 페이지 - 기능 부분
 router.delete(
