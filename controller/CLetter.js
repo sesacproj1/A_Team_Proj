@@ -11,7 +11,7 @@ const {
 
 const output = {
   friends : (req,res) => {
-    res.render('letter/friend', {session : req.session.userInfo});
+    res.render('letter/friends', {session : req.session.userInfo});
   },
 
   friendConfirm: (req, res) => {
