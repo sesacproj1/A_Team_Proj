@@ -56,27 +56,39 @@ const input = {
 
 const output = {
   showFriend: async (req, res) => {
-    const userInfo = req.session.userInfo;
-    console.log(userInfo);
-    const id = userInfo.id;
-    console.log(id);
-    // 요청을 보내서 추가된 경우 : Friend에서 id값으로 추출
-    const FriendList = await Friend.findAll({
-      where: { id: id },
-      attributes: ['friendUserId'],
-      raw: true,
-    });
-    console.log(FriendList);
-    // 요청 수락해서 추가된 경우 : toFriend에서 id값으로 추출
-    const toFriendList = await toFriend.findAll({
-      where: { id: id },
-      attributes: ['toFriendUserId'],
-      raw: true,
-    });
-    const myFriend = [FriendList, toFriendList];
-    console.log('친구목록>>', myFriend);
-    res.render('letter/friends', { session: req.session.userInfo });
+    if (req.session.userInfo !== undefined) {
+      const userInfo = req.session.userInfo;
+      console.log(userInfo);
+      const id = userInfo.id;
+      console.log(id);
+      // 요청을 보내서 추가된 경우 : Friend에서 id값으로 추출
+      const FriendList = await Friend.findAll({
+        where: { id: id },
+        attributes: ['friendUserId'],
+        raw: true,
+      });
+      console.log(FriendList);
+      // 요청 수락해서 추가된 경우 : toFriend에서 id값으로 추출
+      const toFriendList = await toFriend.findAll({
+        where: { id: id },
+        attributes: ['toFriendUserId'],
+        raw: true,
+      });
+      const myFriend = [FriendList, toFriendList];
+      console.log('친구목록>>', myFriend);
+      res.render('letter/friends', {
+        session: req.session.userInfo,
+        profile: req.session.profile,
+      });
+    } else {
+      res.render('user/login', {
+        session: req.session.userInfo,
+        isLogin: false,
+        message: '잘못된 접근입니다. 로그인해주세요',
+      });
+    }
   },
+
   showRequest: async (req, res) => {
     const userInfo = req.session.userInfo;
     const id = userInfo.id;

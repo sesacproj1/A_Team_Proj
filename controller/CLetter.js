@@ -10,21 +10,6 @@ const {
 } = require('../models');
 
 const output = {
-  friends: (req, res) => {
-    if (req.session.userInfo !== undefined) {
-      res.render('letter/friends', {
-        session: req.session.userInfo,
-        profile: req.session.profile,
-      });
-    } else {
-      res.render('user/login', {
-        session: req.session.userInfo,
-        isLogin: false,
-        message: '잘못된 접근입니다. 로그인해주세요',
-      });
-    }
-  },
-
   friendConfirm: (req, res) => {
     res.render('letter/friendConfirm', { session: req.session.userInfo });
   },
