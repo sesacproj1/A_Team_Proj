@@ -10,8 +10,49 @@ const {
 } = require('../models');
 
 const output = {
-  friends : (req,res) => {
-    res.render('letter/friend', {session : req.session.userInfo});
+  //TODO 친구리스트들가져오기
+  friends: async (req, res) => {
+    if (req.session.userInfo !== undefined) {
+      const friend = await Friend.findAll({
+        where: { id: req.session.userInfo.id },
+      });
+      req.session.friend = friend; //배열로
+      console.log('req.session.friend는 ~~~~', req.session.friend);
+      const friendProfiles = await Profile.findAll({
+        where: {
+          userId: req.session.friend.map((friend) => friend.friendUserId),
+        },
+      });
+      //친구 프로필들은 배열 객체로 생성
+      console.log('friendProfiles은 ~~~~', friendProfiles);
+      const friendData = friendProfiles.map((profile) => ({
+        profileLocation: profile.profileLocation,
+        userId: profile.userId,
+        id: profile.id,
+      }));
+      // [
+      //   {
+      //     profileLocation: '/img/profile/ì´\x88ì\x95\x881694843963578.png',
+      //     userId: 'hb1234'
+      //   },
+      //   {
+      //     profileLocation: '/img/profile/피카츄1694843819104.gif',
+      //     userId: 'lobster100'
+      //   }
+      // ]
+      res.render('letter/friends', {
+        friend: req.session.friend,
+        isLogin: true,
+        session: req.session.userInfo,
+        friendData: friendData,
+      });
+    } else {
+      res.render('user/login', {
+        session: req.session.userInfo,
+        isLogin: false,
+        message: '잘못된 접근입니다.!',
+      });
+    }
   },
 
   friendConfirm: (req, res) => {
