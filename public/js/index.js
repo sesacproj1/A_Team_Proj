@@ -27,10 +27,11 @@ for (let i = 1; i <= starCnt; i++) {
   if (i % 2 == 0) {
     // 짝수 별이라면
     if (myWidth <= 480) {
-      // 모바일용
+      // 모바일용 크기
       star.style.top = myHeight / 4 + 'px';
       star.style.left = ((1 * myWidth) / 11) * i + 'px';
     } else {
+      //pc용 크기
       star.style.top = myHeight / 3 + 'px';
       star.style.left = ((1 * myWidth) / 10) * i + 'px';
     }
@@ -41,6 +42,7 @@ for (let i = 1; i <= starCnt; i++) {
       star.style.top = myHeight / 20 + 'px';
       star.style.left = (myWidth / 11) * i + 'px';
     } else {
+      //pc용 크기
       star.style.top = myHeight / 10 + 'px';
       star.style.left = (myWidth / 10) * i + 'px';
     }
@@ -48,6 +50,7 @@ for (let i = 1; i <= starCnt; i++) {
     // console.log(i, star.style.left);
   }
 
+  // star size 정의
   if (myWidth <= 480) {
     // 모바일용 크기
     star.style.width = myWidth / 8 + 'px';

@@ -10,8 +10,8 @@ const {
 } = require('../models');
 
 const output = {
-  friends : (req,res) => {
-    res.render('letter/friends', {session : req.session.userInfo});
+  friends: (req, res) => {
+    res.render('letter/friends', { session: req.session.userInfo });
   },
 
   friendConfirm: (req, res) => {
@@ -39,10 +39,6 @@ const output = {
 
   icon: (req, res) => {
     res.render('letter/icon', { session: req.session.userInfo });
-  },
-
-  yourLetter: (req, res) => {
-    res.render('letter/yourLetter', { session: req.session.userInfo });
   },
 };
 
