@@ -116,10 +116,7 @@ router.delete(
   '/MyLetter/:letterNo/:postNo/delete',
   controllerPost.input.contentDelete
 );
-router.patch(
-  '/MyLetter/:letterNo/:postNo/likes',
-  controllerPost.input.updateLikes
-);
+router.patch('/MyLetter/:letterNo/:postNo', controllerPost.input.updateLikes);
 
 // 친구기능
 router.get('/friend/:id', controllerFriend.output.showFriend);
