@@ -18,6 +18,10 @@ const output = {
     const userData = await User.findAll({
       where: { id: req.params.letterNo },
     });
+    const profile = await Profile.findOne({
+      where: { id: req.params.letterNo },
+    });
+    req.session.profile = profile;
     const lord = userData.map((user) => user.dataValues);
     console.log('lord는', lord);
     if (userInfo) {
@@ -26,6 +30,7 @@ const output = {
         console.log('isMine', isMine);
         // 둘이 같으면 myletter
         res.render('letter/myletter', {
+          profile: req.session.profile,
           lord: lord[0],
           session: userInfo,
           isLogin: true,
@@ -36,6 +41,7 @@ const output = {
         const isMine = false;
         console.log('isMine', isMine);
         res.render('letter/myletter', {
+          profile: req.session.profile,
           lord: lord[0],
           session: userInfo,
           isLogin: true,
@@ -47,6 +53,7 @@ const output = {
       const isLogin = false;
       console.log('isLogin', isLogin);
       res.render('letter/myletter', {
+        profile: req.session.profile,
         lord: lord[0],
         isLogin: false,
         isMine: false,
