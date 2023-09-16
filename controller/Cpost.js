@@ -60,12 +60,13 @@ const output = {
       where: { letterNo: letterNo, postNo: postNo },
       attributes: ['likesNum'],
     });
-
-    res.render('posts', {
+    console.log(showPost.postContent);
+    console.log(showLikes.likesNum);
+    res.send({
       postContent: showPost.postContent,
       postNickname: showPost.postNickname,
       postIp: showPost.postIp,
-      likesNum: showLikes.likesNum,
+      likesNo: showLikes.likesNo,
     });
   },
 };
