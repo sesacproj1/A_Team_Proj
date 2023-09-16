@@ -26,7 +26,7 @@ const output = {
         console.log('isMine', isMine);
         // 둘이 같으면 myletter
         res.render('letter/myletter', {
-          lord: lord,
+          lord: lord[0],
           session: userInfo,
           isLogin: true,
           isMine: true,
@@ -36,7 +36,7 @@ const output = {
         const isMine = false;
         console.log('isMine', isMine);
         res.render('letter/myletter', {
-          lord: lord,
+          lord: lord[0],
           session: userInfo,
           isLogin: true,
           isMine: false,

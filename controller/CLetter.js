@@ -12,12 +12,18 @@ const {
 const output = {
   //TODO 친구리스트들가져오기 완료
   friends: async (req, res) => {
+    const id = req.params.id;
+    const userData = await User.findAll({
+      where: { id: id },
+    });
+    const lord = userData.map((user) => user.dataValues); //친구목록 주인
+
+    //비로그인시 친구목록 접근권한없음
     if (req.session.userInfo !== undefined) {
       const friend = await Friend.findAll({
-        where: { id: req.session.userInfo.id },
-      });
-      req.session.friend = friend; //배열로
-      console.log('req.session.friend는 ~~~~', req.session.friend);
+        where: { id: id },
+      }); //params로 친구찾기
+      req.session.friend = friend; //배열로로나옴
       const friendProfiles = await Profile.findAll({
         where: {
           userId: req.session.friend.map((friend) => friend.friendUserId),
@@ -30,17 +36,9 @@ const output = {
         userId: profile.userId,
         id: profile.id,
       }));
-      // [
-      //   {
-      //     profileLocation: '/img/profile/ì´\x88ì\x95\x881694843963578.png',
-      //     userId: 'hb1234'
-      //   },
-      //   {
-      //     profileLocation: '/img/profile/피카츄1694843819104.gif',
-      //     userId: 'lobster100'
-      //   }
-      // ]
+
       res.render('letter/friends', {
+        lord: lord[0],
         friend: req.session.friend,
         isLogin: true,
         session: req.session.userInfo,
