@@ -78,13 +78,13 @@ router.get('/notice/post', controller.output.noticePost);
 router.get('/user/myPage', controller.output.myPage);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 
-router.get('/letter/friends', controllerLetter.output.friends);
+// router.get('/letter/friends', controllerLetter.output.friends);
 router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
 router.get('/letter/myLetter', controllerLetter.output.myLetter);
 router.get('/letter/select', controllerLetter.output.icon);
 
 // 편지함 페이지 출력
-router.get('/letter/MyLetter/:letterNo', controllerPost.output.showMyLetter);
+router.get('/letter/MyLetter/:id', controllerPost.output.showMyLetter);
 //기능부분 (api)
 
 router.post('/noticePost', controller.input.noticePost);
@@ -101,6 +101,9 @@ router.delete(
   '/notification/:letterNo/:postNo/delete',
   controllerNoti.input.deleteNoti
 );
+
+// 편지함 페이지 출력
+router.get('/letter/MyLetter/:letterNo', controllerPost.output.showMyLetter);
 
 // 글남기기
 // router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
