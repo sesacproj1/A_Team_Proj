@@ -79,6 +79,7 @@ const output = {
         data: result1,
         admin: true,
         adminData: adminData, // 항상 객체가 존재하도록 함
+        session: req.session.userInfo,
       });
     } else {
       const result1 = await Notice.findAll();
@@ -86,6 +87,7 @@ const output = {
         data: result1,
         admin: false,
         adminData: '',
+        session: req.session.userInfo,
       });
     }
   },
