@@ -1,4 +1,4 @@
-const { Post, PostLikes, Notification } = require('../models');
+const { Post, PostLikes, Notification, User } = require('../models');
 
 const output = {
   content: (req, res) => {
@@ -15,13 +15,18 @@ const output = {
     console.log('userInfo', userInfo);
     const result2 = req.params.id; //n
     console.log(result2);
-
+    const userData = await User.findAll({
+      where: { id: req.params.letterNo },
+    });
+    const lord = userData.map((user) => user.dataValues);
+    console.log('lord는', lord);
     if (userInfo) {
       if (userInfo.id == result2) {
         const isMine = true;
         console.log('isMine', isMine);
         // 둘이 같으면 myletter
         res.render('letter/myletter', {
+          lord: lord,
           session: userInfo,
           isLogin: true,
           isMine: true,
@@ -29,9 +34,9 @@ const output = {
       } else {
         // 아니면 yourLetter
         const isMine = false;
-
         console.log('isMine', isMine);
         res.render('letter/myletter', {
+          lord: lord,
           session: userInfo,
           isLogin: true,
           isMine: false,
@@ -42,6 +47,7 @@ const output = {
       const isLogin = false;
       console.log('isLogin', isLogin);
       res.render('letter/myletter', {
+        lord: lord[0],
         isLogin: false,
         isMine: false,
       });
