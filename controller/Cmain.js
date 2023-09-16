@@ -11,11 +11,13 @@ const {
 
 const output = {
   index: async (req, res) => {
+    const curPage = 1 | req.query.curPage;
     const result = await User.findAll({
-      // offset: 7 * (req.body.curPage - 1),
+      offset: 7 * (curPage - 1),
       order: [['id', 'ASC']],
       limit: 7,
     });
+    console.log('req.body.curPage', req.body);
 
     // index.ejs 랜더 (data 키로 session 객체의 userInfo 전달)
     const userSession = req.session.userInfo;
