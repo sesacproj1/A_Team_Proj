@@ -80,7 +80,7 @@ router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 
 router.get('/letter/friends', controllerLetter.output.friends);
 router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
-router.get('/letter/myLetter', controllerLetter.output.myLetter);
+// router.get('/letter/myLetter', controllerLetter.output.myLetter);
 router.get('/letter/select', controllerLetter.output.icon);
 
 // 편지함 페이지 출력

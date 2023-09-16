@@ -5,7 +5,6 @@ const output = {
     res.render('letter/postContent');
   },
 
-
   showMyLetter: async (req, res) => {
     const userInfo = req.session.userInfo;
     // const { id, userId, nickname } = userInfo;
@@ -23,7 +22,7 @@ const output = {
         console.log('isMine', isMine);
         // 둘이 같으면 myletter
         res.render('letter/myletter', {
-          userInfo: userInfo,
+          session: userInfo,
           isLogin: true,
           isMine: true,
         });
@@ -33,7 +32,7 @@ const output = {
 
         console.log('isMine', isMine);
         res.render('letter/myletter', {
-          userInfo: userInfo,
+          session: userInfo,
           isLogin: true,
           isMine: false,
         });
@@ -48,7 +47,6 @@ const output = {
       });
     }
   },
-
 
   showPost: async (req, res) => {
     const { letterNo, postNo } = req.params;
