@@ -1,4 +1,4 @@
-const { Post, PostLikes, Notification, User } = require('../models');
+const { Post, PostLikes, Notification, User, Profile } = require('../models');
 
 const output = {
   content: (req, res) => {
@@ -16,11 +16,12 @@ const output = {
     const result2 = req.params.id; //n
     console.log(result2);
     const userData = await User.findAll({
-      where: { id: req.params.letterNo },
+      where: { id: req.params.id },
     });
     const profile = await Profile.findOne({
-      where: { id: req.params.letterNo },
+      where: { id: req.params.id },
     });
+    console.log(profile);
     req.session.profile = profile;
     const lord = userData.map((user) => user.dataValues);
     console.log('lord는', lord);
