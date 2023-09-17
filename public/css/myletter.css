@@ -49,6 +49,13 @@
     left: 0;
     top: 0%;
   }
+  .letterImg {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    left: 0;
+    top: 0%;
+  }
 }
 @media (min-width: 480px) and (max-width: 768px) {
   /* iPads, Tablets */
@@ -57,6 +64,13 @@
     height: 70vh;
   }
   #moon {
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    left: 0;
+    top: 0%;
+  }
+  .letterImg {
     position: absolute;
     width: 100%;
     height: 90%;
@@ -79,6 +93,11 @@
     top: 50%;
     transform: translateY(-50%); */
   }
+  .letterImg {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+  }
 }
 @media (min-width: 1025px) and (max-width: 1201px) {
   /* pc */
@@ -89,6 +108,14 @@
     /* background-color: #eeeeee; */
   }
   #moon {
+    width: 85%;
+    height: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+  }
+  .letterImg {
     width: 85%;
     height: 90%;
     position: absolute;
@@ -113,13 +140,21 @@
     transform: translateX(-50%);
     top: 0;
   }
+  .letterImg {
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+  }
 }
 
 /* 편지함 안 편지들 */
 .letters {
   position: relative;
 }
-.letters p {
+.letterP {
   color: #337ccf;
   position: absolute;
   /* top: 80%;

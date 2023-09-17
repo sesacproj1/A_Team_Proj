@@ -19,7 +19,7 @@
       <div class="letterDiv col-md-8">
         <div class="imgDiv">
           <img src="/img/background/moon.png" alt="" id="moon" />
-          <!-- 편지 -->
+          <!-- 편지 : 페이징 시 data.length로 바꾸기 -->
           <% for (let i=1; i<=5; i++ ){ %>
           <div
             class="letters"
@@ -27,8 +27,8 @@
             data-bs-toggle="modal"
             data-bs-target="#letterModal"
           >
-            <img src="/img/letterIcons/px_apple.png" alt="" id="moon" />
-            <p id="writerNickname<%=i%>">짱구가</p>
+            <img src="/img/letterIcons/px_apple.png" alt="" class="letterImg" id="letterImg<%=i%>" />
+            <p class="letterP" id="letterP<%=i%>">짱구가</p>
           </div>
           <% } %>
           <!-- 편지 모달 -->
@@ -143,9 +143,7 @@
       <div class="profilePicDiv">
         <button id="btnProfilePic" disabled>
           <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
-
         </button>
-        <!-- <p id="nickname">해순</p> -->
       </div>
 
       <div class="friendsDiv">
