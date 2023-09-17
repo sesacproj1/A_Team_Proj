@@ -13,8 +13,9 @@ const output = {
     // });
     // res.render('letter/myletter', { nickname: nickname });
     console.log('userInfo', userInfo);
-    const result2 = req.params.id; //n
-    console.log(result2);
+    const idParam = req.params.id; //n
+    console.log(idParam);
+
     const userData = await User.findAll({
       // where: { id: req.params.letterNo },
       where: { id: req.params.id },
@@ -29,7 +30,7 @@ const output = {
 
     if (userInfo) {
       //로그인 했을 때
-      if (userInfo.id == result2) {
+      if (userInfo.id == idParam) {
         const isMine = true;
         console.log('isMine', isMine);
         // 둘이 같으면 myletter
