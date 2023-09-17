@@ -56,6 +56,5 @@ function reject() {
 // 친구목록 페이징 - js 작업 전
 const btnLeft = document.querySelector('#btnLeft');
 const btnRight = document.querySelector('#btnRight');
-
 btnLeft.addEventListener('click', prevPage);
 btnRight.addEventListener('click', nextPage);
