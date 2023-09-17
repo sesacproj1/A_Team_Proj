@@ -1,9 +1,7 @@
 // 1. 편지 보여주기 & 편지함 주인 표시
 const letterModal = document.getElementById('letterModal');
 
-letterModal.addEventListener('show.bs.modal', showPost);
-
-function showPost() {
+letterModal.addEventListener('show.bs.modal', function () {
   // Button that triggered the modal
   // const button = event.relatedTarget;
   // Update the modal's content.
@@ -15,7 +13,7 @@ function showPost() {
       method: 'post',
       url: `/letter/MyLetter/13/1`,
       data: {
-        postNickname: this.querySelector('p').value,
+        postNickname: pEle.value,
       },
     }).then((res) => {
       const { postContent, postNickname, postIp, likesNo } = res.data;
@@ -26,7 +24,7 @@ function showPost() {
   } catch (err) {
     console.log('Err', err);
   }
-}
+});
 
 // 2. 좋아요 처리
 const btnLike = document.querySelector('.btnLike');
