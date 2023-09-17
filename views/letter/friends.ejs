@@ -10,100 +10,37 @@
   <body>
     <div>
       <div class="friendsList">
-        <p><%= session.nickname%>님의 친구 목록</p>
+        <p><%= lord.nickname%>님의 친구 목록</p>
       </div>
     </div>
     <div class="container" style="border: 3px solid black">
       <div class="row">
+        <% friendData.forEach(profile => { %> <% if (profile.profileLocation ===
+        null) { %>
         <div class="col-md-4 col-6">
           <div>
-            <a href="#"
+            <a href="/letter/myLetter/<%= profile.id %>"
               ><img
                 src="/img/추석3.png"
                 alt=""
                 style="width: 100%; height: 100%"
             /></a>
           </div>
-          <p class="nicknames">lobster100</p>
+          <p class="nicknames"><%= profile.userId %></p>
         </div>
+        <% } else { %>
         <div class="col-md-4 col-6">
           <div>
-            <a href="#"
+            <a href="/letter/myLetter/<%= profile.id %>"
               ><img
-                src="/img/추석3.png"
+                src="<%= profile.profileLocation %>"
                 alt=""
                 style="width: 100%; height: 100%"
             /></a>
           </div>
-          <p class="nicknames">lobster100</p>
+          <p class="nicknames"><%= profile.userId %></p>
         </div>
-        <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames">lobster100</p>
-        </div>
-        <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames">lobster100</p>
-        </div>
-        <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames">lobster100</p>
-        </div>
-        <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames">lobster100</p>
-        </div>
-        <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames">lobster100</p>
-        </div>
-        <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames">lobster100</p>
-        </div>
-      </div>
-    </div>
+        <% } %> <% }); %>
+
   </body>
 </html>

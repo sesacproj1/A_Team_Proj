@@ -12,7 +12,7 @@
     <div class="container-fluid row">
       <div class="titleDiv col-md-2">
 
-        <h1>00님의<br />편지함</h1>
+        <h1><%= lord.nickname %>님의<br />편지함</h1>
 
       </div>
 
@@ -125,10 +125,11 @@
           </button>
           <p>친구 신청</p>
         </a>
-      </div>
+    </div>
+
 
       <div class="friendsDiv">
-        <a href="/letter/friends">
+      <a href="/letter/friends/<%=lord.id">
           <button id="btnFriends">
             <img src="/img/header/friends.png" alt="" id="imgFriends" />
           </button>
@@ -142,6 +143,7 @@
       <div class="profilePicDiv">
         <button id="btnProfilePic" disabled>
           <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+
         </button>
         <!-- <p id="nickname">해순</p> -->
       </div>

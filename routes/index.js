@@ -78,9 +78,11 @@ router.get('/notice/post', controller.output.noticePost);
 router.get('/user/myPage', controller.output.myPage);
 router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 
-// router.get('/letter/friends', controllerLetter.output.friends);
+
+router.get('/letter/friends/:id', controllerLetter.output.friends);
+
 router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
-router.get('/letter/myLetter', controllerLetter.output.myLetter);
+// router.get('/letter/myLetter', controllerLetter.output.myLetter);
 router.get('/letter/select', controllerLetter.output.icon);
 
 // 편지함 페이지 출력
@@ -123,7 +125,7 @@ router.delete(
 router.patch('/MyLetter/:letterNo/:postNo', controllerPost.input.updateLikes);
 
 // 친구기능
-router.get('/friend/:id', controllerFriend.output.showFriend);
+// router.get('/friend/:id', controllerFriend.output.showFriend);
 router.post('/MyLetter/:letterNo/reqFriend', controllerFriend.input.reqFriend);
 router.get('/showRequest/:id', controllerFriend.output.showRequest);
 router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
