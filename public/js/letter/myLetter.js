@@ -12,7 +12,7 @@ letterModal.addEventListener('show.bs.modal', (event) => {
   try {
     axios({
       method: 'get',
-      url: `/MyLetter/${letterNo}/${postNo}`,
+      url: `/letter/MyLetter/${letterNo}/${postNo}`,
       params: {
         letterNo: letterNo,
         postNo: postNo,

@@ -52,3 +52,10 @@ function reject() {
     alert('송편 거절 되었습니다.');
   });
 }
+
+// 친구목록 페이징
+const btnLeft = document.querySelector('#btnLeft');
+const btnRight = document.querySelector('#btnRight');
+
+btnLeft.addEventListener('click', prevPage);
+btnRight.addEventListener('click', nextPage);

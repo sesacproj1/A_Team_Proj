@@ -51,7 +51,7 @@ const output = {
 
   showPost: async (req, res) => {
     const { letterNo, postNo } = req.params;
-
+    console.log('req.params ', req.params);
     const showPost = await Post.findOne({
       where: { letterNo: letterNo, postNo: postNo },
     });
