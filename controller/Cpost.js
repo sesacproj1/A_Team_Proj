@@ -26,7 +26,6 @@ const output = {
     console.log('lord는', lord);
     // console.log('req.', req.params.id);
 
-
     if (userInfo) {
       //로그인 했을 때
       if (userInfo.id == result2) {

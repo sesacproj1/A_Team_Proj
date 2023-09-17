@@ -48,7 +48,7 @@ function updateLikes() {
     },
   }).then((res) => {
     console.log(res);
-    likesNum = likesNum2 + 1;
+    likesNum.innerText = likesNum2 + 1;
   });
 }
 
