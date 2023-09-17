@@ -19,8 +19,8 @@ letterModal.addEventListener('show.bs.modal', (event) => {
       },
     }).then((res) => {
       const { postContent, postNickname, postIp, likesNo } = res.data;
-      (modalBodyInput.value = postNickname),
-        (modalBodyTextarea.value = postContent);
+      modalBodyInput.value = postNickname;
+      modalBodyTextarea.value = postContent;
       likesNum.value = likesNo;
     });
   } catch (err) {
