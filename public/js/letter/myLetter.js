@@ -1,22 +1,19 @@
 // 1. 편지 보여주기 & 편지함 주인 표시
 const letterModal = document.getElementById('letterModal');
 
-letterModal.addEventListener('show.bs.modal', (event) => {
-  // Button that triggered the modal
-  const button = event.relatedTarget;
-  // Update the modal's content.
+letterModal.addEventListener('show.bs.modal', showPost);
 
+function showPost() {
+  // Button that triggered the modal
+  // const button = event.relatedTarget;
+  // Update the modal's content.
   const modalBodyInput = letterModal.querySelector('.modal-body input');
   const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 
   try {
     axios({
       method: 'get',
-      url: `/MyLetter/${letterNo}/${postNo}`,
-      params: {
-        letterNo: letterNo,
-        postNo: postNo,
-      },
+      url: `/letter/MyLetter/13/1`,
     }).then((res) => {
       const { postContent, postNickname, postIp, likesNo } = res.data;
       modalBodyInput.value = postNickname;
@@ -26,9 +23,7 @@ letterModal.addEventListener('show.bs.modal', (event) => {
   } catch (err) {
     console.log('Err', err);
   }
-
-  //   modalBodyInput.value = recipient; 데이터 가져오기
-});
+}
 
 // 2. 좋아요 처리
 const btnLike = document.querySelector('.btnLike');
@@ -40,9 +35,10 @@ btnLike.addEventListener('click', updateLikes);
 function updateLikes() {
   // likeHeart.src = '/img/header/heart2.png';
   const likesNum2 = parseInt(likesNum.innerText);
+  console.log(likesNum2);
   axios({
     method: 'patch',
-    url: `/MyLetter/${letterNo}}/${postNo}`, //letterNo is not defined
+    url: `/letter/MyLetter/13/1`, //letterNo is not defined
     data: {
       number: likesNum2 + 1,
     },
