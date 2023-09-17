@@ -20,7 +20,6 @@ const output = {
       where: { id: req.params.id },
     });
     const profile = await Profile.findOne({
-      // where: { id: req.params.letterNo },
       where: { id: req.params.id },
     });
     req.session.profile = profile;
