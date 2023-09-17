@@ -12,8 +12,11 @@ function showPost() {
 
   try {
     axios({
-      method: 'get',
+      method: 'post',
       url: `/letter/MyLetter/13/1`,
+      data: {
+        postNickname: this.querySelector('p').value,
+      },
     }).then((res) => {
       const { postContent, postNickname, postIp, likesNo } = res.data;
       modalBodyInput.value = postNickname;

@@ -114,10 +114,7 @@ router.post(
 );
 
 // 편지보기
-router.get(
-  '/letter/MyLetter/:letterNo/:postNo',
-  controllerPost.output.showPost
-);
+router.post('/letter/MyLetter/:letterNo', controllerPost.output.showPost);
 
 // 편지함 페이지 - 기능 부분
 router.delete(
