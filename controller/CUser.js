@@ -195,6 +195,7 @@ const input = {
         id: user.id,
         profileLocation: 'null',
         profileName: 'null',
+        userId: userId,
       });
       return res.send({
         result: true,

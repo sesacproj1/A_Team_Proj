@@ -1,4 +1,4 @@
-const { Post, PostLikes, Notification } = require('../models');
+const { Post, PostLikes, Notification, User } = require('../models');
 
 const output = {
   content: (req, res) => {
@@ -14,7 +14,18 @@ const output = {
     // res.render('letter/myletter', { nickname: nickname });
     console.log('userInfo', userInfo);
     const result2 = req.params.id; //n
+    console.log(result2);
+    const userData = await User.findAll({
+      where: { id: req.params.letterNo },
+    });
+    const profile = await Profile.findOne({
+      where: { id: req.params.letterNo },
+    });
+    req.session.profile = profile;
+    const lord = userData.map((user) => user.dataValues);
+    console.log('lord는', lord);
     // console.log('req.', req.params.id);
+
 
     if (userInfo) {
       //로그인 했을 때
@@ -23,17 +34,20 @@ const output = {
         console.log('isMine', isMine);
         // 둘이 같으면 myletter
         res.render('letter/myletter', {
-          userInfo: userInfo,
+          profile: req.session.profile,
+          lord: lord[0],
+          session: userInfo,
           isLogin: true,
           isMine: true,
         });
       } else {
         // 아니면 yourLetter
         const isMine = false;
-
         console.log('isMine', isMine);
         res.render('letter/myletter', {
-          userInfo: userInfo,
+          profile: req.session.profile,
+          lord: lord[0],
+          session: userInfo,
           isLogin: true,
           isMine: false,
         });
@@ -43,6 +57,8 @@ const output = {
       const isLogin = false;
       console.log('isLogin', isLogin);
       res.render('letter/myletter', {
+        profile: req.session.profile,
+        lord: lord[0],
         isLogin: false,
         isMine: false,
       });

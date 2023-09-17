@@ -8,6 +8,9 @@ const Profile = (Sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true,
       },
+      userId: {
+        type: DataTypes.STRING(50),
+      },
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
