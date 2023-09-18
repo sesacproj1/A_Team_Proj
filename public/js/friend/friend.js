@@ -33,7 +33,7 @@ function confirm() {
     method: 'post',
     url: `/showRequest/${id}/confirm`,
     body: {
-      nickname: nickname.value,
+      userId: userId.value,
     },
   }).then((res) => {
     alert('송편 추가 되었습니다.');
@@ -41,14 +41,20 @@ function confirm() {
 }
 
 function reject() {
-  const nickname = this.previousElementSibling.previousElementSibling;
+  const userId = this.previousElementSibling.previousElementSibling;
   axios({
     method: 'delete',
     url: `/showRequest/${id}/reject`,
     body: {
-      nickname: nickname.value,
+      userId: userId.value,
     },
   }).then((res) => {
     alert('송편 거절 되었습니다.');
   });
 }
+
+// 친구목록 페이징 - js 작업 전
+const btnLeft = document.querySelector('#btnLeft');
+const btnRight = document.querySelector('#btnRight');
+btnLeft.addEventListener('click', prevPage);
+btnRight.addEventListener('click', nextPage);

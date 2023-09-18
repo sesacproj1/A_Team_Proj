@@ -70,16 +70,26 @@
         <!--  -->
         <div id="friends">
           <div>
-            <p class="friendsBox1 mailBox" style="cursor: pointer">1</p>
+            <p class="friendsBox1 mailBox" style="cursor: pointer">
+              <a href="/letter/myLetter/<%=data.id%>">1</a>
+            </p>
             <p>편지함</p>
           </div>
           <div>
-            <p class="friendsBox1 friendList" style="cursor: pointer">11.1k</p>
+            <p class="friendsBox1 friendList" style="cursor: pointer">
+              <a href="/letter/friends/<%=data.id%>">11.1k</a>
+            </p>
             <p>친구목록</p>
           </div>
           <div>
-            <p class="friendsBox1 notification" style="cursor: pointer" data-bs-toggle="modal"
-                      data-bs-target="#exampleModal">53</p>
+            <p
+              class="friendsBox1 notification"
+              style="cursor: pointer"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              53
+            </p>
             <p>알림</p>
           </div>
         </div>
@@ -144,7 +154,6 @@
       </div>
     </div>
 
-
     <!-- modal -->
     <!-- 모달 -->
     <!-- Modal -->
@@ -154,6 +163,7 @@
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
+      onclick="notiModal('<%= data.id%>')"
     >
       <div class="modal-dialog">
         <div class="modal-content">
@@ -169,14 +179,17 @@
             ></button>
           </div>
           <div class="modal-body">
-            
             <form name="alarmForm">
               <div class="container-fluid">
                 <div class="contentBox1">
-                  <div>lobster님이 <%data.id%>님에게 게시글을 남겼습니다.</div>
+                  <div>
+                    lobster님이 <%= data.id%>님에게 게시글을 남겼습니다.
+                  </div>
                 </div>
                 <div class="contentBox2">
-                  <div>lobster님께서 친구 신청을 하셨습니다</div>
+                  <div onclick="goFriendReq('<%= data.id%>')">
+                    친구요청이 있습니다
+                  </div>
                 </div>
               </div>
               <button type="button" id="alarmBtn">알람 삭제</button>

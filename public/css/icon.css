@@ -20,8 +20,7 @@
 
 #backgrounds {
     background:
-      rgba(15, 44, 89, 0.9);
-
+      #008081;
     height : 100vh;
 }
 #toUser > p{
@@ -33,13 +32,10 @@
 #postBox {
     width: 95%;
     height: 50vh;
-    margin-top: 5vh;
     margin: 0 auto;
-    border: 5px solid #9b7640; 
-    background-color: #fff;
+    border: 2px solid white; 
+    background-color: #bdbdbd;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1); 
-    border-radius: 10%;
-    background: url('../img/편지지2.png') center center;
     background-size: cover; /* 배경 이미지 크기 설정 */
     background-clip: content-box; /* 배경 이미지를 내용까지 확장 */
     font-family: 'pixel1';
@@ -50,31 +46,35 @@
 }
 
 #toContent > textarea {
+  width: 90%;
+
   font-family: 'pixel1';
   font-size : 2.5vh;
   font-weight: 700;
   text-decoration: underline;
-  width: 100%;
+  width: 90%;
   border: none;
   resize: none;
-  min-height: 200px; 
+  min-height: 280px; 
   max-height: 500px; 
-  background-color: transparent; /* 투명 배경 적용 */
+  background: white;
+  border: 2px solid black;
 }
 
-#fromUser > input {
-  border: 1xp solid ;
-  font-family: 'pixel1';
-  font-size : 2.5vh;
-  font-weight: 700;
-  text-decoration: underline;
-  width: 75%;
-  border: none;
-  border-top: 1px solid #9b7640; 
-  border-bottom : 1px solid #9b7640; 
-  float: right;
-   background-color: transparent; /* 투명 배경 적용 */
+#postBox > #headerBox {
+  background: #00007f;
+  width: 100%;
 }
+
+#toUser {
+  color : white;
+  
+}
+
+#toUser > p {
+  margin-bottom: 0px;
+}
+
 
 #nicknamesBox {
   margin-top: 2vh;
@@ -86,14 +86,14 @@
 }
 
 #nicknamesBox > input {
-  border: 5px solid  #9b7640;
+  border: 1px solid  white;
   width: 95%;
   height: 100%;
-  border-radius: 15px;
   font-family: 'pixel1';
   font-size: 2.5vh;
   font-weight: 700;
   text-decoration: underline;
+  background: #bdbdbd;
 }
 
 .beforeSelect , .messageBox {
@@ -102,13 +102,13 @@
 
 .beforeSelect > p {
   text-decoration: none;
-  color : #9b7640;
+  color : black;
   font-family: 'pixel1';
 }
 
 .beforeSelect > a {
   text-decoration: none;
-  color : #9b7640;
+  color : black;
   font-family: 'pixel1';
   border-bottom: 1rem;
 }
@@ -116,7 +116,7 @@
 
 .messageBox > p{
   color : white;
-  font-size: 30px;
+  font-size: 4vh;
   font-family: 'yeonsung';
 }
 
@@ -124,8 +124,8 @@
   border: 1px solid #9b7640;
   background: white;
   border-radius: 5px;
-  width: 100px;
-  height: 12vh;
+  width: 13vh;
+  height: 13vh;
 }
 
 .col-4 > div > img {
@@ -206,5 +206,24 @@
   }
 }
 
+#toContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#iconBox1, #iconBox2 {
+  width: 37.5px;
+}
+
+#iconBox1 > img, #iconBox2 > img {
+  width: 100%;
+}
+
+.messageBox {
+  display: flex;
+}
 
 

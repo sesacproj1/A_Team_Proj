@@ -1,35 +1,25 @@
-const form = document.forms['post'];
+const form = document.forms['postForm'];
 
-// function showPost() {
-//   axios({
-//     method: 'get',
-//     url: `/MyLetter/${letterNo}}/${postNo}`,
-//     params: {
-//       letterNo: letterNo,
-//       postNo: postNo,
-//     },
-//   }).then((res) => {
-//     const { postContent, postNickname, postIp, likesNum } = res.data;
-//     form.postContent.value = postContent;
-//     form.postNickname.value = postNickname;
-//     form.postIp.value = postIp;
-//     form.likesNum.value = likesNum;
-//   });
-// }
+function postLetter(id) {
+  console.log(id);
+  axios.get('https://api.ipify.org?format=json').then((ipResponse) => {
+    // IP 주소 값을 변수에 저장
+    const userIpAddress = ipResponse.data.ip;
+    console.log(userIpAddress);
+    axios({
+      method: 'post',
+      url: `/letter/select/${id}/postLetter`,
+      data: {
+        postDesign: form.postDesign.value,
+        postNickname: form.postNickname.value,
+        postContent: form.postContent.value,
+        postIp: userIpAddress,
+      },
+    }).then((res) => {
+      alert('글이 작성되었습니다.');
+      document.location.href = `/`;
+    });
 
-function contentRegister() {
-  // ip주소 따오기
-  axios({
-    method: 'post',
-    url: `/MyLetter/${letterNo}}/contentWrite/Register`,
-    data: {
-      postNickname: form.postNickname.value,
-      postContent: form.postContent.value,
-    },
-  }).then((res) => {
-    const { postContent, postNickname, postIp } = res.data;
-    form.postContent.value = postContent;
-    form.postNickname.value = postNickname;
   });
 }
 
@@ -42,7 +32,9 @@ function contentDelete() {
       postNo: postNo,
     },
   }).then(() => {
+
     form.postContent.value = '';
     form.postNickname.value = '';
+
   });
 }

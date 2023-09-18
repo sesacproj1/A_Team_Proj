@@ -1,129 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>아이콘 선택</title>
-    <link rel="stylesheet" href="/css/icon.css">
+    <link rel="stylesheet" href="/css/icon.css" />
     <%- include('../header')%>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container-fluid" id="backgrounds">
-        <form name="postForm">
+      <form name="postForm">
         <div class="row">
-            <div class="col-md-6" style="margin-top: 4vh;" id="designMan">
-                <div class="beforeSelect"><a href="/">홈으로</a></div>
-                <div class="messageBox"><p>장식을 선택하세요</p></div>
-                <div id="selectBox">
-                    <input type="hidden" name="postDesign" value="" id="postDesign">
-                    <div class="row">
-                        <div class="col-4">
-                            <div>
-                                <img src="/img/letterIcons/px_acorn.png" alt="1">
-                            </div> 
-                        </div>
-                        <div class="col-4">
-                            <div>
-                                <img src="/img/letterIcons/px_apple.png" alt="2">
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div>
-                                 <img src="/img/letterIcons/px_apple2.png" alt="3">
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div>
-                              <img src="/img/letterIcons/px_coin.png" alt="4">
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div>
-                                <img src="/img/letterIcons/px_food.png" alt="5">
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div>
-                                <img src="/img/letterIcons/px_hedgehog.png" alt="6">
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div>
-                                <img src="/img/letterIcons/px_lApple.png" alt="7">
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div>
-                                <img src="/img/letterIcons/px_nuts.png" alt="8">
-                            </div>
-                          
-                        </div>
-                        <div class="col-4">
-                            <div> <img src="/img/letterIcons/px_panda.png" alt="9">
-                            </div>
-                           
-                        </div>
-                        <div class="col-4">
-                            <div>
-                                   <img src="/img/letterIcons/px_pear.png" alt="10">
-                            </div>
-                         
-                        </div>
-                        <div class="col-4">
-                            <div>  <img src="/img/letterIcons/px_persimmon.png" alt="11"></div>
-                          
-                        </div>
-                        <div class="col-4">
-                            <div> <img src="/img/letterIcons/px_pumpkin.png" alt="12"></div>
-                           
-                        </div>
-                        <div class="col-4">
-                            <div><img src="/img/letterIcons/px_rabbit.png" alt="13"></div>
-                            
-                        </div>
-                        <div class="col-4">
-                            <div>
-                               <img src="/img/letterIcons/px_squirrel.png" alt="14">  
-                            </div>
-                           
-                        </div>
-                        <div class="col-4">
-                            <div>
-                                <img src="/img/letterIcons/px_tree.png" alt="15">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="selectBtns">
-                    <button type="button" onclick="select()">선택하기</button>
-                </div>
+          <div class="col-md-6" style="margin-top: 4vh" id="designMan">
+            <div class="beforeSelect"><a href="/">홈으로</a></div>
+            <div class="messageBox">
+              <div id="iconBox1">
+                <img src="/img/windowsIcon/95cpu.png" alt="" />
+              </div>
+              <p>장식을 선택하세요</p>
             </div>
-            <div class="col-md-6" style="margin-top: 4vh;" id="postMan">
-                <div class="beforeSelect"><p>이전으로</p></div>
-                <div class="messageBox"><p>편지를 남겨주세요</p></div>
-                <div id="postBox">
-                    <div style="margin-top: 3vh;">
-                       <div id="toUser">
-                        <p>to. 랍스터님에게</p>
-                       </div>
-                    </div>
-                    <div style="width: 100%;">
-                        <div id="toContent">
-                                <textarea name="postContent" id="postContent" placeholder="메세지를 남겨주세요"></textarea>
-                        </div>
-                    </div>                   
+            <div id="selectBox">
+              <input type="hidden" name="postDesign" value="" id="postDesign" />
+              <div class="row">
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_acorn.png" alt="1" />
+                  </div>
                 </div>
-                <div id="nicknamesBox">
-                    <input type="text" name="postNickname" placeholder="from. 닉네임">
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_apple.png" alt="2" />
+                  </div>
                 </div>
-                <div id="buttonBox"> 
-                    <button type="button" onclick="postLetter()">등록</button>
-                    <button type="button"><a href="/">취소</a></button>
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_apple2.png" alt="3" />
+                  </div>
                 </div>
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_coin.png" alt="4" />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_food.png" alt="5" />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_hedgehog.png" alt="6" />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_lApple.png" alt="7" />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_nuts.png" alt="8" />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div><img src="/img/letterIcons/px_panda.png" alt="9" /></div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_pear.png" alt="10" />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_persimmon.png" alt="11" />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_pumpkin.png" alt="12" />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_rabbit.png" alt="13" />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_squirrel.png" alt="14" />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <img src="/img/letterIcons/px_tree.png" alt="15" />
+                  </div>
+                </div>
+              </div>
             </div>
+            <div id="selectBtns">
+              <button type="button" onclick="select()">선택하기</button>
+            </div>
+          </div>
+          <div class="col-md-6" style="margin-top: 4vh" id="postMan">
+            <div class="beforeSelect"><p>이전으로</p></div>
+            <div class="messageBox">
+              <div id="iconBox2">
+                <img src="/img/windowsIcon/95notepad.png" alt="" />
+              </div>
+              <p>편지를 남겨주세요</p>
+            </div>
+            <div id="postBox">
+              <div id="headerBox">
+                <div id="toUser">
+                  <p>to. <%=data.nickname %>님에게</p>
+                </div>
+              </div>
+              <div style="width: 100%; height: 100%">
+                <div id="toContent">
+                  <textarea
+                    name="postContent"
+                    id="postContent"
+                    placeholder="메세지를 남겨주세요"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div id="nicknamesBox">
+              <input
+                type="text"
+                name="postNickname"
+                placeholder="from. 닉네임"
+              />
+            </div>
+            <div id="buttonBox">
+              <button type="button" onclick="postLetter(`<%= data.id%>`)">
+                등록
+              </button>
+              <button type="button"><a href="/">취소</a></button>
+            </div>
+          </div>
         </div>
-        </form>
+      </form>
     </div>
-</body>
-<script src="/js/friend/design.js"></script>
+  </body>
+  <script src="/js/friend/design.js"></script>
+  <script src="/js/post.js"></script>
 </html>

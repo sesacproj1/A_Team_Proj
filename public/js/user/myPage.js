@@ -5,13 +5,15 @@ const mail = document.querySelector('.mailBox');
 const friend = document.querySelector('.friendList');
 const noti = document.querySelector('notification');
 
-mail.addEventListener('click', () => {
-  document.location.href = '/letter/myLetter';
-});
+// mail.addEventListener('click', () => {
+//   document.location.href = '/letter/myLetter';
+// });
 
-friend.addEventListener('click', () => {
-  document.location.href = '/letter/friends';
-});
+// friend.addEventListener('click', () => {
+//   // document.location.href = '/letter/friends';
+//   console.log(req.session.userInfo);
+//   document.location.href = '/letter/friends/' + `${data.id}`;
+// });
 
 // noti.addEventListener('click', () => {
 //   document.location.href = '/letter/myLetter';

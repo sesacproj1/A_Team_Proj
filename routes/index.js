@@ -82,7 +82,8 @@ router.get('/letter/friends/:id', controllerLetter.output.friends);
 
 router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
 // router.get('/letter/myLetter', controllerLetter.output.myLetter);
-router.get('/letter/select', controllerLetter.output.icon);
+
+router.get('/letter/select/:id', controllerLetter.output.icon);
 
 // 편지함 페이지 출력
 router.get('/letter/MyLetter/:id', controllerPost.output.showMyLetter);
@@ -93,13 +94,16 @@ router.get('/notice/delete/:noticeNo', controller.input.noticeDelete);
 router.patch('/notice/update/:noticeNo', controller.input.noticeUpdate);
 
 // 알림기능
-router.get('/notification/:letterNo', controllerNoti.output.showNoti);
+router.get(
+  '/user/myPage/notification/:letterNo',
+  controllerNoti.output.showNoti
+);
 router.delete(
-  '/notification/:letterNo/:postNo',
+  'user/myPage/notification/:letterNo/:postNo',
   controllerNoti.output.postNoti
 );
 router.delete(
-  '/notification/:letterNo/:postNo/delete',
+  'user/myPage/notification/:letterNo/:postNo/delete',
   controllerNoti.input.deleteNoti
 );
 
@@ -109,12 +113,16 @@ router.get('/letter/MyLetter/:letterNo', controllerPost.output.showMyLetter);
 // 글남기기
 // router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
 router.post(
-  '/MyLetter/:letterNo/contentWrite/Register',
+  '/letter/select/:id/postLetter',
   controllerPost.input.contentRegister
 );
+router.post('/letter/select/:id/icon', controllerPost.input.contentRegister);
 
 // 편지보기
 router.get('/letter/MyLetter/:letterNo', controllerPost.output.showPost);
+
+
+
 
 // 편지함 페이지 - 기능 부분
 router.delete(
@@ -128,10 +136,13 @@ router.patch(
 
 // 친구기능
 // router.get('/friend/:id', controllerFriend.output.showFriend);
-router.get('/MyLetter/:letterNo/reqFriend', controllerFriend.input.reqFriend);
+
+router.post('/MyLetter/:id/reqFriend', controllerFriend.input.reqFriend);
+
 router.get('/showRequest/:id', controllerFriend.output.showRequest);
 router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
 router.delete('/showRequest/:id/reject', controllerFriend.input.rejectRequest);
-router.delete('/friend/:id/delete', controllerFriend.input.delFriend);
+router.delete('/friend/delete', controllerFriend.input.delFriend);
+router.delete('/reqFriend/cancel', controllerFriend.input.reqFriendCancel);
 
 module.exports = router;

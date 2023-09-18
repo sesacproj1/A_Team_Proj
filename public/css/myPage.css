@@ -12,7 +12,10 @@
   font-family: 'pixel2';
   src: url('../font/PF스타더스트\ Bold.ttf') format('truetype');
 }
-
+.friendsBox1 a {
+  text-decoration-line: none;
+  color: black;
+}
 #profile1 {
   display: flex;
   justify-content: center;
@@ -25,8 +28,8 @@
 #profile2 {
   border: 1px solid black;
   background: white;
-  width: 90px;
-  height: 90px;
+  width: 13vh;
+  height: 13vh;
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
@@ -37,7 +40,7 @@
   background: #bdbdbd;
   border-bottom: 2px solid black;
   text-align: center;
-  font-size: 30px;
+  font-size: 3vh;
 }
 
 #retroBox2 {
@@ -73,30 +76,30 @@
 }
 
 #friends > div > p {
-  font-size: 19px;
+  font-size: 3vh;
 }
 
 .friendsBox1 {
-  font-size: 22px;
+  font-size: 2.5vh;
   font-weight: 700;
   text-align: center;
 }
 
 #userId {
-  font-size: 27px;
+  font-size: 3vh;
   font-weight: 700;
   margin-bottom: 0;
   margin-left: 2vw;
 }
 
 #email {
-  font-size: 25px;
+  font-size: 3vh;
   margin-bottom: 0;
   margin-left: 2vw;
 }
 
 #nickname {
-  font-size: 25px;
+  font-size: 3vh;
   margin-bottom: 0;
   margin-left: 2vw;
 }
@@ -114,7 +117,7 @@
 input {
   width: 50%;
   height: 50px;
-  font-size: 30px;
+  font-size: 2vh;
   border: 1px solid black;
   background: #c0bfc0;
   text-align: center;
@@ -129,8 +132,8 @@ button {
   float: center;
 }
 
-
-.contentBox1 , .contentBox2 {
+.contentBox1,
+.contentBox2 {
   border-top: 1px solid #e6e6e6;
 }
 

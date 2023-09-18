@@ -1,8 +1,8 @@
 // 로딩 화면 1초간 지속
-const loading = document.querySelector('.loading');
-setTimeout(() => {
-  loading.style.display = 'none';
-}, 0);
+// const loading = document.querySelector('.loading');
+// window.addEventListener('load', () => {
+//   loading.style.display = 'none';
+// });
 
 // three.js 처리
 import * as THREE from 'three';
@@ -13,6 +13,7 @@ import {
   CSS2DRenderer,
   CSS2DObject,
 } from 'three/addons/renderers/CSS2DRenderer.js';
+import { escape } from 'mysql2';
 
 /* Basic Setting*/
 var myRenderer;
@@ -37,16 +38,16 @@ myCamera.up.set(0, 1, -10);
 myCamera.lookAt(0, 0, 0);
 //*scene setting
 myScene = new THREE.Scene();
-myLight1 = new THREE.DirectionalLight(0xffffff, 0.9);
+myLight1 = new THREE.DirectionalLight(0xffffff, 1.3);
 myLight1.position.set(0, 20, 30);
 myScene.add(myLight1);
 
-myLight2 = new THREE.AmbientLight(0xffffff, 0.9);
+myLight2 = new THREE.AmbientLight(0xffffff, 1.3);
 myLight2.position.set(0, 20, -10);
 myScene.add(myLight2);
 myScene.add(myCamera);
 
-myScene.background = new THREE.Color('#F266AB');
+myScene.background = new THREE.Color('#FF52A2');
 
 /*Obj load */
 const ctrl = new OrbitControls(myCamera, myRenderer.domElement);
@@ -54,51 +55,36 @@ ctrl.update();
 
 /*Mtl Load */
 const mtlLoader = new MTLLoader();
-mtlLoader.load('/obj/ufo.mtl', function (materials) {
+mtlLoader.load('/obj/earth.mtl', function (materials) {
   materials.preload();
   objLoader(materials);
 });
 
-let ufo = new THREE.Mesh();
-ufo = new THREE.Mesh();
+let earth = new THREE.Mesh();
+earth = new THREE.Mesh();
 
 function objLoader(materials) {
   objLoader = new OBJLoader();
   objLoader.setMaterials(materials);
-  // objLoader.setPath('./obj/');
 
-  objLoader.load('/obj/ufo.obj', function (loadedUfo) {
-    ufo = loadedUfo; //대입 추가
+  objLoader.load('/obj/earth.obj', function (loadedEarth) {
+    earth = loadedEarth; //대입 추가
 
-    ufo.position.set(0, -0.5, 0);
-    myScene.add(ufo);
+    earth.position.set(0, 10, 0);
+    myScene.add(earth);
   });
 }
 
-// 글자
-// const labelRenderer = new CSS2DRenderer();
-// labelRenderer.setSize(rd_w, rd_h);
-// labelRenderer.domElement.style.position = 'absolute';
-// labelRenderer.domElement.style.top = '0px';
-// labelRenderer.domElement.style.pointEvents = 'none';
-// document.body.appendChild(labelRenderer.domElement);
-
-// const h = document.createElement('h1');
-// const hPointLabel = new CSS2DObject(h);
-// hPointLabel.position.set(0, 2, 10);
-// h.textContent = '로딩중...';
-// h.style.color = '#eee';
-// myScene.add(hPointLabel);
-
 // 함수 동작 관련
 function animate() {
-  let ufoDirection = 1;
-  ufo.scale.x = ufoDirection * 3;
-  ufo.scale.y = ufoDirection * 3;
-  ufo.scale.z = ufoDirection * 3;
-  ufo.rotation.y += 0.1;
-  ufo.position.x = 0;
-  ufo.position.y = 0;
+  let earthDirection = 1;
+  earth.scale.x = earthDirection * 3;
+  earth.scale.y = earthDirection * 3;
+  earth.scale.z = earthDirection * 3;
+  earth.rotation.z = 0.5;
+  earth.rotation.y += 0.07;
+  earth.position.x = 0;
+  earth.position.y = 0;
 
   requestAnimationFrame(animate);
   ctrl.update();

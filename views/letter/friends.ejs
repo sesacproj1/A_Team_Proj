@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>친구목록</title>
     <link rel="stylesheet" href="/css/friends.css" />
+    <script defer src="/js/friend/friendlist.js"></script>
     <%- include('../header')%>
   </head>
+  <style>
+    #meid {
+      display:none;
+    }
+    #meuserId {
+      display:none;
+    }
+</style>
+<input type="text" id="meid" value="<%= lord.id%>">
+<input type="text" id="meuserId" value="<%= lord.userId%>">
   <body>
     <div>
       <div class="friendsList">
@@ -27,6 +38,13 @@
             /></a>
           </div>
           <p class="nicknames"><%= profile.userId %></p>
+          <!-- 내 편지함일 때만 버튼 추가하기 -->
+          <% if(session.userId === lord.userId){%>
+            <button type="button" class="btnDelete" onclick="deleted(this)" value="<%= profile.userId%>">
+              삭제
+            </button>
+            <%}%>
+         
         </div>
         <% } else { %>
         <div class="col-md-4 col-6">
@@ -39,7 +57,14 @@
             /></a>
           </div>
           <p class="nicknames"><%= profile.userId %></p>
+<!-- 내 편지함일 때만 버튼 추가하기 -->
+          <% if(session.userId === lord.userId){%>
+            <button type="button" class="btnDelete" onclick="deleted(this)" value="<%= profile.userId%>">
+            삭제
+          </button>
+          <%}%>
         </div>
+      
         <% } %> <% }); %>
 
   </body>

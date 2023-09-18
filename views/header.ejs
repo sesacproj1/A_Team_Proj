@@ -34,30 +34,30 @@
       <div id="navbar">
         <div>
           <img src="/img/추석3.png" alt="" width="40" height="40" />
-          <span id="programName">송편지.exe</span>
+          <span id="programName"><a href="/">송편지.exe</a></span>
         </div>
         <div id="clickbar">
-          <div class="bar">
-            <img src="/img/header/window-minimize_2.png" alt="" height="85%" />
+
+          <div class="bar"  data-bs-toggle="modal"
+          data-bs-target="#easterEgg">
+            <img src="/img/header/window-minimize_2.png" alt="" style="height: 2.5vh;" />
           </div>
-          <div class="bar">
-            <img src="/img/header/window-maximize_2.png" alt="" height="85%" />
+          <div class="bar" data-bs-toggle="modal"
+          data-bs-target="#easterEgg">
+            <img src="/img/header/window-maximize_2.png" alt="" style="height: 2.5vh;" />
           </div>
-          <div class="bar">
-            <img src="/img/header/close.png" alt="" height="85%" />
+          <div class="bar" data-bs-toggle="modal"
+          data-bs-target="#easterEgg">
+            <img src="/img/header/close.png" alt="" style="height: 2.5vh;" />
           </div>
         </div>
       </div>
       <div id="navbar2">
-        <div id="home">
-          <a href="/"><span style="text-decoration: underline">홈</span></a>
-        </div>
         <%if(typeof session !== 'undefined'){%>
         <div id="myLetterBox">
-          <a href="#"
-            ><span style="text-decoration: underline">내</span
-            ><span>편지</span></a
-          >
+          <a href="/letter/myletter/<%=session.id%>"
+            ><span style="text-decoration: underline">내</span><span>편지</span>
+          </a>
         </div>
         <%}%>
         <div id="noticeBox">
@@ -68,13 +68,10 @@
         </div>
         <%if(typeof session!== 'undefined'){%>
         <div id="myPageBox">
-
-        
           <a href="/user/myPage"
             ><span style="text-decoration: underline">마</span
             ><span>이페이지</span></a
           >
-
         </div>
         <%}%> <%if(typeof session === 'undefined'){%>
         <div id="loginBox">
@@ -91,6 +88,42 @@
           >
         </div>
         <%}%>
+      </div>
+    </div>
+
+    <!-- modal -->
+    <!-- modal -->
+    <!-- 모달 -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="easterEgg"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content1">
+          <div class="modal-header1">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body1">
+            <div>
+              <div>송편지</div>
+              <div>버전 : 0.1v</div>
+              <div>프런트 : 강혜빈, 이동규</div>
+              <div>백엔드 : 최태영, 홍민영</div>
+              <div>송편지를 이용해주신 여러분 감사합니다!!</div>
+              <div>모두들 건강하시고, 즐거운 일만 가득하세요!!</div>
+              <div>항상 도움을 주시는 새싹, 코딩온 여러분 감사합니다</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>

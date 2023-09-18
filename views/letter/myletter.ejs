@@ -6,10 +6,15 @@
     <title>내 편지함</title>
     <%- include('../header')%>
     <link rel="stylesheet" href="/css/myletter.css" />
+    
   </head>
+  <style>
+      #lordid {
+            display: none;
+        }
+  </style>
   <body>
-   
-    <div class="container-fluid row">
+    <div class="row">
       <div class="titleDiv col-md-2">
 
         <h1><%= lord.nickname %>님의<br />편지함</h1>
@@ -19,16 +24,16 @@
       <div class="letterDiv col-md-8">
         <div class="imgDiv">
           <img src="/img/background/moon.png" alt="" id="moon" />
-          <!-- 편지 -->
-          <% for (let i=1; i<=5; i++ ){ %>
+          <!-- 편지 : 페이징 시 data.length로 바꾸기 -->
+          <% for (let i=1; i<=nickname.length; i++ ){ %>
           <div
             class="letters"
             id="letter<%= i %>"
             data-bs-toggle="modal"
             data-bs-target="#letterModal"
           >
-            <img src="/img/letterIcons/px_apple.png" alt="" id="moon" />
-            <p id="writerNickname<%=i%>">짱구가</p>
+            <img src="/img/letterIcons/px_apple.png" alt="" class="letterImg" id="letterImg<%=i%>" />
+            <p class="letterP" id="letterP<%=i%>"><%=nickname[i]%></p>
           </div>
           <% } %>
           <!-- 편지 모달 -->
@@ -40,6 +45,7 @@
             tabindex="-1"
             aria-labelledby="letterModalLabel"
             aria-hidden="true"
+            onclick="showPost('<%= id%>')"
           >
             <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -76,6 +82,14 @@
                 </form>
               </div>
               <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btnDelete"
+                  data-bs-dismiss="modal"
+                >
+                  삭제
+                </button> 
+
                 <button type="button" class="btn btnLike">
                   <img src="/img/header/heart1.png" alt="" id="likeHeart" />
                   <div class="likesNum">
@@ -112,7 +126,11 @@
       <div class="myPageDiv">
         <a href="/user/myPage">
           <button id="btnMypage">
-            <img src="/img/header/user.png" alt="" id="imgMypage" />
+            <%if (profile.profileLocation !== undefined){%>
+            <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+            <%}else{%>
+              <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+            <%}%>
           </button>
           <p>마이페이지</p>
         </a>
@@ -120,7 +138,7 @@
 
       <div class="friendConfirmDiv">
         <a href="/letter/friendConfirm">
-          <button id="btnFriendConfirm">
+          <button id="btnFriendConfirm" >
             <img src="/img/header/ring.png" alt="" id="imgFriendConfirm" />
           </button>
           <p>친구 신청</p>
@@ -133,7 +151,7 @@
           <button id="btnFriends">
             <img src="/img/header/friends.png" alt="" id="imgFriends" />
           </button>
-          <p>친구 목록</p>
+            <p>친구 목록</p>
         </a>
       </div>
       <% } %>
@@ -142,31 +160,34 @@
       <% if(isLogin && ! isMine ) { %>
       <div class="profilePicDiv">
         <button id="btnProfilePic" disabled>
-          <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
-
+          <%if (profile.profileLocation !== undefined){%>
+            <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+            <%}else{%>
+              <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+            <%}%>
         </button>
-        <!-- <p id="nickname">해순</p> -->
       </div>
 
       <div class="friendsDiv">
-        <a href="/letter/friends">
-          <button id="btnFriends">
-            <img src="/img/header/friends.png" alt="" id="imgFriends" />
+        <a href="/letter/friends/<%=lord.id%>">
+          <button id="btnFriends" >
+            <img src="/img/header/friends.png" alt="" id="imgFriends"  />
           </button>
-          <p>친구 목록</p>
-        </a>
+            <p>친구 목록</p>
+        
       </div>
 
       <div class="addFriendDiv">
         <button id="btnAddFriend">
           <img src="/img/header/add.png" alt="" id="imgAddFriend" />
         </button>
+        <input type="text" id="lordid" value="<%= lord.id%>">
         <p>친구 신청</p>
       </div>
 
       <div class="writeLetterDiv">
-        <a href="#"> 
-          <!-- 편지 작성 페이지 추가 -->
+
+        <a href="/letter/select/<%=lord.id%>"> 
           <button id="btnWriteLetter">
             <img src="/img/header/pen.png" alt="" id="imgWriteLetter" />
           </button>
@@ -179,20 +200,26 @@
       <% if (!isLogin && !isMine) { %>
         <div class="profilePicDiv">
           <button id="btnProfilePic" disabled>
-            <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+            <%if (profile.profileLocation !== undefined){%>
+              <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+              <%}else{%>
+                <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+              <%}%>
           </button>
           <!-- <p id="nickname">해순</p> -->
         </div>
   
         <div class="writeLetterDiv">
-          <a href="#"> 
-            <!-- 편지 작성 페이지 추가 -->
+
+          <a href="/letter/select/<%=lord.id%>"> 
+
             <button id="btnWriteLetter">
               <img src="/img/header/pen.png" alt="" id="imgWriteLetter" />
             </button>
             <p>편지 쓰기</p>
           </a>
         </div>
+  
         
       <% } %>
       
