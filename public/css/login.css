@@ -165,7 +165,7 @@
   height: 50px;
   border: 2px solid black;
   margin-top: 15px; 
-  display: none;
+ 
 }
 
 #registerBox > a {
@@ -175,8 +175,3 @@
   margin-left: 3px;
 }
 
-@media (max-width: 550px) {
-  #registerBox {
-    display:block;
-  }
-}
