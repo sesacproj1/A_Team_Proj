@@ -31,9 +31,12 @@
             id="letter<%= i %>"
             data-bs-toggle="modal"
             data-bs-target="#letterModal"
+            onclick="showPost('<%= id %>')"
           >
             <img src="/img/letterIcons/px_apple.png" alt="" class="letterImg" id="letterImg<%=i%>" />
             <p class="letterP" id="letterP<%=i%>"><%=nickname[i]%></p>
+            <input type="hidden" value="<%= postNo[i]%>" id="postNo">
+            
           </div>
           <% } %>
           <!-- 편지 모달 -->
@@ -45,7 +48,7 @@
             tabindex="-1"
             aria-labelledby="letterModalLabel"
             aria-hidden="true"
-            onclick="showPost('<%= id%>')"
+            
           >
             <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -90,7 +93,7 @@
                   삭제
                 </button> 
 
-                <button type="button" class="btn btnLike">
+                <button type="button" class="btn btnLike" onclick="updateLikes('<%= id%>')">
                   <img src="/img/header/heart1.png" alt="" id="likeHeart" />
                   <div class="likesNum">
                   44
