@@ -24,7 +24,7 @@ let curPage = 1;
 //     try {
 //       axios({
 //         method: 'GET',
-//         url: `/letter/myletter/${id}?page=${curPage}`,
+//         url: `/letter/myletter/${id}/prevPage?page=${curPage}`,
 //       }).then((res) => {
 //         curPage--;
 //         const data = res.data.data;
@@ -65,7 +65,7 @@ let curPage = 1;
 //   try {
 //     axios({
 //       method: 'GET',
-//       url: `/letter/myletter?page=${curPage}`,
+//         url: `/letter/myletter/${id}/nextPage?page=${curPage}`,
 //     }).then((res) => {
 //       const data = res.data.data;
 //       console.log(data); //undefined

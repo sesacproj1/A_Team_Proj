@@ -23,7 +23,7 @@ const output = {
       where: { id: req.params.id },
     });
 
-    console.log(profile);
+    console.log('profile은', profile);
     req.session.profile = profile;
     const lord = userData.map((user) => user.dataValues);
     console.log('lord는', lord);
@@ -78,7 +78,7 @@ const output = {
       where: { letterNo: letterNo, postNo: postNo },
       attributes: ['likesNum'],
     });
-    console.log(showPost.postContent);
+    console.log('showPost.postContent ', showPost.postContent);
     console.log(showLikes.likesNum);
     res.send({
       postContent: showPost.postContent,
