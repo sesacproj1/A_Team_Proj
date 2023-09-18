@@ -2,7 +2,6 @@
 // 페이징 : 편지 작성 테이블에서 가져오기
 // - 1) 각자 다른 이미지 path 가져오기
 // - 2) 각자 다른 이름 가져오기
-// - 3) 각자 다른 내용 가져오기
 
 const moon = document.querySelector('#moon'); //배경 달
 // console.log('moon', moon.width);
@@ -103,7 +102,7 @@ let curPage = 1;
 //   }
 // }
 
-// 2. 편지 보여주기
+// 2. 편지 보여주기 - 각자 다른 내용 가져오기
 const letterModal = document.getElementById('letterModal');
 
 letterModal.addEventListener('show.bs.modal', (event) => {
