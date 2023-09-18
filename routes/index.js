@@ -119,19 +119,26 @@ router.post(
 router.post('/letter/select/:id/icon', controllerPost.input.contentRegister);
 
 // 편지보기
+router.get('/letter/MyLetter/:letterNo', controllerPost.output.showPost);
 
-router.get('/MyLetter/:letterNo/:postNo', controllerPost.output.showPost);
+
+
 
 // 편지함 페이지 - 기능 부분
 router.delete(
   '/MyLetter/:letterNo/:postNo/delete',
   controllerPost.input.contentDelete
 );
-router.patch('/MyLetter/:letterNo/:postNo', controllerPost.input.updateLikes);
+router.patch(
+  '/letter/MyLetter/:letterNo/:postNo',
+  controllerPost.input.updateLikes
+);
 
 // 친구기능
 // router.get('/friend/:id', controllerFriend.output.showFriend);
+
 router.post('/MyLetter/:id/reqFriend', controllerFriend.input.reqFriend);
+
 router.get('/showRequest/:id', controllerFriend.output.showRequest);
 router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
 router.delete('/showRequest/:id/reject', controllerFriend.input.rejectRequest);

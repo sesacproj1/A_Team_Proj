@@ -131,6 +131,7 @@ function showPost(letterNo) {
 }
 
 // 3. 좋아요 처리
+
 const btnLike = document.querySelector('.btnLike');
 const likeHeart = document.querySelector('#likeHeart');
 const likesNum = document.querySelector('.likesNum');
@@ -140,9 +141,10 @@ btnLike.addEventListener('click', updateLikes);
 function updateLikes() {
   // likeHeart.src = '/img/header/heart2.png';
   const likesNum2 = parseInt(likesNum.innerText);
+  console.log(likesNum2);
   axios({
     method: 'patch',
-    url: `/MyLetter/${letterNo}}/${postNo}`, //letterNo is not defined
+    url: `/letter/MyLetter/13/1`, //letterNo is not defined
     data: {
       number: likesNum2 + 1,
     },
