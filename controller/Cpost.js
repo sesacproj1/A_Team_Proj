@@ -23,6 +23,14 @@ const output = {
       where: { id: req.params.id },
     });
 
+    const postData = await Post.findAll({
+      where: { id: req.params.id },
+      attributes: ['postNickname'],
+    });
+
+    const nickname = postData.map((nick) => nick.postNickname);
+    console.log('닉네임은', nickname);
+
     console.log('profile은', profile);
     req.session.profile = profile;
     const lord = userData.map((user) => user.dataValues);
@@ -41,6 +49,8 @@ const output = {
           session: userInfo,
           isLogin: true,
           isMine: true,
+          id: req.params.id,
+          nickname: nickname,
         });
       } else {
         // 아니면 yourLetter
@@ -52,6 +62,8 @@ const output = {
           session: userInfo,
           isLogin: true,
           isMine: false,
+          id: req.params.id,
+          nickname: nickname,
         });
       }
     } else {
@@ -63,6 +75,8 @@ const output = {
         lord: lord[0],
         isLogin: false,
         isMine: false,
+        id: req.params.id,
+        nickname: nickname,
       });
     }
   },
