@@ -211,10 +211,10 @@
 #letterModal {
   color: #37e2d5;
 }
-.modal-content {
+/* .modal-content {
   /* background-color: #337ccf; */
-  /* background-image: url('../img/background/letterBg.png'); */
-}
+  /* background-image: url('../img/background/letterBg.png'); 
+} */
 .modal-footer {
   position: relative;
   display: flex;
