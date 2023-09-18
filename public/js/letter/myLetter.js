@@ -107,24 +107,20 @@ let curPage = 1;
 // 2. 편지 보여주기 - 각자 다른 내용 가져오기
 const letterModal = document.getElementById('letterModal');
 
-letterModal.addEventListener('show.bs.modal', (event) => {
-  // Button that triggered the modal
-  const button = event.relatedTarget;
-  // Update the modal's content.
+const modalBodyInput = letterModal.querySelector('.modal-body input');
+const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 
-  const modalBodyInput = letterModal.querySelector('.modal-body input');
-  const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
-
+function showPost(letterNo) {
   try {
     axios({
       method: 'get',
-      url: `/letter/MyLetter/${letterNo}/${postNo}`,
+      url: `/letter/MyLetter/${letterNo}`,
       params: {
         letterNo: letterNo,
         postNo: postNo,
       },
     }).then((res) => {
-      const { postContent, postNickname, postIp, likesNo } = res.data;
+      const { postContent, postNickname, likesNo } = res.data;
       modalBodyInput.value = postNickname;
       modalBodyTextarea.value = postContent;
       likesNum.value = likesNo;
@@ -132,9 +128,7 @@ letterModal.addEventListener('show.bs.modal', (event) => {
   } catch (err) {
     console.log('Err', err);
   }
-
-  //   modalBodyInput.value = recipient; 데이터 가져오기
-});
+}
 
 // 3. 좋아요 처리
 const btnLike = document.querySelector('.btnLike');

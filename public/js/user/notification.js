@@ -2,10 +2,9 @@ const form = document.forms['alarmForm'];
 const postAlarm = form.querySelector('.contentBox1');
 const friendAlarm = form.querySelector('.contentBox2');
 
-const notiModal = document.getElementById('exampleModal');
 const alarmDel = document.getElementById('alarmBtn');
 
-notiModal.addEventListener('click', (event) => {
+function notiModal(letterNo) {
   axios({
     method: 'get',
     url: `/user/myPage/notification/${letterNo}`,
@@ -26,12 +25,12 @@ notiModal.addEventListener('click', (event) => {
       friendAlarm.style.display = 'block';
     }
   });
-});
+}
 
 function goPost(postNo) {
   axios({
     method: 'delete',
-    url: `/user/myPage/notification/${letterNo}/${postNo}`,
+    url: `/user/myPage/notification/${postNo}`,
     params: {
       letterNo: letterNo,
       postNo: postNo,
