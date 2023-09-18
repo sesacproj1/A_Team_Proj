@@ -293,8 +293,9 @@
     color: #eee;
   }
   #imgMypage {
-    width: 30px;
-    height: 25px;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
   }
   #imgFriendConfirm {
     width: 35px;
@@ -317,14 +318,14 @@
     height: 30px;
   }
   #btnProfilePic {
-    width: 40px;
-    height: 40px;
+    width: 9vh;
+    height: 9vh;
     margin-bottom: 15%;
     box-shadow: none;
   }
   .menuDiv button {
-    width: 40px;
-    height: 40px;
+    width: 9vh;
+    height: 9vh;
     border: none;
     border-radius: 50%;
     background-color: #37e2d5;
@@ -347,8 +348,9 @@
     color: #eee;
   }
   #imgMypage {
-    width: 40px;
-    height: 35px;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
   }
   #imgFriendConfirm {
     width: 50px;
@@ -372,14 +374,14 @@
     height: 40px;
   }
   #btnProfilePic {
-    width: 55px;
-    height: 55px;
+    width: 9vh;
+    height: 9vh;
     margin-bottom: 15%;
     box-shadow: none;
   }
   .menuDiv button {
-    width: 50px;
-    height: 50px;
+    width: 9vh;
+    height: 9vh;
     border: none;
     border-radius: 50%;
     background-color: #37e2d5;
