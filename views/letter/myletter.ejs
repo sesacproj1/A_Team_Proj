@@ -25,7 +25,7 @@
         <div class="imgDiv">
           <img src="/img/background/moon.png" alt="" id="moon" />
           <!-- 편지 : 페이징 시 data.length로 바꾸기 -->
-          <% for (let i=1; i<=5; i++ ){ %>
+          <% for (let i=1; i<=nickname.length; i++ ){ %>
           <div
             class="letters"
             id="letter<%= i %>"
@@ -33,7 +33,7 @@
             data-bs-target="#letterModal"
           >
             <img src="/img/letterIcons/px_apple.png" alt="" class="letterImg" id="letterImg<%=i%>" />
-            <p class="letterP" id="letterP<%=i%>"><%=nickname%></p>
+            <p class="letterP" id="letterP<%=i%>"><%=nickname[i]%></p>
           </div>
           <% } %>
           <!-- 편지 모달 -->
