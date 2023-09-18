@@ -82,6 +82,7 @@ router.get('/letter/friends/:id', controllerLetter.output.friends);
 
 router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
 // router.get('/letter/myLetter', controllerLetter.output.myLetter);
+
 router.get('/letter/select/:id', controllerLetter.output.icon);
 
 // 편지함 페이지 출력
@@ -119,7 +120,6 @@ router.post(
 // 편지보기
 
 router.get('/MyLetter/:letterNo/:postNo', controllerPost.output.showPost);
-
 
 // 편지함 페이지 - 기능 부분
 router.delete(

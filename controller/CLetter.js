@@ -92,10 +92,6 @@ const output = {
       data : result, 
   });
   },
-
-  yourLetter: (req, res) => {
-    res.render('letter/yourLetter', { session: req.session.userInfo });
-  },
 };
 
 const input = {};
