@@ -8,14 +8,14 @@ function notiModal(letterNo) {
   axios({
     method: 'get',
     url: `/user/myPage/notification/${letterNo}`,
-    params: {
-      letterNo: letterNo,
-    },
   }).then((res) => {
     const { sender, postNo, postTime, isFriend } = res.data;
-
+    console.log(sender);
+    console.log(postNo);
     const newPost = `
-    <div onclick="goPost(${postNo})"> ${sender} 님이 ${postTime}에 송편을 남겼습니다. </div>
+    
+    <div onclick="goPost(${postNo})"> ${sender} 님이 송편을 남겼습니다. </div>
+    <input type="hidden" value="<%= data.id%> id= "ID">
     `;
     postAlarm.insertAdjacentHTML('afterBegin', newPost);
 
@@ -28,16 +28,17 @@ function notiModal(letterNo) {
 }
 
 function goPost(postNo) {
+  const id = document.querySelector('#ID');
   axios({
     method: 'delete',
     url: `/user/myPage/notification/${postNo}`,
     params: {
-      letterNo: letterNo,
+      letterNo: id,
       postNo: postNo,
     },
   }).then((res) => {
     console.log(res.data);
-    document.location.href = `/letter/MyLetter/${letterNo}/${postNo}`;
+    document.location.href = `/letter/MyLetter/${id}/${postNo}`;
   });
 }
 

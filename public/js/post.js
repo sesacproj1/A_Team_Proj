@@ -2,7 +2,7 @@ const form = document.forms['postForm'];
 
 function postLetter(id) {
   console.log(id);
-  axios.get('https://api.ipify.org?format=json').then((ipResponse) => {
+  axios.get('https://jsonip.com').then((ipResponse) => {
     // IP 주소 값을 변수에 저장
     const userIpAddress = ipResponse.data.ip;
     console.log(userIpAddress);

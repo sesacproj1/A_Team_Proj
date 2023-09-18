@@ -6,6 +6,7 @@
     <title>마이페이지</title>
     <link rel="stylesheet" href="/css/myPage.css" />
     <script defer src="/js/user/myPage.js"></script>
+    <script defer src="/js/user/notification.js"></script>
     <%- include('../header')%>
   </head>
   <body>
@@ -87,6 +88,7 @@
               style="cursor: pointer"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
+              onclick="notiModal('<%=data.id%>')"
             >
               53
             </p>
@@ -163,7 +165,6 @@
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
-      onclick="notiModal('<%= data.id%>')"
     >
       <div class="modal-dialog">
         <div class="modal-content">
@@ -182,9 +183,11 @@
             <form name="alarmForm">
               <div class="container-fluid">
                 <div class="contentBox1">
+                  <% for (let i=1; i<= postNo.length; i++ ){ %>
                   <div>
-                    lobster님이 <%= data.id%>님에게 게시글을 남겼습니다.
+                    <!-- lobster님이 <%= data.userId%>님에게 게시글을 남겼습니다. -->
                   </div>
+                  <%}%>
                 </div>
                 <div class="contentBox2">
                   <div onclick="goFriendReq('<%= data.id%>')">

@@ -127,6 +127,14 @@ const output = {
       const profile = await Profile.findOne({
         where: { id: req.session.userInfo.id },
       });
+
+      const postData = await Post.findAll({
+        where: { id: req.session.userInfo.id },
+        attributes: ['postNo'],
+      });
+
+      const post = postData.map((data) => data.postNo);
+
       console.log('profile', profile);
       req.session.profile = profile;
       console.log('req.session.profile~~ ', req.session.profile);
@@ -136,6 +144,7 @@ const output = {
         data: user,
         isLogin: true,
         isProfile: true,
+        postNo: post,
       });
     } else {
       return res.render('user/login', {
