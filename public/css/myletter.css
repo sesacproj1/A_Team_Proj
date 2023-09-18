@@ -219,8 +219,9 @@
   position: relative;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
-.btnClose {
+.btnDelete {
   background-color: #37e2d5;
   color: #eee;
 }
@@ -228,6 +229,10 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+.btnClose {
+  background-color: #37e2d5;
+  color: #eee;
 }
 /* 이전/다음 페이지 버튼 */
 .btnDiv {
