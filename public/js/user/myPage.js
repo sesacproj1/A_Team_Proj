@@ -9,10 +9,11 @@ mail.addEventListener('click', () => {
   document.location.href = '/letter/myLetter';
 });
 
-friend.addEventListener('click', () => {
-  // document.location.href = '/letter/friends';
-  document.location.href = '/letter/friends/<%=data.id%>';
-});
+// friend.addEventListener('click', () => {
+//   // document.location.href = '/letter/friends';
+//   console.log(req.session.userInfo);
+//   document.location.href = '/letter/friends/' + `${data.id}`;
+// });
 
 // noti.addEventListener('click', () => {
 //   document.location.href = '/letter/myLetter';
