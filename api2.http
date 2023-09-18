@@ -1,4 +1,6 @@
 @server = http://localhost:8000
+@id=1
+
 ### 전체 회원 조회
 GET {{server}}/user
 
@@ -9,4 +11,4 @@ GET {{server}}/user
 # GET {{server}}/prevPage
 # GET {{server}}/nextPage
 // id 통한 한 명의 편지함 이동
-# GET {{server}}/newUrl
+# GET {{server}}/letter/myletter/{{id}}

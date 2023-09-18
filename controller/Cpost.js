@@ -13,14 +13,16 @@ const output = {
     // });
     // res.render('letter/myletter', { nickname: nickname });
     console.log('userInfo', userInfo);
-    const result2 = req.params.id; //n
-    console.log(result2);
+    const idParam = req.params.id; //n
+    console.log(idParam);
+
     const userData = await User.findAll({
       where: { id: req.params.id },
     });
     const profile = await Profile.findOne({
       where: { id: req.params.id },
     });
+
     console.log(profile);
     req.session.profile = profile;
     const lord = userData.map((user) => user.dataValues);
@@ -29,7 +31,7 @@ const output = {
 
     if (userInfo) {
       //로그인 했을 때
-      if (userInfo.id == result2) {
+      if (userInfo.id == idParam) {
         const isMine = true;
         console.log('isMine', isMine);
         // 둘이 같으면 myletter
@@ -67,7 +69,7 @@ const output = {
 
   showPost: async (req, res) => {
     const { letterNo, postNo } = req.params;
-
+    console.log('req.params ', req.params);
     const showPost = await Post.findOne({
       where: { letterNo: letterNo, postNo: postNo },
     });

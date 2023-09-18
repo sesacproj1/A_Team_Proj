@@ -1,4 +1,109 @@
-// 1. 편지 보여주기 & 편지함 주인 표시
+// 1. 편지 목록 보여주기
+// 페이징 : 편지 작성 테이블에서 가져오기
+// - 1) 각자 다른 이미지 path 가져오기
+// - 2) 각자 다른 이름 가져오기
+// - 3) 각자 다른 내용 가져오기
+
+const moon = document.querySelector('#moon'); //배경 달
+// console.log('moon', moon.width);
+const btnLeft = document.querySelector('#btnLeft');
+const btnRight = document.querySelector('#btnRight');
+const letterCnt = document.querySelectorAll('.letters').length;
+// console.log(letterCnt);
+
+// btnLeft.addEventListener('click', prevPage);
+// btnRight.addEventListener('click', nextPage);
+
+let curPage = 1;
+
+// function prevPage() {
+//   if (curPage > 1) {
+//     //현재 페이지가 1보다 큰 경우에만 이전 페이지로
+//     // 데이터 -5(편지 개수)
+//     const letterImg = document.querySelectorAll('.letterImg');
+//     const letterP = document.querySelectorAll('.letterP');
+//     try {
+//       axios({
+//         method: 'GET',
+//         url: `/letter/myletter/${id}?page=${curPage}`,
+//       }).then((res) => {
+//         curPage--;
+//         const data = res.data.data;
+//         const startIndex = (curPage - 1) * letterCnt; //0
+//         // console.log('start prev', startIndex); //0
+
+//         // step 1) 각자 다른 이미지 path 가져오기
+//         for (let i = 0; i < letterImg.length; i++) {
+//           const dataIndex = startIndex + i; //0~6
+
+//           if (data[dataIndex]) {
+//             // letterImg[i].src = `/letter/MyLetter/${data[dataIndex].}`;
+//             // img src 디자인 테이블 값으로
+//           } else {
+//             letterImg[i].src = '';
+//           }
+//         }
+
+//         // step 2) 각자 다른 이름 가져오기
+//         for (let i = 0; i < letterP.length; i++) {
+//           const dataIndex = startIndex + i; //0~6
+
+//           if (data[dataIndex]) {
+//             // letterP[i].innerText = data[dataIndex].postNickname;
+//           } else {
+//             letterP[i].innerText = '';
+//           }
+//         }
+//       });
+//     } catch (err) {
+//       console.log('Error', err);
+//     }
+//   }
+// }
+// function nextPage() {
+//   const letterImg = document.querySelectorAll('.letterImg');
+//   const letterP = document.querySelectorAll('.letterP');
+//   try {
+//     axios({
+//       method: 'GET',
+//       url: `/letter/myletter?page=${curPage}`,
+//     }).then((res) => {
+//       const data = res.data.data;
+//       console.log(data); //undefined
+
+//       const startIndex = curPage * letterCnt;
+//       // console.log('start prev', startIndex);
+
+//       // step 1) 각자 다른 이미지 path 가져오기
+//       for (let i = 0; i < letterImg.length; i++) {
+//         const dataIndex = startIndex + i; //0~6
+
+//         if (data[dataIndex]) {
+//           // letterImg[i].src = `/letter/MyLetter/${data[dataIndex].}`;
+//           // img src 디자인 테이블 값으로
+//         } else {
+//           letterImg[i].src = '';
+//         }
+//       }
+
+//       // step 2) 각자 다른 이름 가져오기
+//       for (let i = 0; i < letterP.length; i++) {
+//         const dataIndex = startIndex + i; //0~6
+
+//         if (data[dataIndex]) {
+//           letterP[i].innerText = data[dataIndex].postNickname;
+//         } else {
+//           letterP[i].innerText = '';
+//         }
+//       }
+//       curPage++;
+//     });
+//   } catch (err) {
+//     console.log('Error', err);
+//   }
+// }
+
+// 2. 편지 보여주기
 const letterModal = document.getElementById('letterModal');
 
 letterModal.addEventListener('show.bs.modal', (event) => {
@@ -12,7 +117,7 @@ letterModal.addEventListener('show.bs.modal', (event) => {
   try {
     axios({
       method: 'get',
-      url: `/MyLetter/${letterNo}/${postNo}`,
+      url: `/letter/MyLetter/${letterNo}/${postNo}`,
       params: {
         letterNo: letterNo,
         postNo: postNo,
@@ -30,7 +135,7 @@ letterModal.addEventListener('show.bs.modal', (event) => {
   //   modalBodyInput.value = recipient; 데이터 가져오기
 });
 
-// 2. 좋아요 처리
+// 3. 좋아요 처리
 const btnLike = document.querySelector('.btnLike');
 const likeHeart = document.querySelector('#likeHeart');
 const likesNum = document.querySelector('.likesNum');
@@ -52,10 +157,4 @@ function updateLikes() {
   });
 }
 
-// 3. 프로필 사진 값 가져와 src 변경 : 음....
-// 4. 친구 신청 날리기 : 음....
-// 5. 페이징 : 편지 작성 테이블에서 가져오기
-// - 편지 위치 배치
-// - 편지 추가하기 => 편지 개수만큼 for문 돌려 정해진 위치 배치
-// - 편지 있으면 추가하고 없애면 안 넣는거 어떻게 할까.... => div 안에 innerHTML로 이미지 넣자
-// - 위치를 css말고 여기서 html로 정해야하나
+// 4. 친구 신청 날리기 :

@@ -10,7 +10,8 @@ mail.addEventListener('click', () => {
 });
 
 friend.addEventListener('click', () => {
-  document.location.href = '/letter/friends';
+  // document.location.href = '/letter/friends';
+  document.location.href = '/letter/friends/<%=data.id%>';
 });
 
 // noti.addEventListener('click', () => {

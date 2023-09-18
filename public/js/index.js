@@ -1,5 +1,3 @@
-const myWidth = window.innerWidth;
-const myHeight = window.innerHeight;
 const starCnt = document.querySelectorAll('.star').length; //현재 화면 내 별 개수
 const btnLeft = document.querySelector('#btnLeft');
 const btnRight = document.querySelector('#btnRight');
@@ -24,37 +22,82 @@ for (let i = 1; i <= starCnt; i++) {
   const star = document.querySelector(`.star${i}`);
   const p = document.querySelector(`#p${i}`);
 
+  // 1.star position
   if (i % 2 == 0) {
     // 짝수 별이라면
-    if (myWidth <= 480) {
-      // 모바일용
-      star.style.top = myHeight / 4 + 'px';
-      star.style.left = ((1 * myWidth) / 11) * i + 'px';
+    if (window.innerWidth <= 480) {
+      // 모바일용 크기
+      star.style.top = window.innerHeight / 4 + 'px';
+      star.style.left = ((1 * window.innerWidth) / 11) * i + 'px';
     } else {
-      star.style.top = myHeight / 3 + 'px';
-      star.style.left = ((1 * myWidth) / 10) * i + 'px';
+      //pc용 크기
+      star.style.top = window.innerHeight / 3 + 'px';
+      star.style.left = ((1 * window.innerWidth) / 10) * i + 'px';
     }
   } else {
     //홀수 별이라면
-    if (myWidth <= 480) {
+    if (window.innerWidth <= 480) {
       // 모바일용 크기
-      star.style.top = myHeight / 20 + 'px';
-      star.style.left = (myWidth / 11) * i + 'px';
+      star.style.top = window.innerHeight / 20 + 'px';
+      star.style.left = (window.innerWidth / 11) * i + 'px';
     } else {
-      star.style.top = myHeight / 10 + 'px';
-      star.style.left = (myWidth / 10) * i + 'px';
+      //pc용 크기
+      star.style.top = window.innerHeight / 10 + 'px';
+      star.style.left = (window.innerWidth / 10) * i + 'px';
     }
-    // console.log('star.style.top', i, star.style.top);
-    // console.log(i, star.style.left);
   }
 
-  if (myWidth <= 480) {
+  // 2. star size
+  if (window.innerWidth <= 480) {
     // 모바일용 크기
-    star.style.width = myWidth / 8 + 'px';
-    star.style.height = myHeight / 10 + 'px';
+    star.style.width = window.innerWidth / 8 + 'px';
+    star.style.height = window.innerHeight / 10 + 'px';
   } else {
-    star.style.width = myWidth / 8 + 'px';
-    star.style.height = myHeight / 8 + 'px';
+    star.style.height = window.innerHeight / 8 + 'px';
+    star.style.width = window.innerWidth / 8 + 'px';
+  }
+}
+
+// resize event
+window.addEventListener('resize', resize);
+function resize() {
+  for (let i = 1; i <= starCnt; i++) {
+    const star = document.querySelector(`.star${i}`);
+    const p = document.querySelector(`#p${i}`);
+
+    // 1.star position
+    if (i % 2 == 0) {
+      // 짝수 별이라면
+      if (window.innerWidth <= 480) {
+        // 모바일용 크기
+        star.style.top = window.innerHeight / 4 + 'px';
+        star.style.left = ((1 * window.innerWidth) / 11) * i + 'px';
+      } else {
+        //pc용 크기
+        star.style.top = window.innerHeight / 3 + 'px';
+        star.style.left = ((1 * window.innerWidth) / 10) * i + 'px';
+      }
+    } else {
+      //홀수 별이라면
+      if (window.innerWidth <= 480) {
+        // 모바일용 크기
+        star.style.top = window.innerHeight / 20 + 'px';
+        star.style.left = (window.innerWidth / 11) * i + 'px';
+      } else {
+        //pc용 크기
+        star.style.top = window.innerHeight / 10 + 'px';
+        star.style.left = (window.innerWidth / 10) * i + 'px';
+      }
+    }
+    // 2. star size
+    if (window.innerWidth <= 480) {
+      // 모바일용 크기
+      star.style.width = window.innerWidth / 8 + 'px';
+      star.style.height = window.innerHeight / 10 + 'px';
+    } else {
+      star.style.height = window.innerHeight / 8 + 'px';
+      star.style.width = window.innerWidth / 8 + 'px';
+    }
   }
 }
 
