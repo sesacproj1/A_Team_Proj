@@ -1,30 +1,35 @@
 // 1. 편지 보여주기 & 편지함 주인 표시
 const letterModal = document.getElementById('letterModal');
+const letterNick = document.letterModal.addEventListener(
+  'shown.bs.modal',
+  function () {
+    // Button that triggered the modal
+    // const button = event.relatedTarget;
+    // Update the modal's content.
+    const modalBodyInput = letterModal.querySelector('.modal-body input');
+    const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 
-letterModal.addEventListener('show.bs.modal', function () {
-  // Button that triggered the modal
-  // const button = event.relatedTarget;
-  // Update the modal's content.
-  const modalBodyInput = letterModal.querySelector('.modal-body input');
-  const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
+    console.log(this.parentElement);
 
-  try {
-    axios({
-      method: 'post',
-      url: `/letter/MyLetter/13/1`,
-      data: {
-        postNickname: pEle.value,
-      },
-    }).then((res) => {
-      const { postContent, postNickname, postIp, likesNo } = res.data;
-      modalBodyInput.value = postNickname;
-      modalBodyTextarea.value = postContent;
-      likesNum.value = likesNo;
-    });
-  } catch (err) {
-    console.log('Err', err);
+    try {
+      axios({
+        method: 'post',
+        url: `/letter/MyLetter/postContent`,
+        // data: {
+        //   postNickname:
+        // },
+      }).then((res) => {
+        console.log(res.data);
+        const { postContent, postNickname, postIp, likesNo } = res.data;
+        modalBodyInput.value = postNickname;
+        modalBodyTextarea.value = postContent;
+        likesNum.value = likesNo;
+      });
+    } catch (err) {
+      console.log('Err', err);
+    }
   }
-});
+);
 
 // 2. 좋아요 처리
 const btnLike = document.querySelector('.btnLike');
