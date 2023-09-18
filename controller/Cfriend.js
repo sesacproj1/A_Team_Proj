@@ -4,28 +4,35 @@ const { User, Friend, toFriend, RequestList } = require('../models');
 
 const input = {
   reqFriend: async (req, res) => {
-    const toId = req.params.letterNo;
+    const id = req.body.id;
+    // const toId = req.params.letterNo;
     const userInfo = req.session.userInfo;
     const fromUserId = userInfo.userId;
+    console.log('fromUserId는~~~', fromUserId);
 
     const checkFriend = await toFriend.findOne({
-      where: { id: toId, toFriendUserId: fromUserId },
+      where: { id: id, toFriendUserId: fromUserId },
     });
 
     const checkRequest = await RequestList.findOne({
-      where: { id: toId, nickname: fromUserId },
+      where: { id: id, nickname: fromUserId },
     });
 
     if (!checkFriend && !checkRequest) {
       await RequestList.create({
-        id: toId,
+        id: id,
         nickname: fromUserId,
       });
-      res.send({ result: 'true' });
+      return res.send({ result: true, message: '친구신청이 완료되었습니다.' });
     } else if (checkFriend) {
-      res.send({ result: 'false', message: '이미 추가된 송편입니다.' });
+      console.log('checkFriend에서 걸림');
+      return res.send({ result: false, message: '이미 추가된 송편입니다.' });
     } else if (checkRequest) {
-      res.send({ result: 'false', message: '이미 송편 요청한 상태입니다.' });
+      console.log('checkRequest에서 걸림');
+      return res.send({
+        result: false,
+        message: '이미 송편 요청한 상태입니다.',
+      });
     }
   },
 
