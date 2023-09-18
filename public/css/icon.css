@@ -116,7 +116,7 @@
 
 .messageBox > p{
   color : white;
-  font-size: 30px;
+  font-size: 4vh;
   font-family: 'yeonsung';
 }
 
@@ -124,8 +124,8 @@
   border: 1px solid #9b7640;
   background: white;
   border-radius: 5px;
-  width: 100px;
-  height: 12vh;
+  width: 13vh;
+  height: 13vh;
 }
 
 .col-4 > div > img {
@@ -222,7 +222,7 @@
   width: 100%;
 }
 
-#messageBox {
+.messageBox {
   display: flex;
 }
 
