@@ -126,7 +126,11 @@
       <div class="myPageDiv">
         <a href="/user/myPage">
           <button id="btnMypage">
-            <img src="/img/header/user.png" alt="" id="imgMypage" />
+            <%if (profile.profileLocation !== undefined){%>
+            <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+            <%}else{%>
+              <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+            <%}%>
           </button>
           <p>마이페이지</p>
         </a>
@@ -156,21 +160,25 @@
       <% if(isLogin && ! isMine ) { %>
       <div class="profilePicDiv">
         <button id="btnProfilePic" disabled>
-          <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+          <%if (profile.profileLocation !== undefined){%>
+            <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+            <%}else{%>
+              <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+            <%}%>
         </button>
       </div>
 
       <div class="friendsDiv">
-        <!-- <a href="/letter/friends"> -->
+        <a href="/letter/friends/<%=lord.id%>">
           <button id="btnFriends" >
             <img src="/img/header/friends.png" alt="" id="imgFriends"  />
           </button>
             <p>친구 목록</p>
-        
+          </a>
       </div>
 
       <div class="addFriendDiv">
-        <button id="btnAddFriend" onclick="reqFriend()">
+        <button id="btnAddFriend">
           <img src="/img/header/add.png" alt="" id="imgAddFriend" />
         </button>
         <input type="text" id="lordid" value="<%= lord.id%>">
@@ -192,7 +200,11 @@
       <% if (!isLogin && !isMine) { %>
         <div class="profilePicDiv">
           <button id="btnProfilePic" disabled>
-            <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+            <%if (profile.profileLocation !== undefined){%>
+              <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+              <%}else{%>
+                <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+              <%}%>
           </button>
           <!-- <p id="nickname">해순</p> -->
         </div>

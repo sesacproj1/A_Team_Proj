@@ -26,14 +26,26 @@ const input = {
       return res.send({ result: true, message: '친구신청이 완료되었습니다.' });
     } else if (checkFriend) {
       console.log('checkFriend에서 걸림');
-      return res.send({ result: false, message: '이미 추가된 송편입니다.' });
+      return res.send({ result: false, message: '이미 추가된 친구입니다.' });
     } else if (checkRequest) {
       console.log('checkRequest에서 걸림');
       return res.send({
         result: false,
-        message: '이미 송편 요청한 상태입니다.',
+        message: '이미 친구신청한 상태입니다.',
       });
     }
+  },
+  reqFriendCancel: async (req, res) => {
+    const id = req.body.id; //주인
+    const userInfo = req.session.userInfo;
+    const fromUserId = userInfo.userId;
+
+    await RequestList.destroy({
+      where: { id: id, nickname: fromUserId },
+    });
+    return res.send({
+      message: '친구신청이 취소되었습니다.',
+    });
   },
 
   delFriend: async (req, res) => {
