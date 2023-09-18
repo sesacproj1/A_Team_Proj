@@ -35,6 +35,18 @@ const input = {
       });
     }
   },
+  reqFriendCancel: async (req, res) => {
+    const id = req.body.id; //주인
+    const userInfo = req.session.userInfo;
+    const fromUserId = userInfo.userId;
+
+    await RequestList.destroy({
+      where: { id: id, nickname: fromUserId },
+    });
+    return res.send({
+      message: '친구신청이 취소되었습니다.',
+    });
+  },
 
   delFriend: async (req, res) => {
     await Friend.destroy({
