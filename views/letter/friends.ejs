@@ -27,6 +27,7 @@
             /></a>
           </div>
           <p class="nicknames"><%= profile.userId %></p>
+         
         </div>
         <% } else { %>
         <div class="col-md-4 col-6">
@@ -39,6 +40,9 @@
             /></a>
           </div>
           <p class="nicknames"><%= profile.userId %></p>
+          <button type="button" class="btnDelete">
+            삭제
+          </button>
         </div>
         <% } %> <% }); %>
 
