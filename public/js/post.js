@@ -19,6 +19,7 @@ function postLetter(id) {
       alert('글이 작성되었습니다.');
       document.location.href = `/`;
     });
+
   });
 }
 
@@ -31,6 +32,9 @@ function contentDelete() {
       postNo: postNo,
     },
   }).then(() => {
-    (form.postContent.value = ''), (form.postNickname.value = '');
+
+    form.postContent.value = '';
+    form.postNickname.value = '';
+
   });
 }

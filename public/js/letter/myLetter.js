@@ -130,6 +130,7 @@ function showPost(id) {
 }
 
 // 3. 좋아요 처리
+
 const btnLike = document.querySelector('.btnLike');
 const likeHeart = document.querySelector('#likeHeart');
 const likesNum = document.querySelector('.likesNum');
@@ -137,12 +138,14 @@ const likesNum = document.querySelector('.likesNum');
 function updateLikes(id) {
   // likeHeart.src = '/img/header/heart2.png';
   const likesNum2 = parseInt(likesNum.innerText);
+
   const postNo = document.querySelector('#postNo').value;
   console.log('포스트넘버', postNo);
 
   axios({
     method: 'patch',
     url: `/letter/MyLetter/${id}/${postNo}`,
+
     data: {
       number: likesNum2 + 1,
     },
