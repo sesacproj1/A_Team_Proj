@@ -49,14 +49,29 @@ const input = {
   },
 
   delFriend: async (req, res) => {
-    await Friend.destroy({
-      where: { id: req.params.id },
+    const friend = await User.findOne({
+      where: { userId: req.body.id },
     });
-    await toFriend.destroy({
-      where: { id: req.params.id },
-    });
-
-    res.send('true');
+    console.log(friend.id); //3
+    console.log(req.body.id); //hb1234
+    console.log(req.body.meuserId); //alsdud1240
+    console.log(req.body.meid); //3
+    //3,hb1234 -> 이건 왜 삭제 안되지
+    //1,alsdud1240
+    try {
+      await Promise.all([
+        Friend.destroy({
+          where: { id: friend.id, friendUserId: req.body.meuserId },
+        }),
+        Friend.destroy({
+          where: { id: req.body.meid, friendUserId: req.body.id },
+        }),
+      ]);
+      console.log('친구 삭제 완료');
+      res.send({ message: '친구삭제가 완료되었습니다.' });
+    } catch (error) {
+      console.error('친구 삭제 중 오류 발생:', error);
+    }
   },
 
   rejectRequest: async (req, res) => {
