@@ -82,7 +82,7 @@ router.get('/letter/friends/:id', controllerLetter.output.friends);
 
 router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
 // router.get('/letter/myLetter', controllerLetter.output.myLetter);
-router.get('/letter/icon', controllerLetter.output.icon);
+router.get('/letter/select', controllerLetter.output.icon);
 
 // 편지함 페이지 출력
 router.get('/letter/MyLetter/:id', controllerPost.output.showMyLetter);
