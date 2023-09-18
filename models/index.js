@@ -23,6 +23,7 @@ const Notification = require('./Notification')(sequelize, Sequelize);
 const Notice = require('./Notice')(sequelize, Sequelize);
 const toFriend = require('./toFriend')(sequelize, Sequelize);
 const RequestList = require('./RequestList')(sequelize, Sequelize);
+const Design = require('./Design')(sequelize,Sequelize); 
 
 User.hasOne(Profile, {
   foreignKey: 'id',
@@ -106,6 +107,7 @@ db.Notice = Notice;
 db.Notification = Notification;
 db.Post = Post;
 db.PostLikes = PostLikes;
+db.Design = Design;
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
