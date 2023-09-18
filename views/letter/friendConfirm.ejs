@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>친구신청목록</title>
     <link rel="stylesheet" href="/css/friendConfirm.css" />
+    <script defer src="/js/friend/friendConfirm.js"></script>
     <%- include('../header')%>
+    <style>
+      #lordid {
+            display: none;
+        }
+        #requestId {
+            display: none;
+        }
+  </style>
   </head>
+  <input type="text" id="lordid" value="<%= session.id%>">
   <body>
     <div>
       <div class="friendsList">
@@ -49,6 +59,7 @@
                 style="width: 100%; height: 100%"
             /></a>
           </div>
+            <input type="text" id="requestId" value="<%= profile.userId%>">
           <p class="nicknames"><%= profile.userId %></p>
           <button
             type="button"
@@ -62,6 +73,7 @@
             거절
           </button>
         </div>
+      </form>
         <% } else { %>
         <div class="col-md-4 col-6">
           <div>
@@ -72,6 +84,7 @@
                 style="width: 100%; height: 100%"
             /></a>
           </div>
+          <input type="text" id="requestId" value="<%= profile.userId%>">
           <p class="nicknames"><%= profile.userId %></p>
           
           <button

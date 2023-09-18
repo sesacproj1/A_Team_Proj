@@ -112,32 +112,50 @@ const output = {
   },
 
   confirmRequest: async (req, res) => {
-    const userId = req.body.userId;
+    const userId = req.body.id;
     const userInfo = req.session.userInfo;
-    const id = userInfo.id;
-    const toUserId = userInfo.userId;
-    // 요청 수락시 request 목록에서 삭제
-    await RequestList.destroy({
-      where: { id: id, nickname: userId },
-    });
-    // 요청을 수락한 User의 친구목록에 nickname 추가
-    await toFriend.create({
-      id: id,
-      toFriendUserId: userId,
-    });
+    // const id = userInfo.id;
+    const requestId = req.body.requestId;
+    const isConfirm = req.body.isConfirm;
+    //리퀘스트리스트
+    const request = await RequestList.findAll({
+      where: { id: userId },
+    }); //내 아이디로 온 요청값
+    const requestData = request.map((user) => ({
+      userId: user.nickname,
+    }));
+    // console.log(requestData); //[ { userId: 'hb1234' }, { userId: 'h11' } ]
 
-    const addFriend = await User.findOne({
-      where: { userId: userId },
-      attributes: ['id'],
-    });
-    // 요청을 수락받은 User의 친구목록에 수락한 User의 nickname 추가
+    const foundUser = requestData.find((user) => user.userId === requestId);
+    console.log(foundUser); //{ userId: 'hb1234' }
 
-    await Friend.create({
-      id: addFriend.id,
-      friendUserId: toUserId,
-    });
+    if (isConfirm) {
+      // // 요청 수락/거절시 request 목록에서 삭제
+      await RequestList.destroy({
+        where: { nickname: foundUser.userId },
+      });
 
-    res.send({ result: 'true' });
+      await Friend.create({
+        id: userId,
+        friendUserId: requestId,
+      });
+      const requestFriend = await User.findOne({
+        where: { userId: requestId },
+      });
+      await Friend.create({
+        id: requestFriend.id,
+        friendUserId: userInfo.userId,
+      });
+
+      res.send({ message: '요청이 수락되었습니다.' });
+    } else {
+      // // 요청 수락/거절시 request 목록에서 삭제
+      await RequestList.destroy({
+        where: { nickname: foundUser.userId },
+      });
+
+      res.send({ message: '요청이 거절되었습니다.' });
+    }
   },
 };
 
