@@ -157,9 +157,17 @@ const btnAddFriend = document.querySelector('#btnAddFriend');
 btnAddFriend.addEventListener('click', addFriend);
 const imgAddFriend = document.querySelector('#imgAddFriend');
 function addFriend() {
-  imgAddFriend.src = '/img/header/check.png';
-  btnAddFriend.disabled = 'true';
-  btnAddFriend.style.pointerEvents = ' none';
+  if (imgAddFriend.src !== 'http://localhost:8000/img/header/check.png') {
+    console.log('check실행');
+    imgAddFriend.src = '/img/header/check.png';
+    reqFriend();
+    // btnAddFriend.disabled = 'true';
+    // btnAddFriend.style.pointerEvents = ' none';
+  } else {
+    console.log('다시변경!!!');
+    reqFriendCancel();
+    imgAddFriend.src = '/img/header/add.png';
+  }
 }
 
 const id = document.getElementById('lordid');
@@ -188,3 +196,21 @@ function reqFriend() {
 }
 
 //TODO 친구신청취소
+function reqFriendCancel() {
+  console.log('취소함수실행!');
+  axios({
+    method: 'delete',
+    url: `/reqFriend/cancel`,
+    data: {
+      id: id.value,
+    },
+  })
+    .then((response) => {
+      console.log(response); // 응답 내용을 콘솔에 출력 (디버깅용)
+      alert(`${response.data.message}`);
+    })
+    .catch((error) => {
+      console.error(error); // 오류 처리
+      alert('요청 중 오류가 발생했습니다.');
+    });
+}
