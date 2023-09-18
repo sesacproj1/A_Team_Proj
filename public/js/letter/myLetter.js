@@ -3,6 +3,8 @@
 // - 1) 각자 다른 이미지 path 가져오기
 // - 2) 각자 다른 이름 가져오기
 
+// const { query } = require('express');
+
 const moon = document.querySelector('#moon'); //배경 달
 // console.log('moon', moon.width);
 const btnLeft = document.querySelector('#btnLeft');
@@ -165,3 +167,30 @@ function addFriend() {
   btnAddFriend.disabled = 'true';
   btnAddFriend.style.pointerEvents = ' none';
 }
+
+const id = document.getElementById('lordid');
+// console.log('id는~', id.value);
+// const lordid = id.value;
+// console.log(lordid);
+// 4. 친구 신청 날리기 :
+// const btnAddFriend = document.querySelector('.btnAddFriend');
+function reqFriend() {
+  console.log('함수실행!');
+  axios({
+    method: 'post',
+    url: `/MyLetter/${id.value}/reqFriend`,
+    data: {
+      id: id.value,
+    },
+  })
+    .then((response) => {
+      console.log(response); // 응답 내용을 콘솔에 출력 (디버깅용)
+      alert(`${response.data.message}`);
+    })
+    .catch((error) => {
+      console.error(error); // 오류 처리
+      alert('요청 중 오류가 발생했습니다.');
+    });
+}
+
+//TODO 친구신청취소

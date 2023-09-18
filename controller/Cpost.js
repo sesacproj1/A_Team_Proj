@@ -91,27 +91,32 @@ const output = {
 
 const input = {
   contentRegister: async (req, res) => {
-    const letterNo = req.params.letterNo;
-    const { postContent, postNickname, postIp } = req.body;
+    const letterNo = req.params.id;
+    console.log(letterNo);
+    const { postDesign, postContent, postNickname, postIp } = req.body;
+    console.log(req.body);
     await Post.create({
       letterNo: letterNo,
+      id: req.params.id,
       postContent: postContent,
       postNickname: postNickname,
       postIp: postIp,
+      postDesign: postDesign,
     });
 
     // 글작성시 알림함에 추가
-    // const postInfo = await Post.findOne({
-    //   where: { letterNo: letterNo, postNickname: postNickname },
-    // });
-
-    await Notification.create({
-      letterNo: letterNo,
-      sender: postNickname,
-      // postNo: postInfo.postNo,
+    const postInfo = await Post.findOne({
+      where: { letterNo: letterNo, postNickname: postNickname },
     });
 
-    res.send({ result: 'true' });
+    await Notification.create({
+      id: req.params.id,
+      letterNo: letterNo,
+      sender: postNickname,
+      postNo: postInfo.postNo,
+    });
+
+    res.send({ result: 'true', id: letterNo });
   },
 
   contentDelete: async (req, res) => {

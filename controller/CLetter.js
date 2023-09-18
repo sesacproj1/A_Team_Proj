@@ -7,6 +7,7 @@ const {
   Post,
   Profile,
   User,
+  RequestList,
 } = require('../models');
 
 const output = {
@@ -53,8 +54,27 @@ const output = {
     }
   },
 
-  friendConfirm: (req, res) => {
-    res.render('letter/friendConfirm', { session: req.session.userInfo });
+  friendConfirm: async (req, res) => {
+    //친구요청목록
+    console.log(req.session.userInfo);
+    const request = await RequestList.findAll({
+      where: { id: req.session.userInfo.id },
+    });
+    const requestProfiles = await Profile.findAll({
+      where: {
+        userId: request.map((friend) => friend.nickname),
+      },
+    });
+    const requestData = requestProfiles.map((profile) => ({
+      profileLocation: profile.profileLocation,
+      userId: profile.userId,
+      id: profile.id,
+    }));
+
+    res.render('letter/friendConfirm', {
+      session: req.session.userInfo,
+      requestData: requestData,
+    });
   },
 
   // myLetter: async (req, res) => {

@@ -83,9 +83,7 @@ router.get('/letter/friends/:id', controllerLetter.output.friends);
 router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
 // router.get('/letter/myLetter', controllerLetter.output.myLetter);
 
-
 router.get('/letter/select/:id', controllerLetter.output.icon);
-
 
 // 편지함 페이지 출력
 router.get('/letter/MyLetter/:id', controllerPost.output.showMyLetter);
@@ -115,9 +113,10 @@ router.get('/letter/MyLetter/:letterNo', controllerPost.output.showMyLetter);
 // 글남기기
 // router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
 router.post(
-  '/MyLetter/:letterNo/contentWrite/Register',
+  '/letter/select/:id/postLetter',
   controllerPost.input.contentRegister
 );
+router.post('/letter/select/:id/icon', controllerPost.input.contentRegister);
 
 // 편지보기
 
@@ -132,7 +131,7 @@ router.patch('/MyLetter/:letterNo/:postNo', controllerPost.input.updateLikes);
 
 // 친구기능
 // router.get('/friend/:id', controllerFriend.output.showFriend);
-router.post('/MyLetter/:letterNo/reqFriend', controllerFriend.input.reqFriend);
+router.post('/MyLetter/:id/reqFriend', controllerFriend.input.reqFriend);
 router.get('/showRequest/:id', controllerFriend.output.showRequest);
 router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
 router.delete('/showRequest/:id/reject', controllerFriend.input.rejectRequest);
