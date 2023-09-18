@@ -157,6 +157,17 @@ function updateLikes() {
     likesNum.innerText = likesNum2 + 1;
   });
 }
+
+// 4. 친구 신청 날렸을 때
+const btnAddFriend = document.querySelector('#btnAddFriend');
+btnAddFriend.addEventListener('click', addFriend);
+const imgAddFriend = document.querySelector('#imgAddFriend');
+function addFriend() {
+  imgAddFriend.src = '/img/header/check.png';
+  btnAddFriend.disabled = 'true';
+  btnAddFriend.style.pointerEvents = ' none';
+}
+
 const id = document.getElementById('lordid');
 // console.log('id는~', id.value);
 // const lordid = id.value;
