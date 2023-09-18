@@ -79,8 +79,18 @@ const output = {
   //   }
   // },
 
-  icon: (req, res) => {
-    res.render('letter/icon', { session: req.session.userInfo });
+  icon: async (req, res) => {
+    const id = req.params.id;
+    const result = await User.findOne({
+      where : {
+        id : id,
+      }
+    })
+    console.log(result.nickname);
+    res.render('letter/icon', { 
+      session: req.session.userInfo,
+      data : result, 
+  });
   },
 
   yourLetter: (req, res) => {
