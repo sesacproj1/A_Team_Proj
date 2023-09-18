@@ -39,7 +39,7 @@
         </div>
          -->
         <% requestData.forEach(profile => { %> <% if (profile.profileLocation ===
-        null) { %>
+        'null') { %>
         <div class="col-md-4 col-6">
           <div>
             <a href="/letter/myLetter/<%= profile.id %>"
