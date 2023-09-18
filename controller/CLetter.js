@@ -18,8 +18,6 @@ const output = {
       where: { id: id },
     });
     const lord = userData.map((user) => user.dataValues); //친구목록 주인
-    // console.log('주인', lord.id);
-    // console.log('로그인 여부', req.session.userInfo.id);
 
     //비로그인시 친구목록 접근권한없음
     if (req.session.userInfo !== undefined) {
@@ -40,26 +38,13 @@ const output = {
         id: profile.id,
       }));
 
-      //로그인 했고 자기 페이지일 때
-      if (lord.id == req.session.userInfo.id) {
-        res.render('letter/friends', {
-          lord: lord[0],
-          friend: req.session.friend,
-          isLogin: true,
-          session: req.session.userInfo,
-          friendData: friendData,
-          isMine: true,
-        });
-      } else {
-        res.render('letter/friends', {
-          lord: lord[0],
-          friend: req.session.friend,
-          isLogin: true,
-          session: req.session.userInfo,
-          friendData: friendData,
-          isMine: false,
-        });
-      }
+      res.render('letter/friends', {
+        lord: lord[0],
+        friend: req.session.friend,
+        isLogin: true,
+        session: req.session.userInfo,
+        friendData: friendData,
+      });
     } else {
       res.render('user/login', {
         session: req.session.userInfo,
