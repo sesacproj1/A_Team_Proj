@@ -82,10 +82,6 @@ const output = {
   icon: (req, res) => {
     res.render('letter/icon', { session: req.session.userInfo });
   },
-
-  yourLetter: (req, res) => {
-    res.render('letter/yourLetter', { session: req.session.userInfo });
-  },
 };
 
 const input = {};
