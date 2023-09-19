@@ -96,7 +96,6 @@ function nextPage() {
       const data = res.data.postData;
       console.log('data next', data);
       const startIndex = curPage * letterCnt;
-
       // step 1) 각자 다른 이미지 path 가져오기
       for (let i = 0; i < letterImg.length; i++) {
         const dataIndex = i;
@@ -158,10 +157,8 @@ const letterModal = document.getElementById('letterModal');
 const modalBodyInput = letterModal.querySelector('.modal-body input');
 const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 
-
 function showPost(id, index) {
   const postNoInput = document.getElementById(`postNo${index}`);
-
 
   const postNo = (parseInt(curPage) - 1) * 5 + parseInt(postNoInput.value); //9
 
