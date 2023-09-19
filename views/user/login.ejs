@@ -9,9 +9,14 @@
     <script defer src="/js/user/login.js"></script>
   </head>
   <body>
-    <% if(typeof message !== 'undefined') { %>
+    <% if (typeof message !== 'undefined') { %>
     <script>
       alert('<%= message %>');
+      if (<%= isLogin %>) {
+        location.href = '/';
+      } else {
+        location.href = '/user/login';
+      }
     </script>
     <% } %>
     <!-- 메인 컨테이너 -->
