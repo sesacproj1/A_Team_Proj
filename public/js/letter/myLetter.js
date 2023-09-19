@@ -120,9 +120,11 @@ function showPost(id) {
       url: `/letter/MyLetter/${id}/${postNo}`,
     }).then((res) => {
       console.log(res.data);
+      const { postContent, postNickname, likesNo } = res.data;
+
       modalBodyInput.value = postNickname;
       modalBodyTextarea.value = postContent;
-      likesNum.value = likesNo;
+      likesNum.innerText = likesNo;
     });
   } catch (err) {
     console.log('Err', err);
@@ -130,6 +132,7 @@ function showPost(id) {
 }
 
 // 3. 좋아요 처리
+
 const btnLike = document.querySelector('.btnLike');
 const likeHeart = document.querySelector('#likeHeart');
 const likesNum = document.querySelector('.likesNum');
@@ -137,12 +140,13 @@ const likesNum = document.querySelector('.likesNum');
 function updateLikes(id) {
   // likeHeart.src = '/img/header/heart2.png';
   const likesNum2 = parseInt(likesNum.innerText);
+
   const postNo = document.querySelector('#postNo').value;
   console.log('포스트넘버', postNo);
-
+  console.log(likesNum2);
   axios({
     method: 'patch',
-    url: `/letter/MyLetter/${id}/${postNo}`,
+    url: `/letter/MyLetter/${id}/${postNo}/likes`,
     data: {
       number: likesNum2 + 1,
     },

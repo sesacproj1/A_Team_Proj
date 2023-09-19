@@ -9,9 +9,14 @@
     <script defer src="/js/user/login.js"></script>
   </head>
   <body>
-    <% if(typeof message !== 'undefined') { %>
+    <% if (typeof message !== 'undefined') { %>
     <script>
       alert('<%= message %>');
+      if (<%= isLogin %>) {
+        location.href = '/';
+      } else {
+        location.href = '/user/login';
+      }
     </script>
     <% } %>
     <!-- 메인 컨테이너 -->
@@ -42,6 +47,7 @@
             <div class="container login_container2">
               <div style="margin-top: 115px">
                 <p id="login_name">로그인</p>
+
                 <form name="loginForm">
                   <div id="userId_container">
                     <div><i class="bi bi-person-circle"></i></div>

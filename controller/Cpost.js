@@ -117,11 +117,10 @@ const output = {
       where: { id: id, postNo: postNo },
       attributes: ['likesNum'],
     });
-
     res.send({
       postContent: showPost.postContent,
       postNickname: showPost.postNickname,
-      likesNo: showLikes.likesNo,
+      likesNo: showLikes.likesNum,
     });
   },
 };
@@ -178,7 +177,7 @@ const input = {
   },
 
   updateLikes: async (req, res) => {
-    const { letterNo, postNo } = req.params;
+    const { id, postNo } = req.params;
     const likesNum = req.body.number;
     req.session.likes = postNo;
 
@@ -187,7 +186,7 @@ const input = {
         {
           likesNum: likesNum,
         },
-        { where: { letterNo: letterNo, postNo: postNo } }
+        { where: { letterNo: id, postNo: postNo } }
       );
 
       res.send({ message: '좋아요!' });

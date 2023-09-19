@@ -17,7 +17,7 @@ function reqFriend() {
 
 function delFriend() {
   axios({
-    method: 'get',
+    method: 'delete',
     url: `/friend/${id}/delete`,
     params: {
       id: id,
@@ -43,7 +43,7 @@ function confirm() {
 function reject() {
   const userId = this.previousElementSibling.previousElementSibling;
   axios({
-    method: 'post',
+    method: 'delete',
     url: `/showRequest/${id}/reject`,
     body: {
       userId: userId.value,

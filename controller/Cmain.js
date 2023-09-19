@@ -53,8 +53,17 @@ const output = {
   },
 
   userLogin: (req, res) => {
-    //유저 로그인 렌더 페이지입니다
-    return res.render('user/login');
+    console.log('세션있나요~~~ ', req.session.userInfo);
+    if (req.session.userInfo !== undefined) {
+      return res.render('user/login', {
+        message: '잘못된 접근입니다.',
+        isLogin: true,
+      });
+      //이미 로그인상태라면
+    } else {
+      //유저 로그인 렌더 페이지입니다
+      return res.render('user/login');
+    }
   },
 
   userRegister: (req, res) => {

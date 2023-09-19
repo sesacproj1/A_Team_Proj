@@ -116,7 +116,6 @@ router.post(
 router.post('/letter/select/:id/icon', controllerPost.input.contentRegister);
 
 // 편지보기
-
 router.get('/letter/MyLetter/:id/:postNo', controllerPost.output.showPost);
 
 // 편지함 페이지 - 기능 부분
@@ -124,11 +123,18 @@ router.delete(
   '/MyLetter/:letterNo/:postNo/delete',
   controllerPost.input.contentDelete
 );
-router.patch('/letter/MyLetter/:id/:postNo', controllerPost.input.updateLikes);
+
+// 좋아요
+router.patch(
+  '/letter/MyLetter/:id/:postNo/likes',
+  controllerPost.input.updateLikes
+);
 
 // 친구기능
 // router.get('/friend/:id', controllerFriend.output.showFriend);
+
 router.post('/MyLetter/:id/reqFriend', controllerFriend.input.reqFriend);
+
 router.get('/showRequest/:id', controllerFriend.output.showRequest);
 router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
 router.delete('/showRequest/:id/reject', controllerFriend.input.rejectRequest);

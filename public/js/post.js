@@ -24,6 +24,7 @@ function postLetter(id) {
     } else {
       alert('icon을 한가지 선택해주세요');
     }
+
   });
 }
 
@@ -36,6 +37,9 @@ function contentDelete() {
       postNo: postNo,
     },
   }).then(() => {
-    (form.postContent.value = ''), (form.postNickname.value = '');
+
+    form.postContent.value = '';
+    form.postNickname.value = '';
+
   });
 }
