@@ -22,7 +22,23 @@ function prevPage() {
         console.log('curPage prev', curPage);
         const data = res.data.postData;
         console.log('data prev', data);
-
+        const designMap = {
+          1 : '/img/letterIcons/px_acorn.png',
+          2 : '/img/letterIcons/px_apple.png',
+          3 : '/img/letterIcons/px_apple2.png',
+          4 : '/img/letterIcons/px_coin.png',
+          5 : '/img/letterIcons/px_food.png',
+          6 : '/img/letterIcons/px_hedgehog.png',
+          7 : '/img/letterIcons/px_lApple.png',
+          8 : '/img/letterIcons/px_nuts.png',
+          9 : '/img/letterIcons/px_panda.png',
+          10 : '/img/letterIcons/px_pear.png',
+          11 : '/img/letterIcons/px_persimmon.png',
+          12 : '/img/letterIcons/px_pumpkin.png',
+          13 : '/img/letterIcons/px_rabbit.png',
+          14 : '/img/letterIcons/px_squirrel.png',
+          15 : '/img/letterIcons/px_tree.png',
+        };
         const startIndex = (curPage - 1) * letterCnt;
         console.log('start prev', startIndex); //5
         // console.log('letter Cnt', letterCnt);
@@ -31,31 +47,15 @@ function prevPage() {
         for (let i = 0; i < letterImg.length; i++) {
           const dataIndex = i;
           console.log('data design', data[dataIndex]);
-          const path = '/img/letterIcons/px_';
 
           if (data[dataIndex]) {
-            switch (data[dataIndex].postDesign) {
-              case 1:
-                letterImg[dataIndex].src = `${path}acorn.png`;
-                break;
-              case 2:
-                letterImg[dataIndex].src = `${path}apple.png`;
-                break;
-              case 3:
-                letterImg[dataIndex].src = `${path}apple2.png`;
-                break;
-              case 4:
-                letterImg[dataIndex].src = `${path}coin.png`;
-                break;
-              case 5:
-                letterImg[dataIndex].src = `${path}food.png`;
-                break;
-
-              case 14:
-                letterImg[dataIndex].src = `${path}acorn.png`;
-                break;
-              // default:
-              //   letterImg[dataIndex].src = `${path} + acorn.png`;
+            const designNumber = data[dataIndex].postDesign;
+            const imagePath = designMap[designNumber];
+        
+            if (imagePath) {
+              letterImg[dataIndex].src = imagePath;
+            } else {
+              letterImg[dataIndex].src = ''; 
             }
           } else {
             letterImg[dataIndex].src = '';
@@ -96,36 +96,38 @@ function nextPage() {
       const data = res.data.postData;
       console.log('data next', data);
       const startIndex = curPage * letterCnt;
-
+      const designMap = {
+        1 : '/img/letterIcons/px_acorn.png',
+        2 : '/img/letterIcons/px_apple.png',
+        3 : '/img/letterIcons/px_apple2.png',
+        4 : '/img/letterIcons/px_coin.png',
+        5 : '/img/letterIcons/px_food.png',
+        6 : '/img/letterIcons/px_hedgehog.png',
+        7 : '/img/letterIcons/px_lApple.png',
+        8 : '/img/letterIcons/px_nuts.png',
+        9 : '/img/letterIcons/px_panda.png',
+        10 : '/img/letterIcons/px_pear.png',
+        11 : '/img/letterIcons/px_persimmon.png',
+        12 : '/img/letterIcons/px_pumpkin.png',
+        13 : '/img/letterIcons/px_rabbit.png',
+        14 : '/img/letterIcons/px_squirrel.png',
+        15 : '/img/letterIcons/px_tree.png',
+      };
       // step 1) 각자 다른 이미지 path 가져오기
       for (let i = 0; i < letterImg.length; i++) {
         const dataIndex = i;
         console.log('data design', data[dataIndex]);
-        const path = '/img/letterIcons/px_';
+        
+        
 
         if (data[dataIndex]) {
-          switch (data[dataIndex].postDesign) {
-            case 1:
-              letterImg[dataIndex].src = `${path} + acorn.png`;
-              break;
-            case 2:
-              letterImg[dataIndex].src = `${path} + apple.png`;
-              break;
-            case 3:
-              letterImg[dataIndex].src = `${path} + apple2.png`;
-              break;
-            case 4:
-              letterImg[dataIndex].src = `${path} + coin.png`;
-              break;
-            case 5:
-              letterImg[dataIndex].src = `${path} + food.png`;
-              break;
-
-            case 14:
-              letterImg[dataIndex].src = `${path} + acorn.png`;
-              break;
-            // default:
-            //   letterImg[dataIndex].src = `${path} + acorn.png`;
+          const designNumber = data[dataIndex].postDesign;
+          const imagePath = designMap[designNumber];
+      
+          if (imagePath) {
+            letterImg[dataIndex].src = imagePath;
+          } else {
+            letterImg[dataIndex].src = ''; 
           }
         } else {
           letterImg[dataIndex].src = '';
