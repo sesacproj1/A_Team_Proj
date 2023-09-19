@@ -188,6 +188,7 @@
                     <!-- lobster님이 <%= data.userId%>님에게 게시글을 남겼습니다. -->
                   </div>
                   <%}%>
+                  <input type="hidden" value="<%= data.id %>" id="ID" />
                 </div>
                 <div class="contentBox2">
                   <div onclick="goFriendReq('<%= data.id%>')">
@@ -195,7 +196,13 @@
                   </div>
                 </div>
               </div>
-              <button type="button" id="alarmBtn">알람 삭제</button>
+              <button
+                type="button"
+                id="alarmBtn"
+                onclick="alarmDel('<%= data.id%>')"
+              >
+                알람 삭제
+              </button>
             </form>
           </div>
         </div>

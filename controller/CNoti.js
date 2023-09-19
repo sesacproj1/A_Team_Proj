@@ -51,6 +51,7 @@ const output = {
       res.send({
         sender: sender,
         postNo: postNo,
+
         // postTime: times(createdAt),
         isFriend: 'true',
       });
@@ -65,10 +66,8 @@ const output = {
   },
 
   postNoti: async (req, res) => {
-    const { letterNo, postNo } = req.params.postNo;
-    console.log(req.params);
     await Notification.destroy({
-      where: { letterNo: letterNo, postNo: postNo },
+      where: { letterNo: req.body.letterNo, postNo: req.params.postNo },
     });
 
     res.send('true');
@@ -77,9 +76,8 @@ const output = {
 
 const input = {
   deleteNoti: async (req, res) => {
-    const { receiver, postNo } = req.params;
     await Notification.destroy({
-      where: { letterNo: receiver, postNo: postNo },
+      where: { letterNo: req.params.id },
     });
     res.send('true');
   },
