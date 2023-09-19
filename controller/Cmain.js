@@ -137,6 +137,7 @@ const output = {
         where: { id: req.session.userInfo.id },
       });
 
+
       const postData = await Post.findAll({
         where: { id: req.session.userInfo.id },
         attributes: ['postNo'],
@@ -145,15 +146,26 @@ const output = {
       const post = postData.map((data) => data.postNo);
 
       console.log('profile', profile);
+
       req.session.profile = profile;
-      console.log('req.session.profile~~ ', req.session.profile);
+
+      const friend = await Friend.findAll({
+        where: { id: req.session.userInfo.id },
+      });
+
+      const numberOfFriends = friend.length;
+      console.log(`친구의 수: ${numberOfFriends}`);
+
       return res.render('user/myPage', {
         session: req.session.userInfo,
         profile: req.session.profile,
         data: user,
         isLogin: true,
         isProfile: true,
+
+        friend: numberOfFriends,
         postNo: post,
+
       });
     } else {
       return res.render('user/login', {

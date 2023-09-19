@@ -159,7 +159,7 @@ function updateLikes(id) {
 
 // 4. 친구 신청 날렸을 때
 const btnAddFriend = document.querySelector('#btnAddFriend');
-// btnAddFriend.addEventListener('click', addFriend);
+btnAddFriend.addEventListener('click', addFriend);
 const imgAddFriend = document.querySelector('#imgAddFriend');
 function addFriend() {
   if (imgAddFriend.src !== 'http://localhost:8000/img/header/check.png') {
