@@ -1,5 +1,13 @@
 let idResult, emailResult, nicknameResult, pwResult;
-
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+    // 엔터 키가 눌렸을 때 로그인 버튼 클릭
+    const registerBtn = document.getElementById('registerBtn');
+    if (registerBtn) {
+      registerBtn.click();
+    }
+  }
+});
 /*폼 유효성 검사 alert*/
 function checkValidity() {
   const form = document.forms['registerForm'];
@@ -36,7 +44,7 @@ async function isId(obj) {
   });
   const data = await response.data;
 
-  if (data) {
+  if (data.result) {
     $('#idConfirm').css('color', 'green'); // id가 idConfirm 인 태그 css 설정
     $('#idConfirm').text('사용할 수 있는 아이디입니다.');
     idResult = true;
