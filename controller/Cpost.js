@@ -178,9 +178,10 @@ const output = {
         attributes: ['likesNum'],
       });
       const postData = await Post.findAll({
-        where: { id: req.params.id, postNo: postNo },
+        where: { id: req.params.id },
         attributes: ['postNickname', 'postNo', 'postDesign', 'postContent'],
       });
+      console.log('postData -> ', postData);
       const nickname = postData.map((nick) => nick.postNickname);
       const Content = postData.map((post) => post.postContent);
 
@@ -190,8 +191,8 @@ const output = {
       const likesNo = showLikes ? showLikes.likesNum : 0;
 
       res.send({
-        postContent: showPost.postContent,
-        postNickname: showPost.postNickname,
+        postContent: Content[postNo - 2],
+        postNickname: nickname[postNo - 2],
         likesNo,
       });
     } catch (error) {

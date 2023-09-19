@@ -126,7 +126,7 @@ function showPost(id, index) {
   const postNo = (parseInt(curPage) - 1) * 5 + parseInt(postNoInput.value); //9
 
   // 나머지 코드
-  console.log('포스트넘버', postNo);
+  console.log('포스트넘버', postNo); //사과
   try {
     axios({
       method: 'get',
