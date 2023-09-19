@@ -120,20 +120,20 @@ const letterModal = document.getElementById('letterModal');
 const modalBodyInput = letterModal.querySelector('.modal-body input');
 const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 
-function showPost(id) {
-  const postNo = document.querySelector('#postNo').value;
-  console.log('포스트넘버', postNo);
+function showPost(id, i) {
+  const postNo = document.querySelectorAll('#postNo');
+  console.log('포스트넘버', postNo[i]);
 
   try {
     axios({
       method: 'get',
-      url: `/letter/MyLetter/${id}/${postNo}`,
+      url: `/letter/MyLetter/${id}/${postNo[i].value}`,
     }).then((res) => {
       console.log(res.data);
       const { postContent, postNickname, likesNo } = res.data;
 
       modalBodyInput.value = postNickname;
-      modalBodyTextarea.value = postContent;
+      modalBodyTextarea.innerText = postContent;
       likesNum.innerText = likesNo;
     });
   } catch (err) {

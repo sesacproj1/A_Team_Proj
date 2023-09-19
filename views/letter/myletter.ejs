@@ -31,7 +31,7 @@
             id="letter<%= i+1 %>"
             data-bs-toggle="modal"
             data-bs-target="#letterModal"
-            onclick="showPost('<%= id %>')"
+            onclick="showPost('<%= id %>', '<%= i%>')"
           >
             <img src="/img/letterIcons/px_apple.png" alt="" class="letterImg" id="letterImg<%=i%>" />
             <p class="letterP" id="letterP<%=i%>"><%=nickname[i]%></p>
