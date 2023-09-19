@@ -1,4 +1,11 @@
-const { Post, PostLikes, Notification, User, Profile } = require('../models');
+const {
+  Post,
+  PostLikes,
+  Notification,
+  User,
+  Profile,
+  Design,
+} = require('../models');
 
 const output = {
   content: (req, res) => {
@@ -25,12 +32,22 @@ const output = {
 
     const postData = await Post.findAll({
       where: { id: req.params.id },
-      attributes: ['postNickname', 'postNo'],
+      attributes: ['postNickname', 'postNo', 'postDesign'],
     });
 
     const nickname = postData.map((nick) => nick.postNickname);
     const postNo = postData.map((post) => post.postNo);
-    console.log('포스트넘버', postNo);
+    const postDesign = postData.map((design) => design.postDesign);
+
+    let designSrc = [];
+    for (let design of postDesign) {
+      const srcValue = await Design.findOne({
+        where: { designNo: design },
+      });
+      console.log(srcValue);
+      designSrc.push(srcValue.designLocation);
+    }
+    console.log(designSrc);
 
     console.log('profile은', profile);
     req.session.profile = profile;
@@ -53,6 +70,7 @@ const output = {
           id: req.params.id,
           nickname: nickname,
           postNo: postNo,
+          postDesign: designSrc,
         });
       } else {
         // 아니면 yourLetter
@@ -67,6 +85,7 @@ const output = {
           id: req.params.id,
           nickname: nickname,
           postNo: postNo,
+          postDesign: designSrc,
         });
       }
     } else {
@@ -81,6 +100,8 @@ const output = {
         id: req.params.id,
         nickname: nickname,
         postNo: postNo,
+        postDesign: postDesign,
+        postDesign: designSrc,
       });
     }
   },
@@ -96,8 +117,6 @@ const output = {
       where: { id: id, postNo: postNo },
       attributes: ['likesNum'],
     });
-    // console.log('showPost.postContent ', showPost.postContent);
-    console.log(showLikes.likesNum);
     res.send({
       postContent: showPost.postContent,
       postNickname: showPost.postNickname,
@@ -123,7 +142,11 @@ const input = {
 
     // 글작성시 알림함에 추가
     const postInfo = await Post.findOne({
-      where: { letterNo: letterNo, postNickname: postNickname },
+      where: {
+        letterNo: letterNo,
+        postNickname: postNickname,
+        postDesign: postDesign,
+      },
     });
 
     await Notification.create({
@@ -156,7 +179,7 @@ const input = {
   updateLikes: async (req, res) => {
     const { id, postNo } = req.params;
     const likesNum = req.body.number;
-    req.session.likes;
+    req.session.likes = postNo;
 
     if (!req.session.likes) {
       await PostLikes.update(

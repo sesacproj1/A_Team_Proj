@@ -18,6 +18,17 @@ function times(date) {
   return `${mon}월 ${day}일 ${ti} ${hh} : ${mm} : ${ss}`;
 }
 
+function parseISODateStrings(dateArray) {
+  const parsedDates = [];
+
+  for (const dateString of dateArray) {
+    const date = new Date(dateString);
+    parsedDates.push(date);
+  }
+
+  return parsedDates;
+}
+
 const output = {
   showNoti: async (req, res) => {
     const receiver = req.params.letterNo;
@@ -26,32 +37,35 @@ const output = {
       attributes: ['sender', 'postNo', 'createdAt'],
     });
 
+    const sender = showNoti.map((send) => send.sender);
+    const postNo = showNoti.map((post) => post.postNo);
+    // const timeAt = showNoti.map((time) => time.createdAt);
+    // const createdAt = parseISODateStrings(timeAt);
+    // console.log(createdAt);
     const reqFriend = await RequestList.findOne({
-      where: { letterNo: receiver },
+      where: { id: receiver },
     });
 
     if (showNoti && reqFriend) {
       res.send({
-        sender: showNoti.sender,
-        postNo: showNoti.postNo,
-        postTime: times(showNoti.createdAt),
+        sender: sender,
+        postNo: postNo,
+        // postTime: times(createdAt),
         isFriend: 'true',
       });
     } else if (showNoti) {
       res.send({
-        sender: showNoti.sender,
-        postNo: showNoti.postNo,
-        postTime: times(showNoti.createdAt),
+        sender: sender,
+        postNo: postNo,
+        // postTime: times(createdAt),
         isFriend: 'false',
       });
     }
   },
 
   postNoti: async (req, res) => {
-    const { letterNo, postNo } = req.params.postNo;
-    console.log(req.params);
     await Notification.destroy({
-      where: { letterNo: letterNo, postNo: postNo },
+      where: { letterNo: req.body.letterNo, postNo: req.params.postNo },
     });
 
     res.send('true');
@@ -60,9 +74,8 @@ const output = {
 
 const input = {
   deleteNoti: async (req, res) => {
-    const { receiver, postNo } = req.params;
     await Notification.destroy({
-      where: { letterNo: receiver, postNo: postNo },
+      where: { letterNo: req.params.id },
     });
     res.send('true');
   },

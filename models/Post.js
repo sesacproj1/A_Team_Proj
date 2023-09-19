@@ -26,6 +26,7 @@ const Post = (Sequelize, DataTypes) => {
         allowNull: false,
         comment: '편지쓴 사람의 닉네임',
       },
+
       postIp: {
         type: DataTypes.STRING(150),
         allowNull: false,

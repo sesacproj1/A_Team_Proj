@@ -99,11 +99,11 @@ router.get(
   controllerNoti.output.showNoti
 );
 router.delete(
-  'user/myPage/notification/:letterNo/:postNo',
+  '/user/myPage/notification/:postNo',
   controllerNoti.output.postNoti
 );
 router.delete(
-  'user/myPage/notification/:letterNo/:postNo/delete',
+  '/user/myPage/notification/:id/delete',
   controllerNoti.input.deleteNoti
 );
 
