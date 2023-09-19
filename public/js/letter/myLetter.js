@@ -173,11 +173,19 @@ function showPost(id, index) {
       url: `/letter/MyLetter/${id}/${postNo}`,
     }).then((res) => {
       console.log(res.data);
-      const { postContent, postNickname, likesNo } = res.data;
+      const { postContent, postNickname, count } = res.data;
 
       modalBodyInput.value = postNickname;
       modalBodyTextarea.innerText = postContent;
-      likesNum.innerText = likesNo;
+      likesNum.innerText = count;
+      console.log('res.data.isLike는', res.data.isLike);
+      if (res.data.isLike !== undefined) {
+        if (res.data.isLike) {
+          likeHeart.src = '/img/header/heart2.png';
+        } else {
+          likeHeart.src = '/img/header/heart1.png';
+        }
+      }
     });
   } catch (err) {
     console.log('Err', err);
@@ -191,15 +199,27 @@ function showPost(id, index) {
 const btnLike = document.querySelector('.btnLike');
 const likeHeart = document.querySelector('#likeHeart');
 const likesNum = document.querySelector('.likesNum');
+const heartId = document.querySelector('#heart').value;
 
+btnLike.addEventListener('click', like);
+function like() {
+  console.log('src값은', likeHeart.src);
+  if (likeHeart.src !== 'http://localhost:8000/img/header/heart2.png') {
+    console.log('꽉찬하트 실행');
+    updateLikes(heartId);
+  } else {
+    console.log('다시변경!!!');
+    likeCancel(heartId);
+  }
+}
 function updateLikes(id) {
   // likeHeart.src = '/img/header/heart2.png';
 
-  const likesNum2 = parseInt(likesNum.innerText);
+  // const likesNum2 = parseInt(likesNum.innerText);
 
-  const postNo = postNumber + 1;
+  const postNo = postNumber - 1;
   console.log('포스트넘버', postNo);
-  console.log(likesNum2);
+  // console.log(likesNum2);
   axios({
     method: 'patch',
     url: `/letter/MyLetter/${id}/${postNo}/likes`,
@@ -209,11 +229,33 @@ function updateLikes(id) {
       return alert(`${res.data.message}`);
     }
     if (res.data.isLike !== undefined) {
-      likeHeart.src = res.data.src;
       console.log('좋아요갯수는', res.data.count);
+      likeHeart.src = '/img/header/heart2.png';
       likesNum.innerText = res.data.count;
     }
   });
+}
+function likeCancel(id) {
+  console.log('취소함수실행!');
+  // const likesNum2 = parseInt(likesNum.innerText);
+
+  const postNo = postNumber + 1;
+  axios({
+    method: 'delete',
+    url: `/letter/MyLetter/${id}/${postNo}/likes/cancel`,
+  })
+    .then((response) => {
+      console.log(response); // 응답 내용을 콘솔에 출력 (디버깅용)
+      if (response.data.message) {
+        return alert(`${res.data.message}`);
+      }
+      likeHeart.src = '/img/header/heart1.png';
+      likesNum.innerText = response.data.count;
+    })
+    .catch((error) => {
+      console.error(error); // 오류 처리
+      alert('요청 중 오류가 발생했습니다.');
+    });
 }
 
 // 4. 친구 신청 날렸을 때

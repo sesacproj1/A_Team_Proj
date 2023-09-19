@@ -111,14 +111,8 @@ const output = {
         letterNo: req.params.id,
       },
     });
-
+    console.log('count는', count);
     if (userInfo) {
-      const like = await PostLikes.findOne({
-        where: {
-          postNo: postNo,
-          id: req.session.userInfo.id,
-        },
-      });
       //로그인 했을 때
       if (userInfo.id == idParam) {
         const isMine = true;
@@ -135,7 +129,7 @@ const output = {
           postNo: postNo,
           postDesign: designSrc,
           count: count,
-          like: like,
+          // isLike: isLike,
         });
       } else {
         try {
@@ -171,7 +165,7 @@ const output = {
             checkFriend: checkFriend,
             checkRequest: checkRequest,
             count: count,
-            like: like,
+            // isLike: isLike,
           });
         } catch (error) {
           console.error('오류 발생:', error);
@@ -219,13 +213,41 @@ const output = {
       console.log('nickname은', nickname);
       console.log('Content는', Content);
       console.log('post는', showPost);
-      const likesNo = showLikes ? showLikes.likesNum : 0;
-
-      res.send({
-        postContent: Content[postNo - 2],
-        postNickname: nickname[postNo - 2],
-        likesNo,
+      const count = await PostLikes.count({
+        where: {
+          postNo: postNo,
+          letterNo: id,
+        },
       });
+      if (req.session.userInfo) {
+        const like = await PostLikes.findAll({
+          where: {
+            postNo: postNo,
+            id: req.session.userInfo.id,
+          },
+        });
+        console.log('isLike의 like는', like);
+        let isLike;
+        if (like.length !== 0) {
+          //이미 좋아요를 눌렀다면
+          isLike = true;
+        } else {
+          isLike = false;
+        }
+
+        res.send({
+          postContent: Content[postNo - 2],
+          postNickname: nickname[postNo - 2],
+          count,
+          isLike: isLike,
+        });
+      } else {
+        res.send({
+          postContent: Content[postNo - 2],
+          postNickname: nickname[postNo - 2],
+          count,
+        });
+      }
     } catch (error) {
       console.error('게시물 조회 중 오류 발생:', error);
       res.status(500).send('게시물을 조회하는 동안 오류가 발생했습니다.');
@@ -354,7 +376,7 @@ const input = {
       });
     } else {
       await PostLikes.create({
-        postNo: postNo,
+        postNo: parseInt(postNo) + 1,
         letterNo: id,
         id: req.session.userInfo.id,
         likesNum: 1,
@@ -362,7 +384,7 @@ const input = {
     }
     const count = await PostLikes.count({
       where: {
-        postNo: postNo,
+        postNo: parseInt(postNo) + 1,
         letterNo: id,
       },
     });
@@ -370,6 +392,31 @@ const input = {
       isLike: false,
       count: count,
       src: '/img/header/heart2.png',
+    });
+  },
+  likeCancel: async (req, res) => {
+    if (req.session.userInfo === undefined) {
+      return res.send({ message: '로그인해주세요!' });
+    }
+    const { id, postNo } = req.params;
+    await PostLikes.destroy({
+      where: {
+        postNo: parseInt(postNo) - 1,
+        letterNo: id,
+        id: req.session.userInfo.id,
+      },
+    });
+    //좋아요 취소하기
+    const count = await PostLikes.count({
+      where: {
+        postNo: parseInt(postNo) - 1,
+        letterNo: id,
+      },
+    });
+    return res.send({
+      isLike: true,
+      count: count,
+      src: '/img/header/heart1.png',
     });
   },
 };

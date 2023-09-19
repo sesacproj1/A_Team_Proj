@@ -131,6 +131,11 @@ router.patch(
   '/letter/MyLetter/:id/:postNo/likes',
   controllerPost.input.updateLikes
 );
+//좋아요취소
+router.delete(
+  '/letter/MyLetter/:id/:postNo/likes/cancel',
+  controllerPost.input.likeCancel
+);
 
 // 친구기능
 // router.get('/friend/:id', controllerFriend.output.showFriend);
