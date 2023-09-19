@@ -158,10 +158,8 @@ const letterModal = document.getElementById('letterModal');
 const modalBodyInput = letterModal.querySelector('.modal-body input');
 const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 
-
 function showPost(id, index) {
   const postNoInput = document.getElementById(`postNo${index}`);
-
 
   const postNo = (parseInt(curPage) - 1) * 5 + parseInt(postNoInput.value); //9
 
@@ -170,7 +168,7 @@ function showPost(id, index) {
   try {
     axios({
       method: 'get',
-      url: `/letter/MyLetter/${id}/${postNo[i].value}`,
+      url: `/letter/MyLetter/${id}/${postNo}`,
     }).then((res) => {
       console.log(res.data);
       const { postContent, postNickname, likesNo } = res.data;
