@@ -161,7 +161,7 @@ const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 function showPost(id, i) {
   const postNo = document.querySelectorAll('#postNo');
   console.log('포스트넘버', postNo[i]);
-
+  const postNum = postNo[i].value;
   try {
     axios({
       method: 'get',
@@ -173,6 +173,13 @@ function showPost(id, i) {
       modalBodyInput.value = postNickname;
       modalBodyTextarea.innerText = postContent;
       likesNum.innerText = likesNo;
+
+      const postNo = `
+    
+    <input type= "hidden" value= "${postNum}" id= "postNum"></input>
+
+    `;
+      likesNum.insertAdjacentHTML('afterBegin', postNo);
     });
   } catch (err) {
     console.log('Err', err);
@@ -189,7 +196,7 @@ function updateLikes(id) {
   // likeHeart.src = '/img/header/heart2.png';
   const likesNum2 = parseInt(likesNum.innerText);
 
-  const postNo = document.querySelector('#postNo').value;
+  const postNo = document.querySelector('#postNum').value;
   console.log('포스트넘버', postNo);
   console.log(likesNum2);
   axios({
@@ -199,9 +206,12 @@ function updateLikes(id) {
       number: likesNum2 + 1,
     },
   }).then((res) => {
-    console.log(res);
-    alert(`${res.data.message}`);
-    likesNum.innerText = likesNum2 + 1;
+    console.log(res.data);
+    if (res.data.result === true) {
+      likesNum.innerText = likesNum2 + 1;
+    } else {
+      alert(`${res.data.message}`);
+    }
   });
 }
 

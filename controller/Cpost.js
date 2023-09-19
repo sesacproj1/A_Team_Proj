@@ -251,9 +251,10 @@ const input = {
   updateLikes: async (req, res) => {
     const { id, postNo } = req.params;
     const likesNum = req.body.number;
-    req.session.likes = postNo;
+    req.session.likes = `post${postNo}`;
+    console.log(req.session.likes);
 
-    if (!req.session.likes) {
+    if (req.session.likes !== `post${postNo}`) {
       await PostLikes.update(
         {
           likesNum: likesNum,
@@ -261,9 +262,9 @@ const input = {
         { where: { letterNo: id, postNo: postNo } }
       );
 
-      res.send({ message: '좋아요!' });
+      res.send({ result: 'true' });
     } else {
-      res.send({ message: '좋아요는 한번만!' });
+      res.send({ result: 'false', message: '좋아요는 한번만!' });
     }
   },
 };
