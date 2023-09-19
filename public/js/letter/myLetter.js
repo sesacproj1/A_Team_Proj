@@ -3,6 +3,7 @@ const moon = document.querySelector('#moon'); //배경 달
 const btnLeft = document.querySelector('#btnLeft');
 const btnRight = document.querySelector('#btnRight');
 const letterCnt = document.querySelectorAll('.letters').length;
+let postNumber;
 
 let curPage = 1;
 
@@ -165,6 +166,7 @@ function showPost(id, index) {
 
   // 나머지 코드
   console.log('포스트넘버', postNo); //사과
+  postNumber = postNo;
   try {
     axios({
       method: 'get',
@@ -192,21 +194,25 @@ const likesNum = document.querySelector('.likesNum');
 
 function updateLikes(id) {
   // likeHeart.src = '/img/header/heart2.png';
+
   const likesNum2 = parseInt(likesNum.innerText);
 
-  const postNo = document.querySelector('#postNo').value;
+  const postNo = postNumber + 1;
   console.log('포스트넘버', postNo);
   console.log(likesNum2);
   axios({
     method: 'patch',
     url: `/letter/MyLetter/${id}/${postNo}/likes`,
-    data: {
-      number: likesNum2 + 1,
-    },
   }).then((res) => {
     console.log(res);
-    alert(`${res.data.message}`);
-    likesNum.innerText = likesNum2 + 1;
+    if (res.data.message) {
+      return alert(`${res.data.message}`);
+    }
+    if (res.data.isLike !== undefined) {
+      likeHeart.src = res.data.src;
+      console.log('좋아요갯수는', res.data.count);
+      likesNum.innerText = res.data.count;
+    }
   });
 }
 

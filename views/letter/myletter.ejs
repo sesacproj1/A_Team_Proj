@@ -97,11 +97,21 @@
                 >
                   삭제
                 </button> 
-
+             
                 <button type="button" class="btn btnLike" onclick="updateLikes('<%= id%>')">
-                  <img src="/img/header/heart1.png" alt="" id="likeHeart" />
+                  <% if (!isLogin) { %>
+                    <% if (typeof like) { %>
+                      <img src="/img/header/heart2.png" alt="" id="likeHeart" />  
+                    <% } else { %>
+                      <img src="/img/header/heart1.png" alt="" id="likeHeart" />
+                    <% } %>
+                  <% } else { %>
+                    <img src="/img/header/heart1.png" alt="" id="likeHeart" />
+                  <% } %>
+                  
+                  
                   <div class="likesNum">
-                  <!-- 44 -->
+                  <%= count%>
                   </div>
                 </button>
 
