@@ -8,6 +8,7 @@ const {
   Profile,
   User,
 } = require('../models');
+const Sequelize = require('sequelize');
 
 const output = {
   index: async (req, res) => {
@@ -208,6 +209,28 @@ const input = {
     console.log(result);
     return res.send(result);
   },
+
+  search : async(req,res)=>{
+    const keyword = req.query.keyword;
+    const users = await User.findAll({
+      where: {
+        [Sequelize.Op.or]: [
+          { nickname: { [Sequelize.Op.like]: `%${keyword}%` } },
+        ],
+      },
+    });
+
+    if(users){
+      return res.send({
+        msg : true,
+        data : users,
+      });
+    } else {
+      return res.send({
+        msg : false,
+      })
+    }
+  }
 };
 
 module.exports = { output, input };

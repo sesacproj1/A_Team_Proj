@@ -7,6 +7,7 @@ const btnResister = document.querySelector('#btnResister');
 const btnLogin = document.querySelector('#btnLogin');
 // const btnLogout = document.querySelector('#btnLogout');
 
+
 // 상단 멘트 랜덤 배치
 const cmt = document.querySelector('#cmt');
 const cmtArr = [
@@ -14,6 +15,7 @@ const cmtArr = [
   '"가을은 자연의 계절이기보다는 영혼의 계절임을 나는 알았다."',
   '"추석은 야금야금 살찌는 날"',
   '"가지마 추석 연휴"',
+  '"2023년도 벌써..."'
 ];
 let randCmtNum = Math.floor(Math.random() * cmtArr.length);
 // console.log('randCmtNum', randCmtNum); // 0~3
@@ -242,3 +244,23 @@ btnLogin.addEventListener('click', () => {
 btnLogout.addEventListener('click', () => {
   document.location.href = '/logout';
 });
+
+function realSearch(){
+  const searchBox = document.querySelector('#searched').value;
+  axios({
+    method : 'get',
+    url : '/search',
+    params: {
+      keyword: searchBox, 
+    },
+  })
+  .then((res)=>{
+    const searchData = res.data.data;
+    for (let searched of searchData) {
+      console.log(searched);
+    }
+  })
+  .catch((err)=>{
+    console.error(err);
+  })
+}
