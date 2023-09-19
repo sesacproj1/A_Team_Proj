@@ -36,26 +36,26 @@ function prevPage() {
           if (data[dataIndex]) {
             switch (data[dataIndex].postDesign) {
               case 1:
-                letterImg[dataIndex].src = `${path}acorn.png`;
+                letterImg[dataIndex].src = `/img/letterIcons/px_acorn.png`;
                 break;
               case 2:
-                letterImg[dataIndex].src = `${path}apple.png`;
+                letterImg[dataIndex].src = `/img/letterIcons/px_apple.png`;
                 break;
               case 3:
-                letterImg[dataIndex].src = `${path}apple2.png`;
+                letterImg[dataIndex].src = `/img/letterIcons/px_apple2.png`;
                 break;
               case 4:
-                letterImg[dataIndex].src = `${path}coin.png`;
+                letterImg[dataIndex].src = `/img/letterIcons/px_coin.png`;
                 break;
               case 5:
-                letterImg[dataIndex].src = `${path}food.png`;
+                letterImg[dataIndex].src = `/img/letterIcons/px_food.png`;
                 break;
 
               case 14:
-                letterImg[dataIndex].src = `${path}acorn.png`;
+                letterImg[dataIndex].src = `/img/letterIcons/px_acorn.png`;
                 break;
               // default:
-              //   letterImg[dataIndex].src = `${path} + acorn.png`;
+              //   letterImg[dataIndex].src = `/img/letterIcons/px_ + acorn.png`;
             }
           } else {
             letterImg[dataIndex].src = '';
@@ -82,11 +82,12 @@ function prevPage() {
 }
 
 function nextPage() {
-  const letterImg = document.querySelectorAll('.letterImg');
+  // const letterImg = document.querySelectorAll('.letterImg');
+  const letterImg = document.getElementsByClassName('letterImg');
   const letterP = document.querySelectorAll('.letterP');
-  // console.log('letterP', letterP);
   let id = document.querySelector('#personId').value;
-  console.log('id', id);
+  // console.log('id', id);
+  // console.log('letterImg', letterImg);
 
   try {
     axios({
@@ -96,35 +97,63 @@ function nextPage() {
       const data = res.data.postData;
       console.log('data next', data);
       const startIndex = curPage * letterCnt;
+
       // step 1) 각자 다른 이미지 path 가져오기
       for (let i = 0; i < letterImg.length; i++) {
         const dataIndex = i;
-        console.log('data design', data[dataIndex].postDesign);
+        console.log('data design', data[dataIndex]); //{postNickname: '사과', postDesign: '4'}
+        console.log('letterImg[dataIdx]', letterImg[dataIndex].src);
         const path = '/img/letterIcons/px_';
 
         if (data[dataIndex]) {
           switch (data[dataIndex].postDesign) {
             case 1:
-              letterImg[dataIndex].src = `${path}acorn.png`;
+              letterImg[dataIndex].src = `/img/letterIcons/px_acorn.png`;
               break;
             case 2:
-              letterImg[dataIndex].src = `${path}apple.png`;
+              letterImg[dataIndex].src = `/img/letterIcons/px_apple.png`;
               break;
             case 3:
-              letterImg[dataIndex].src = `${path}apple2.png`;
+              letterImg[dataIndex].src = `/img/letterIcons/px_apple2.png`;
               break;
             case 4:
-              letterImg[dataIndex].src = `${path}coin.png`;
+              letterImg[dataIndex].src = `/img/letterIcons/px_coin.png`;
               break;
             case 5:
-              letterImg[dataIndex].src = `${path}food.png`;
+              letterImg[dataIndex].src = `/img/letterIcons/px_food.png`;
               break;
-
+            case 6:
+              letterImg[dataIndex].src = `/img/letterIcons/px_hedgehog.png`;
+              break;
+            case 7:
+              letterImg[dataIndex].src = `/img/letterIcons/px_IApple.png`;
+              break;
+            case 8:
+              letterImg[dataIndex].src = `/img/letterIcons/px_nuts.png`;
+              break;
+            case 9:
+              letterImg[dataIndex].src = `/img/letterIcons/px_panda.png`;
+              break;
+            case 10:
+              letterImg[dataIndex].src = `/img/letterIcons/px_pear.png`;
+              break;
+            case 11:
+              letterImg[dataIndex].src = `/img/letterIcons/px_persimmon.png`;
+              break;
+            case 12:
+              letterImg[dataIndex].src = `/img/letterIcons/px_pumpkin.png`;
+              break;
+            case 13:
+              letterImg[dataIndex].src = `/img/letterIcons/px_rabbit.png`;
+              break;
             case 14:
-              letterImg[dataIndex].src = `${path}acorn.png`;
+              letterImg[dataIndex].src = `/img/letterIcons/px_squirrel.png`;
+              break;
+            case 15:
+              letterImg[dataIndex].src = `/img/letterIcons/px_tree.png`;
               break;
             // default:
-            //   letterImg[dataIndex].src = `${path} + acorn.png`;
+            //   letterImg[dataIndex].src = `/img/letterIcons/px_ + acorn.png`;
           }
         } else {
           letterImg[dataIndex].src = '';
