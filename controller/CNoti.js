@@ -41,7 +41,6 @@ const output = {
     const postNo = showNoti.map((post) => post.postNo);
     // const timeAt = showNoti.map((time) => time.createdAt);
     // const createdAt = parseISODateStrings(timeAt);
-
     // console.log(createdAt);
     const reqFriend = await RequestList.findOne({
       where: { id: receiver },
@@ -51,7 +50,6 @@ const output = {
       res.send({
         sender: sender,
         postNo: postNo,
-
         // postTime: times(createdAt),
         isFriend: 'true',
       });

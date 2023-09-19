@@ -49,19 +49,6 @@ const output = {
     }
     console.log(designSrc);
 
-    // async function srcExtract(postDesign) {
-    //   let designSrc = [];
-    //   for (let design of postDesign) {
-    //     const srcValue = await Design.findOne({
-    //       where: { designNo: design },
-    //     });
-    //     console.log(srcValue);
-    //     designSrc.push(srcValue.designLocation);
-    //   }
-    //   console.log(designSrc);
-    //   return designSrc;
-    // }
-
     console.log('profile은', profile);
     req.session.profile = profile;
     const lord = userData.map((user) => user.dataValues);
@@ -83,7 +70,7 @@ const output = {
           id: req.params.id,
           nickname: nickname,
           postNo: postNo,
-          postDesign: postDesign,
+          postDesign: designSrc,
         });
       } else {
         // 아니면 yourLetter
@@ -98,7 +85,7 @@ const output = {
           id: req.params.id,
           nickname: nickname,
           postNo: postNo,
-          postDesign: postDesign,
+          postDesign: designSrc,
         });
       }
     } else {
@@ -114,6 +101,7 @@ const output = {
         nickname: nickname,
         postNo: postNo,
         postDesign: postDesign,
+        postDesign: designSrc,
       });
     }
   },
@@ -192,7 +180,7 @@ const input = {
   updateLikes: async (req, res) => {
     const { letterNo, postNo } = req.params;
     const likesNum = req.body.number;
-    req.session.likes;
+    req.session.likes = postNo;
 
     if (!req.session.likes) {
       await PostLikes.update(
