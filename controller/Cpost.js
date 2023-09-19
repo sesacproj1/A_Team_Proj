@@ -88,7 +88,8 @@ const output = {
     const nickname = postData.map((nick) => nick.postNickname);
     const postNo = postData.map((post) => post.postNo);
     const postDesign = postData.map((design) => design.postDesign);
-
+    console.log('postData는', postData);
+    console.log('닉네임은', nickname);
     let designSrc = [];
     for (let design of postDesign) {
       const srcValue = await Design.findOne({
@@ -177,24 +178,79 @@ const output = {
       });
     }
   },
-
   showPost: async (req, res) => {
     const { id, postNo } = req.params;
-    console.log('req.params ', req.params);
-    const showPost = await Post.findOne({
-      where: { id: id, postNo: postNo },
-    });
+    console.log('id는', id);
+    console.log('postNo는', postNo);
+    try {
+      const showPost = await Post.findOne({
+        where: { id, postNo },
+      });
 
-    const showLikes = await PostLikes.findOne({
-      where: { id: id, postNo: postNo },
-      attributes: ['likesNum'],
-    });
-    res.send({
-      postContent: showPost.postContent,
-      postNickname: showPost.postNickname,
-      likesNo: showLikes.likesNum,
-    });
+      const showLikes = await PostLikes.findOne({
+        where: { id, postNo },
+        attributes: ['likesNum'],
+      });
+      const postData = await Post.findAll({
+        where: { id: req.params.id },
+        attributes: ['postNickname', 'postNo', 'postDesign', 'postContent'],
+      });
+      console.log('postData -> ', postData);
+      const nickname = postData.map((nick) => nick.postNickname);
+      const Content = postData.map((post) => post.postContent);
+
+      console.log('nickname은', nickname);
+      console.log('Content는', Content);
+      console.log('post는', showPost);
+      const likesNo = showLikes ? showLikes.likesNum : 0;
+
+      res.send({
+        postContent: Content[postNo - 2],
+        postNickname: nickname[postNo - 2],
+        likesNo,
+      });
+    } catch (error) {
+      console.error('게시물 조회 중 오류 발생:', error);
+      res.status(500).send('게시물을 조회하는 동안 오류가 발생했습니다.');
+    }
   },
+  // showPost: async (req, res) => {
+  //   const { id, postNo } = req.params;
+  //   console.log('req.params ', req.params);
+  //   try {
+  //     await Promise.all([
+  //       const showPost = await Post.findOne({
+  //         where: { id: id, postNo: postNo },
+  //       }),
+  //       const showLikes = await PostLikes.findOne({
+  //         where: { id: id, postNo: postNo },
+  //         attributes: ['likesNum'],
+  //       }),
+  //     ]);
+  //     if (showLikes !== null) {
+  //       res.send({
+  //         postContent: showPost.postContent,
+  //         postNickname: showPost.postNickname,
+  //         likesNo: showLikes.likesNum,
+  //       });
+  //     } else {
+  //       res.send({
+  //         postContent: showPost.postContent,
+  //         postNickname: showPost.postNickname,
+  //         likesNo: 0,
+  //       });
+  //   } }catch (error) {
+  //     console.error('친구 삭제 중 오류 발생:', error);
+  //   }
+  // },
+  // const showPost = await Post.findOne({
+  //   where: { id: id, postNo: postNo },
+  // });
+
+  // const showLikes = await PostLikes.findOne({
+  //   where: { id: id, postNo: postNo },
+  //   attributes: ['likesNum'],
+  // });
 };
 
 const input = {
