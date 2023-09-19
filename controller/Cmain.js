@@ -13,9 +13,10 @@ const Sequelize = require('sequelize');
 const output = {
   index: async (req, res) => {
     const curPage = 1 | req.query.curPage;
+    console.log(req.query.curPage);
 
     const result = await User.findAll({
-      offset: 7 * (curPage - 1),
+      // offset: 7 * (req.query.curPage - 1),
       order: [['id', 'ASC']],
       limit: 7,
     });
@@ -139,7 +140,6 @@ const output = {
         where: { id: req.session.userInfo.id },
       });
 
-
       const postData = await Post.findAll({
         where: { id: req.session.userInfo.id },
         attributes: ['postNo'],
@@ -167,7 +167,6 @@ const output = {
 
         friend: numberOfFriends,
         postNo: post,
-
       });
     } else {
       return res.render('user/login', {
@@ -223,7 +222,7 @@ const input = {
     return res.send(result);
   },
 
-  search : async(req,res)=>{
+  search: async (req, res) => {
     const keyword = req.query.keyword;
     const users = await User.findAll({
       where: {
@@ -233,17 +232,17 @@ const input = {
       },
     });
 
-    if(users){
+    if (users) {
       return res.send({
-        msg : true,
-        data : users,
+        msg: true,
+        data: users,
       });
     } else {
       return res.send({
-        msg : false,
-      })
+        msg: false,
+      });
     }
-  }
+  },
 };
 
 module.exports = { output, input };

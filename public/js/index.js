@@ -7,7 +7,6 @@ const btnResister = document.querySelector('#btnResister');
 const btnLogin = document.querySelector('#btnLogin');
 // const btnLogout = document.querySelector('#btnLogout');
 
-
 // 상단 멘트 랜덤 배치
 const cmt = document.querySelector('#cmt');
 const cmtArr = [
@@ -15,7 +14,7 @@ const cmtArr = [
   '"가을은 자연의 계절이기보다는 영혼의 계절임을 나는 알았다."',
   '"추석은 야금야금 살찌는 날"',
   '"가지마 추석 연휴"',
-  '"2023년도 벌써..."'
+  '"2023년도 벌써..."',
 ];
 let randCmtNum = Math.floor(Math.random() * cmtArr.length);
 // console.log('randCmtNum', randCmtNum); // 0~3
@@ -141,7 +140,7 @@ function prevPage() {
     try {
       axios({
         method: 'GET',
-        url: `/prevPage?page=${curPage}`,
+        url: `/prevPage?curPage=${curPage}`,
       }).then((res) => {
         curPage--; //앞에서 빼주어야 올바른 현재 페이지(이전 페이지)로 이동
         const data = res.data.data;
@@ -150,7 +149,7 @@ function prevPage() {
         console.log('start prev', startIndex); //0
 
         // step 1) a태그 내 링크 수정
-        for (let i = 0; i < p.length; i++) {
+        for (let i = 0; i < a.length; i++) {
           const dataIndex = startIndex + i; //0~6
           // console.log('prev startIdx', startIndex, i);
           // console.log('prev dataIdx', dataIndex);
@@ -194,31 +193,35 @@ function nextPage() {
   try {
     axios({
       method: 'GET',
-      url: `nextPage?page=${curPage}`,
+      url: `nextPage?curPage=${curPage}`,
     }).then((res) => {
       const data = res.data.data;
       const startIndex = curPage * starCnt;
       //curPage가 1부터 시작하므로 curPage -1 안 해야 알맞게 다음pg 데이터 인덱싱
 
       // step 1) a태그 내 링크 수정
-      for (let i = 0; i < p.length; i++) {
+      for (let i = 0; i < a.length; i++) {
         const dataIndex = startIndex + i; //0~6
         // console.log('next startIdx', startIndex, i);
-        // console.log('next dataIdx', dataIndex);
+        console.log('next dataIdx', dataIndex);
         // console.log('data[dataIndex]', data[dataIndex]);
 
         if (data[dataIndex]) {
           a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
-          // console.log(`a${i}.href`, a[i].href);
+          console.log(`a${i}.href`, a[i].href);
         } else {
           a[i].href = '#';
-          // console.log(`${i},aa`);
+          console.log(`${i},aa`);
         }
       }
 
       // step 2) p 태그 내용 수정
       for (let i = 0; i < p.length; i++) {
         const dataIndex = startIndex + i;
+
+        console.log('data[dataIndex]', data[dataIndex]);
+        console.log('p[i]', p[i]);
+        console.log('i,dataIdx', i, dataIndex);
 
         if (data[dataIndex]) {
           p[i].innerText = data[dataIndex].nickname;
@@ -245,17 +248,17 @@ btnLogout.addEventListener('click', () => {
   document.location.href = '/logout';
 });
 
-function realSearch(){
+function realSearch() {
   const searchBox = document.querySelector('#searched').value;
   axios({
-    method : 'get',
-    url : '/search',
+    method: 'get',
+    url: '/search',
     params: {
-      keyword: searchBox, 
+      keyword: searchBox,
     },
   })
-  .then((res)=>{
-    const searchData = res.data.data;
+    .then((res) => {
+      const searchData = res.data.data;
       if (searchData.length > 0) {
         for (let searched of searchData) {
           console.log(searched);
@@ -263,8 +266,8 @@ function realSearch(){
       } else {
         alert('해당 닉네임이 존재하지 않습니다');
       }
-  })
-  .catch((err)=>{
-    console.error(err);
-  })
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
