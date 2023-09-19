@@ -130,10 +130,11 @@ const stars = document.querySelectorAll('.star');
 btnLeft.addEventListener('click', prevPage);
 btnRight.addEventListener('click', nextPage);
 
-let curPage = 1;
+let curPage = 0;
 
 function prevPage() {
-  if (curPage > 1) {
+  
+  if (curPage > 0) {
     //현재 페이지가 1보다 큰 경우에만 이전 페이지로
     // 데이터 -7(별 개수)
     const p = document.querySelectorAll('p');
@@ -141,42 +142,31 @@ function prevPage() {
     try {
       axios({
         method: 'GET',
-        url: `/prevPage?page=${curPage}`,
+        url: `/prevPage?page=${curPage - 1}`, // 현재 페이지에서 1을 뺀 값을 사용
       }).then((res) => {
-        curPage--; //앞에서 빼주어야 올바른 현재 페이지(이전 페이지)로 이동
+        curPage--; // 앞에서 빼주지 않고, 여기서 현재 페이지를 감소
         const data = res.data.data;
-        // console.log(data.length);
-        const startIndex = (curPage - 1) * starCnt; //0
-        console.log('start prev', startIndex); //0
-
+        const startIndex = (curPage - 1) * starCnt;
+        console.log('prevPage', curPage);
         // step 1) a태그 내 링크 수정
         for (let i = 0; i < p.length; i++) {
-          const dataIndex = startIndex + i; //0~6
-          // console.log('prev startIdx', startIndex, i);
-          // console.log('prev dataIdx', dataIndex);
-
-          if (data[dataIndex]) {
-            a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
-            // console.log('a[i].href', a[i].href);
-          } else {
-            a[i].href = '#';
+          const dataIndex = startIndex + i;
+          if (a[i]) { // a[i]가 존재하는지 확인
+            if (data[dataIndex]) {
+              a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
+            } else {
+              a[i].href = '#';
+            }
           }
         }
 
         // step 2) p태그 내 닉네임 수정
-        // console.log('curPage', curPage);
         for (let i = 0; i < p.length; i++) {
-          //data.length는 8이라 p 인덱스에러 나니까 p.length로 수정
-          const dataIndex = startIndex + i; //0~6
-
+          const dataIndex = startIndex + i;
           if (data[dataIndex]) {
-            //데이터 있을 때 출력
-            // console.log(i, data[i]);
-            // console.log(i, p[i]); //7 undefined
             p[i].innerText = data[dataIndex].nickname;
           } else {
             p[i].innerText = '';
-            // star[i].innerHTML = '';
           }
         }
       });
@@ -187,6 +177,7 @@ function prevPage() {
 }
 
 function nextPage() {
+  
   const a = document.querySelectorAll('.a');
   const p = document.querySelectorAll('p');
   const star = document.querySelectorAll(`.star`);
@@ -194,7 +185,7 @@ function nextPage() {
   try {
     axios({
       method: 'GET',
-      url: `nextPage?page=${curPage}`,
+      url: `/nextPage?page=${curPage}`,
     }).then((res) => {
       const data = res.data.data;
       const startIndex = curPage * starCnt;
@@ -203,19 +194,16 @@ function nextPage() {
       // step 1) a태그 내 링크 수정
       for (let i = 0; i < p.length; i++) {
         const dataIndex = startIndex + i; //0~6
-        // console.log('next startIdx', startIndex, i);
-        // console.log('next dataIdx', dataIndex);
-        // console.log('data[dataIndex]', data[dataIndex]);
-
-        if (data[dataIndex]) {
-          a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
-          // console.log(`a${i}.href`, a[i].href);
-        } else {
-          a[i].href = '#';
-          // console.log(`${i},aa`);
+        if (a[i]) { // a[i]가 존재하는지 확인
+          if (data[dataIndex]) {
+            a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
+            // console.log(`a${i}.href`, a[i].href);
+          } else {
+            a[i].href = '#';
+            // console.log(`${i},aa`);
+          }
         }
       }
-
       // step 2) p 태그 내용 수정
       for (let i = 0; i < p.length; i++) {
         const dataIndex = startIndex + i;
