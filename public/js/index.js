@@ -130,10 +130,10 @@ const stars = document.querySelectorAll('.star');
 btnLeft.addEventListener('click', prevPage);
 btnRight.addEventListener('click', nextPage);
 
-let curPage = 1;
+let curPage = 0;
 
 function prevPage() {
-  if (curPage > 1) {
+  if (curPage > 0) {
     //현재 페이지가 1보다 큰 경우에만 이전 페이지로
     // 데이터 -7(별 개수)
     const p = document.querySelectorAll('p');
@@ -150,8 +150,8 @@ function prevPage() {
         console.log('start prev', startIndex); //0
 
         // step 1) a태그 내 링크 수정
-        for (let i = 0; i < p.length; i++) {
-          const dataIndex = startIndex + i; //0~6
+        for (let i = 0; i < a.length; i++) {
+          const dataIndex = startIndex + i + 7; //0~6
           // console.log('prev startIdx', startIndex, i);
           // console.log('prev dataIdx', dataIndex);
 
@@ -194,19 +194,19 @@ function nextPage() {
   try {
     axios({
       method: 'GET',
-      url: `nextPage?page=${curPage}`,
+      url: `/nextPage?page=${curPage}`,
     }).then((res) => {
       const data = res.data.data;
       const startIndex = curPage * starCnt;
       //curPage가 1부터 시작하므로 curPage -1 안 해야 알맞게 다음pg 데이터 인덱싱
 
       // step 1) a태그 내 링크 수정
-      for (let i = 0; i < p.length; i++) {
-        const dataIndex = startIndex + i; //0~6
+      for (let i = 0; i < a.length; i++) {
+        const dataIndex = startIndex + i + 7; //0~6
         // console.log('next startIdx', startIndex, i);
         // console.log('next dataIdx', dataIndex);
         // console.log('data[dataIndex]', data[dataIndex]);
-
+        console.log(data[dataIndex])
         if (data[dataIndex]) {
           a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
           // console.log(`a${i}.href`, a[i].href);
@@ -221,6 +221,8 @@ function nextPage() {
         const dataIndex = startIndex + i;
 
         if (data[dataIndex]) {
+          console.log(data[dataIndex].nickname);
+          console.log(p[i]);
           p[i].innerText = data[dataIndex].nickname;
         } else {
           p[i].innerText = '';
