@@ -1,4 +1,12 @@
-const { Post, PostLikes, Notification, User, Profile } = require('../models');
+const {
+  Post,
+  PostLikes,
+  Notification,
+  User,
+  Profile,
+  Friend,
+  RequestList,
+} = require('../models');
 
 const output = {
   content: (req, res) => {
@@ -17,7 +25,7 @@ const output = {
     console.log(idParam);
 
     const userData = await User.findAll({
-      where: { id: req.params.id },
+      where: { id: idParam },
     });
     const profile = await Profile.findOne({
       where: { id: req.params.id },
@@ -35,7 +43,7 @@ const output = {
     console.log('profile은', profile);
     req.session.profile = profile;
     const lord = userData.map((user) => user.dataValues);
-    console.log('lord는', lord);
+    console.log('lord는', lord[0]);
     // console.log('req.', req.params.id);
 
     if (userInfo) {
@@ -55,19 +63,41 @@ const output = {
           postNo: postNo,
         });
       } else {
-        // 아니면 yourLetter
-        const isMine = false;
-        console.log('isMine', isMine);
-        res.render('letter/myletter', {
-          profile: req.session.profile,
-          lord: lord[0],
-          session: userInfo,
-          isLogin: true,
-          isMine: false,
-          id: req.params.id,
-          nickname: nickname,
-          postNo: postNo,
-        });
+        try {
+          const friend = await User.findOne({
+            where: { id: idParam },
+          });
+
+          const checkFriend = await Friend.findOne({
+            where: { id: req.session.userInfo.id, friendUserId: friend.userId },
+          });
+
+          const checkRequest = await RequestList.findOne({
+            where: { id: friend.id, nickname: req.session.userInfo.userId },
+          });
+
+          // 작업 결과를 사용할 수 있음
+          console.log('friend:', friend);
+          console.log('checkFriend:', checkFriend);
+          console.log('checkRequest:', checkRequest);
+          // 아니면 yourLetter
+          const isMine = false;
+          console.log('isMine', isMine);
+          res.render('letter/myletter', {
+            profile: req.session.profile,
+            lord: lord[0],
+            session: userInfo,
+            isLogin: true,
+            isMine: false,
+            id: req.params.id,
+            nickname: nickname,
+            postNo: postNo,
+            checkFriend: checkFriend,
+            checkRequest: checkRequest,
+          });
+        } catch (error) {
+          console.error('오류 발생:', error);
+        }
       }
     } else {
       //로그인 x
