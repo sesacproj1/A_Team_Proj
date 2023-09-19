@@ -120,10 +120,13 @@ const letterModal = document.getElementById('letterModal');
 const modalBodyInput = letterModal.querySelector('.modal-body input');
 const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 
-function showPost(id) {
-  const postNo = document.querySelector('#postNo').value;
-  console.log('포스트넘버', postNo);
+function showPost(id, index) {
+  const postNoInput = document.getElementById(`postNo${index}`);
 
+  const postNo = (parseInt(curPage) - 1) * 5 + parseInt(postNoInput.value); //9
+
+  // 나머지 코드
+  console.log('포스트넘버', postNo);
   try {
     axios({
       method: 'get',
@@ -140,6 +143,8 @@ function showPost(id) {
     console.log('Err', err);
   }
 }
+
+//
 
 // 3. 좋아요 처리
 
