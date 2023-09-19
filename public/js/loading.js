@@ -1,5 +1,8 @@
-// 로딩 화면 1초간 지속
-// const loading = document.querySelector('.loading');
+// 로딩 화면
+const loading = document.querySelector('.loading');
+setTimeout(() => {
+  loading.style.display = 'none';
+}, 0);
 // window.addEventListener('load', () => {
 //   loading.style.display = 'none';
 // });
@@ -13,7 +16,6 @@ import {
   CSS2DRenderer,
   CSS2DObject,
 } from 'three/addons/renderers/CSS2DRenderer.js';
-import { escape } from 'mysql2';
 
 /* Basic Setting*/
 var myRenderer;

@@ -13,6 +13,7 @@ const Sequelize = require('sequelize');
 const output = {
   index: async (req, res) => {
     const curPage = 1 | req.query.curPage;
+
     const result = await User.findAll({
       offset: 7 * (curPage - 1),
       order: [['id', 'ASC']],

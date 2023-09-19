@@ -102,15 +102,15 @@ const output = {
   icon: async (req, res) => {
     const id = req.params.id;
     const result = await User.findOne({
-      where : {
-        id : id,
-      }
-    })
+      where: {
+        id: id,
+      },
+    });
     console.log(result.nickname);
-    res.render('letter/icon', { 
+    res.render('letter/icon', {
       session: req.session.userInfo,
-      data : result, 
-  });
+      data: result,
+    });
   },
 };
 
