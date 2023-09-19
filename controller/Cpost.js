@@ -26,20 +26,8 @@ const output = {
       limit: 5,
       order: [['id', 'ASC']],
     });
-
-    // const postDesign = postData.map((design) => design.postDesign);
-
-    // let designSrc = [];
-    // for (let design of postDesign) {
-    //   const srcValue = await Design.findOne({
-    //     where: { designNo: design },
-    //   });
-    //   console.log('srcValue', srcValue);
-    //   designSrc.push(srcValue.designLocation);
-    // }
-    // console.log('designSrc', designSrc);
-
-    console.log('편지', postData);
+    console.log('번호', postData);
+    
     res.send({ postData: postData });
   },
 
