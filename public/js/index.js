@@ -256,9 +256,13 @@ function realSearch(){
   })
   .then((res)=>{
     const searchData = res.data.data;
-    for (let searched of searchData) {
-      console.log(searched);
-    }
+      if (searchData.length > 0) {
+        for (let searched of searchData) {
+          console.log(searched);
+        }
+      } else {
+        alert('해당 닉네임이 존재하지 않습니다');
+      }
   })
   .catch((err)=>{
     console.error(err);
