@@ -129,10 +129,10 @@ const stars = document.querySelectorAll('.star');
 btnLeft.addEventListener('click', prevPage);
 btnRight.addEventListener('click', nextPage);
 
-let curPage = 1;
+let curPage = 0;
 
 function prevPage() {
-  if (curPage > 1) {
+  if (curPage > 0) {
     //현재 페이지가 1보다 큰 경우에만 이전 페이지로
     // 데이터 -7(별 개수)
     const p = document.querySelectorAll('p');
@@ -150,7 +150,7 @@ function prevPage() {
 
         // step 1) a태그 내 링크 수정
         for (let i = 0; i < a.length; i++) {
-          const dataIndex = startIndex + i; //0~6
+          const dataIndex = startIndex + i + 7; //0~6
           // console.log('prev startIdx', startIndex, i);
           // console.log('prev dataIdx', dataIndex);
 
@@ -193,7 +193,8 @@ function nextPage() {
   try {
     axios({
       method: 'GET',
-      url: `nextPage?curPage=${curPage}`,
+
+      url: `/nextPage?page=${curPage}`,
     }).then((res) => {
       const data = res.data.data;
       const startIndex = curPage * starCnt;
@@ -201,11 +202,11 @@ function nextPage() {
 
       // step 1) a태그 내 링크 수정
       for (let i = 0; i < a.length; i++) {
-        const dataIndex = startIndex + i; //0~6
+        const dataIndex = startIndex + i + 7; //0~6
         // console.log('next startIdx', startIndex, i);
         console.log('next dataIdx', dataIndex);
         // console.log('data[dataIndex]', data[dataIndex]);
-
+        console.log(data[dataIndex]);
         if (data[dataIndex]) {
           a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
           console.log(`a${i}.href`, a[i].href);
@@ -224,6 +225,8 @@ function nextPage() {
         console.log('i,dataIdx', i, dataIndex);
 
         if (data[dataIndex]) {
+          console.log(data[dataIndex].nickname);
+          console.log(p[i]);
           p[i].innerText = data[dataIndex].nickname;
         } else {
           p[i].innerText = '';
