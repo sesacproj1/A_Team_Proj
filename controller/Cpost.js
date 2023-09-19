@@ -25,11 +25,12 @@ const output = {
 
     const postData = await Post.findAll({
       where: { id: req.params.id },
-      attributes: ['postNickname'],
+      attributes: ['postNickname', 'postNo'],
     });
 
     const nickname = postData.map((nick) => nick.postNickname);
-    console.log('닉네임은', nickname);
+    const postNo = postData.map((post) => post.postNo);
+    console.log('포스트넘버', postNo);
 
     console.log('profile은', profile);
     req.session.profile = profile;
@@ -51,6 +52,7 @@ const output = {
           isMine: true,
           id: req.params.id,
           nickname: nickname,
+          postNo: postNo,
         });
       } else {
         // 아니면 yourLetter
@@ -64,6 +66,7 @@ const output = {
           isMine: false,
           id: req.params.id,
           nickname: nickname,
+          postNo: postNo,
         });
       }
     } else {
@@ -77,19 +80,20 @@ const output = {
         isMine: false,
         id: req.params.id,
         nickname: nickname,
+        postNo: postNo,
       });
     }
   },
 
   showPost: async (req, res) => {
-    const { letterNo, postNo } = req.params;
+    const { id, postNo } = req.params;
     console.log('req.params ', req.params);
     const showPost = await Post.findOne({
-      where: { letterNo: letterNo, postNo: postNo },
+      where: { id: id, postNo: postNo },
     });
 
     const showLikes = await PostLikes.findOne({
-      where: { letterNo: letterNo, postNo: postNo },
+      where: { id: id, postNo: postNo },
       attributes: ['likesNum'],
     });
     console.log('showPost.postContent ', showPost.postContent);
@@ -97,7 +101,6 @@ const output = {
     res.send({
       postContent: showPost.postContent,
       postNickname: showPost.postNickname,
-      postIp: showPost.postIp,
       likesNo: showLikes.likesNo,
     });
   },
@@ -130,6 +133,14 @@ const input = {
       postNo: postInfo.postNo,
     });
 
+    // 글작성시 좋아요 개수 0으로 default값 설정.
+    await PostLikes.create({
+      id: req.params.id,
+      letterNo: letterNo,
+      likesNum: 0,
+      postNo: postInfo.postNo,
+    });
+
     res.send({ result: 'true', id: letterNo });
   },
 
@@ -145,15 +156,20 @@ const input = {
   updateLikes: async (req, res) => {
     const { letterNo, postNo } = req.params;
     const likesNum = req.body.number;
+    req.session.likes;
 
-    await PostLikes.update(
-      {
-        likesNum: likesNum,
-      },
-      { where: { letterNo: letterNo, postNo: postNo } }
-    );
+    if (!req.session.likes) {
+      await PostLikes.update(
+        {
+          likesNum: likesNum,
+        },
+        { where: { letterNo: letterNo, postNo: postNo } }
+      );
 
-    res.send({ result: 'true' });
+      res.send({ message: '좋아요!' });
+    } else {
+      res.send({ message: '좋아요는 한번만!' });
+    }
   },
 };
 

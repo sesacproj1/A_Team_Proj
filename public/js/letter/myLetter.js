@@ -110,17 +110,16 @@ const letterModal = document.getElementById('letterModal');
 const modalBodyInput = letterModal.querySelector('.modal-body input');
 const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 
-function showPost(letterNo) {
+function showPost(id) {
+  const postNo = document.querySelector('#postNo').value;
+  console.log('포스트넘버', postNo);
+
   try {
     axios({
       method: 'get',
-      url: `/letter/MyLetter/${letterNo}`,
-      params: {
-        letterNo: letterNo,
-        postNo: postNo,
-      },
+      url: `/letter/MyLetter/${id}/${postNo}`,
     }).then((res) => {
-      const { postContent, postNickname, likesNo } = res.data;
+      console.log(res.data);
       modalBodyInput.value = postNickname;
       modalBodyTextarea.value = postContent;
       likesNum.value = likesNo;
@@ -136,27 +135,30 @@ const btnLike = document.querySelector('.btnLike');
 const likeHeart = document.querySelector('#likeHeart');
 const likesNum = document.querySelector('.likesNum');
 
-btnLike.addEventListener('click', updateLikes);
-
-function updateLikes() {
+function updateLikes(id) {
   // likeHeart.src = '/img/header/heart2.png';
   const likesNum2 = parseInt(likesNum.innerText);
-  console.log(likesNum2);
+
+  const postNo = document.querySelector('#postNo').value;
+  console.log('포스트넘버', postNo);
+
   axios({
     method: 'patch',
-    url: `/letter/MyLetter/13/1`, //letterNo is not defined
+    url: `/letter/MyLetter/${id}/${postNo}`,
+
     data: {
       number: likesNum2 + 1,
     },
   }).then((res) => {
     console.log(res);
+    alert(`${res.data.message}`);
     likesNum.innerText = likesNum2 + 1;
   });
 }
 
 // 4. 친구 신청 날렸을 때
 const btnAddFriend = document.querySelector('#btnAddFriend');
-btnAddFriend.addEventListener('click', addFriend);
+// btnAddFriend.addEventListener('click', addFriend);
 const imgAddFriend = document.querySelector('#imgAddFriend');
 function addFriend() {
   if (imgAddFriend.src !== 'http://localhost:8000/img/header/check.png') {

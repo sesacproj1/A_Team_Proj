@@ -107,9 +107,6 @@ router.delete(
   controllerNoti.input.deleteNoti
 );
 
-// 편지함 페이지 출력
-router.get('/letter/MyLetter/:letterNo', controllerPost.output.showMyLetter);
-
 // 글남기기
 // router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
 router.post(
@@ -124,15 +121,18 @@ router.get('/letter/MyLetter/:letterNo', controllerPost.output.showPost);
 
 
 
+router.get('/letter/MyLetter/:id/:postNo', controllerPost.output.showPost);
+
+
 // 편지함 페이지 - 기능 부분
 router.delete(
   '/MyLetter/:letterNo/:postNo/delete',
   controllerPost.input.contentDelete
 );
-router.patch(
-  '/letter/MyLetter/:letterNo/:postNo',
-  controllerPost.input.updateLikes
-);
+
+router.patch('/letter/MyLetter/:id/:postNo', controllerPost.input.updateLikes);
+
+
 
 // 친구기능
 // router.get('/friend/:id', controllerFriend.output.showFriend);

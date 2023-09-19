@@ -31,11 +31,11 @@ const Post = (Sequelize, DataTypes) => {
         allowNull: false,
         comment: '아이피 주소',
       },
-      postDesign : {
+      postDesign: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        comment : '편지함 디자인 번호',
-      }
+        comment: '편지함 디자인 번호',
+      },
     },
     {
       tableName: 'post',
