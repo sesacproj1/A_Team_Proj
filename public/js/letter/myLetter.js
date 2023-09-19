@@ -100,29 +100,29 @@ function nextPage() {
       // step 1) 각자 다른 이미지 path 가져오기
       for (let i = 0; i < letterImg.length; i++) {
         const dataIndex = i;
-        console.log('data design', data[dataIndex]);
+        console.log('data design', data[dataIndex].postDesign);
         const path = '/img/letterIcons/px_';
 
         if (data[dataIndex]) {
           switch (data[dataIndex].postDesign) {
             case 1:
-              letterImg[dataIndex].src = `${path} + acorn.png`;
+              letterImg[dataIndex].src = `${path}acorn.png`;
               break;
             case 2:
-              letterImg[dataIndex].src = `${path} + apple.png`;
+              letterImg[dataIndex].src = `${path}apple.png`;
               break;
             case 3:
-              letterImg[dataIndex].src = `${path} + apple2.png`;
+              letterImg[dataIndex].src = `${path}apple2.png`;
               break;
             case 4:
-              letterImg[dataIndex].src = `${path} + coin.png`;
+              letterImg[dataIndex].src = `${path}coin.png`;
               break;
             case 5:
-              letterImg[dataIndex].src = `${path} + food.png`;
+              letterImg[dataIndex].src = `${path}food.png`;
               break;
 
             case 14:
-              letterImg[dataIndex].src = `${path} + acorn.png`;
+              letterImg[dataIndex].src = `${path}acorn.png`;
               break;
             // default:
             //   letterImg[dataIndex].src = `${path} + acorn.png`;
