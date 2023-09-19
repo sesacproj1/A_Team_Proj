@@ -137,6 +137,16 @@ const output = {
         where: { id: req.session.userInfo.id },
       });
 
+
+      const postData = await Post.findAll({
+        where: { id: req.session.userInfo.id },
+        attributes: ['postNo'],
+      });
+
+      const post = postData.map((data) => data.postNo);
+
+      console.log('profile', profile);
+
       req.session.profile = profile;
 
       const friend = await Friend.findAll({
@@ -152,7 +162,10 @@ const output = {
         data: user,
         isLogin: true,
         isProfile: true,
+
         friend: numberOfFriends,
+        postNo: post,
+
       });
     } else {
       return res.render('user/login', {

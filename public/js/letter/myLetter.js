@@ -120,9 +120,11 @@ function showPost(id) {
       url: `/letter/MyLetter/${id}/${postNo}`,
     }).then((res) => {
       console.log(res.data);
+      const { postContent, postNickname, likesNo } = res.data;
+
       modalBodyInput.value = postNickname;
       modalBodyTextarea.value = postContent;
-      likesNum.value = likesNo;
+      likesNum.innerText = likesNo;
     });
   } catch (err) {
     console.log('Err', err);
@@ -141,11 +143,10 @@ function updateLikes(id) {
 
   const postNo = document.querySelector('#postNo').value;
   console.log('포스트넘버', postNo);
-
+  console.log(likesNum2);
   axios({
     method: 'patch',
-    url: `/letter/MyLetter/${id}/${postNo}`,
-
+    url: `/letter/MyLetter/${id}/${postNo}/likes`,
     data: {
       number: likesNum2 + 1,
     },
