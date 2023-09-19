@@ -387,8 +387,8 @@
     height: 40px;
   }
   #btnMypage {
-    width: 55px;
-    height: 55px;
+    width: 9vh;
+    height: 9vh;
     margin-bottom: 15%;
     box-shadow: none;
     overflow: hidden;

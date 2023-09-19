@@ -16,16 +16,29 @@ const output = {
 
   // 페이징
   nextPage: async (req, res) => {
-    let curPage = 1 | req.query.curPage;
+    let curPage = req.query.curPage;
     console.log('paramsPage next', req.query.curPage);
     console.log('curpage next', curPage);
     const postData = await Post.findAll({
       where: { id: req.params.id },
-      attributes: ['postNickname'],
+      attributes: ['postNickname', 'postDesign'],
       offset: 5 * req.query.curPage,
       limit: 5,
       order: [['id', 'ASC']],
     });
+
+    // const postDesign = postData.map((design) => design.postDesign);
+
+    // let designSrc = [];
+    // for (let design of postDesign) {
+    //   const srcValue = await Design.findOne({
+    //     where: { designNo: design },
+    //   });
+    //   console.log('srcValue', srcValue);
+    //   designSrc.push(srcValue.designLocation);
+    // }
+    // console.log('designSrc', designSrc);
+
     console.log('편지', postData);
     res.send({ postData: postData });
   },
@@ -36,11 +49,12 @@ const output = {
     console.log('curpage prev', curPage);
     const postData2 = await Post.findAll({
       where: { id: req.params.id },
-      attributes: ['postNickname'],
+      attributes: ['postNickname', 'postDesign'],
       offset: 5 * (req.query.curPage - 2),
       limit: 5,
       order: [['id', 'ASC']],
     });
+
     console.log('편지', postData2);
     res.send({ postData: postData2 });
   },

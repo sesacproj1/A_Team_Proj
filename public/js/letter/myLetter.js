@@ -1,10 +1,3 @@
-// 1. 편지 목록 보여주기
-// 페이징 : 편지 작성 테이블에서 가져오기
-// - 1) 각자 다른 이미지 path 가져오기
-// - 2) 각자 다른 이름 가져오기
-
-// const { query } = require('express');
-
 const moon = document.querySelector('#moon'); //배경 달
 // console.log('moon', moon.width);
 const btnLeft = document.querySelector('#btnLeft');
@@ -35,15 +28,39 @@ function prevPage() {
         // console.log('letter Cnt', letterCnt);
 
         // step 1) 각자 다른 이미지 path 가져오기
-        // for (let i = 0; i < letterImg.length; i++) {
-        //   const dataIndex = startIndex + i; //0~6
+        for (let i = 0; i < letterImg.length; i++) {
+          const dataIndex = i;
+          console.log('data design', data[dataIndex]);
+          const path = '/img/letterIcons/px_';
 
-        //   if (data[dataIndex]) {
-        //     // letterImg[i].src = `/letter/MyLetter/${data[dataIndex].postDesign}`;
-        //   } else {
-        //     letterImg[i].src = '';
-        //   }
-        // }
+          if (data[dataIndex]) {
+            switch (data[dataIndex].postDesign) {
+              case 1:
+                letterImg[dataIndex].src = `${path}acorn.png`;
+                break;
+              case 2:
+                letterImg[dataIndex].src = `${path}apple.png`;
+                break;
+              case 3:
+                letterImg[dataIndex].src = `${path}apple2.png`;
+                break;
+              case 4:
+                letterImg[dataIndex].src = `${path}coin.png`;
+                break;
+              case 5:
+                letterImg[dataIndex].src = `${path}food.png`;
+                break;
+
+              case 14:
+                letterImg[dataIndex].src = `${path}acorn.png`;
+                break;
+              // default:
+              //   letterImg[dataIndex].src = `${path} + acorn.png`;
+            }
+          } else {
+            letterImg[dataIndex].src = '';
+          }
+        }
 
         // step 2) 각자 다른 이름 가져오기
         for (let i = 0; i < letterP.length; i++) {
@@ -78,21 +95,42 @@ function nextPage() {
     }).then((res) => {
       const data = res.data.postData;
       console.log('data next', data);
-
       const startIndex = curPage * letterCnt;
-      // console.log('start next', startIndex); //5
-      // console.log('letter Cnt', letterCnt);
 
       // step 1) 각자 다른 이미지 path 가져오기
-      // for (let i = 0; i < letterImg.length; i++) {
-      //   const dataIndex = startIndex + i; //0~6
+      for (let i = 0; i < letterImg.length; i++) {
+        const dataIndex = i;
+        console.log('data design', data[dataIndex]);
+        const path = '/img/letterIcons/px_';
 
-      //   if (data[dataIndex]) {
-      //     // letterImg[i].src = `/letter/MyLetter/${data[dataIndex].postDesign}`;
-      //   } else {
-      //     letterImg[i].src = '';
-      //   }
-      // }
+        if (data[dataIndex]) {
+          switch (data[dataIndex].postDesign) {
+            case 1:
+              letterImg[dataIndex].src = `${path} + acorn.png`;
+              break;
+            case 2:
+              letterImg[dataIndex].src = `${path} + apple.png`;
+              break;
+            case 3:
+              letterImg[dataIndex].src = `${path} + apple2.png`;
+              break;
+            case 4:
+              letterImg[dataIndex].src = `${path} + coin.png`;
+              break;
+            case 5:
+              letterImg[dataIndex].src = `${path} + food.png`;
+              break;
+
+            case 14:
+              letterImg[dataIndex].src = `${path} + acorn.png`;
+              break;
+            // default:
+            //   letterImg[dataIndex].src = `${path} + acorn.png`;
+          }
+        } else {
+          letterImg[dataIndex].src = '';
+        }
+      }
 
       // step 2) 각자 다른 이름 가져오기
       for (let i = 0; i < letterP.length; i++) {
@@ -120,8 +158,10 @@ const letterModal = document.getElementById('letterModal');
 const modalBodyInput = letterModal.querySelector('.modal-body input');
 const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 
+
 function showPost(id, index) {
   const postNoInput = document.getElementById(`postNo${index}`);
+
 
   const postNo = (parseInt(curPage) - 1) * 5 + parseInt(postNoInput.value); //9
 
@@ -130,13 +170,13 @@ function showPost(id, index) {
   try {
     axios({
       method: 'get',
-      url: `/letter/MyLetter/${id}/${postNo}`,
+      url: `/letter/MyLetter/${id}/${postNo[i].value}`,
     }).then((res) => {
       console.log(res.data);
       const { postContent, postNickname, likesNo } = res.data;
 
       modalBodyInput.value = postNickname;
-      modalBodyTextarea.value = postContent;
+      modalBodyTextarea.innerText = postContent;
       likesNum.innerText = likesNo;
     });
   } catch (err) {

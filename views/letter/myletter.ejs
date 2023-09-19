@@ -31,6 +31,7 @@
             id="letter<%= i+1 %>"
             data-bs-toggle="modal"
             data-bs-target="#letterModal"
+
             onclick="showPost('<%= id %>',<%= i%>)"
     
           >
@@ -38,6 +39,7 @@
             <img src="/img/letterIcons/px_apple.png" alt="" class="letterImg" id="letterImg<%=i%>" />
             <p class="letterP" id="letterP<%=i%> letterNickname"><%=nickname[i]%></p>
             <input type="hidden" value="<%= postNo[i]%>" id="postNo<%= i %>">
+
           </div>
           <% } %>
 
