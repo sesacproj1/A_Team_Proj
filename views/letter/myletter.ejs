@@ -31,9 +31,12 @@
             id="letter<%= i+1 %>"
             data-bs-toggle="modal"
             data-bs-target="#letterModal"
+            onclick="showPost('<%= id %>')"
           >
             <img src="/img/letterIcons/px_apple.png" alt="" class="letterImg" id="letterImg<%=i%>" />
             <p class="letterP" id="letterP<%=i%>"><%=nickname[i]%></p>
+            <input type="hidden" value="<%= postNo[i]%>" id="postNo">
+            
           </div>
           <% } %>
           <!-- 편지 모달 -->
@@ -45,7 +48,7 @@
             tabindex="-1"
             aria-labelledby="letterModalLabel"
             aria-hidden="true"
-            onclick="showPost('<%= id%>')"
+            
           >
             <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -90,7 +93,7 @@
                   삭제
                 </button> 
 
-                <button type="button" class="btn btnLike">
+                <button type="button" class="btn btnLike" onclick="updateLikes('<%= id%>')">
                   <img src="/img/header/heart1.png" alt="" id="likeHeart" />
                   <div class="likesNum">
                   44
@@ -156,7 +159,8 @@
       <% } %>
 
       <!-- 2. 로그인 했고 남의 페이지일 때 -->
-      <% if(isLogin && ! isMine ) { %>
+      
+      <% if(isLogin && !isMine ) { %>
       <div class="profilePicDiv">
         <button id="btnProfilePic" disabled>
           <%if (profile.profileLocation !== undefined){%>
@@ -173,14 +177,18 @@
             <img src="/img/header/friends.png" alt="" id="imgFriends"  />
           </button>
             <p>친구 목록</p>
-        
       </div>
 
       <div class="addFriendDiv">
-        <button id="btnAddFriend">
-          <img src="/img/header/add.png" alt="" id="imgAddFriend" />
-        </button>
-        <input type="text" id="lordid" value="<%= lord.id%>">
+        <!-- <button id="btnAddFriend" onclick="addFriend()"> -->
+          <button id="btnAddFriend">
+            <%if( checkFriend ||  checkRequest){%>
+            <img src="/img/header/check.png" alt="" id="imgAddFriend" />
+            <%}else{%>
+              <img src="/img/header/add.png" alt="" id="imgAddFriend" />
+            <%}%>
+          </button>
+          <input type="text" id="lordid" value="<%= lord.id%>">
         <p>친구 신청</p>
       </div>
 
@@ -193,7 +201,7 @@
           <p>편지 쓰기</p>
         </a>
       </div>
-      <% } %>
+      <%}%>
     
       <!-- 3. 로그인 안 했고 남의 페이지일 때 -->
       <% if (!isLogin && !isMine) { %>

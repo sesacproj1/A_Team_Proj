@@ -215,6 +215,7 @@
   background-color: #ffa1f5;
   /* background-image: url('../img/background/letterBg.png'); */
 }
+
 .modal-footer {
   position: relative;
   display: flex;
@@ -296,6 +297,7 @@
     width: 100%;
     height: 100%;
     object-fit: fill;
+
   }
   #imgFriendConfirm {
     width: 35px;
@@ -326,15 +328,15 @@
     overflow: hidden;
   }
   #btnProfilePic {
-    width: 40px;
-    height: 40px;
+    width: 9vh;
+    height: 9vh;
     margin-bottom: 15%;
     box-shadow: none;
     overflow: hidden;
   }
   .menuDiv button {
-    width: 40px;
-    height: 40px;
+    width: 9vh;
+    height: 9vh;
     border: none;
     border-radius: 50%;
     background-color: #37e2d5;
@@ -360,6 +362,7 @@
     width: 100%;
     height: 100%;
     object-fit: fill;
+
   }
   #imgFriendConfirm {
     width: 50px;
@@ -391,15 +394,15 @@
     overflow: hidden;
   }
   #btnProfilePic {
-    width: 55px;
-    height: 55px;
+    width: 9vh;
+    height: 9vh;
     margin-bottom: 15%;
     box-shadow: none;
     overflow: hidden;
   }
   .menuDiv button {
-    width: 50px;
-    height: 50px;
+    width: 9vh;
+    height: 9vh;
     border: none;
     border-radius: 50%;
     background-color: #37e2d5;

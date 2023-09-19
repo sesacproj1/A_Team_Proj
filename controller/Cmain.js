@@ -8,6 +8,7 @@ const {
   Profile,
   User,
 } = require('../models');
+const Sequelize = require('sequelize');
 
 const output = {
   index: async (req, res) => {
@@ -54,8 +55,17 @@ const output = {
   },
 
   userLogin: (req, res) => {
-    //유저 로그인 렌더 페이지입니다
-    return res.render('user/login');
+    console.log('세션있나요~~~ ', req.session.userInfo);
+    if (req.session.userInfo !== undefined) {
+      return res.render('user/login', {
+        message: '잘못된 접근입니다.',
+        isLogin: true,
+      });
+      //이미 로그인상태라면
+    } else {
+      //유저 로그인 렌더 페이지입니다
+      return res.render('user/login');
+    }
   },
 
   userRegister: (req, res) => {
@@ -128,15 +138,36 @@ const output = {
       const profile = await Profile.findOne({
         where: { id: req.session.userInfo.id },
       });
+
+
+      const postData = await Post.findAll({
+        where: { id: req.session.userInfo.id },
+        attributes: ['postNo'],
+      });
+
+      const post = postData.map((data) => data.postNo);
+
       console.log('profile', profile);
+
       req.session.profile = profile;
-      console.log('req.session.profile~~ ', req.session.profile);
+
+      const friend = await Friend.findAll({
+        where: { id: req.session.userInfo.id },
+      });
+
+      const numberOfFriends = friend.length;
+      console.log(`친구의 수: ${numberOfFriends}`);
+
       return res.render('user/myPage', {
         session: req.session.userInfo,
         profile: req.session.profile,
         data: user,
         isLogin: true,
         isProfile: true,
+
+        friend: numberOfFriends,
+        postNo: post,
+
       });
     } else {
       return res.render('user/login', {
@@ -191,6 +222,28 @@ const input = {
     console.log(result);
     return res.send(result);
   },
+
+  search : async(req,res)=>{
+    const keyword = req.query.keyword;
+    const users = await User.findAll({
+      where: {
+        [Sequelize.Op.or]: [
+          { nickname: { [Sequelize.Op.like]: `%${keyword}%` } },
+        ],
+      },
+    });
+
+    if(users){
+      return res.send({
+        msg : true,
+        data : users,
+      });
+    } else {
+      return res.send({
+        msg : false,
+      })
+    }
+  }
 };
 
 module.exports = { output, input };

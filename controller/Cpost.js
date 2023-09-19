@@ -1,4 +1,13 @@
-const { Post, PostLikes, Notification, User, Profile } = require('../models');
+const {
+  Post,
+  PostLikes,
+  Notification,
+  User,
+  Profile,
+  Friend,
+  RequestList,
+  Design,
+} = require('../models');
 
 const output = {
   content: (req, res) => {
@@ -48,7 +57,7 @@ const output = {
     // console.log(idParam);
 
     const userData = await User.findAll({
-      where: { id: req.params.id },
+      where: { id: idParam },
     });
 
     const profile = await Profile.findOne({
@@ -58,18 +67,28 @@ const output = {
     let curPage = 1 | req.query.curPage;
     const postData = await Post.findAll({
       where: { id: req.params.id },
-      attributes: ['postNickname'],
-      limit: 5,
-      // offset: 5 * curPage - 1,
+
+      attributes: ['postNickname', 'postNo', 'postDesign'],
     });
 
     const nickname = postData.map((nick) => nick.postNickname);
-    console.log('닉네임은', nickname);
+    const postNo = postData.map((post) => post.postNo);
+    const postDesign = postData.map((design) => design.postDesign);
+
+    let designSrc = [];
+    for (let design of postDesign) {
+      const srcValue = await Design.findOne({
+        where: { designNo: design },
+      });
+      console.log(srcValue);
+      designSrc.push(srcValue.designLocation);
+    }
+    console.log(designSrc);
 
     console.log('profile은', profile);
     req.session.profile = profile;
     const lord = userData.map((user) => user.dataValues);
-    console.log('lord는', lord);
+    console.log('lord는', lord[0]);
     // console.log('req.', req.params.id);
 
     if (userInfo) {
@@ -86,20 +105,46 @@ const output = {
           isMine: true,
           id: req.params.id,
           nickname: nickname,
+          postNo: postNo,
+          postDesign: designSrc,
         });
       } else {
-        // 아니면 yourLetter
-        const isMine = false;
-        console.log('isMine', isMine);
-        res.render('letter/myletter', {
-          profile: req.session.profile,
-          lord: lord[0],
-          session: userInfo,
-          isLogin: true,
-          isMine: false,
-          id: req.params.id,
-          nickname: nickname,
-        });
+        try {
+          const friend = await User.findOne({
+            where: { id: idParam },
+          });
+
+          const checkFriend = await Friend.findOne({
+            where: { id: req.session.userInfo.id, friendUserId: friend.userId },
+          });
+
+          const checkRequest = await RequestList.findOne({
+            where: { id: friend.id, nickname: req.session.userInfo.userId },
+          });
+
+          // 작업 결과를 사용할 수 있음
+          console.log('friend:', friend);
+          console.log('checkFriend:', checkFriend);
+          console.log('checkRequest:', checkRequest);
+          // 아니면 yourLetter
+          const isMine = false;
+          console.log('isMine', isMine);
+          res.render('letter/myletter', {
+            profile: req.session.profile,
+            lord: lord[0],
+            session: userInfo,
+            isLogin: true,
+            isMine: false,
+            id: req.params.id,
+            nickname: nickname,
+            postNo: postNo,
+            postDesign: designSrc,
+            checkFriend: checkFriend,
+            checkRequest: checkRequest,
+          });
+        } catch (error) {
+          console.error('오류 발생:', error);
+        }
       }
     } else {
       //로그인 x
@@ -112,28 +157,28 @@ const output = {
         isMine: false,
         id: req.params.id,
         nickname: nickname,
+        postNo: postNo,
+        postDesign: postDesign,
+        postDesign: designSrc,
       });
     }
   },
 
   showPost: async (req, res) => {
-    const { letterNo, postNo } = req.params;
+    const { id, postNo } = req.params;
     console.log('req.params ', req.params);
     const showPost = await Post.findOne({
-      where: { letterNo: letterNo, postNo: postNo },
+      where: { id: id, postNo: postNo },
     });
 
     const showLikes = await PostLikes.findOne({
-      where: { letterNo: letterNo, postNo: postNo },
+      where: { id: id, postNo: postNo },
       attributes: ['likesNum'],
     });
-    console.log('showPost.postContent ', showPost.postContent);
-    console.log(showLikes.likesNum);
     res.send({
       postContent: showPost.postContent,
       postNickname: showPost.postNickname,
-      postIp: showPost.postIp,
-      likesNo: showLikes.likesNo,
+      likesNo: showLikes.likesNum,
     });
   },
 };
@@ -155,13 +200,25 @@ const input = {
 
     // 글작성시 알림함에 추가
     const postInfo = await Post.findOne({
-      where: { letterNo: letterNo, postNickname: postNickname },
+      where: {
+        letterNo: letterNo,
+        postNickname: postNickname,
+        postDesign: postDesign,
+      },
     });
 
     await Notification.create({
       id: req.params.id,
       letterNo: letterNo,
       sender: postNickname,
+      postNo: postInfo.postNo,
+    });
+
+    // 글작성시 좋아요 개수 0으로 default값 설정.
+    await PostLikes.create({
+      id: req.params.id,
+      letterNo: letterNo,
+      likesNum: 0,
       postNo: postInfo.postNo,
     });
 
@@ -178,17 +235,22 @@ const input = {
   },
 
   updateLikes: async (req, res) => {
-    const { letterNo, postNo } = req.params;
+    const { id, postNo } = req.params;
     const likesNum = req.body.number;
+    req.session.likes = postNo;
 
-    await PostLikes.update(
-      {
-        likesNum: likesNum,
-      },
-      { where: { letterNo: letterNo, postNo: postNo } }
-    );
+    if (!req.session.likes) {
+      await PostLikes.update(
+        {
+          likesNum: likesNum,
+        },
+        { where: { letterNo: id, postNo: postNo } }
+      );
 
-    res.send({ result: 'true' });
+      res.send({ message: '좋아요!' });
+    } else {
+      res.send({ message: '좋아요는 한번만!' });
+    }
   },
 };
 

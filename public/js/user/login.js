@@ -3,6 +3,7 @@
 // }
 
 // 쿠키 값을 가져오는 함수
+
 function getCookie(name) {
   const cookies = document.cookie.split('; ');
   for (const cookie of cookies) {
@@ -45,6 +46,16 @@ document.addEventListener('DOMContentLoaded', function () {
   document
     .getElementById('saveId')
     .addEventListener('change', setRememberIdCookie);
+});
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+    // 엔터 키가 눌렸을 때 로그인 버튼 클릭
+    const loginBtn = document.getElementById('loginBtn');
+    if (loginBtn) {
+      loginBtn.click();
+    }
+  }
 });
 
 async function loginAxios() {

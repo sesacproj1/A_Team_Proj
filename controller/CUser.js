@@ -140,8 +140,10 @@ const input = {
       where: { userId: req.body.userId },
     });
     if (result == null) {
+      // 중복없음!
       return res.send({ result: true });
     } else {
+      //중복있음!!
       return res.send({ result: false, user: result });
     }
   },

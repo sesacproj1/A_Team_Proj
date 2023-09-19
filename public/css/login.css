@@ -58,6 +58,8 @@
 }
 
 .login_container1 {
+  display: flex;
+  align-items: center;
   margin-top: 10px;
   border-radius: 10px;
   border: 2px solid black;
