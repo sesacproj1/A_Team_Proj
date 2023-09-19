@@ -20,15 +20,15 @@
         <h1><%= lord.nickname %>님의<br />편지함</h1>
 
       </div>
-
+      <input type="text" value="<%=lord.id%>" id="personId" style="display: none">
       <div class="letterDiv col-md-8">
         <div class="imgDiv">
           <img src="/img/background/moon.png" alt="" id="moon" />
-          <!-- 편지 : 페이징 시 data.length로 바꾸기 -->
-          <% for (let i=1; i<=nickname.length; i++ ){ %>
+          <!-- 편지 : 페이징 시 nickname.length로 바꾸기 -->
+          <% for (let i=0; i< nickname.length; i++ ){ %>
           <div
             class="letters"
-            id="letter<%= i %>"
+            id="letter<%= i+1 %>"
             data-bs-toggle="modal"
             data-bs-target="#letterModal"
           >
@@ -38,7 +38,7 @@
           <% } %>
           <!-- 편지 모달 -->
           <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#letterModal" data-bs-whatever="">modal 열기</button> -->
-
+          
           <div
             class="modal fade"
             id="letterModal"
@@ -51,7 +51,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="letterModalLabel">
-                  송편지
+                  ✉️송편지
                 </h1>
                 <button
                   type="button"
@@ -111,10 +111,10 @@
       </div>
 
       <div class="btnDiv">
-        <button id="btnLeft">
+        <button id="btnLeft" onclick="prevPage()">
           <img src="/img/header/left.png" alt="" />
         </button>
-        <button id="btnRight">
+        <button id="btnRight" onclick="nextPage()">
           <img src="/img/header/right.png" alt="" />
         </button>
       </div>
@@ -132,7 +132,6 @@
               <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
             <%}%>
           </button>
-          <p>마이페이지</p>
         </a>
       </div>
 

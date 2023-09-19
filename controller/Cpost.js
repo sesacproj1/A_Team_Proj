@@ -5,6 +5,37 @@ const output = {
     res.render('letter/postContent');
   },
 
+  // 페이징
+  nextPage: async (req, res) => {
+    let curPage = 1 | req.query.curPage;
+    console.log('paramsPage next', req.query.curPage);
+    console.log('curpage next', curPage);
+    const postData = await Post.findAll({
+      where: { id: req.params.id },
+      attributes: ['postNickname'],
+      offset: 5 * req.query.curPage,
+      limit: 5,
+      order: [['id', 'ASC']],
+    });
+    console.log('편지', postData);
+    res.send({ postData: postData });
+  },
+
+  prevPage: async (req, res) => {
+    let curPage = 1 | req.query.curPage;
+    console.log('paramsPage prev', req.query.curPage);
+    console.log('curpage prev', curPage);
+    const postData2 = await Post.findAll({
+      where: { id: req.params.id },
+      attributes: ['postNickname'],
+      offset: 5 * (req.query.curPage - 2),
+      limit: 5,
+      order: [['id', 'ASC']],
+    });
+    console.log('편지', postData2);
+    res.send({ postData: postData2 });
+  },
+
   showMyLetter: async (req, res) => {
     const userInfo = req.session.userInfo;
     // const { id, userId, nickname } = userInfo;
@@ -14,18 +45,22 @@ const output = {
     // res.render('letter/myletter', { nickname: nickname });
     console.log('userInfo', userInfo);
     const idParam = req.params.id; //n
-    console.log(idParam);
+    // console.log(idParam);
 
     const userData = await User.findAll({
       where: { id: req.params.id },
     });
+
     const profile = await Profile.findOne({
       where: { id: req.params.id },
     });
 
+    let curPage = 1 | req.query.curPage;
     const postData = await Post.findAll({
       where: { id: req.params.id },
       attributes: ['postNickname'],
+      limit: 5,
+      // offset: 5 * curPage - 1,
     });
 
     const nickname = postData.map((nick) => nick.postNickname);
