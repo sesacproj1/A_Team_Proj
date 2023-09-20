@@ -160,15 +160,36 @@ const output = {
 
       console.log('req.session.profile~~ ', req.session.profile);
       if (isFriend) {
-        return res.render('user/myPage', {
-          session: req.session.userInfo,
-          profile: req.session.profile,
-          data: user,
-          isLogin: true,
-          isProfile: true,
-          postNo: post,
-          noti: notification.length + 1,
-        });
+        if (isFriend) {
+          //friend있으면
+          const friend = await Friend.findAll({
+            where: { id: req.session.userInfo.id },
+          });
+
+          const numberOfFriends = friend.length;
+
+          return res.render('user/myPage', {
+            session: req.session.userInfo,
+            profile: req.session.profile,
+            data: user,
+            isLogin: true,
+            isProfile: true,
+            friend: numberOfFriends,
+            postNo: post,
+            noti: notification.length + 1,
+          });
+        } else {
+          return res.render('user/myPage', {
+            session: req.session.userInfo,
+            profile: req.session.profile,
+            data: user,
+            isLogin: true,
+            isProfile: true,
+            postNo: post,
+            friend: 0,
+            noti: notification.length,
+          });
+        }
       } else {
         return res.render('user/myPage', {
           session: req.session.userInfo,
@@ -180,26 +201,6 @@ const output = {
           noti: notification.length,
         });
       }
-
-
-      const friend = await Friend.findAll({
-        where: { id: req.session.userInfo.id },
-      });
-
-      const numberOfFriends = friend.length;
-      console.log(`친구의 수: ${numberOfFriends}`);
-
-      return res.render('user/myPage', {
-        session: req.session.userInfo,
-        profile: req.session.profile,
-        data: user,
-        isLogin: true,
-        isProfile: true,
-
-        friend: numberOfFriends,
-        postNo: post,
-      });
-
     } else {
       return res.render('user/login', {
         session: req.session.userInfo,
