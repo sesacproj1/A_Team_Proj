@@ -35,10 +35,11 @@
 .text {
   width: 100vw;
   height: 100vh;
-  color: aqua;
-  font-size: 40px;
+  color: #006e7f;
+  font-size: 5vh;
+  font-weight: bold;
   position: absolute;
-  top: 55%;
+  top: 63%;
 }
 
 .text span {
