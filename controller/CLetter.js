@@ -30,6 +30,7 @@ const output = {
           userId: req.session.friend.map((friend) => friend.friendUserId),
         },
       });
+      
       //친구 프로필들은 배열 객체로 생성
       console.log('friendProfiles은 ~~~~', friendProfiles);
       const friendData = friendProfiles.map((profile) => ({
@@ -37,7 +38,7 @@ const output = {
         userId: profile.userId,
         id: profile.id,
       }));
-
+      console.log('프렌드 데이터', friendData);
       res.render('letter/friends', {
         lord: lord[0],
         friend: req.session.friend,
