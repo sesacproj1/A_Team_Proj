@@ -44,8 +44,7 @@
           <% } %>
 
           <!-- 편지 모달 -->
-          <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#letterModal" data-bs-whatever="">modal 열기</button> -->
-          
+   
           <div
             class="modal fade"
             id="letterModal"
@@ -124,57 +123,57 @@
               </div>
             </div>
           </div>
-        </div>
+          </div>
         <!-- 편지 모달 끝-->
 
-        <!-- 삭제 모달 -->
-        <div
-            class="modal fade"
-            id="deleteModal"
-            tabindex="-1"
-            aria-labelledby="letterModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="letterModalLabel">
-                  비밀번호
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label"
-                      >비밀번호</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="recipient-name"
-                    />
-                  </div>
-                  
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btnComplete"
-                  data-bs-dismiss="modal"
-                >
-                  확인
-                </button> 
+          <!-- 삭제 모달 -->
+          <div
+              class="modal fade"
+              id="deleteModal"
+              tabindex="-1"
+              aria-labelledby="letterModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="letterModalLabel">
+                    비밀번호
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="mb-3">
+                      <label for="recipient-name" class="col-form-label"
+                        >비밀번호</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="recipient-name"
+                      />
+                    </div>
+                    
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btnComplete"
+                    data-bs-dismiss="modal"
+                  >
+                    확인
+                  </button> 
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
       <div class="btnDiv">
         <button id="btnLeft" onclick="prevPage()">
@@ -184,122 +183,123 @@
           <img src="/img/header/right.png" alt="" />
         </button>
       </div>
-    </div>
-    </div>
+      </div>
+      </div>
 
-    <div class="menuDiv col-md-2">
-      <!-- 1. 로그인 했고 내 페이지일 때 -->
-      <% if (isMine && isLogin) { %>
-      <div class="myPageDiv">
-        <a href="/user/myPage">
-          <%if (profile.profileLocation !== undefined){%>
-            <button id="btnMypage">
-              <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
-            </button>
-            <p>마이페이지</p>
-            <%}else{%>
+      <div class="menuDiv col-md-2">
+        <!-- 1. 로그인 했고 내 페이지일 때 -->
+        <% if (isMine && isLogin) { %>
+        <div class="myPageDiv">
+          <a href="/user/myPage">
+            <%if (profile.profileLocation !== undefined){%>
               <button id="btnMypage">
-                <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+                <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
               </button>
-            <%}%>
-        
+              <p>마이페이지</p>
+              <%}else{%>
+                <button id="btnMypage">
+                  <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+                </button>
+              <%}%>
+          
 
-        </a>
+          </a>
+        </div>
+
+        <div class="friendConfirmDiv">
+          <a href="/letter/friendConfirm">
+            <button id="btnFriendConfirm" >
+              <img src="/img/header/ring.png" alt="" id="imgFriendConfirm" />
+            </button>
+            <p>친구 신청</p>
+          </a>
       </div>
 
-      <div class="friendConfirmDiv">
-        <a href="/letter/friendConfirm">
-          <button id="btnFriendConfirm" >
-            <img src="/img/header/ring.png" alt="" id="imgFriendConfirm" />
-          </button>
-          <p>친구 신청</p>
-        </a>
-    </div>
 
-
-      <div class="friendsDiv">
-      <a href="/letter/friends/<%=lord.id%>">
-          <button id="btnFriends">
-            <img src="/img/header/friends.png" alt="" id="imgFriends" />
-          </button>
-            <p>친구 목록</p>
-        </a>
-      </div>
-      <% } %>
-
-      <!-- 2. 로그인 했고 남의 페이지일 때 -->
-      
-      <% if(isLogin && !isMine ) { %>
-      <div class="profilePicDiv">
-        <button id="btnProfilePic" disabled>
-          <%if (profile.profileLocation !== undefined){%>
-            <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
-            <%}else{%>
-              <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
-            <%}%>
-        </button>
-      </div>
-
-      <div class="friendsDiv">
+        <div class="friendsDiv">
         <a href="/letter/friends/<%=lord.id%>">
-          <button id="btnFriends" >
-            <img src="/img/header/friends.png" alt="" id="imgFriends"  />
-          </button>
-            <p>친구 목록</p>
-      </div>
+            <button id="btnFriends">
+              <img src="/img/header/friends.png" alt="" id="imgFriends" />
+            </button>
+              <p>친구 목록</p>
+          </a>
+        </div>
+        <% } %>
 
-      <div class="addFriendDiv">
-          <button id="btnAddFriend" onclick="addFriend()">
-            <%if( checkFriend ||  checkRequest){%>
-            <img src="/img/header/check.png" alt="" id="imgAddFriend" />
-            <%}else{%>
-              <img src="/img/header/add.png" alt="" id="imgAddFriend" />
-            <%}%>
-          </button>
-          <input type="text" id="lordid" value="<%= lord.id%>">
-        <p>친구 신청</p>
-      </div>
-
-      <div class="writeLetterDiv">
-
-        <a href="/letter/select/<%=lord.id%>"> 
-          <button id="btnWriteLetter">
-            <img src="/img/header/pen.png" alt="" id="imgWriteLetter" />
-          </button>
-          <p>편지 쓰기</p>
-        </a>
-      </div>
-      <%}%>
-    
-      <!-- 3. 로그인 안 했고 남의 페이지일 때 -->
-      <% if (!isLogin && !isMine) { %>
+        <!-- 2. 로그인 했고 남의 페이지일 때 -->
+        
+        <% if(isLogin && !isMine ) { %>
         <div class="profilePicDiv">
           <button id="btnProfilePic" disabled>
             <%if (profile.profileLocation !== undefined){%>
               <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
-              
               <%}else{%>
                 <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
               <%}%>
           </button>
-          <!-- <p id="nickname">해순</p> -->
         </div>
-  
+
+        <div class="friendsDiv">
+          <a href="/letter/friends/<%=lord.id%>">
+            <button id="btnFriends" >
+              <img src="/img/header/friends.png" alt="" id="imgFriends"  />
+            </button>
+              <p>친구 목록</p>
+        </div>
+
+        <div class="addFriendDiv">
+            <button id="btnAddFriend" onclick="addFriend()">
+              <%if( checkFriend ||  checkRequest){%>
+              <img src="/img/header/check.png" alt="" id="imgAddFriend" />
+              <%}else{%>
+                <img src="/img/header/add.png" alt="" id="imgAddFriend" />
+              <%}%>
+            </button>
+            <input type="text" id="lordid" value="<%= lord.id%>">
+          <p>친구 신청</p>
+        </div>
+
         <div class="writeLetterDiv">
 
           <a href="/letter/select/<%=lord.id%>"> 
-
             <button id="btnWriteLetter">
               <img src="/img/header/pen.png" alt="" id="imgWriteLetter" />
             </button>
             <p>편지 쓰기</p>
           </a>
         </div>
-  
-        
-      <% } %>
+        <%}%>
       
-    </div>
+        <!-- 3. 로그인 안 했고 남의 페이지일 때 -->
+        <% if (!isLogin && !isMine) { %>
+          <div class="profilePicDiv">
+            <button id="btnProfilePic" disabled>
+              <%if (profile.profileLocation !== undefined){%>
+                <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+                
+                <%}else{%>
+                  <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+                <%}%>
+            </button>
+            <!-- <p id="nickname">해순</p> -->
+          </div>
+    
+          <div class="writeLetterDiv">
+
+            <a href="/letter/select/<%=lord.id%>"> 
+
+              <button id="btnWriteLetter">
+                <img src="/img/header/pen.png" alt="" id="imgWriteLetter" />
+              </button>
+              <p>편지 쓰기</p>
+            </a>
+          </div>
+    
+          
+        <% } %>
+        
+      </div>
+      
     <script src="/js/letter/myletter.js"></script>
   </body>
 </html>
