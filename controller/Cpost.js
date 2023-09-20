@@ -19,14 +19,15 @@ const output = {
     let curPage = req.query.curPage;
     console.log('paramsPage next', req.query.curPage);
     console.log('curpage next', curPage);
+
     const postData = await Post.findAll({
-      where: { id: req.params.id },
+      where: { letterNo: req.params.id },
       attributes: ['postNickname', 'postDesign'],
       offset: 5 * req.query.curPage,
       limit: 5,
-      order: [['id', 'ASC']],
+      order: [['letterNo', 'ASC']],
     });
-    console.log('번호', postData);
+    console.log('다음 편지', postData);
 
     res.send({ postData: postData });
   },
@@ -36,11 +37,11 @@ const output = {
     console.log('paramsPage prev', req.query.curPage);
     console.log('curpage prev', curPage);
     const postData2 = await Post.findAll({
-      where: { id: req.params.id },
+      where: { letterNo: req.params.id },
       attributes: ['postNickname', 'postDesign'],
       offset: 5 * (req.query.curPage - 2),
       limit: 5,
-      order: [['id', 'ASC']],
+      order: [['letterNo', 'ASC']],
     });
 
     console.log('편지', postData2);
