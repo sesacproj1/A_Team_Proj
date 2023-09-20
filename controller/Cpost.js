@@ -198,21 +198,16 @@ const output = {
         where: { id, postNo },
       });
 
-      const showLikes = await PostLikes.findOne({
-        where: { id, postNo },
-        attributes: ['likesNum'],
-      });
+      // const showLikes = await PostLikes.findOne({
+      //   where: { id, postNo },
+      //   attributes: ['likesNum'],
+      // });
       const postData = await Post.findAll({
         where: { id: req.params.id },
         attributes: ['postNickname', 'postNo', 'postDesign', 'postContent'],
       });
-      console.log('postData -> ', postData);
-      const nickname = postData.map((nick) => nick.postNickname);
-      const Content = postData.map((post) => post.postContent);
 
-      console.log('nickname은', nickname);
-      console.log('Content는', Content);
-      console.log('post는', showPost);
+      console.log('postData -> ', postData);
       const count = await PostLikes.count({
         where: {
           postNo: postNo,
@@ -236,15 +231,15 @@ const output = {
         }
 
         res.send({
-          postContent: Content[postNo - 2],
-          postNickname: nickname[postNo - 2],
+          postContent: showPost.postContent,
+          postNickname: showPost.postNickname,
           count,
           isLike: isLike,
         });
       } else {
         res.send({
-          postContent: Content[postNo - 2],
-          postNickname: nickname[postNo - 2],
+          postContent: showPost.postContent,
+          postNickname: showPost.postNickname,
           count,
         });
       }
