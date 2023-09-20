@@ -68,11 +68,11 @@ const output = {
 
     let curPage = 1 | req.query.curPage;
     const postData = await Post.findAll({
-      where: { id: req.params.id },
+      where: { letterNo: req.params.id },
       limit: 5,
-      attributes: ['postNickname', 'postNo', 'postDesign'],
+      attributes: ['letterNo', 'postNickname', 'postNo', 'postDesign'],
     });
-
+    console.log('포스트데이터 ->', postData);
     const nickname = postData.map((nick) => nick.postNickname);
     const postNo = postData.map((post) => post.postNo);
     const postDesign = postData.map((design) => design.postDesign);
@@ -114,6 +114,7 @@ const output = {
           isMine: true,
           id: req.params.id,
           nickname: nickname,
+
           postNo: postNo,
           postDesign: designSrc,
           count: count,
@@ -148,6 +149,7 @@ const output = {
             isMine: false,
             id: req.params.id,
             nickname: nickname,
+
             postNo: postNo,
             postDesign: designSrc,
             checkFriend: checkFriend,
@@ -183,9 +185,9 @@ const output = {
     console.log('postNo는', postNo);
     try {
       const showPost = await Post.findOne({
-        where: { id, postNo },
+        where: { letterNo: id, postNo },
       });
-
+      console.log('showpost는 -> ', showPost);
       // const showLikes = await PostLikes.findOne({
       //   where: { id, postNo },
       //   attributes: ['likesNum'],
@@ -301,7 +303,7 @@ const input = {
   contentRegister: async (req, res) => {
     const letterNo = req.params.id;
     console.log(letterNo);
-    const { postDesign, postContent, postNickname, postIp } = req.body;
+    const { postDesign, postContent, postNickname, postIp, pw } = req.body;
     console.log(req.body);
     if (req.session.userInfo !== undefined) {
       await Post.create({
@@ -325,6 +327,7 @@ const input = {
         letterNo: letterNo,
         sender: postNickname,
         postNo: postInfo.postNo,
+        pw: pw,
       });
     } else {
       //익명일때
@@ -335,7 +338,7 @@ const input = {
         postNickname: postNickname,
         postIp: postIp,
         postDesign: postDesign,
-        pw: req.body.pw,
+        pw: pw,
       });
     }
     // 글작성시 알림함에 추가

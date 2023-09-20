@@ -143,9 +143,13 @@
               <%}%>
             </div>
             <% if(!session){%>
-              <div id="passwordBox">
-                <input type="password" name="postPassword" placeholder="비밀번호 입력">
-              </div>
+            <div id="passwordBox">
+              <input
+                type="password"
+                id="postPassword"
+                placeholder="비밀번호 입력"
+              />
+            </div>
             <%}%>
             <div id="buttonBox">
               <button type="button" onclick="postLetter(`<%= data.id%>`)">

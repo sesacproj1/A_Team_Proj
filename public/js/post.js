@@ -1,11 +1,15 @@
 const form = document.forms['postForm'];
 const password = document.querySelector('#postPassword');
-if (password !== undefined) {
-  const pw = password.value;
-} else {
-  const pw = null;
-}
+
 function postLetter(id) {
+  let pw;
+
+  if (password) {
+    pw = password.value;
+  } else {
+    pw = null;
+  }
+
   console.log(id);
   axios.get('https://jsonip.com').then((ipResponse) => {
     // IP 주소 값을 변수에 저장
