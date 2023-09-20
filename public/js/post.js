@@ -16,8 +16,6 @@ function postLetter(id) {
     const userIpAddress = ipResponse.data.ip;
     console.log(userIpAddress);
 
-    let postNickname = form.postNickname.value;
-
     if (!postNickname) {
       postNickname = document.querySelector('#postNickname').value;
     }
@@ -44,7 +42,6 @@ function postLetter(id) {
   });
 }
 
-
 // function contentDelete() {
 //   axios({
 //     method: 'delete',
@@ -60,4 +57,3 @@ function postLetter(id) {
 
 //   });
 // }
-
