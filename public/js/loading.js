@@ -8,17 +8,17 @@ const loading = document.querySelector('.loading');
 // });
 
 // 쿠키 관리
-function setCookie(name, value, expiredays) {
+function setCookie(name, value, expireTime) {
   let today = new Date();
-  console.log(today.getDate()); //nn
-  today.setDate(today.getDate() + expiredays);
+  console.log('현재 시각: ', today.getHours()); //nn
+  today.setHours(today.getHours() + expireTime);
   document.cookie =
     name + '=' + escape(value) + ';expires=' + today.toGMTString();
 }
 
 function getCookie(name) {
   let cookie = document.cookie;
-
+  console.log(cookie);
   if (document.cookie != '') {
     //있으면
     let cookieArr = cookie.split('; ');
@@ -26,7 +26,7 @@ function getCookie(name) {
 
     for (let idx in cookieArr) {
       let cookieName = cookieArr[idx].split('=');
-      if (cookieName[0] == 'mycookie') {
+      if (cookieName[0] == 'bensCookie') {
         return cookieName[1];
       }
     }
@@ -34,17 +34,18 @@ function getCookie(name) {
   return;
 }
 
-let checkCookie = getCookie('mycookie');
-setCookie('mycookie', 'end', 1);
+let checkCookie = getCookie('bensCookie');
+setCookie('bensCookie', 'end', 1);
 
 if (checkCookie == 'end') {
   loading.style.display = 'none';
 } else {
   setTimeout(() => {
     loading.style.display = 'none';
-  }, 3000);
+  }, 1500);
 }
 
+///////////////////////////////////////////////
 // three.js 처리
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
