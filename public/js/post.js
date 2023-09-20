@@ -17,9 +17,20 @@ function postLetter(id) {
     console.log(userIpAddress);
 
     if (document.querySelector('#postNickname').value) {
+      // 로그인 했고 값 썼을 때
       postNickname = document.querySelector('#postNickname').value;
-    } else {
+    } else if (
+      // 로그인 했고 값 안 썼을 때
+      document.querySelector('#sessionNickname').value &&
+      !document.querySelector('#postNickname').value
+    ) {
       postNickname = document.querySelector('#sessionNickname').value;
+    } else if (
+      // 로그인 안 했고 값 안 썼을 때
+      !document.querySelector('#sessionNickname').value &&
+      !document.querySelector('#postNickname').value
+    ) {
+      alert('닉네임을 입력해주세요.');
     }
 
     console.log(postNickname);
