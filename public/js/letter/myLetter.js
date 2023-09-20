@@ -150,12 +150,14 @@ const letterModal = document.getElementById('letterModal');
 const modalBodyInput = letterModal.querySelector('.modal-body input');
 const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 function showPost(id, i) {
-  const postNo = document.querySelectorAll('#postNo');
-  console.log('포스트넘버', postNo[i]);
+  const postNoInput = document.getElementById(`postNo${i}`);
+  let postNo = postNoInput.value;
+  postNo = (curPage - 1) * 5 + parseInt(postNo);
+  console.log('포스트넘버', postNo);
   try {
     axios({
       method: 'get',
-      url: `/letter/MyLetter/${id}/${postNo[i].value}`,
+      url: `/letter/MyLetter/${id}/${postNo}`,
     }).then((res) => {
       console.log(res.data);
       const { postContent, postNickname, likesNo } = res.data;

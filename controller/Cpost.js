@@ -46,7 +46,7 @@ const output = {
     console.log('편지', postData2);
     res.send({ postData: postData2 });
   },
-  
+
   showMyLetter: async (req, res) => {
     const userInfo = req.session.userInfo;
     // const { id, userId, nickname } = userInfo;
@@ -185,7 +185,7 @@ const output = {
     console.log('postNo는', postNo);
     try {
       const showPost = await Post.findOne({
-        where: { letterNo: id, postNo },
+        where: { postNo },
       });
       console.log('showpost는 -> ', showPost);
       // const showLikes = await PostLikes.findOne({
