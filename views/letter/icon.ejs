@@ -126,11 +126,21 @@
               </div>
             </div>
             <div id="nicknamesBox">
+              <% if(session){ %>
+              <input
+                type="text"
+                name="postNickname"
+                value="<%= session.nickname %>"
+                placeholder="from. 닉네임"
+              />
+              <% } else {%>
               <input
                 type="text"
                 name="postNickname"
                 placeholder="from. 닉네임"
               />
+
+              <%}%>
             </div>
             <div id="buttonBox">
               <button type="button" onclick="postLetter(`<%= data.id%>`)">
