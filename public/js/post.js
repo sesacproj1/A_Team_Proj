@@ -1,15 +1,18 @@
 const form = document.forms['postForm'];
 
-function postLetter(id, session) {
+function postLetter(id) {
   console.log(id);
   axios.get('https://jsonip.com').then((ipResponse) => {
     // IP 주소 값을 변수에 저장
     const userIpAddress = ipResponse.data.ip;
     console.log(userIpAddress);
 
-    if (!form.postNickname.value) {
-      postNickname = session.nickname;
+    let postNickname = form.postNickname.value;
+
+    if (!postNickname) {
+      postNickname = document.querySelector('#postNickname').value;
     }
+    console.log(postNickname);
 
     if (form.postDesign.value) {
       axios({
@@ -17,7 +20,7 @@ function postLetter(id, session) {
         url: `/letter/select/${id}/postLetter`,
         data: {
           postDesign: form.postDesign.value,
-          postNickname: form.postNickname.value,
+          postNickname: postNickname,
           postContent: form.postContent.value,
           postIp: userIpAddress,
         },

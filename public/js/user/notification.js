@@ -13,12 +13,6 @@ function notiModal(letterNo) {
     if (sender.length !== 0) {
       console.log(sender);
       noAlarm.style.display = 'none';
-      const newPost = `
-    
-    <div id= "post${postNo}" onclick="goPost(${postNo})"> ${sender} 님이 송편을 남겼습니다. </div>
-
-    `;
-      postAlarm.insertAdjacentHTML('afterBegin', newPost);
 
       if (isFriend === 'false') {
         console.log('친구없어');
@@ -42,10 +36,7 @@ function notiModal(letterNo) {
 
 function goPost(postNo) {
   const id = document.querySelector('#ID').value;
-  console.log(id);
-  const post = document.querySelector(`#post${postNo}`);
-  console.log(this);
-  this.div.remove();
+
   axios({
     method: 'delete',
     url: `/user/myPage/notification/${postNo}`,
@@ -54,7 +45,7 @@ function goPost(postNo) {
     },
   }).then((res) => {
     console.log(res.data);
-
+    this.remove();
     document.location.href = `/letter/MyLetter/${id}`;
   });
 }

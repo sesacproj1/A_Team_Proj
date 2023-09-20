@@ -183,8 +183,10 @@
             <form name="alarmForm">
               <div class="container-fluid">
                 <div class="contentBox1">
-                  <% for (let i=1; i<= postNo.length; i++ ){ %>
-                  <div></div>
+                  <% for (let i=0; i<= postNo.length; i++ ){ %>
+                  <div id="post" onclick="goPost('<%= postNoti[i]%>')">
+                    <%= sender[i]%> 님이 송편을 남겼습니다.
+                  </div>
                   <%}%>
                   <div class="noAlarm">알람이 없어요.</div>
                   <input type="hidden" value="<%= data.id %>" id="ID" />
