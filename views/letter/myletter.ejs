@@ -97,11 +97,18 @@
                 >
                   삭제
                 </button> 
+             
+                <button type="button" class="btn btnLike">
+                  <input type="hidden" value="<%= id%>" id="heart">
 
-                <button type="button" class="btn btnLike" onclick="updateLikes('<%= id%>')">
-                  <img src="/img/header/heart1.png" alt="" id="likeHeart" />
+                  <% if (!isLogin) { %>
+                    <!-- 비로그인시 빈하트  -->
+                    <img src="/img/header/heart1.png" alt="" id="likeHeart" />
+                    <%}else{%>
+                    <img src="" alt="" id="likeHeart" />
+                    <%}%>
                   <div class="likesNum">
-                  <!-- 44 -->
+                  <!-- <%= count%> -->
                   </div>
                 </button>
 
