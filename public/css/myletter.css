@@ -217,9 +217,7 @@
 }
 .modal-content {
   background-color: #3085c3;
-  /* background-image: url('../img/background/letterBg.png'); */
 }
-
 .modal-footer {
   position: relative;
   display: flex;
@@ -242,6 +240,12 @@
 .btnClose {
   color: #176b87;
   background-color: #feffac;
+}
+
+/* 삭제 비밀번호 모달 */
+.btnComplete {
+  background-color: #feffac;
+  color: #176b87;
 }
 /* 이전/다음 페이지 버튼 */
 .btnDiv {
