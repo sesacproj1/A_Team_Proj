@@ -193,7 +193,7 @@
         <% if (isMine && isLogin) { %>
         <div class="myPageDiv">
           <a href="/user/myPage">
-            <%if (profile.profileLocation !== undefined){%>
+            <%if (profile.profileLocation !== 'null'){%>
               <button id="btnMypage">
                 <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
               </button>
@@ -233,7 +233,7 @@
         <% if(isLogin && !isMine ) { %>
         <div class="profilePicDiv">
           <button id="btnProfilePic" disabled>
-            <%if (profile.profileLocation !== undefined){%>
+            <%if (profile.profileLocation !== 'null'){%>
               <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
               <%}else{%>
                 <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
@@ -276,7 +276,7 @@
         <% if (!isLogin && !isMine) { %>
           <div class="profilePicDiv">
             <button id="btnProfilePic" disabled>
-              <%if (profile.profileLocation !== undefined){%>
+              <%if (profile.profileLocation !== 'null'){%>
                 <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
                 
                 <%}else{%>
