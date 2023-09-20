@@ -323,7 +323,7 @@ const input = {
         },
       });
       await Notification.create({
-        id: 0,
+        id: req.session.userInfo.id,
         letterNo: letterNo,
         sender: postNickname,
         postNo: postInfo.postNo,
