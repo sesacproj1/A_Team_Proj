@@ -10,8 +10,8 @@ const input = {
     const fromUserId = userInfo.userId;
     console.log('fromUserId는~~~', fromUserId);
 
-    const checkFriend = await toFriend.findOne({
-      where: { id: id, toFriendUserId: fromUserId },
+    const checkFriend = await Friend.findOne({
+      where: { id: id, friendUserId: fromUserId },
     });
 
     const checkRequest = await RequestList.findOne({
@@ -43,9 +43,16 @@ const input = {
     await RequestList.destroy({
       where: { id: id, nickname: fromUserId },
     });
-    return res.send({
-      message: '친구신청이 취소되었습니다.',
+    const isFriend = await Friend.findOne({
+      where: { id: id, friendUserId: fromUserId },
     });
+    if (isFriend) {
+      return res.send({ message: '이미 친구인 회원입니다.' });
+    } else {
+      return res.send({
+        message: '친구신청이 취소되었습니다.',
+      });
+    }
   },
 
   delFriend: async (req, res) => {

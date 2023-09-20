@@ -81,13 +81,15 @@ router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
 router.get('/letter/friends/:id', controllerLetter.output.friends);
 
 router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
-// router.get('/letter/myLetter', controllerLetter.output.myLetter);
 
 router.get('/letter/select/:id', controllerLetter.output.icon);
-
+// 검색
+router.get('/search', controller.input.search);
 // 편지함 페이지 출력
 router.get('/letter/MyLetter/:id', controllerPost.output.showMyLetter);
 //기능부분 (api)
+router.get('/letter/MyLetter/:id/nextPage', controllerPost.output.nextPage);
+router.get('/letter/MyLetter/:id/prevPage', controllerPost.output.prevPage);
 
 router.post('/noticePost', controller.input.noticePost);
 router.get('/notice/delete/:noticeNo', controller.input.noticeDelete);

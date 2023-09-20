@@ -11,7 +11,7 @@
     <%- include('./header') %>
     <div class="container-fluid background">
       <!-- 로딩 화면 -->
-      <!-- <div class="loading">
+      <div class="loading">
         <div class="text">
           <span>로</span>
           <span>딩</span>
@@ -20,7 +20,7 @@
           <span>.</span>
           <span>.</span>
         </div>
-      </div> -->
+      </div>
 
       <!-- 메인 화면 -->
       <div class="cmtDiv">
@@ -63,7 +63,9 @@
           <span>회원가입</span>
         </button>
         <button id="btnLogin" style="display: none"><span>로그인</span></button>
-        <button id="btnLogout"><span>로그아웃</span></button>
+        <button id="btnLogout" style="display: none;"><span>로그아웃</span></button>
+        <input type="text" placeholder="닉네임 검색" name="searched" id="searched">
+        <button type="button" onclick="realSearch()">검색</button>
         <%}%>
         <button id="btnRight">
           <img src="/img/header/right.png" alt="" />
@@ -82,6 +84,6 @@
         }
       }
     </script>
-    <script type="module" src="js/loading.js"></script>
+    <script type="module" src="/js/loading.js"></script>
   </body>
 </html>

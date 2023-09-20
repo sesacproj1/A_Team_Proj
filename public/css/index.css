@@ -35,7 +35,7 @@
 .text {
   width: 100vw;
   height: 100vh;
-  color: #eee;
+  color: aqua;
   font-size: 40px;
   position: absolute;
   top: 55%;
@@ -159,6 +159,7 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
+    align-items: center;
     position: absolute;
     left: 0;
     right: 0;
@@ -193,6 +194,7 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
+    align-items: center;
     position: absolute;
     left: 0;
     right: 0;
@@ -264,4 +266,9 @@
     opacity: 0.2;
     /* display: none; */
   }
+}
+
+#searched {
+  width: 20%;
+  height: 40%;
 }

@@ -8,12 +8,15 @@ const {
   Profile,
   User,
 } = require('../models');
+const Sequelize = require('sequelize');
 
 const output = {
   index: async (req, res) => {
     const curPage = 1 | req.query.curPage;
+    console.log(req.query.curPage);
+
     const result = await User.findAll({
-      offset: 7 * (curPage - 1),
+      // offset: 7 * (req.query.curPage - 1),
       order: [['id', 'ASC']],
       limit: 7,
     });
@@ -152,7 +155,9 @@ const output = {
       const post = postData.map((data) => data.postNo);
 
       console.log('profile', profile);
+
       req.session.profile = profile;
+
       console.log('req.session.profile~~ ', req.session.profile);
       if (isFriend) {
         return res.render('user/myPage', {
@@ -175,6 +180,26 @@ const output = {
           noti: notification.length,
         });
       }
+
+
+      const friend = await Friend.findAll({
+        where: { id: req.session.userInfo.id },
+      });
+
+      const numberOfFriends = friend.length;
+      console.log(`친구의 수: ${numberOfFriends}`);
+
+      return res.render('user/myPage', {
+        session: req.session.userInfo,
+        profile: req.session.profile,
+        data: user,
+        isLogin: true,
+        isProfile: true,
+
+        friend: numberOfFriends,
+        postNo: post,
+      });
+
     } else {
       return res.render('user/login', {
         session: req.session.userInfo,
@@ -227,6 +252,28 @@ const input = {
 
     console.log(result);
     return res.send(result);
+  },
+
+  search: async (req, res) => {
+    const keyword = req.query.keyword;
+    const users = await User.findAll({
+      where: {
+        [Sequelize.Op.or]: [
+          { nickname: { [Sequelize.Op.like]: `%${keyword}%` } },
+        ],
+      },
+    });
+
+    if (users) {
+      return res.send({
+        msg: true,
+        data: users,
+      });
+    } else {
+      return res.send({
+        msg: false,
+      });
+    }
   },
 };
 

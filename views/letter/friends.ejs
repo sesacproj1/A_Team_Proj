@@ -57,6 +57,7 @@
             /></a>
           </div>
           <p class="nicknames"><%= profile.userId %></p>
+
 <!-- 내 편지함일 때만 버튼 추가하기 -->
           <% if(session.userId === lord.userId){%>
             <button type="button" class="btnDelete" onclick="deleted(this)" value="<%= profile.userId%>">

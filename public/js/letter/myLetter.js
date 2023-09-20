@@ -1,108 +1,158 @@
-// 1. 편지 목록 보여주기
-// 페이징 : 편지 작성 테이블에서 가져오기
-// - 1) 각자 다른 이미지 path 가져오기
-// - 2) 각자 다른 이름 가져오기
-
-// const { query } = require('express');
-
 const moon = document.querySelector('#moon'); //배경 달
 // console.log('moon', moon.width);
 const btnLeft = document.querySelector('#btnLeft');
 const btnRight = document.querySelector('#btnRight');
 const letterCnt = document.querySelectorAll('.letters').length;
-// console.log(letterCnt);
-
-// btnLeft.addEventListener('click', prevPage);
-// btnRight.addEventListener('click', nextPage);
 
 let curPage = 1;
 
-// function prevPage() {
-//   if (curPage > 1) {
-//     //현재 페이지가 1보다 큰 경우에만 이전 페이지로
-//     // 데이터 -5(편지 개수)
-//     const letterImg = document.querySelectorAll('.letterImg');
-//     const letterP = document.querySelectorAll('.letterP');
-//     try {
-//       axios({
-//         method: 'GET',
-//         url: `/letter/myletter/${id}/prevPage?page=${curPage}`,
-//       }).then((res) => {
-//         curPage--;
-//         const data = res.data.data;
-//         const startIndex = (curPage - 1) * letterCnt; //0
-//         // console.log('start prev', startIndex); //0
+function prevPage() {
+  if (curPage > 1) {
+    const letterImg = document.querySelectorAll('.letterImg');
+    const letterP = document.querySelectorAll('.letterP');
+    let id = document.querySelector('#personId').value;
+    console.log('id', id);
 
-//         // step 1) 각자 다른 이미지 path 가져오기
-//         for (let i = 0; i < letterImg.length; i++) {
-//           const dataIndex = startIndex + i; //0~6
+    try {
+      axios({
+        method: 'GET',
+        url: `/letter/myLetter/${id}/prevPage?curPage=${curPage}`,
+      }).then((res) => {
+        curPage--;
+        console.log('curPage prev', curPage);
+        const data = res.data.postData;
+        console.log('data prev', data);
+        const designMap = {
+          1 : '/img/letterIcons/px_acorn.png',
+          2 : '/img/letterIcons/px_apple.png',
+          3 : '/img/letterIcons/px_apple2.png',
+          4 : '/img/letterIcons/px_coin.png',
+          5 : '/img/letterIcons/px_food.png',
+          6 : '/img/letterIcons/px_hedgehog.png',
+          7 : '/img/letterIcons/px_lApple.png',
+          8 : '/img/letterIcons/px_nuts.png',
+          9 : '/img/letterIcons/px_panda.png',
+          10 : '/img/letterIcons/px_pear.png',
+          11 : '/img/letterIcons/px_persimmon.png',
+          12 : '/img/letterIcons/px_pumpkin.png',
+          13 : '/img/letterIcons/px_rabbit.png',
+          14 : '/img/letterIcons/px_squirrel.png',
+          15 : '/img/letterIcons/px_tree.png',
+        };
+        const startIndex = (curPage - 1) * letterCnt;
+        console.log('start prev', startIndex); //5
+        // console.log('letter Cnt', letterCnt);
 
-//           if (data[dataIndex]) {
-//             // letterImg[i].src = `/letter/MyLetter/${data[dataIndex].}`;
-//             // img src 디자인 테이블 값으로
-//           } else {
-//             letterImg[i].src = '';
-//           }
-//         }
+        // step 1) 각자 다른 이미지 path 가져오기
+        for (let i = 0; i < letterImg.length; i++) {
+          const dataIndex = i;
+          console.log('data design', data[dataIndex]);
 
-//         // step 2) 각자 다른 이름 가져오기
-//         for (let i = 0; i < letterP.length; i++) {
-//           const dataIndex = startIndex + i; //0~6
+          if (data[dataIndex]) {
+            const designNumber = data[dataIndex].postDesign;
+            const imagePath = designMap[designNumber];
+        
+            if (imagePath) {
+              letterImg[dataIndex].src = imagePath;
+            } else {
+              letterImg[dataIndex].src = ''; 
+            }
+          } else {
+            letterImg[dataIndex].src = '';
+          }
+        }
 
-//           if (data[dataIndex]) {
-//             // letterP[i].innerText = data[dataIndex].postNickname;
-//           } else {
-//             letterP[i].innerText = '';
-//           }
-//         }
-//       });
-//     } catch (err) {
-//       console.log('Error', err);
-//     }
-//   }
-// }
-// function nextPage() {
-//   const letterImg = document.querySelectorAll('.letterImg');
-//   const letterP = document.querySelectorAll('.letterP');
-//   try {
-//     axios({
-//       method: 'GET',
-//         url: `/letter/myletter/${id}/nextPage?page=${curPage}`,
-//     }).then((res) => {
-//       const data = res.data.data;
-//       console.log(data); //undefined
+        // step 2) 각자 다른 이름 가져오기
+        for (let i = 0; i < letterP.length; i++) {
+          let dataIndex = i;
+          console.log('i dataIndex prev', i, dataIndex); //5~9
+          // console.log('letterP.length prev', letterP.length);
+          // console.log(data[dataIndex].postNickname);
+          if (data[dataIndex]) {
+            letterP[i].innerText = data[dataIndex].postNickname;
+          } else {
+            letterP[i].innerText = '';
+          }
+        }
+      });
+    } catch (err) {
+      console.log('Error', err);
+    }
+  }
+}
 
-//       const startIndex = curPage * letterCnt;
-//       // console.log('start prev', startIndex);
+function nextPage() {
+  const letterImg = document.querySelectorAll('.letterImg');
+  const letterP = document.querySelectorAll('.letterP');
+  // console.log('letterP', letterP);
+  let id = document.querySelector('#personId').value;
+  console.log('id', id);
 
-//       // step 1) 각자 다른 이미지 path 가져오기
-//       for (let i = 0; i < letterImg.length; i++) {
-//         const dataIndex = startIndex + i; //0~6
+  try {
+    axios({
+      method: 'GET',
+      url: `/letter/myLetter/${id}/nextPage?curPage=${curPage}`,
+    }).then((res) => {
+      const data = res.data.postData;
+      console.log('data next', data);
+      const startIndex = curPage * letterCnt;
+      const designMap = {
+        1 : '/img/letterIcons/px_acorn.png',
+        2 : '/img/letterIcons/px_apple.png',
+        3 : '/img/letterIcons/px_apple2.png',
+        4 : '/img/letterIcons/px_coin.png',
+        5 : '/img/letterIcons/px_food.png',
+        6 : '/img/letterIcons/px_hedgehog.png',
+        7 : '/img/letterIcons/px_lApple.png',
+        8 : '/img/letterIcons/px_nuts.png',
+        9 : '/img/letterIcons/px_panda.png',
+        10 : '/img/letterIcons/px_pear.png',
+        11 : '/img/letterIcons/px_persimmon.png',
+        12 : '/img/letterIcons/px_pumpkin.png',
+        13 : '/img/letterIcons/px_rabbit.png',
+        14 : '/img/letterIcons/px_squirrel.png',
+        15 : '/img/letterIcons/px_tree.png',
+      };
+      // step 1) 각자 다른 이미지 path 가져오기
+      for (let i = 0; i < letterImg.length; i++) {
+        const dataIndex = i;
+        console.log('data design', data[dataIndex]);
+        
+        
 
-//         if (data[dataIndex]) {
-//           // letterImg[i].src = `/letter/MyLetter/${data[dataIndex].}`;
-//           // img src 디자인 테이블 값으로
-//         } else {
-//           letterImg[i].src = '';
-//         }
-//       }
+        if (data[dataIndex]) {
+          const designNumber = data[dataIndex].postDesign;
+          const imagePath = designMap[designNumber];
+      
+          if (imagePath) {
+            letterImg[dataIndex].src = imagePath;
+          } else {
+            letterImg[dataIndex].src = ''; 
+          }
+        } else {
+          letterImg[dataIndex].src = '';
+        }
+      }
 
-//       // step 2) 각자 다른 이름 가져오기
-//       for (let i = 0; i < letterP.length; i++) {
-//         const dataIndex = startIndex + i; //0~6
-
-//         if (data[dataIndex]) {
-//           letterP[i].innerText = data[dataIndex].postNickname;
-//         } else {
-//           letterP[i].innerText = '';
-//         }
-//       }
-//       curPage++;
-//     });
-//   } catch (err) {
-//     console.log('Error', err);
-//   }
-// }
+      // step 2) 각자 다른 이름 가져오기
+      for (let i = 0; i < letterP.length; i++) {
+        let dataIndex = i;
+        console.log('dataIndex', dataIndex); //5~9
+        // console.log('letterP.length', letterP.length);
+        // console.log(data[dataIndex].postNickname);
+        if (data[dataIndex]) {
+          letterP[i].innerText = data[dataIndex].postNickname;
+        } else {
+          letterP[i].innerText = '';
+        }
+      }
+      curPage++;
+      console.log('curPage next', curPage);
+    });
+  } catch (err) {
+    console.log('Error', err);
+  }
+}
 
 // 2. 편지 보여주기 - 각자 다른 내용 가져오기
 const letterModal = document.getElementById('letterModal');
@@ -110,10 +160,13 @@ const letterModal = document.getElementById('letterModal');
 const modalBodyInput = letterModal.querySelector('.modal-body input');
 const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 
-function showPost(id) {
-  const postNo = document.querySelector('#postNo').value;
-  console.log('포스트넘버', postNo);
+function showPost(id, index) {
+  const postNoInput = document.getElementById(`postNo${index}`);
 
+  const postNo = (parseInt(curPage) - 1) * 5 + parseInt(postNoInput.value); //9
+
+  // 나머지 코드
+  console.log('포스트넘버', postNo); //사과
   try {
     axios({
       method: 'get',
@@ -123,13 +176,15 @@ function showPost(id) {
       const { postContent, postNickname, likesNo } = res.data;
 
       modalBodyInput.value = postNickname;
-      modalBodyTextarea.value = postContent;
+      modalBodyTextarea.innerText = postContent;
       likesNum.innerText = likesNo;
     });
   } catch (err) {
     console.log('Err', err);
   }
 }
+
+//
 
 // 3. 좋아요 처리
 
@@ -159,7 +214,7 @@ function updateLikes(id) {
 
 // 4. 친구 신청 날렸을 때
 const btnAddFriend = document.querySelector('#btnAddFriend');
-// btnAddFriend.addEventListener('click', addFriend);
+btnAddFriend.addEventListener('click', addFriend);
 const imgAddFriend = document.querySelector('#imgAddFriend');
 function addFriend() {
   if (imgAddFriend.src !== 'http://localhost:8000/img/header/check.png') {
@@ -175,7 +230,7 @@ function addFriend() {
   }
 }
 
-const id = document.getElementById('lordid');
+let id = document.getElementById('lordid');
 // console.log('id는~', id.value);
 // const lordid = id.value;
 // console.log(lordid);
