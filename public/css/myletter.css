@@ -243,7 +243,10 @@
 }
 
 /* 삭제 비밀번호 모달 */
-
+.btnComplete {
+  background-color: #feffac;
+  color: #176b87;
+}
 /* 이전/다음 페이지 버튼 */
 .btnDiv {
   display: flex;
