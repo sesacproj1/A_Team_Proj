@@ -17,7 +17,7 @@
     <div class="row">
       <div class="titleDiv col-md-2">
 
-        <h1><%= lord.nickname %>님의<br />편지함</h1>
+        <h1><span><%= lord.nickname %></span>님의<br />편지함</h1>
 
       </div>
       <input type="text" value="<%=lord.id%>" id="personId" style="display: none">
@@ -133,13 +133,18 @@
       <% if (isMine && isLogin) { %>
       <div class="myPageDiv">
         <a href="/user/myPage">
-          <button id="btnMypage">
-            <%if (profile.profileLocation !== undefined){%>
-            <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+          <%if (profile.profileLocation !== undefined){%>
+            <button id="btnMypage">
+              <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+            </button>
+            <p>마이페이지</p>
             <%}else{%>
-              <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+              <button id="btnMypage">
+                <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+              </button>
             <%}%>
-          </button>
+        
+
         </a>
       </div>
 
@@ -185,8 +190,7 @@
       </div>
 
       <div class="addFriendDiv">
-        <!-- <button id="btnAddFriend" onclick="addFriend()"> -->
-          <button id="btnAddFriend">
+          <button id="btnAddFriend" onclick="addFriend()">
             <%if( checkFriend ||  checkRequest){%>
             <img src="/img/header/check.png" alt="" id="imgAddFriend" />
             <%}else{%>
@@ -214,6 +218,7 @@
           <button id="btnProfilePic" disabled>
             <%if (profile.profileLocation !== undefined){%>
               <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+              
               <%}else{%>
                 <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
               <%}%>
