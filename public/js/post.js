@@ -18,11 +18,10 @@ function postLetter(id) {
 
     if (document.querySelector('#postNickname').value) {
       postNickname = document.querySelector('#postNickname').value;
-    } else if (document.querySelector('#userNickname').value) {
-      postNickname = document.querySelector('#userNickname').value;
     } else {
       postNickname = document.querySelector('#sessionNickname').value;
     }
+
     console.log(postNickname);
 
     if (form.postDesign.value) {

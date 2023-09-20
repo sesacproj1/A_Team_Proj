@@ -14,7 +14,6 @@ const output = {
     res.render('letter/postContent');
   },
 
-  // 페이징
   nextPage: async (req, res) => {
     let curPage = req.query.curPage;
     console.log('paramsPage next', req.query.curPage);
@@ -47,7 +46,7 @@ const output = {
     console.log('편지', postData2);
     res.send({ postData: postData2 });
   },
-
+  
   showMyLetter: async (req, res) => {
     const userInfo = req.session.userInfo;
     // const { id, userId, nickname } = userInfo;
@@ -324,7 +323,7 @@ const input = {
         },
       });
       await Notification.create({
-        id: 0,
+        id: req.session.userInfo.id,
         letterNo: letterNo,
         sender: postNickname,
         postNo: postInfo.postNo,

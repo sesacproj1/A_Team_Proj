@@ -60,5 +60,6 @@ function alarmDel(id) {
     const divs = postAlarm.querySelectorAll('div');
     divs.forEach((div) => div.remove());
     friendAlarm.style.display = 'none';
+    noAlarm.style.display = 'block';
   });
 }
