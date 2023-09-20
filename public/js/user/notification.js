@@ -9,11 +9,9 @@ function notiModal(letterNo) {
     url: `/user/myPage/notification/${letterNo}`,
   }).then((res) => {
     console.log(res.data);
-    const { sender, postNo, postTime, isFriend } = res.data;
-    if (sender.length !== 0) {
-      console.log(sender);
+    const { postNo, isFriend } = res.data;
+    if (postNo.length !== 0) {
       noAlarm.style.display = 'none';
-
       if (isFriend === 'false') {
         console.log('친구없어');
         friendAlarm.style.display = 'none';
