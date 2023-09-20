@@ -1,21 +1,56 @@
 // 로딩 화면
 const loading = document.querySelector('.loading');
-setTimeout(() => {
-  loading.style.display = 'none';
-}, 0);
+// setTimeout(() => {
+//   loading.style.display = 'none';
+// }, 0);
 // window.addEventListener('load', () => {
 //   loading.style.display = 'none';
 // });
 
+// 쿠키 관리
+function setCookie(name, value, expireTime) {
+  let today = new Date();
+  console.log('현재 시각: ', today.getHours()); //nn
+  today.setHours(today.getHours() + expireTime);
+  document.cookie =
+    name + '=' + escape(value) + ';expires=' + today.toGMTString();
+}
+
+function getCookie(name) {
+  let cookie = document.cookie;
+  console.log(cookie);
+  if (document.cookie != '') {
+    //있으면
+    let cookieArr = cookie.split('; ');
+    console.log(cookieArr);
+
+    for (let idx in cookieArr) {
+      let cookieName = cookieArr[idx].split('=');
+      if (cookieName[0] == 'bensCookie') {
+        return cookieName[1];
+      }
+    }
+  }
+  return;
+}
+
+let checkCookie = getCookie('bensCookie');
+setCookie('bensCookie', 'end', 1);
+
+if (checkCookie == 'end') {
+  loading.style.display = 'none';
+} else {
+  setTimeout(() => {
+    loading.style.display = 'none';
+  }, 1500);
+}
+
+///////////////////////////////////////////////
 // three.js 처리
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
-import {
-  CSS2DRenderer,
-  CSS2DObject,
-} from 'three/addons/renderers/CSS2DRenderer.js';
 
 /* Basic Setting*/
 var myRenderer;
@@ -61,32 +96,50 @@ mtlLoader.load('/obj/earth.mtl', function (materials) {
   materials.preload();
   objLoader(materials);
 });
+mtlLoader.load('/obj/rabbit.mtl', function (materials) {
+  materials.preload();
+  objLoader(materials);
+});
 
-let earth = new THREE.Mesh();
+let earth,
+  rabbit = new THREE.Mesh();
 earth = new THREE.Mesh();
+rabbit = new THREE.Mesh();
 
 function objLoader(materials) {
-  objLoader = new OBJLoader();
+  const objLoader = new OBJLoader();
   objLoader.setMaterials(materials);
 
   objLoader.load('/obj/earth.obj', function (loadedEarth) {
     earth = loadedEarth; //대입 추가
-
     earth.position.set(0, 10, 0);
     myScene.add(earth);
+  });
+
+  objLoader.load('/obj/rabbit.obj', function (loadedRabbit) {
+    rabbit = loadedRabbit;
+    rabbit.position.set(10, 10, 0);
+    myScene.add(rabbit);
   });
 }
 
 // 함수 동작 관련
 function animate() {
   let earthDirection = 1;
-  earth.scale.x = earthDirection * 3;
-  earth.scale.y = earthDirection * 3;
-  earth.scale.z = earthDirection * 3;
-  earth.rotation.z = 0.5;
-  earth.rotation.y += 0.07;
-  earth.position.x = 0;
-  earth.position.y = 0;
+  // earth.scale.x = earthDirection * 3;
+  // earth.scale.y = earthDirection * 3;
+  // earth.scale.z = earthDirection * 3;
+  // earth.rotation.z = 0.5;
+  // earth.rotation.y += 0.07;
+  // earth.position.x = 0;
+  // earth.position.y = 0;
+
+  rabbit.rotation.y += 0.07;
+  rabbit.scale.x = earthDirection * 2;
+  rabbit.scale.y = earthDirection * 2;
+  rabbit.scale.z = earthDirection * 2;
+  rabbit.position.x = 0;
+  rabbit.position.y = 0;
 
   requestAnimationFrame(animate);
   ctrl.update();
