@@ -7,7 +7,7 @@
   /* background-color: #0c356a; */
   margin: 0;
   padding: 0;
-  letter-spacing: 0px;
+  letter-spacing: -2px;
 }
 .row {
   background: url('../img/background/starBg.png') center center,
