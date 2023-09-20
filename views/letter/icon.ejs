@@ -130,8 +130,7 @@
               <input
                 type="text"
                 name="postNickname"
-                value="<%= session.nickname %>"
-                placeholder="from. 닉네임"
+                placeholder="from.<%= session.nickname %>"
               />
               <% } else {%>
               <input
@@ -143,7 +142,10 @@
               <%}%>
             </div>
             <div id="buttonBox">
-              <button type="button" onclick="postLetter(`<%= data.id%>`)">
+              <button
+                type="button"
+                onclick="postLetter(`<%= data.id%>`, `<%= session %>`)"
+              >
                 등록
               </button>
               <button type="button"><a href="/">취소</a></button>
