@@ -163,7 +163,9 @@ function showPost(id, i) {
       url: `/letter/MyLetter/${id}/${postNo}`,
     }).then((res) => {
       console.log(res.data);
-      const { postContent, postNickname, count } = res.data;
+
+      const { postContent, postNickname, count, isDeleteSender, isDeletelord } =
+        res.data;
       modalBodyInput.value = postNickname;
       modalBodyTextarea.innerText = postContent;
       likesNum.innerText = count;
@@ -174,6 +176,22 @@ function showPost(id, i) {
         } else {
           likeHeart.src = '/img/header/heart1.png';
         }
+      }
+      console.log('isDeletelord는', isDeletelord);
+      console.log('isDeleteSender는', isDeleteSender);
+      if (isDeletelord || isDeleteSender) {
+        const deleteBtn = document.querySelector('.modal-footer');
+        const buttonElement = document.createElement('button');
+        buttonElement.setAttribute('type', 'button');
+        buttonElement.classList.add('btn', 'btnDelete');
+        buttonElement.setAttribute('data-bs-dismiss', 'modal');
+        buttonElement.textContent = '삭제';
+
+        buttonElement.addEventListener('click', function () {
+          // 클릭 시 실행할 동작을 여기에 작성
+          postDelete();
+        });
+        deleteBtn.insertBefore(buttonElement, deleteBtn.firstChild);
       }
     });
   } catch (err) {
