@@ -323,7 +323,7 @@ const input = {
         },
       });
       await Notification.create({
-        id: req.session.userInfo.id,
+        id: 0,
         letterNo: letterNo,
         sender: postNickname,
         postNo: postInfo.postNo,
@@ -341,21 +341,6 @@ const input = {
         pw: pw,
       });
     }
-    // 글작성시 알림함에 추가
-    const postInfo = await Post.findOne({
-      where: {
-        letterNo: letterNo,
-        postNickname: postNickname,
-        postDesign: postDesign,
-      },
-    });
-
-    await Notification.create({
-      id: 0,
-      letterNo: letterNo,
-      sender: postNickname,
-      postNo: postInfo.postNo,
-    });
 
     // 글작성시 좋아요 개수 0으로 default값 설정.
     // await PostLikes.create({
