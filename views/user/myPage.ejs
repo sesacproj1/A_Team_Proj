@@ -90,7 +90,7 @@
               data-bs-target="#exampleModal"
               onclick="notiModal('<%=data.id%>')"
             >
-              53
+              <%= noti %>
             </p>
             <p>알림</p>
           </div>
@@ -184,10 +184,9 @@
               <div class="container-fluid">
                 <div class="contentBox1">
                   <% for (let i=1; i<= postNo.length; i++ ){ %>
-                  <div>
-                    <!-- lobster님이 <%= data.userId%>님에게 게시글을 남겼습니다. -->
-                  </div>
+                  <div></div>
                   <%}%>
+                  <div class="noAlarm">알람이 없어요.</div>
                   <input type="hidden" value="<%= data.id %>" id="ID" />
                 </div>
                 <div class="contentBox2">
