@@ -43,13 +43,13 @@ function goPost(postNo) {
     },
   }).then((res) => {
     console.log(res.data);
-    this.remove();
+    document.getElementById(`post${postNo}`).remove();
     document.location.href = `/letter/MyLetter/${id}`;
   });
 }
 
-function goFriendReq(id) {
-  document.location.href = `/MyLetter/${id}/reqFriend`;
+function goFriendReq() {
+  document.location.href = `/letter/friendConfirm`;
 }
 
 function alarmDel(id) {
