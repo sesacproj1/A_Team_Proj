@@ -23,8 +23,13 @@ const Notification = (Sequelize, DataTypes) => {
       },
       sender: {
         type: DataTypes.STRING(50),
-        allowNull: false,
+
         comment: '발신자',
+      },
+      likeWho: {
+        type: DataTypes.STRING(50),
+
+        comment: '좋아요 누른 사람',
       },
     },
     {
