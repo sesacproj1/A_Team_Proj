@@ -52,6 +52,7 @@ function prevPage() {
           if (data[dataIndex]) {
             const designNumber = data[dataIndex].postDesign;
             const imagePath = designMap[designNumber];
+
             if (imagePath) {
               letterImg[dataIndex].src = imagePath;
               letterImg[dataIndex].style.display = 'block';
@@ -120,6 +121,17 @@ function nextPage() {
       for (let i = 0; i < letterImg.length; i++) {
         const dataIndex = i;
         console.log('data design', data[dataIndex]);
+// <<<<<<< feature/postDelete
+
+//         if (data[dataIndex]) {
+//           const designNumber = data[dataIndex].postDesign;
+//           const imagePath = designMap[designNumber];
+
+//           if (imagePath) {
+//             letterImg[dataIndex].src = imagePath;
+//           } else {
+//             letterImg[dataIndex].src = '';
+// =======
         const path = '/img/letterIcons/px_';
 
         if (data[dataIndex]) {
@@ -145,6 +157,7 @@ function nextPage() {
               break;
             // default:
             //   letterImg[dataIndex].src = `${path} + acorn.png`;
+// >>>>>>> develop
           }
         } else {
           // letterImg[dataIndex].src = '';
@@ -192,7 +205,8 @@ function showPost(id, index) {
       url: `/letter/MyLetter/${id}/${postNo}`,
     }).then((res) => {
       console.log(res.data);
-      const { postContent, postNickname, count } = res.data;
+      const { postContent, postNickname, count, isDeleteSender, isDeletelord } =
+        res.data;
 
       modalBodyInput.value = postNickname;
       modalBodyTextarea.innerText = postContent;
@@ -204,6 +218,22 @@ function showPost(id, index) {
         } else {
           likeHeart.src = '/img/header/heart1.png';
         }
+      }
+      console.log('isDeletelord는', isDeletelord);
+      console.log('isDeleteSender는', isDeleteSender);
+      if (isDeletelord || isDeleteSender) {
+        const deleteBtn = document.querySelector('.modal-footer');
+        const buttonElement = document.createElement('button');
+        buttonElement.setAttribute('type', 'button');
+        buttonElement.classList.add('btn', 'btnDelete');
+        buttonElement.setAttribute('data-bs-dismiss', 'modal');
+        buttonElement.textContent = '삭제';
+
+        buttonElement.addEventListener('click', function () {
+          // 클릭 시 실행할 동작을 여기에 작성
+          postDelete();
+        });
+        deleteBtn.insertBefore(buttonElement, deleteBtn.firstChild);
       }
     });
   } catch (err) {
@@ -320,7 +350,7 @@ function reqFriend() {
     });
 }
 
-//TODO 친구신청취소
+//5. 친구신청취소
 function reqFriendCancel() {
   console.log('취소함수실행!');
   axios({
@@ -338,4 +368,13 @@ function reqFriendCancel() {
       console.error(error); // 오류 처리
       alert('요청 중 오류가 발생했습니다.');
     });
+}
+
+//6. 편지삭제기능
+function postDelete() {
+  const result = axios({
+    method: 'delete',
+    url: `/post/delete/${postNo}`,
+  });
+  alert(`${result.data.message}`);
 }

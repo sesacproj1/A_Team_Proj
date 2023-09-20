@@ -1,6 +1,15 @@
 const form = document.forms['postForm'];
+const password = document.querySelector('#postPassword');
 
 function postLetter(id) {
+  let pw;
+
+  if (password) {
+    pw = password.value;
+  } else {
+    pw = null;
+  }
+
   console.log(id);
   axios.get('https://jsonip.com').then((ipResponse) => {
     // IP 주소 값을 변수에 저장
@@ -23,6 +32,7 @@ function postLetter(id) {
           postNickname: postNickname,
           postContent: form.postContent.value,
           postIp: userIpAddress,
+          pw: pw,
         },
       }).then((res) => {
         alert('글이 작성되었습니다.');
@@ -34,16 +44,20 @@ function postLetter(id) {
   });
 }
 
-function contentDelete() {
-  axios({
-    method: 'delete',
-    url: `/MyLetter/${letterNo}}/${postNo}/delete`,
-    params: {
-      letterNo: letterNo,
-      postNo: postNo,
-    },
-  }).then(() => {
-    form.postContent.value = '';
-    form.postNickname.value = '';
-  });
-}
+
+// function contentDelete() {
+//   axios({
+//     method: 'delete',
+//     url: `/MyLetter/${letterNo}}/${postNo}/delete`,
+//     params: {
+//       letterNo: letterNo,
+//       postNo: postNo,
+//     },
+//   }).then(() => {
+
+//     form.postContent.value = '';
+//     form.postNickname.value = '';
+
+//   });
+// }
+

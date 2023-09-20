@@ -155,8 +155,10 @@ const output = {
         where: { letterNo: req.session.userInfo.id },
       });
 
+
       const eachNoti = notification.map((no) => no.postNo);
       const sender = notification.map((send) => send.sender);
+
 
       console.log(notification.length);
       const post = postData.map((data) => data.postNo);

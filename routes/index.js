@@ -121,10 +121,10 @@ router.post('/letter/select/:id/icon', controllerPost.input.contentRegister);
 router.get('/letter/MyLetter/:id/:postNo', controllerPost.output.showPost);
 
 // 편지함 페이지 - 기능 부분
-router.delete(
-  '/MyLetter/:letterNo/:postNo/delete',
-  controllerPost.input.contentDelete
-);
+// router.delete(
+//   '/MyLetter/:letterNo/:postNo/delete',
+//   controllerPost.input.contentDelete
+// );
 
 // 좋아요
 router.patch(
@@ -147,5 +147,6 @@ router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
 router.delete('/showRequest/:id/reject', controllerFriend.input.rejectRequest);
 router.delete('/friend/delete', controllerFriend.input.delFriend);
 router.delete('/reqFriend/cancel', controllerFriend.input.reqFriendCancel);
+router.delete('/post/delete/:postNo', controllerPost.input.postDelete);
 
 module.exports = router;

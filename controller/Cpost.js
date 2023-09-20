@@ -27,7 +27,7 @@ const output = {
       order: [['id', 'ASC']],
     });
     console.log('번호', postData);
-    
+
     res.send({ postData: postData });
   },
 
@@ -68,11 +68,11 @@ const output = {
 
     let curPage = 1 | req.query.curPage;
     const postData = await Post.findAll({
-      where: { id: req.params.id },
+      where: { letterNo: req.params.id },
       limit: 5,
-      attributes: ['postNickname', 'postNo', 'postDesign'],
+      attributes: ['letterNo', 'postNickname', 'postNo', 'postDesign'],
     });
-
+    console.log('포스트데이터 ->', postData);
     const nickname = postData.map((nick) => nick.postNickname);
     const postNo = postData.map((post) => post.postNo);
     const postDesign = postData.map((design) => design.postDesign);
@@ -114,6 +114,7 @@ const output = {
           isMine: true,
           id: req.params.id,
           nickname: nickname,
+
           postNo: postNo,
           postDesign: designSrc,
           count: count,
@@ -148,6 +149,7 @@ const output = {
             isMine: false,
             id: req.params.id,
             nickname: nickname,
+
             postNo: postNo,
             postDesign: designSrc,
             checkFriend: checkFriend,
@@ -183,9 +185,9 @@ const output = {
     console.log('postNo는', postNo);
     try {
       const showPost = await Post.findOne({
-        where: { id, postNo },
+        where: { letterNo: id, postNo },
       });
-
+      console.log('showpost는 -> ', showPost);
       // const showLikes = await PostLikes.findOne({
       //   where: { id, postNo },
       //   attributes: ['likesNum'],
@@ -203,6 +205,15 @@ const output = {
         },
       });
       if (req.session.userInfo) {
+        const isDeleteSender = await Post.findOne({
+          //편지를쓴사람이 지우려할때
+          where: { id: req.session.userInfo.id, postNo: postNo },
+        });
+        const isDeletelord = await Post.findOne({
+          //편지함 주인이 지우려할때
+          where: { letterNo: req.session.userInfo.id, postNo: postNo },
+        });
+
         const like = await PostLikes.findAll({
           where: {
             postNo: postNo,
@@ -223,12 +234,25 @@ const output = {
           postNickname: showPost.postNickname,
           count,
           isLike: isLike,
+          isDeleteSender: isDeleteSender,
+          isDeletelord: isDeletelord,
         });
       } else {
+        //익명일때
+        const isDeleteSender = await Post.findOne({
+          //편지를쓴사람이 지우려할때
+          where: { id: 0, postNo: postNo },
+        });
+        // const isDeletelord = await Post.findOne({
+        //   //편지함 주인이 지우려할때
+        //   where: { letterNo: id, postNo: postNo },
+        // });
         res.send({
           postContent: showPost.postContent,
           postNickname: showPost.postNickname,
           count,
+          isDeleteSender: isDeleteSender,
+          isDeletelord: null,
         });
       }
     } catch (error) {
@@ -279,17 +303,44 @@ const input = {
   contentRegister: async (req, res) => {
     const letterNo = req.params.id;
     console.log(letterNo);
-    const { postDesign, postContent, postNickname, postIp } = req.body;
+    const { postDesign, postContent, postNickname, postIp, pw } = req.body;
     console.log(req.body);
-    await Post.create({
-      letterNo: letterNo,
-      id: req.params.id,
-      postContent: postContent,
-      postNickname: postNickname,
-      postIp: postIp,
-      postDesign: postDesign,
-    });
-
+    if (req.session.userInfo !== undefined) {
+      await Post.create({
+        letterNo: letterNo,
+        id: req.session.userInfo.id,
+        postContent: postContent,
+        postNickname: postNickname,
+        postIp: postIp,
+        postDesign: postDesign,
+      });
+      // 글작성시 알림함에 추가
+      const postInfo = await Post.findOne({
+        where: {
+          letterNo: letterNo,
+          postNickname: postNickname,
+          postDesign: postDesign,
+        },
+      });
+      await Notification.create({
+        id: req.session.userInfo.id,
+        letterNo: letterNo,
+        sender: postNickname,
+        postNo: postInfo.postNo,
+        pw: pw,
+      });
+    } else {
+      //익명일때
+      await Post.create({
+        letterNo: letterNo,
+        id: 0, //익명의 id 인덱스는 0
+        postContent: postContent,
+        postNickname: postNickname,
+        postIp: postIp,
+        postDesign: postDesign,
+        pw: pw,
+      });
+    }
     // 글작성시 알림함에 추가
     const postInfo = await Post.findOne({
       where: {
@@ -300,31 +351,31 @@ const input = {
     });
 
     await Notification.create({
-      id: req.params.id,
+      id: 0,
       letterNo: letterNo,
       sender: postNickname,
       postNo: postInfo.postNo,
     });
 
     // 글작성시 좋아요 개수 0으로 default값 설정.
-    await PostLikes.create({
-      id: req.params.id,
-      letterNo: letterNo,
-      likesNum: 0,
-      postNo: postInfo.postNo,
-    });
+    // await PostLikes.create({
+    //   id: req.params.id,
+    //   letterNo: letterNo,
+    //   likesNum: 0,
+    //   postNo: postInfo.postNo,
+    // });
 
     res.send({ result: 'true', id: letterNo });
   },
 
-  contentDelete: async (req, res) => {
-    const { letterNo, postNo } = req.params;
-    await Post.destroy({
-      where: { letterNo: letterNo, postNo: postNo },
-    });
+  // contentDelete: async (req, res) => {
+  //   const { letterNo, postNo } = req.params;
+  //   await Post.destroy({
+  //     where: { letterNo: letterNo, postNo: postNo },
+  //   });
 
-    res.send({ result: 'true' });
-  },
+  //   res.send({ result: 'true' });
+  // },
 
   updateLikes: async (req, res) => {
     if (req.session.userInfo === undefined) {
@@ -401,6 +452,15 @@ const input = {
       count: count,
       src: '/img/header/heart1.png',
     });
+  },
+  // router.delete('/post/delete', controllerFriend.input.postDelete);
+  postDelete: async (req, res) => {
+    const postNo = req.params.postNo;
+    console.log('지울 postNo는', postNo);
+    await Post.destroy({
+      where: { postNo: postNo },
+    });
+    res.send({ message: '편지가 삭제되었습니다.' });
   },
 };
 
