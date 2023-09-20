@@ -35,11 +35,11 @@
 .text {
   width: 100vw;
   height: 100vh;
-  color: #006e7f;
+  color: #279eff;
   font-size: 5vh;
   font-weight: bold;
   position: absolute;
-  top: 63%;
+  top: 65%;
 }
 
 .text span {
@@ -64,13 +64,16 @@
 .text span:nth-of-type(5) {
   animation-delay: 0.6s;
 }
+.text span:nth-of-type(6) {
+  animation-delay: 0.8s;
+}
 
 @keyframes textUp {
   0% {
     top: 0;
   }
   20% {
-    top: -0.2rem;
+    top: -0.3rem;
   }
   40% {
     top: 0;
