@@ -16,8 +16,12 @@ function postLetter(id) {
     const userIpAddress = ipResponse.data.ip;
     console.log(userIpAddress);
 
-    if (!postNickname) {
+    if (document.querySelector('#postNickname').value) {
       postNickname = document.querySelector('#postNickname').value;
+    } else if (document.querySelector('#userNickname').value) {
+      postNickname = document.querySelector('#userNickname').value;
+    } else {
+      postNickname = document.querySelector('#sessionNickname').value;
     }
     console.log(postNickname);
 
