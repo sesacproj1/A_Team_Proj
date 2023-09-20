@@ -83,11 +83,12 @@ function prevPage() {
 }
 
 function nextPage() {
-  const letterImg = document.querySelectorAll('.letterImg');
+  // const letterImg = document.querySelectorAll('.letterImg');
+  const letterImg = document.getElementsByClassName('letterImg');
   const letterP = document.querySelectorAll('.letterP');
-  // console.log('letterP', letterP);
   let id = document.querySelector('#personId').value;
-  console.log('id', id);
+  // console.log('id', id);
+  // console.log('letterImg', letterImg);
 
   try {
     axios({
@@ -118,16 +119,31 @@ function nextPage() {
       for (let i = 0; i < letterImg.length; i++) {
         const dataIndex = i;
         console.log('data design', data[dataIndex]);
+        const path = '/img/letterIcons/px_';
 
         if (data[dataIndex]) {
-          const designNumber = data[dataIndex].postDesign;
-          const imagePath = designMap[designNumber];
+          switch (data[dataIndex].postDesign) {
+            case 1:
+              letterImg[dataIndex].src = `${path} + acorn.png`;
+              break;
+            case 2:
+              letterImg[dataIndex].src = `${path} + apple.png`;
+              break;
+            case 3:
+              letterImg[dataIndex].src = `${path} + apple2.png`;
+              break;
+            case 4:
+              letterImg[dataIndex].src = `${path} + coin.png`;
+              break;
+            case 5:
+              letterImg[dataIndex].src = `${path} + food.png`;
+              break;
 
-          if (imagePath) {
-            letterImg[dataIndex].src = imagePath;
-            letterImg[dataIndex].style.display = 'block';
-          } else {
-            letterImg[dataIndex].src = '';
+            case 14:
+              letterImg[dataIndex].src = `${path} + acorn.png`;
+              break;
+            // default:
+            //   letterImg[dataIndex].src = `${path} + acorn.png`;
           }
         } else {
           // letterImg[dataIndex].src = '';
