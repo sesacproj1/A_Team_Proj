@@ -292,8 +292,20 @@ btnLogout.addEventListener('click', () => {
   document.location.href = '/logout';
 });
 
+
 function realSearch() {
+  const aElements = document.querySelectorAll('.a'); 
+  for(let search of aElements){
+    search.href = '#';
+    console.log(search);
+  }
+
+  const pElements = document.querySelectorAll('.pname'); 
+  for(let search of pElements){
+    search.innerText = '';
+  }
   const searchBox = document.querySelector('#searched').value;
+
   axios({
     method: 'get',
     url: '/search',
@@ -303,9 +315,16 @@ function realSearch() {
   })
     .then((res) => {
       const searchData = res.data.data;
-      if (searchData.length > 0) {
-        for (let searched of searchData) {
-          console.log(searched);
+      const numResults = Math.min(searchData.length, aElements.length);
+      
+      
+
+      // 검색 결과가 있을 때만 변경
+      if (numResults > 0) {
+        for (let i = 0; i < numResults; i++) {
+          console.log(searchData[i].nickname);
+          pElements[i].innerText = searchData[i].nickname;
+          aElements[i].href = `/letter/MyLetter/${searchData[i].id}`;
         }
       } else {
         alert('해당 닉네임이 존재하지 않습니다');
