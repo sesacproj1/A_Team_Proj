@@ -185,7 +185,7 @@ const output = {
     console.log('postNo는', postNo);
     try {
       const showPost = await Post.findOne({
-        where: { postNo },
+        where: { letterNo: id, postNo },
       });
       console.log('showpost는 -> ', showPost);
       // const showLikes = await PostLikes.findOne({
