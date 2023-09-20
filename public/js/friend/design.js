@@ -29,6 +29,23 @@ document.querySelector('.beforeSelect p').addEventListener('click', (event) => {
     document.getElementById('postDesign').value = '';
   });
 
+  const designMap = {
+    1 : '/img/letterIcons/px_acorn.png',
+    2 : '/img/letterIcons/px_apple.png',
+    3 : '/img/letterIcons/px_apple2.png',
+    4 : '/img/letterIcons/px_coin.png',
+    5 : '/img/letterIcons/px_food.png',
+    6 : '/img/letterIcons/px_hedgehog.png',
+    7 : '/img/letterIcons/px_lApple.png',
+    8 : '/img/letterIcons/px_nuts.png',
+    9 : '/img/letterIcons/px_panda.png',
+    10 : '/img/letterIcons/px_pear.png',
+    11 : '/img/letterIcons/px_persimmon.png',
+    12 : '/img/letterIcons/px_pumpkin.png',
+    13 : '/img/letterIcons/px_rabbit.png',
+    14 : '/img/letterIcons/px_squirrel.png',
+    15 : '/img/letterIcons/px_tree.png',
+  };
 
 // 선택하기 버튼 클릭 시
   function select() {
@@ -36,6 +53,8 @@ document.querySelector('.beforeSelect p').addEventListener('click', (event) => {
     if (selectedImage) {
       const selectedAlt = selectedImage.getAttribute('alt');
       document.getElementById('postDesign').value = selectedAlt;
+      document.getElementById('selectImg').style.display =  'block';
+      document.getElementById('selectImg').src = designMap[selectedAlt];
   
       if (window.innerWidth <= 800) {
         document.getElementById('postMan').style.display = 'block';

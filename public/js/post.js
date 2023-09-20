@@ -16,13 +16,20 @@ function postLetter(id) {
     const userIpAddress = ipResponse.data.ip;
     console.log(userIpAddress);
 
+    let postNickname = form.postNickname.value;
+
+    if (!postNickname) {
+      postNickname = document.querySelector('#postNickname').value;
+    }
+    console.log(postNickname);
+
     if (form.postDesign.value) {
       axios({
         method: 'post',
         url: `/letter/select/${id}/postLetter`,
         data: {
           postDesign: form.postDesign.value,
-          postNickname: form.postNickname.value,
+          postNickname: postNickname,
           postContent: form.postContent.value,
           postIp: userIpAddress,
           pw: pw,
@@ -36,6 +43,7 @@ function postLetter(id) {
     }
   });
 }
+
 
 // function contentDelete() {
 //   axios({
@@ -52,3 +60,4 @@ function postLetter(id) {
 
 //   });
 // }
+

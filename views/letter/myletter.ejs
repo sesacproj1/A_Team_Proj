@@ -17,7 +17,7 @@
     <div class="row">
       <div class="titleDiv col-md-2">
 
-        <h1><%= lord.nickname %>님의<br />편지함</h1>
+        <h1><span><%= lord.nickname %></span>님의<br />편지함</h1>
 
       </div>
       <input type="text" value="<%=lord.id%>" id="personId" style="display: none">
@@ -44,7 +44,6 @@
           <% } %>
 
           <!-- 편지 모달 -->
-          
           <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#letterModal" data-bs-whatever="">modal 열기</button> -->
           
           <div
@@ -89,8 +88,20 @@
                   </div>
                 </form>
               </div>
+
               <div class="modal-footer">
-                
+
+                <button
+                  type="button"
+                  class="btn btnDelete"
+                  data-bs-dismiss="modal"
+                  data-bs-toggle="modal"
+                  data-bs-target="#deleteModal"
+                >
+                  삭제
+                </button> 
+             
+
                 <button type="button" class="btn btnLike">
                   <input type="hidden" value="<%= id%>" id="heart">
 
@@ -116,7 +127,56 @@
             </div>
           </div>
         </div>
-      </div>
+        <!-- 편지 모달 끝-->
+
+        <!-- 삭제 모달 -->
+        <div
+            class="modal fade"
+            id="deleteModal"
+            tabindex="-1"
+            aria-labelledby="letterModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="letterModalLabel">
+                  비밀번호
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label"
+                      >비밀번호</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="recipient-name"
+                    />
+                  </div>
+                  
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btnComplete"
+                  data-bs-dismiss="modal"
+                >
+                  확인
+                </button> 
+              </div>
+            </div>
+          </div>
+        </div>
 
       <div class="btnDiv">
         <button id="btnLeft" onclick="prevPage()">
@@ -127,19 +187,25 @@
         </button>
       </div>
     </div>
+    </div>
 
     <div class="menuDiv col-md-2">
       <!-- 1. 로그인 했고 내 페이지일 때 -->
       <% if (isMine && isLogin) { %>
       <div class="myPageDiv">
         <a href="/user/myPage">
-          <button id="btnMypage">
-            <%if (profile.profileLocation !== undefined){%>
-            <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+          <%if (profile.profileLocation !== undefined){%>
+            <button id="btnMypage">
+              <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+            </button>
+            <p>마이페이지</p>
             <%}else{%>
-              <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+              <button id="btnMypage">
+                <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+              </button>
             <%}%>
-          </button>
+        
+
         </a>
       </div>
 
@@ -185,8 +251,7 @@
       </div>
 
       <div class="addFriendDiv">
-        <!-- <button id="btnAddFriend" onclick="addFriend()"> -->
-          <button id="btnAddFriend">
+          <button id="btnAddFriend" onclick="addFriend()">
             <%if( checkFriend ||  checkRequest){%>
             <img src="/img/header/check.png" alt="" id="imgAddFriend" />
             <%}else{%>
@@ -214,6 +279,7 @@
           <button id="btnProfilePic" disabled>
             <%if (profile.profileLocation !== undefined){%>
               <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
+              
               <%}else{%>
                 <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
               <%}%>
