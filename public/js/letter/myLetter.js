@@ -191,7 +191,11 @@ function showPost(id, i) {
           // 클릭 시 실행할 동작을 여기에 작성
           postDelete();
         });
-        deleteBtn.insertBefore(buttonElement, deleteBtn.firstChild);
+        if (document.querySelector('.btnDelete')) {
+          return;
+        } else {
+          deleteBtn.insertBefore(buttonElement, deleteBtn.firstChild);
+        }
       }
     });
   } catch (err) {
