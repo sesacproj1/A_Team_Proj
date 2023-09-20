@@ -153,13 +153,12 @@
               />
               <% } else {%>
               <input
-                type="hidden"
                 type="text"
                 name="postNickname"
                 id="postNickname"
                 placeholder="from. 닉네임"
               />
-              <input value="" id="sessionNickname" />
+              <input value="" type="hidden" id="sessionNickname" />
               <%}%>
             </div>
             <% if(!session){%>

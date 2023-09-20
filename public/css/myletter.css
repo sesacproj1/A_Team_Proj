@@ -243,6 +243,9 @@
 }
 
 /* 삭제 비밀번호 모달 */
+#deleteModal {
+  color: #feffac;
+}
 .btnComplete {
   background-color: #feffac;
   color: #176b87;
