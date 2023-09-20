@@ -135,6 +135,11 @@
                 name="postNickname"
                 placeholder="from.<%= session.nickname %>"
               />
+              <input
+                type="hidden"
+                value="<%= session.nickname %>"
+                id="postNickname"
+              />
               <% } else {%>
               <input
                 type="text"
@@ -145,15 +150,16 @@
               <%}%>
             </div>
             <% if(!session){%>
-              <div id="passwordBox">
-                <input type="password" name="postPassword" placeholder="비밀번호 입력">
-              </div>
+            <div id="passwordBox">
+              <input
+                type="password"
+                name="postPassword"
+                placeholder="비밀번호 입력"
+              />
+            </div>
             <%}%>
             <div id="buttonBox">
-              <button
-                type="button"
-                onclick="postLetter(`<%= data.id%>`, `<%= session %>`)"
-              >
+              <button type="button" onclick="postLetter(`<%= data.id%>`)">
                 등록
               </button>
               <button type="button"><a href="/">취소</a></button>
