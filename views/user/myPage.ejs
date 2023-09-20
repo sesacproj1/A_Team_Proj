@@ -185,7 +185,10 @@
                 <div class="contentBox1">
                   <%if(postNoti.length !== 0) {%> <% for (let i=0; i<=
                   postNoti.length; i++ ){ %>
-                  <div id="post" onclick="goPost('<%= postNoti[i]%>')">
+                  <div
+                    id="post<%= postNoti[i]%>"
+                    onclick="goPost('<%= postNoti[i]%>')"
+                  >
                     <%= sender[i]%> 님이 송편을 남겼습니다.
                   </div>
                   <%}%> <%}%>
