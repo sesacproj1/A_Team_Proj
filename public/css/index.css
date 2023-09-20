@@ -185,7 +185,7 @@
     height: 15px;
   }
   button span {
-    font-size: x-small;
+    font-size: small;
   }
 }
 @media (min-width: 480px) {
@@ -219,7 +219,7 @@
     height: 15px;
   }
   button span {
-    font-size: medium;
+    font-size: large;
   }
 }
 

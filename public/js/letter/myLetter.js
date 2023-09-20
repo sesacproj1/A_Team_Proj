@@ -48,11 +48,13 @@ function prevPage() {
             const imagePath = designMap[designNumber];
             if (imagePath) {
               letterImg[dataIndex].src = imagePath;
+              letterImg[dataIndex].style.display = 'block';
             } else {
               letterImg[dataIndex].src = '';
             }
           } else {
-            letterImg[dataIndex].src = '';
+            // letterImg[dataIndex].src = '';
+            letterImg[dataIndex].style.display = 'none';
           }
         }
         // step 2) 각자 다른 이름 가져오기
@@ -113,11 +115,13 @@ function nextPage() {
           const imagePath = designMap[designNumber];
           if (imagePath) {
             letterImg[dataIndex].src = imagePath;
+            letterImg[dataIndex].style.display = 'block';
           } else {
             letterImg[dataIndex].src = '';
           }
         } else {
-          letterImg[dataIndex].src = '';
+          // letterImg[dataIndex].src = '';
+          letterImg[dataIndex].style.display = 'none';
         }
       }
       // step 2) 각자 다른 이름 가져오기
