@@ -154,6 +154,7 @@ const output = {
       const postCount = await Post.count({
         where: { letterNo: req.session.userInfo.id },
       });
+
       console.log(notification.length);
       const post = postData.map((data) => data.postNo);
 

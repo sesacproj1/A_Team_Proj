@@ -1,5 +1,10 @@
 const form = document.forms['postForm'];
-
+const password = document.querySelector('#postPassword');
+if (password !== undefined) {
+  const pw = password.value;
+} else {
+  const pw = null;
+}
 function postLetter(id) {
   console.log(id);
   axios.get('https://jsonip.com').then((ipResponse) => {
@@ -16,6 +21,7 @@ function postLetter(id) {
           postNickname: form.postNickname.value,
           postContent: form.postContent.value,
           postIp: userIpAddress,
+          pw: pw,
         },
       }).then((res) => {
         alert('글이 작성되었습니다.');
@@ -24,22 +30,21 @@ function postLetter(id) {
     } else {
       alert('icon을 한가지 선택해주세요');
     }
-
   });
 }
 
-function contentDelete() {
-  axios({
-    method: 'delete',
-    url: `/MyLetter/${letterNo}}/${postNo}/delete`,
-    params: {
-      letterNo: letterNo,
-      postNo: postNo,
-    },
-  }).then(() => {
+// function contentDelete() {
+//   axios({
+//     method: 'delete',
+//     url: `/MyLetter/${letterNo}}/${postNo}/delete`,
+//     params: {
+//       letterNo: letterNo,
+//       postNo: postNo,
+//     },
+//   }).then(() => {
 
-    form.postContent.value = '';
-    form.postNickname.value = '';
+//     form.postContent.value = '';
+//     form.postNickname.value = '';
 
-  });
-}
+//   });
+// }
