@@ -151,6 +151,9 @@ const output = {
       const isFriend = await Friend.findOne({
         where: { id: req.session.userInfo.id },
       });
+      const postCount = await Post.count({
+        where: { letterNo: req.session.userInfo.id },
+      });
       console.log(notification.length);
       const post = postData.map((data) => data.postNo);
 
@@ -176,6 +179,7 @@ const output = {
           friend: numberOfFriends,
           postNo: post,
           noti: notification.length + 1,
+          postCount: postCount,
         });
       } else {
         return res.render('user/myPage', {
@@ -187,6 +191,7 @@ const output = {
           postNo: post,
           friend: 0,
           noti: notification.length,
+          postCount: postCount,
         });
       }
     } else {
