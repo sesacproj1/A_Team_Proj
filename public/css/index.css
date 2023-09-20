@@ -180,9 +180,8 @@
     color: #eeeeee;
   }
   button img {
-    width: 30px;
-    height: 30px;
-    /* object-fit: fill; */
+    width: 15px;
+    height: 15px;
   }
   button span {
     font-size: x-small;
@@ -215,9 +214,8 @@
     color: #eeeeee;
   }
   button img {
-    width: 50px;
-    height: 50px;
-    /* object-fit: fill; */
+    width: 15px;
+    height: 15px;
   }
   button span {
     font-size: medium;

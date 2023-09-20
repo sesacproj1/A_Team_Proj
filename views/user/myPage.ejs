@@ -72,7 +72,7 @@
         <div id="friends">
           <div>
             <p class="friendsBox1 mailBox" style="cursor: pointer">
-              <a href="/letter/myLetter/<%=data.id%>">1</a>
+              <a href="/letter/myLetter/<%=data.id%>"><%= postCount%></a>
             </p>
             <p>편지함</p>
           </div>
@@ -90,7 +90,7 @@
               data-bs-target="#exampleModal"
               onclick="notiModal('<%=data.id%>')"
             >
-              53
+              <%= noti %>
             </p>
             <p>알림</p>
           </div>
@@ -183,11 +183,13 @@
             <form name="alarmForm">
               <div class="container-fluid">
                 <div class="contentBox1">
-                  <% for (let i=1; i<= postNo.length; i++ ){ %>
-                  <div>
-                    <!-- lobster님이 <%= data.userId%>님에게 게시글을 남겼습니다. -->
+                  <%if(postNoti.length !== 0) {%> <% for (let i=0; i<=
+                  postNoti.length; i++ ){ %>
+                  <div id="post" onclick="goPost('<%= postNoti[i]%>')">
+                    <%= sender[i]%> 님이 송편을 남겼습니다.
                   </div>
-                  <%}%>
+                  <%}%> <%}%>
+                  <div class="noAlarm">알람이 없어요.</div>
                   <input type="hidden" value="<%= data.id %>" id="ID" />
                 </div>
                 <div class="contentBox2">

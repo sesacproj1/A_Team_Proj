@@ -129,16 +129,38 @@
               </div>
             </div>
             <div id="nicknamesBox">
+              <% if(session){ %>
+              <input
+                type="text"
+                name="postNickname"
+                placeholder="from.<%= session.nickname %>"
+              />
+              <input
+                type="hidden"
+                value="<%= session.nickname %>"
+                id="postNickname"
+              />
+              <% } else {%>
               <input
                 type="text"
                 name="postNickname"
                 placeholder="from. 닉네임"
               />
+
+              <%}%>
             </div>
             <% if(!session){%>
-              <div id="passwordBox">
-                <input type="password" name="postPassword" placeholder="비밀번호 입력">
-              </div>
+            <div id="passwordBox">
+              <input
+                type="password"
+
+                id="postPassword"
+
+                name="postPassword"
+
+                placeholder="비밀번호 입력"
+              />
+            </div>
             <%}%>
             <div id="buttonBox">
               <button type="button" onclick="postLetter(`<%= data.id%>`)">

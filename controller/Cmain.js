@@ -145,29 +145,66 @@ const output = {
         attributes: ['postNo'],
       });
 
+      const notification = await Notification.findAll({
+        where: { id: req.session.userInfo.id },
+      });
+      const isFriend = await Friend.findOne({
+        where: { id: req.session.userInfo.id },
+      });
+      const postCount = await Post.count({
+        where: { letterNo: req.session.userInfo.id },
+      });
+
+
+      const eachNoti = notification.map((no) => no.postNo);
+      const sender = notification.map((send) => send.sender);
+
+
+      console.log(notification.length);
       const post = postData.map((data) => data.postNo);
 
       console.log('profile', profile);
 
       req.session.profile = profile;
+      console.log('포스트넘버는', eachNoti);
+      console.log('센더는', sender);
+      console.log('req.session.profile~~ ', req.session.profile);
+      if (isFriend) {
+        //friend있으면
+        const friend = await Friend.findAll({
+          where: { id: req.session.userInfo.id },
+        });
 
-      const friend = await Friend.findAll({
-        where: { id: req.session.userInfo.id },
-      });
+        const numberOfFriends = friend.length;
 
-      const numberOfFriends = friend.length;
-      console.log(`친구의 수: ${numberOfFriends}`);
-
-      return res.render('user/myPage', {
-        session: req.session.userInfo,
-        profile: req.session.profile,
-        data: user,
-        isLogin: true,
-        isProfile: true,
-
-        friend: numberOfFriends,
-        postNo: post,
-      });
+        return res.render('user/myPage', {
+          session: req.session.userInfo,
+          profile: req.session.profile,
+          data: user,
+          isLogin: true,
+          isProfile: true,
+          friend: numberOfFriends,
+          postNo: post,
+          noti: notification.length + 1,
+          postCount: postCount,
+          postNoti: eachNoti,
+          sender: sender,
+        });
+      } else {
+        return res.render('user/myPage', {
+          session: req.session.userInfo,
+          profile: req.session.profile,
+          data: user,
+          isLogin: true,
+          isProfile: true,
+          postNo: post,
+          friend: 0,
+          noti: notification.length,
+          postCount: postCount,
+          postNoti: eachNoti,
+          sender: sender,
+        });
+      }
     } else {
       return res.render('user/login', {
         session: req.session.userInfo,

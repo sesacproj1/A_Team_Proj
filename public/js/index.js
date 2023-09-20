@@ -59,6 +59,47 @@ for (let i = 1; i <= starCnt; i++) {
   }
 }
 
+// resize event
+window.addEventListener('resize', resizeStars);
+
+function resizeStars() {
+  for (let i = 1; i <= starCnt; i++) {
+    const star = document.querySelector(`.star${i}`);
+    const p = document.querySelector(`#p${i}`);
+
+    if (i % 2 == 0) {
+      // 짝수 별이라면
+      if (window.innerWidth <= 480) {
+        // 모바일용
+        star.style.top = window.innerHeight / 4 + 'px';
+        star.style.left = ((1 * window.innerWidth) / 11) * i + 'px';
+      } else {
+        star.style.top = window.innerHeight / 3 + 'px';
+        star.style.left = ((1 * window.innerWidth) / 10) * i + 'px';
+      }
+    } else {
+      //홀수 별이라면
+      if (window.innerWidth <= 480) {
+        // 모바일용 크기
+        star.style.top = window.innerHeight / 20 + 'px';
+        star.style.left = (window.innerWidth / 11) * i + 'px';
+      } else {
+        star.style.top = window.innerHeight / 10 + 'px';
+        star.style.left = (window.innerWidth / 10) * i + 'px';
+      }
+    }
+
+    if (myWidth <= 480) {
+      // 모바일용 크기
+      star.style.width = window.innerWidth / 8 + 'px';
+      star.style.height = window.innerHeight / 10 + 'px';
+    } else {
+      star.style.width = window.innerWidth / 8 + 'px';
+      star.style.height = window.innerHeight / 8 + 'px';
+    }
+  }
+}
+
 //별 애니메이션
 function twinkle() {
   let randNum1 = Math.floor(Math.random() * (starCnt + 1 - 1) + 1);

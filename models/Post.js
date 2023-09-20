@@ -15,6 +15,7 @@ const Post = (Sequelize, DataTypes) => {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        comment: '익명시 id = 0',
       },
       postContent: {
         type: DataTypes.TEXT('medium'),
@@ -36,6 +37,11 @@ const Post = (Sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         comment: '편지함 디자인 번호',
+      },
+      pw: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+        comment: '익명시 비밀번호 ',
       },
     },
     {
