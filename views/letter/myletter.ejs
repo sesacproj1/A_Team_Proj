@@ -23,6 +23,7 @@
       <input type="text" value="<%=lord.id%>" id="personId" style="display: none">
       <div class="letterDiv col-md-8">
         <div class="imgDiv">
+          <input type="hidden" value="<%=postNo1%>" id="postNo3">
           <img src="/img/background/moon.png" alt="" id="moon" />
           <!-- 편지 : 페이징 시 nickname.length로 바꾸기 -->
           <% for (let i=0; i< nickname.length; i++ ){ %>
@@ -39,6 +40,7 @@
             <img src="<%=postDesign[i]%>" alt="" class="letterImg" id="letterImg<%=i%>" />
             <p class="letterP" id="letterP<%=i%> letterNickname"><%=nickname[i]%></p>
             <input type="hidden" value="<%= postNo[i]%>" id="postNo<%= i %>">
+            <input type="hidden" value="0" id="postNo5">
           </div>
           <% } %>
 

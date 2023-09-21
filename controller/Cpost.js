@@ -74,6 +74,14 @@ const output = {
       limit: 5,
       attributes: ['letterNo', 'postNickname', 'postNo', 'postDesign'],
     });
+
+    const postNo3 = await Post.findAll({
+      where : {
+        letterNo : req.params.id,
+      }
+    });
+    const postIds = postNo3.map((post) => post.postNo);
+
     console.log('포스트데이터 ->', postData);
     const nickname = postData.map((nick) => nick.postNickname);
     const postNo = postData.map((post) => post.postNo);
@@ -102,6 +110,8 @@ const output = {
       },
     });
     console.log('count는', count);
+
+    
     if (userInfo) {
       //로그인 했을 때
       if (userInfo.id == idParam) {
@@ -116,7 +126,7 @@ const output = {
           isMine: true,
           id: req.params.id,
           nickname: nickname,
-
+          postNo1 : postIds,
           postNo: postNo,
           postDesign: designSrc,
           count: count,
@@ -151,7 +161,7 @@ const output = {
             isMine: false,
             id: req.params.id,
             nickname: nickname,
-
+            postNo1 : postIds,
             postNo: postNo,
             postDesign: designSrc,
             checkFriend: checkFriend,
@@ -175,6 +185,7 @@ const output = {
         id: req.params.id,
         nickname: nickname,
         postNo: postNo,
+        postNo1 : postIds,
         postDesign: postDesign,
         postDesign: designSrc,
         count: count,
@@ -206,6 +217,9 @@ const output = {
           letterNo: id,
         },
       });
+
+     
+
       if (req.session.userInfo) {
         isDeleteSender = await Post.findOne({
           //편지를쓴사람이 지우려할때

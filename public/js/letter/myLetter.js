@@ -39,6 +39,7 @@ function prevPage() {
           15: '/img/letterIcons/px_tree.png',
         };
         const startIndex = (curPage - 1) * letterCnt;
+        document.querySelector('#postNo5').value = startIndex;
         console.log('start prev', startIndex); //5
         // console.log('letter Cnt', letterCnt);
         // step 1) 각자 다른 이미지 path 가져오기
@@ -93,6 +94,7 @@ function nextPage() {
       const data = res.data.postData;
       console.log('data next', data);
       const startIndex = curPage * letterCnt;
+      document.querySelector('#postNo5').value = startIndex;
       const designMap = {
         1: '/img/letterIcons/px_acorn.png',
         2: '/img/letterIcons/px_apple.png',
@@ -153,12 +155,19 @@ const modalBodyInput = letterModal.querySelector('.modal-body input');
 const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
 
 function showPost(id, i) {
-  const postNoInput = document.getElementById(`postNo${i}`);
-  let postNo = postNoInput.value;
-  console.log('postNoINput은 ', postNoInput);
-  postNo = (curPage - 1) * 5 + parseInt(postNo);
-  console.log('포스트넘버', postNo);
-  postNumber = postNo;
+  const postNo3 = document.getElementById('postNo3').value;
+  const postNoArray = postNo3.split(',').map(Number);
+  const deserver = document.getElementById('postNo5').value;
+  console.log('deserver', deserver);
+  const combinedValue = parseInt(deserver) + parseInt(i);
+  console.log('combinedValue:', combinedValue);
+  const postNo = postNoArray[combinedValue];
+  // const postNoInput = document.getElementById(`postNo${i}`);
+  // let postNo = postNoInput.value;
+  // console.log('postNoINput은 ', postNoInput);
+  // postNo = (curPage - 1) * 5 + parseInt(postNo);
+  // console.log('포스트넘버', postNo);
+  // postNumber = postNo;
   try {
     axios({
       method: 'get',
