@@ -34,10 +34,12 @@
             data-bs-target="#letterModal"
 
             onclick="showPost('<%= id %>','<%= i%>')"
-    
+           
           >
           
-            <img src="<%=postDesign[i]%>" alt="" class="letterImg" id="letterImg<%=i%>" />
+            <img src="<%=postDesign[i]%>" alt="" class="letterImg" id="letterImg<%=i%>"  data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="송편지 보기" />
             <p class="letterP" id="letterP<%=i%> letterNickname"><%=nickname[i]%></p>
             <input type="hidden" value="<%= postNo[i]%>" id="postNo<%= i %>">
             <input type="hidden" value="0" id="postNo5">
@@ -95,7 +97,9 @@
             
 
                   
-                <button type="button" class="btn btnLike">
+                <button type="button" class="btn btnLike"  data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="하트 누르기">
                   <input type="hidden" value="<%= id%>" id="heart">
 
                   <% if (!isLogin) { %>
@@ -173,10 +177,14 @@
           </div>
 
       <div class="btnDiv">
-        <button id="btnLeft" onclick="prevPage()">
+        <button id="btnLeft" onclick="prevPage()"  data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="이전 송편지 보기">
           <img src="/img/header/left.png" alt="" />
         </button>
-        <button id="btnRight" onclick="nextPage()">
+        <button id="btnRight" onclick="nextPage()" data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="다음 송편지 보기">
           <img src="/img/header/right.png" alt="" />
         </button>
       </div>
@@ -195,7 +203,7 @@
               <p>마이페이지</p>
               <%}else{%>
                 <button id="btnMypage">
-                  <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+                  <img src="/img/header/user.png" alt="" id="imgProfilePic" />
                 </button>
               <%}%>
           
@@ -231,7 +239,7 @@
             <%if (profile.profileLocation !== 'null'){%>
               <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
               <%}else{%>
-                <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+                <img src="/img/header/user.png" alt="" id="imgProfilePic" />
               <%}%>
           </button>
         </div>
@@ -275,10 +283,9 @@
                 <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
                 
                 <%}else{%>
-                  <img src="/img/header/prf.jpg" alt="" id="imgProfilePic" />
+                  <img src="/img/header/user.png" alt="" id="imgProfilePic" />
                 <%}%>
             </button>
-            <!-- <p id="nickname">해순</p> -->
           </div>
     
           <div class="writeLetterDiv">
