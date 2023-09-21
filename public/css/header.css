@@ -130,29 +130,29 @@
   height: 55vh;
   display: flex;
   justify-content: center;
-  align-items: flex-end; 
+  align-items: flex-end;
   font-family: 'pixel1';
-  overflow: hidden; 
+  overflow: hidden;
   position: relative;
 }
 
 .scrolling-text-container {
-  overflow: hidden; 
+  overflow: hidden;
   height: 85%;
-  width: 95%; 
+  width: 95%;
 }
 
 .scrolling-text {
-  animation: scroll-up 20s linear; 
+  animation: scroll-up 40 linear;
 }
 
 @keyframes scroll-up {
   0% {
-    transform: translateY(100%); 
+    transform: translateY(100%);
   }
   100% {
-    transform: translateY(-100%); 
-    opacity: 1; 
+    transform: translateY(-100%);
+    opacity: 1;
   }
 }
 
@@ -162,5 +162,3 @@
   background: #bdbdbd;
   width: 3vh;
 }
-
-
