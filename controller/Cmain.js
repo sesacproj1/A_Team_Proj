@@ -5,6 +5,7 @@ const {
   Notice,
   Notification,
   NotificationLikes,
+  RequestList,
   Post,
   Profile,
   User,
@@ -160,13 +161,24 @@ const output = {
         where: { letterNo: req.session.userInfo.id },
       });
 
+      const isRequest = await RequestList.findOne({
+        where: { id: req.params.id },
+      });
+
       const eachNoti = notification.map((no) => no.postNo);
       const sender = notification.map((send) => send.sender);
 
       const eachLikes = notificationLikes.map((like) => like.postNo);
       const likesWho = notificationLikes.map((send) => send.likesWho);
 
-      console.log(notification.length);
+      let notiLength = notification.length;
+      console.log('이즈리퀘스트', isRequest);
+      if (isRequest) {
+        notiLength = notification.length + 1;
+      } else {
+        notiLength = notification.length;
+      }
+      console.log('노티렝스', notification.length);
       const post = postData.map((data) => data.postNo);
 
       console.log('profile', profile);
@@ -191,7 +203,7 @@ const output = {
           isProfile: true,
           friend: numberOfFriends,
           postNo: post,
-          noti: notification.length + 1 + notificationLikes.length,
+          noti: notiLength + notificationLikes.length,
           postCount: postCount,
           postNoti: eachNoti,
           likesWho: likesWho,
@@ -208,7 +220,7 @@ const output = {
           isProfile: true,
           postNo: post,
           friend: 0,
-          noti: notification.length + notificationLikes.length,
+          noti: notiLength + notificationLikes.length,
           postCount: postCount,
           postNoti: eachNoti,
           likesWho: likesWho,
