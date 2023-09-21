@@ -161,6 +161,9 @@ const output = {
       const eachNoti = notification.map((no) => no.postNo);
       const sender = notification.map((send) => send.sender);
 
+      const eachLikes = notificationLikes.map((like) => like.postNo);
+      const likesWho = notificationLikes.map((send) => send.sender);
+
       console.log(notification.length);
       const post = postData.map((data) => data.postNo);
 
@@ -186,11 +189,12 @@ const output = {
           isProfile: true,
           friend: numberOfFriends,
           postNo: post,
-          noti: notification.length + 1,
+          noti: notification.length + 1 + notificationLikes.length,
           postCount: postCount,
           postNoti: eachNoti,
           sender: sender,
-          likesNoti: notificationLikes.length + notificationLikes.length,
+          postLikes: eachLikes,
+          likesWho: likesWho,
         });
       } else {
         return res.render('user/myPage', {
@@ -205,6 +209,8 @@ const output = {
           postCount: postCount,
           postNoti: eachNoti,
           sender: sender,
+          postLikes: eachLikes,
+          likesWho: likesWho,
         });
       }
     } else {
