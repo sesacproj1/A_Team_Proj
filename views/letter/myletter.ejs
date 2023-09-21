@@ -16,7 +16,7 @@
   <body>
     <div class="row">
       <div class="titleDiv col-md-2">
-
+        
         <h1><span><%= lord.nickname %></span>님의<br />편지함</h1>
 
       </div>
@@ -90,15 +90,7 @@
 
               <div class="modal-footer">
 
-                <button
-                  type="button"
-                  class="btn btnDelete"
-                  data-bs-dismiss="modal"
-                  data-bs-toggle="modal"
-                  data-bs-target="#deleteModal"
-                >
-                  삭제
-                </button> 
+                
             
 
                   
@@ -158,7 +150,7 @@
                       >
                       <input
                         type="text"
-                        class="form-control"
+                        class="form-control pw"
                         id="recipient-name"
                       />
                     </div>
@@ -170,6 +162,7 @@
                     type="button"
                     class="btn btnComplete"
                     data-bs-dismiss="modal"
+                    onclick="postDelete()"
                   >
                     확인
                   </button> 

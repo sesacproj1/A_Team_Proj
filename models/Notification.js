@@ -26,6 +26,11 @@ const Notification = (Sequelize, DataTypes) => {
         allowNull: false,
         comment: '발신자',
       },
+      likeWho: {
+        type: DataTypes.STRING(50),
+
+        comment: '좋아요 누른 사람',
+      },
     },
     {
       tableName: 'notification',

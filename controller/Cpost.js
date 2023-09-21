@@ -8,6 +8,8 @@ const {
   RequestList,
   Design,
 } = require('../models');
+let isDeleteSender;
+let isDeletelord;
 
 const output = {
   content: (req, res) => {
@@ -205,11 +207,11 @@ const output = {
         },
       });
       if (req.session.userInfo) {
-        const isDeleteSender = await Post.findOne({
+        isDeleteSender = await Post.findOne({
           //편지를쓴사람이 지우려할때
           where: { id: req.session.userInfo.id, postNo: postNo },
         });
-        const isDeletelord = await Post.findOne({
+        isDeletelord = await Post.findOne({
           //편지함 주인이 지우려할때
           where: { letterNo: req.session.userInfo.id, postNo: postNo },
         });
@@ -239,7 +241,7 @@ const output = {
         });
       } else {
         //익명일때
-        const isDeleteSender = await Post.findOne({
+        isDeleteSender = await Post.findOne({
           //편지를쓴사람이 지우려할때
           where: { id: 0, postNo: postNo },
         });
@@ -440,12 +442,44 @@ const input = {
   },
   // router.delete('/post/delete', controllerFriend.input.postDelete);
   postDelete: async (req, res) => {
-    const postNo = req.params.postNo;
-    console.log('지울 postNo는', postNo);
-    await Post.destroy({
-      where: { postNo: postNo },
-    });
-    res.send({ message: '편지가 삭제되었습니다.' });
+    console.log('req.body는', req.body.pw);
+    if (req.body.pw !== '') {
+      if (isDeleteSender !== null) {
+        //익명일때
+        if (isDeleteSender.pw === req.body.pw) {
+          //비밀번호 일치시
+          await Post.destroy({
+            where: { id: 0, postNickname: isDeleteSender.postNickname },
+          });
+
+          return res.send({ message: '편지가 삭제되었습니다.' });
+        } else {
+          return res.send({ message: '비밀번호가 일치하지 않습니다.' });
+        }
+      }
+    } else {
+      //편지주인일때
+      // console.log('지울 postNo는', postNo);
+      console.log('여기까지는실행');
+      if (isDeletelord === null) {
+        await Post.destroy({
+          where: {
+            id: isDeleteSender.id,
+            postNo: isDeletelord.postNo,
+          },
+        });
+      } else {
+        console.log('실행', isDeletelord.id);
+        await Post.destroy({
+          where: {
+            id: isDeletelord.id,
+            postNo: isDeletelord.postNo,
+          },
+        });
+      }
+
+      return res.send({ message: '편지가 삭제되었습니다.' });
+    }
   },
 };
 

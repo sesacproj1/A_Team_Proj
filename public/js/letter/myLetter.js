@@ -4,6 +4,7 @@ const btnLeft = document.querySelector('#btnLeft');
 const btnRight = document.querySelector('#btnRight');
 const letterCnt = document.querySelectorAll('.letters').length;
 let postNumber;
+let pw = null;
 let curPage = 1;
 function prevPage() {
   if (curPage > 1) {
@@ -163,7 +164,9 @@ function showPost(id, i) {
       url: `/letter/MyLetter/${id}/${postNo}`,
     }).then((res) => {
       console.log(res.data);
-      const { postContent, postNickname, count } = res.data;
+
+      const { postContent, postNickname, count, isDeleteSender, isDeletelord } =
+        res.data;
       modalBodyInput.value = postNickname;
       modalBodyTextarea.innerText = postContent;
       likesNum.innerText = count;
@@ -173,6 +176,45 @@ function showPost(id, i) {
           likeHeart.src = '/img/header/heart2.png';
         } else {
           likeHeart.src = '/img/header/heart1.png';
+        }
+      }
+      console.log('isDeletelord는', isDeletelord);
+      console.log('isDeleteSender는', isDeleteSender);
+      const deleteBtn = document.querySelector('.modal-footer');
+      const buttonElement = document.createElement('button');
+      buttonElement.setAttribute('type', 'button');
+      buttonElement.classList.add('btn', 'btnDelete');
+      buttonElement.setAttribute('data-bs-dismiss', 'modal');
+      buttonElement.textContent = '삭제';
+      if (isDeletelord !== null && isDeleteSender === null) {
+        //편지주인일때
+        if (document.querySelector('.btnDelete')) {
+          //버튼 이미 있다면 버튼 추가하지않음
+        } else {
+          deleteBtn.insertBefore(buttonElement, deleteBtn.firstChild);
+        }
+        //주인은바로 삭제
+        buttonElement.addEventListener('click', function () {
+          console.log('삭제실행!');
+          postDelete();
+        });
+      }
+      if (isDeleteSender !== null && isDeletelord === null) {
+        //편지쓴사람이 열었을 때
+        if (isDeleteSender.id === 0) {
+          //쓴사람이 익명일 때
+          if (document.querySelector('.btnDelete')) {
+            //버튼 이미 있다면 버튼 추가하지않음
+            return;
+          } else {
+            deleteBtn.insertBefore(buttonElement, deleteBtn.firstChild);
+          }
+          //익명이용자 모달창 띄움
+          buttonElement.addEventListener('click', function () {
+            // 클릭 시 실행할 동작을 여기에 작성
+            const myModal = new bootstrap.Modal('#deleteModal');
+            myModal.show();
+          });
         }
       }
     });
@@ -300,4 +342,26 @@ function reqFriendCancel() {
       console.error(error); // 오류 처리
       alert('요청 중 오류가 발생했습니다.');
     });
+}
+
+async function postDelete() {
+  console.log('postDelete 실행!!');
+  if (document.querySelector('.pw') !== undefined) {
+    pw = document.querySelector('.pw').value;
+  }
+
+  try {
+    const response = await axios({
+      method: 'delete',
+      url: `/post/delete/${postNumber}`,
+      data: {
+        pw: pw,
+      },
+    });
+    console.log('response.data는', response.data);
+    alert(`${response.data.message}`);
+    location.reload();
+  } catch (error) {
+    console.error('삭제 요청 중 오류 발생:', error);
+  }
 }
