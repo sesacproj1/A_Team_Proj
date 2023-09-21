@@ -148,6 +148,9 @@ const output = {
       const notification = await Notification.findAll({
         where: { id: req.session.userInfo.id },
       });
+      const notificationLikes = await NotificationLikes.findAll({
+        where: { id: req.session.userInfo.id },
+      });
       const isFriend = await Friend.findOne({
         where: { id: req.session.userInfo.id },
       });
@@ -187,6 +190,7 @@ const output = {
           postCount: postCount,
           postNoti: eachNoti,
           sender: sender,
+          likesNoti: notificationLikes.length + notificationLikes.length,
         });
       } else {
         return res.render('user/myPage', {
@@ -197,7 +201,7 @@ const output = {
           isProfile: true,
           postNo: post,
           friend: 0,
-          noti: notification.length,
+          noti: notification.length + notificationLikes.length,
           postCount: postCount,
           postNoti: eachNoti,
           sender: sender,

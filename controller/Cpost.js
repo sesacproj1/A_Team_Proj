@@ -7,6 +7,7 @@ const {
   Friend,
   RequestList,
   Design,
+  NotificationLikes,
 } = require('../models');
 let isDeleteSender;
 let isDeletelord;
@@ -412,6 +413,13 @@ const input = {
         letterNo: id,
         id: req.session.userInfo.id,
         likesNum: 1,
+      });
+
+      await NotificationLikes.create({
+        postNo: postNumber,
+        letterNo: id,
+        id: req.session.userInfo.id,
+        likesWho: user.session.userId,
       });
     }
     const count = await PostLikes.count({

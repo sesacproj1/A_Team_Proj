@@ -1,4 +1,9 @@
-const { Post, Notification, RequestList } = require('../models');
+const {
+  Post,
+  Notification,
+  RequestList,
+  NotificationLikes,
+} = require('../models');
 
 // 알람 시간 나타내는 함수
 function times(date) {
@@ -36,9 +41,15 @@ const output = {
       where: { letterNo: receiver },
       attributes: ['sender', 'postNo', 'createdAt'],
     });
+    const showLikes = await NotificationLikes.findAll({
+      where: { letterNo: receiver },
+    });
 
     const sender = showNoti.map((send) => send.sender);
     const postNo = showNoti.map((post) => post.postNo);
+
+    const postNum = showLikes.map((num) => num.postNo);
+    const likesWho = showLikes.map((who) => who.likesWho);
     // const timeAt = showNoti.map((time) => time.createdAt);
     // const createdAt = parseISODateStrings(timeAt);
     // console.log(createdAt);
@@ -47,19 +58,41 @@ const output = {
     });
 
     if (showNoti && reqFriend) {
-      res.send({
-        sender: sender,
-        postNo: postNo,
-        // postTime: times(createdAt),
-        isFriend: 'true',
-      });
+      if (showLikes) {
+        res.send({
+          sender: sender,
+          postNo: postNo,
+          // postTime: times(createdAt),
+          isFriend: 'true',
+          postNum: postNum,
+          likesWho: likesWho,
+        });
+      } else {
+        res.send({
+          sender: sender,
+          postNo: postNo,
+          // postTime: times(createdAt),
+          isFriend: 'true',
+        });
+      }
     } else if (showNoti) {
-      res.send({
-        sender: sender,
-        postNo: postNo,
-        // postTime: times(createdAt),
-        isFriend: 'false',
-      });
+      if (showLikes) {
+        res.send({
+          sender: sender,
+          postNo: postNo,
+          // postTime: times(createdAt),
+          isFriend: 'false',
+          postNum: postNum,
+          likesWho: likesWho,
+        });
+      } else {
+        res.send({
+          sender: sender,
+          postNo: postNo,
+          // postTime: times(createdAt),
+          isFriend: 'false',
+        });
+      }
     }
   },
 

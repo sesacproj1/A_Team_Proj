@@ -1,6 +1,6 @@
-const Notification = (Sequelize, DataTypes) => {
-  const notification = Sequelize.define(
-    'notification',
+const NotificationLikes = (Sequelize, DataTypes) => {
+  const notificationLikes = Sequelize.define(
+    'notificationLikes',
     {
       notificationId: {
         type: DataTypes.INTEGER,
@@ -15,25 +15,23 @@ const Notification = (Sequelize, DataTypes) => {
       letterNo: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        comment: '수신자',
       },
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      sender: {
+      likesWho: {
         type: DataTypes.STRING(50),
         allowNull: false,
-        comment: '발신자',
+        comment: '좋아요한 사람',
       },
     },
     {
-      tableName: 'notification',
+      tableName: 'notificationLikes',
       freezeTableName: true,
-      timestamps: true,
     }
   );
-  return notification;
+  return notificationLikes;
 };
 
-module.exports = Notification;
+module.exports = NotificationLikes;
