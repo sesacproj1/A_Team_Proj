@@ -65,6 +65,7 @@ function goLikes(postLikes) {
 }
 
 function goFriendReq() {
+  friendAlarm.style.display = 'none';
   document.location.href = `/letter/friendConfirm`;
 }
 

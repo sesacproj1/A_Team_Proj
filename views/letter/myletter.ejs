@@ -27,19 +27,10 @@
           <img src="/img/background/moon.png" alt="" id="moon" />
           <!-- 편지 : 페이징 시 nickname.length로 바꾸기 -->
           <% for (let i=0; i< nickname.length; i++ ){ %>
-          <div
-            class="letters"
-            id="letter<%= i+1 %>"
-            data-bs-toggle="modal"
-            data-bs-target="#letterModal"
-
-            onclick="showPost('<%= id %>','<%= i%>')"
-           
-          >
-          
+          <div class="letters" id="letter<%= i+1 %>" data-bs-toggle="modal" data-bs-target="#letterModal" onclick="showPost('<%= id %>','<%= i%>')">
             <img src="<%=postDesign[i]%>" alt="" class="letterImg" id="letterImg<%=i%>"  data-bs-toggle="tooltip"
             data-bs-placement="top"
-            title="송편지 보기" />
+            title="송편지 보기"/>
             <p class="letterP" id="letterP<%=i%> letterNickname"><%=nickname[i]%></p>
             <input type="hidden" value="<%= postNo[i]%>" id="postNo<%= i %>">
             <input type="hidden" value="0" id="postNo5">
@@ -48,44 +39,25 @@
 
           <!-- 편지 모달 -->
    
-          <div
-            class="modal fade"
-            id="letterModal"
-            tabindex="-1"
-            aria-labelledby="letterModalLabel"
-            aria-hidden="true"
-            
-          >
+          <div class="modal fade" id="letterModal" tabindex="-1" aria-labelledby="letterModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="letterModalLabel">
                   ✉️송편지
                 </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label"
-                      >작성자</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="recipient-name"
-                      readonly
-                    />
+                    <label for="recipient-name" class="col-form-label">
+                      작성자
+                      </label>
+                    <input type="text" class="form-control" id="recipient-name" readonly/>
                   </div>
                   <div class="mb-3">
-                    <label for="message-text" class="col-form-label"
-                      >편지 내용</label
-                    >
+                    <label for="message-text" class="col-form-label">편지 내용</label>
                     <textarea class="form-control" id="message-text" readonly></textarea>
                   </div>
                 </form>
@@ -94,12 +66,8 @@
               <div class="modal-footer">
 
                 
-            
 
-                  
-                <button type="button" class="btn btnLike"  data-bs-toggle="tooltip"
-                data-bs-placement="top"
-                title="하트 누르기">
+                <button type="button" class="btn btnLike"  data-bs-toggle="tooltip" data-bs-placement="top" title="하트 누르기">
                   <input type="hidden" value="<%= id%>" id="heart">
 
                   <% if (!isLogin) { %>
@@ -113,11 +81,7 @@
                   </div>
                 </button>
 
-                <button
-                  type="button"
-                  class="btn btnClose"
-                  data-bs-dismiss="modal"
-                >
+                <button type="button" class="btn btnClose" data-bs-dismiss="modal">
                   닫기
                 </button> 
               </div>
@@ -127,48 +91,27 @@
         <!-- 편지 모달 끝-->
 
           <!-- 삭제 모달 -->
-          <div
-              class="modal fade"
-              id="deleteModal"
-              tabindex="-1"
-              aria-labelledby="letterModalLabel"
-              aria-hidden="true"
-            >
+          <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="letterModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="letterModalLabel">
                     비밀번호
                   </h1>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   <form>
                     <div class="mb-3">
                       <label for="recipient-name" class="col-form-label"
-                        >비밀번호</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control pw"
-                        id="recipient-name"
-                      />
+                        >비밀번호
+                        </label>
+                      <input type="text" class="form-control pw" id="recipient-name"/>
                     </div>
-                    
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btnComplete"
-                    data-bs-dismiss="modal"
-                    onclick="postDelete()"
-                  >
+                  <button type="button" class="btn btnComplete" data-bs-dismiss="modal" onclick="postDelete()">
                     확인
                   </button> 
                 </div>
@@ -304,6 +247,6 @@
         
       </div>
       
-    <script src="/js/letter/myletter.js"></script>
+    <script src="/js/letter/myLetter.js"></script>
   </body>
 </html>

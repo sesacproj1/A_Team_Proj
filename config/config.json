@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "1234",
-    "database": "root",
-    "host": "111111",
+    "username": "splTEAM",
+    "password": "thdvus0922",
+    "database": "sesac_SPL",
+    "host": "49.50.162.160",
     "dialect": "mysql",
     "port": 3306
   },

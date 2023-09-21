@@ -303,17 +303,18 @@ function likeCancel(id) {
 const btnAddFriend = document.querySelector('#btnAddFriend');
 // btnAddFriend.addEventListener('click', addFriend);
 const imgAddFriend = document.querySelector('#imgAddFriend');
+console.log(imgAddFriend.src);
 function addFriend() {
-  if (imgAddFriend.src !== 'http://localhost:8000/img/header/check.png') {
+  if (imgAddFriend.src === 'http://49.50.162.160:8000/img/header/add.png') {
     console.log('check실행');
     imgAddFriend.src = '/img/header/check.png';
-    reqFriend();
+    return reqFriend();
     // btnAddFriend.disabled = 'true';
     // btnAddFriend.style.pointerEvents = ' none';
   } else {
     console.log('다시변경!!!');
-    reqFriendCancel();
     imgAddFriend.src = '/img/header/add.png';
+    return reqFriendCancel();
   }
 }
 let id = document.getElementById('lordid');
@@ -322,42 +323,27 @@ let id = document.getElementById('lordid');
 // console.log(lordid);
 // 4. 친구 신청 날리기 :
 // const btnAddFriend = document.querySelector('.btnAddFriend');
-function reqFriend() {
+async function reqFriend() {
   console.log('함수실행!');
-  axios({
+  const res = await axios({
     method: 'post',
     url: `/MyLetter/${id.value}/reqFriend`,
     data: {
       id: id.value,
     },
-  })
-    .then((response) => {
-      console.log(response); // 응답 내용을 콘솔에 출력 (디버깅용)
-      alert(`${response.data.message}`);
-    })
-    .catch((error) => {
-      console.error(error); // 오류 처리
-      alert('요청 중 오류가 발생했습니다.');
-    });
+  });
+  alert(`${res.data.message}`);
 }
 //TODO 친구신청취소
-function reqFriendCancel() {
-  console.log('취소함수실행!');
-  axios({
+async function reqFriendCancel() {
+  const res = await axios({
     method: 'delete',
     url: `/reqFriend/cancel`,
     data: {
       id: id.value,
     },
-  })
-    .then((response) => {
-      console.log(response); // 응답 내용을 콘솔에 출력 (디버깅용)
-      alert(`${response.data.message}`);
-    })
-    .catch((error) => {
-      console.error(error); // 오류 처리
-      alert('요청 중 오류가 발생했습니다.');
-    });
+  });
+  alert(`${res.data.message}`);
 }
 
 async function postDelete() {
