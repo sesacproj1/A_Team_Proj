@@ -1,8 +1,7 @@
 @font-face {
-  font-family: "pixelRoboRobo";
-  src: url("/font/pixelroborobo.otf");
+  font-family: 'pixel1';
+  src: url('../fonts/DungGeunMo.ttf') format('truetype');
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +13,7 @@
   /* background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%); */
   background: #fb2576;
   height: 100vh;
-  font-family: "pixelRoboRobo";
+  font-family: 'pixel1';
   overflow: hidden;
   position: relative;
 }
