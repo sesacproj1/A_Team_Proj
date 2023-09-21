@@ -183,23 +183,24 @@
             <form name="alarmForm">
               <div class="container-fluid">
                 <div class="contentBox1">
-                  <%if(postNoti.length !== 0) {%> <%for (let i=0; i<
+                  <%if(postNoti.length !== 0) {%> <%for (let i=1; i<=
                   postNoti.length; i++ ){ %>
                   <div
-                    id="post<%= postNoti[i]%>"
-                    onclick="goPost('<%= postNoti[i]%>')"
+                    id="post<%= postNoti[i-1]%>"
+                    onclick="goPost('<%= postNoti[i-1]%>')"
                   >
-                    [<%= sender[i]%>] 님이 송편을 남겼습니다.
+                    [<%= sender[i-1]%>] 님이 편지를 남겼어요.
                   </div>
-                  <%}%><%}%> <%if(postLikes.length !== 0) {%> <%for (let i=0; i<
-                  postLikes.length; i++ ){ %>
+                  <%}%><%}%> <%if(postLikes.length !== 0) {%> <%for (let i=1;
+                  i<= postLikes.length; i++ ){ %>
                   <div
-                    id="post<%= postLikes[i]%>"
-                    onclick="goLikes('<%= postLikes[i]%>')"
+                    id="likes<%= postLikes[i-1]%>"
+                    onclick="goLikes('<%= postLikes[i-1]%>')"
                   >
-                    [<%= likesWho[i]%>] 님이 좋아요를 눌렀어요.
+                    [<%= likesWho[i-1]%>] 님이 좋아요를 눌렀어요.
                   </div>
                   <%}%><%}%>
+
                   <input type="hidden" value="<%= data.id %>" id="ID" />
                 </div>
                 <div class="noAlarm">알람이 없어요.</div>

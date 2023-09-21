@@ -8,7 +8,7 @@ function notiModal(letterNo) {
     method: 'get',
     url: `/user/myPage/notification/${letterNo}`,
   }).then((res) => {
-    console.log(res.data);
+    console.log('레스데이터', res.data);
     const { postNo, isFriend } = res.data;
     if (postNo.length !== 0) {
       noAlarm.style.display = 'none';
@@ -53,13 +53,13 @@ function goLikes(postLikes) {
 
   axios({
     method: 'delete',
-    url: `/user/myPage/notification/${postLikes}`,
+    url: `/user/myPage/notification/${postLikes}/likes`,
     data: {
       letterNo: id,
     },
   }).then((res) => {
     console.log(res.data);
-    document.getElementById(`post${postNo}`).remove();
+    document.getElementById(`likes${postLikes}`).remove();
     document.location.href = `/letter/MyLetter/${id}`;
   });
 }

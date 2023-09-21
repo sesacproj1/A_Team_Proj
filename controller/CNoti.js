@@ -103,6 +103,14 @@ const output = {
 
     res.send('true');
   },
+
+  likesNoti: async (req, res) => {
+    await NotificationLikes.destroy({
+      where: { letterNo: req.body.letterNo, postNo: req.params.postLikes },
+    });
+
+    res.send('true');
+  },
 };
 
 const input = {
