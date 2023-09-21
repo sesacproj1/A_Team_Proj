@@ -112,6 +112,7 @@ function nextPage() {
         14: '/img/letterIcons/px_squirrel.png',
         15: '/img/letterIcons/px_tree.png',
       };
+
       // step 1) 각자 다른 이미지 path 가져오기
       for (let i = 0; i < letterImg.length; i++) {
         const dataIndex = i;
