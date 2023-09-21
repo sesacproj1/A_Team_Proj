@@ -32,18 +32,19 @@
   position: fixed;
   text-align: center;
 }
+/*
 .text {
   width: 100vw;
   height: 100vh;
   /* color: #006e7f; */
-  color: #539165;
+/* color: #539165;
   font-size: 5vh;
   font-weight: bold;
   position: absolute;
   top: 63%;
-}
+} */
 
-.text span {
+/* .text span {
   position: relative;
   animation: textUp 1.5s infinite;
 }
@@ -85,7 +86,7 @@
   100% {
     top: 0;
   }
-}
+} */
 
 /* 메인 페이지 */
 /* 상단 문장 */

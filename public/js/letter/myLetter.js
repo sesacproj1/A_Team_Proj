@@ -313,8 +313,8 @@ function addFriend() {
     // btnAddFriend.style.pointerEvents = ' none';
   } else {
     console.log('다시변경!!!');
-    reqFriendCancel();
     imgAddFriend.src = '/img/header/add.png';
+    reqFriendCancel();
   }
 }
 let id = document.getElementById('lordid');
