@@ -48,6 +48,22 @@ function goPost(postNo) {
   });
 }
 
+function goLikes(postLikes) {
+  const id = document.querySelector('#ID').value;
+
+  axios({
+    method: 'delete',
+    url: `/user/myPage/notification/${postLikes}`,
+    data: {
+      letterNo: id,
+    },
+  }).then((res) => {
+    console.log(res.data);
+    document.getElementById(`post${postNo}`).remove();
+    document.location.href = `/letter/MyLetter/${id}`;
+  });
+}
+
 function goFriendReq() {
   document.location.href = `/letter/friendConfirm`;
 }
