@@ -76,9 +76,9 @@ const output = {
     });
 
     const postNo3 = await Post.findAll({
-      where : {
-        letterNo : req.params.id,
-      }
+      where: {
+        letterNo: req.params.id,
+      },
     });
     const postIds = postNo3.map((post) => post.postNo);
 
@@ -111,7 +111,6 @@ const output = {
     });
     console.log('count는', count);
 
-    
     if (userInfo) {
       //로그인 했을 때
       if (userInfo.id == idParam) {
@@ -126,7 +125,7 @@ const output = {
           isMine: true,
           id: req.params.id,
           nickname: nickname,
-          postNo1 : postIds,
+          postNo1: postIds,
           postNo: postNo,
           postDesign: designSrc,
           count: count,
@@ -161,7 +160,7 @@ const output = {
             isMine: false,
             id: req.params.id,
             nickname: nickname,
-            postNo1 : postIds,
+            postNo1: postIds,
             postNo: postNo,
             postDesign: designSrc,
             checkFriend: checkFriend,
@@ -185,7 +184,7 @@ const output = {
         id: req.params.id,
         nickname: nickname,
         postNo: postNo,
-        postNo1 : postIds,
+        postNo1: postIds,
         postDesign: postDesign,
         postDesign: designSrc,
         count: count,
@@ -217,8 +216,6 @@ const output = {
           letterNo: id,
         },
       });
-
-     
 
       if (req.session.userInfo) {
         isDeleteSender = await Post.findOne({
@@ -382,11 +379,11 @@ const input = {
     if (req.session.userInfo === undefined) {
       return res.send({ message: '로그인해주세요!' });
     }
-    const { id, postNo } = req.params;
+    const { id, postNumber } = req.params;
 
     const isLikes = await PostLikes.findAll({
       where: {
-        postNo: postNo,
+        postNo: postNumber,
         letterNo: id,
       },
     });
@@ -395,12 +392,12 @@ const input = {
       console.log('이미 좋아요 누름 ');
       //이미 좋아요 눌렀다면
       await PostLikes.destroy({
-        where: { postNo: postNo, letterNo: id },
+        where: { postNo: postNumber, letterNo: id },
       });
       //좋아요 취소하기
       const count = await PostLikes.count({
         where: {
-          postNo: postNo,
+          postNo: postNumber,
           letterNo: id,
         },
       });
@@ -411,7 +408,7 @@ const input = {
       });
     } else {
       await PostLikes.create({
-        postNo: parseInt(postNo) + 1,
+        postNo: postNumber,
         letterNo: id,
         id: req.session.userInfo.id,
         likesNum: 1,
@@ -419,7 +416,7 @@ const input = {
     }
     const count = await PostLikes.count({
       where: {
-        postNo: parseInt(postNo) + 1,
+        postNo: postNumber,
         letterNo: id,
       },
     });
@@ -433,10 +430,10 @@ const input = {
     if (req.session.userInfo === undefined) {
       return res.send({ message: '로그인해주세요!' });
     }
-    const { id, postNo } = req.params;
+    const { id, postNumber } = req.params;
     await PostLikes.destroy({
       where: {
-        postNo: parseInt(postNo) - 1,
+        postNo: postNumber,
         letterNo: id,
         id: req.session.userInfo.id,
       },
@@ -444,7 +441,7 @@ const input = {
     //좋아요 취소하기
     const count = await PostLikes.count({
       where: {
-        postNo: parseInt(postNo) - 1,
+        postNo: postNumber,
         letterNo: id,
       },
     });
