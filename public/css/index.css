@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'stardust';
-  src: url('/font/PF스타더스트 Bold.ttf');
+  font-family: 'pixel1';
+  src: url('../fonts/DungGeunMo.ttf') format('truetype');
 }
 
 * {
@@ -16,7 +16,7 @@
   height: 100vh;
   color: #eeeeee;
   position: relative;
-  font-family: 'stardust';
+  font-family: 'pixel1';
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -258,12 +258,15 @@
     opacity: 1;
   }
   50% {
+    opacity: 0.75;
+  }
+  75% {
     opacity: 0.5;
   }
   100% {
     top: 80%;
     left: 0%;
-    opacity: 0.2;
+    opacity: 0.25;
     /* display: none; */
   }
 }

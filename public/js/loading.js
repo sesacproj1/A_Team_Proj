@@ -8,7 +8,7 @@ const loading = document.querySelector('.loading');
 // 쿠키 굽기
 function setCookie(name, value, expireTime) {
   let today = new Date();
-  console.log('현재 시각: ', today.getHours()); //nn
+  // console.log('현재 시각: ', today.getHours()); //nn
   today.setHours(today.getHours() + expireTime);
   document.cookie =
     name + '=' + escape(value) + ';expires=' + today.toGMTString();
@@ -16,11 +16,11 @@ function setCookie(name, value, expireTime) {
 
 function getCookie(name) {
   let cookie = document.cookie;
-  console.log(cookie);
+  // console.log(cookie);
   if (document.cookie != '') {
     //있으면
     let cookieArr = cookie.split('; ');
-    console.log(cookieArr);
+    // console.log(cookieArr);
 
     for (let idx in cookieArr) {
       let cookieName = cookieArr[idx].split('=');

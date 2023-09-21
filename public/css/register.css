@@ -35,7 +35,7 @@
   color: rgba(15, 44, 89, 1);
   font-size: 40px;
   font-weight: 700;
-  font-family: 'pixel2';
+  font-family: 'pixel1';
 }
 
 .logo_container1 {
@@ -218,5 +218,5 @@ i {
   border: none;
   border-radius: 10px;
   color: white;
-  font-family: 'pixel2';
+  font-family: 'pixel1';
 }

@@ -347,7 +347,7 @@ function realSearch() {
 let tooltipTriggerList = [].slice.call(
   document.querySelectorAll('[data-bs-toggle="tooltip"]')
 );
-console.log(tooltipTriggerList);
+// console.log(tooltipTriggerList);
 let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl);
 });
