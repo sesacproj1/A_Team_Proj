@@ -292,6 +292,16 @@ btnLogout.addEventListener('click', () => {
   document.location.href = '/logout';
 });
 
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+    // 엔터 키가 눌렸을 때 로그인 버튼 클릭
+    const searchBtn = document.getElementById('searchBtn');
+    if (searchBtn) {
+      searchBtn.click();
+    }
+  }
+});
+
 function realSearch() {
   const aElements = document.querySelectorAll('.a');
   for (let search of aElements) {
