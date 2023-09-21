@@ -159,8 +159,10 @@ function showPost(id, i) {
   const deserver = document.getElementById('postNo5').value;
   console.log('deserver', deserver);
   const combinedValue = parseInt(deserver) + parseInt(i);
-  console.log('combinedValue:', combinedValue);
+
   const postNo = postNoArray[combinedValue];
+  console.log(postNo);
+  postNumber = postNo;
   // const postNoInput = document.getElementById(`postNo${i}`);
   // let postNo = postNoInput.value;
   // console.log('postNoINput은 ', postNoInput);
@@ -195,8 +197,14 @@ function showPost(id, i) {
       buttonElement.classList.add('btn', 'btnDelete');
       buttonElement.setAttribute('data-bs-dismiss', 'modal');
       buttonElement.textContent = '삭제';
-      if (isDeletelord !== null && isDeleteSender === null) {
+      if (isDeletelord === null && isDeleteSender === null) {
+        console.log('둘다널!');
+        return;
+      }
+
+      if (isDeletelord !== null) {
         //편지주인일때
+        console.log('주인실행');
         if (document.querySelector('.btnDelete')) {
           //버튼 이미 있다면 버튼 추가하지않음
         } else {
@@ -208,7 +216,7 @@ function showPost(id, i) {
           postDelete();
         });
       }
-      if (isDeleteSender !== null && isDeletelord === null) {
+      if (isDeleteSender !== null) {
         //편지쓴사람이 열었을 때
         if (isDeleteSender.id === 0) {
           //쓴사람이 익명일 때
@@ -273,10 +281,9 @@ function likeCancel(id) {
   console.log('취소함수실행!');
   // const likesNum2 = parseInt(likesNum.innerText);
 
-  const postNo = postNumber + 1;
   axios({
     method: 'delete',
-    url: `/letter/MyLetter/${id}/${postNo}/likes/cancel`,
+    url: `/letter/MyLetter/${id}/${postNumber}/likes/cancel`,
   })
     .then((response) => {
       console.log(response); // 응답 내용을 콘솔에 출력 (디버깅용)

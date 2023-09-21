@@ -128,12 +128,12 @@ router.get('/letter/MyLetter/:id/:postNo', controllerPost.output.showPost);
 
 // 좋아요
 router.patch(
-  '/letter/MyLetter/:id/:postNo/likes',
+  '/letter/MyLetter/:id/:postNumber/likes',
   controllerPost.input.updateLikes
 );
 //좋아요취소
 router.delete(
-  '/letter/MyLetter/:id/:postNo/likes/cancel',
+  '/letter/MyLetter/:id/:postNumber/likes/cancel',
   controllerPost.input.likeCancel
 );
 
