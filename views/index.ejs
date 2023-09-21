@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>송편지</title>
     <link rel="stylesheet" href="/css/index.css" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <%- include('./header') %>
@@ -33,7 +32,12 @@
       <div class="starDiv">
         <% for (let i=0; i < data.length; i++ ) { %>
         <a href="/letter/MyLetter/<%= data[i].id%>" target="_self" class="a">
-          <div class="star star<%=i+1%>">
+          <div
+            class="star star<%=i+1%>"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="송편지별을 둘러보세요"
+          >
             <% if ( i%3==0 ) {%>
             <img src="../img/background/kbStar.png" alt="" id="star<%=i+1%>" />
             <% } else { %>
@@ -47,14 +51,31 @@
 
       <!-- btnDiv START -->
       <div class="btnDiv">
-        <button id="btnLeft">
+        <button
+          id="btnLeft"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="이전 송편지별 보기"
+        >
           <img src="/img/header/left.png" alt="" />
         </button>
         <%if(typeof session === 'undefined'){%>
-        <button id="btnResister">
+        <button
+          id="btnResister"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="회원이 되어 송편지와 함께하세요"
+        >
           <span>회원가입</span>
         </button>
-        <button id="btnLogin"><span>로그인</span></button>
+        <button
+          id="btnLogin"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="내 송편지를 보러 갈까요?"
+        >
+          <span>로그인</span>
+        </button>
         <button id="btnLogout" style="display: none">
           <span>로그아웃</span>
         </button>
@@ -71,12 +92,27 @@
           placeholder="닉네임 검색"
           name="searched"
           id="searched"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="송편지를 보내고 싶은 사람을 찾아보세요"
         />
-        <button type="button" id="searchBtn" onclick="realSearch()">
+        <button
+          type="button"
+          onclick="realSearch()"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="송편지를 보내고 싶은 사람을 찾아보세요"
+        >
+
           검색
         </button>
         <%}%>
-        <button id="btnRight">
+        <button
+          id="btnRight"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="다음 송편지별 보기"
+        >
           <img src="/img/header/right.png" alt="" />
         </button>
       </div>
