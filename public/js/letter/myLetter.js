@@ -47,7 +47,7 @@ function prevPage() {
           const dataIndex = i;
           console.log('data design', data[dataIndex]);
           if (data[dataIndex]) {
-            const designNumber = data[dataIndex].postDesign;
+            const designNumber = data[dataIndex].postDesign - 1;
             const imagePath = designMap[designNumber];
 
             if (imagePath) {
