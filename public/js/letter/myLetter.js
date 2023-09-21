@@ -150,6 +150,7 @@ function nextPage() {
 const letterModal = document.getElementById('letterModal');
 const modalBodyInput = letterModal.querySelector('.modal-body input');
 const modalBodyTextarea = letterModal.querySelector('.modal-body textarea');
+
 function showPost(id, i) {
   const postNoInput = document.getElementById(`postNo${i}`);
   let postNo = postNoInput.value;
