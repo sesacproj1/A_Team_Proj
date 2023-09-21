@@ -21,7 +21,7 @@ app.use(
     }, // 다른 옵션도 필요에 따라 설정 가능
   })
 );
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 const home = require('./routes');

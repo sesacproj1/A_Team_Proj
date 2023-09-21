@@ -8,7 +8,7 @@ function notiModal(letterNo) {
     method: 'get',
     url: `/user/myPage/notification/${letterNo}`,
   }).then((res) => {
-    console.log(res.data);
+    console.log('레스데이터', res.data);
     const { postNo, isFriend } = res.data;
     if (postNo.length !== 0) {
       noAlarm.style.display = 'none';
@@ -44,6 +44,22 @@ function goPost(postNo) {
   }).then((res) => {
     console.log(res.data);
     document.getElementById(`post${postNo}`).remove();
+    document.location.href = `/letter/MyLetter/${id}`;
+  });
+}
+
+function goLikes(postLikes) {
+  const id = document.querySelector('#ID').value;
+
+  axios({
+    method: 'delete',
+    url: `/user/myPage/notification/${postLikes}/likes`,
+    data: {
+      letterNo: id,
+    },
+  }).then((res) => {
+    console.log(res.data);
+    document.getElementById(`likes${postLikes}`).remove();
     document.location.href = `/letter/MyLetter/${id}`;
   });
 }

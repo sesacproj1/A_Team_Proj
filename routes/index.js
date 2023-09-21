@@ -105,6 +105,10 @@ router.delete(
   controllerNoti.output.postNoti
 );
 router.delete(
+  '/user/myPage/notification/:postNo/likes',
+  controllerNoti.output.likesNoti
+);
+router.delete(
   '/user/myPage/notification/:id/delete',
   controllerNoti.input.deleteNoti
 );

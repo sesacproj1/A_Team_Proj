@@ -7,6 +7,7 @@ const {
   Friend,
   RequestList,
   Design,
+  NotificationLikes,
 } = require('../models');
 let isDeleteSender;
 let isDeletelord;
@@ -353,6 +354,20 @@ const input = {
         postDesign: postDesign,
         pw: pw,
       });
+      const postInfo = await Post.findOne({
+        where: {
+          letterNo: letterNo,
+          postNickname: postNickname,
+          postDesign: postDesign,
+        },
+      });
+      await Notification.create({
+        id: 0,
+        letterNo: letterNo,
+        sender: postNickname,
+        postNo: postInfo.postNo,
+        pw: pw,
+      });
     }
 
     // 글작성시 좋아요 개수 0으로 default값 설정.
@@ -412,6 +427,13 @@ const input = {
         letterNo: id,
         id: req.session.userInfo.id,
         likesNum: 1,
+      });
+
+      await NotificationLikes.create({
+        postNo: postNumber,
+        letterNo: id,
+        id: req.session.userInfo.id,
+        likesWho: req.session.userInfo.userId,
       });
     }
     const count = await PostLikes.count({

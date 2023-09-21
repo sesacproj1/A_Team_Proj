@@ -4,6 +4,7 @@ const {
   MyLetter,
   Notice,
   Notification,
+  NotificationLikes,
   Post,
   Profile,
   User,
@@ -146,8 +147,12 @@ const output = {
       });
 
       const notification = await Notification.findAll({
-        where: { id: req.session.userInfo.id },
+        where: { letterNo: req.session.userInfo.id },
       });
+      const notificationLikes = await NotificationLikes.findAll({
+        where: { letterNo: req.session.userInfo.id },
+      });
+      console.log('likes ->@@', notificationLikes);
       const isFriend = await Friend.findOne({
         where: { id: req.session.userInfo.id },
       });
@@ -157,6 +162,9 @@ const output = {
 
       const eachNoti = notification.map((no) => no.postNo);
       const sender = notification.map((send) => send.sender);
+
+      const eachLikes = notificationLikes.map((like) => like.postNo);
+      const likesWho = notificationLikes.map((send) => send.likesWho);
 
       console.log(notification.length);
       const post = postData.map((data) => data.postNo);
@@ -174,7 +182,7 @@ const output = {
         });
 
         const numberOfFriends = friend.length;
-
+        console.log('->@@@@', likesWho);
         return res.render('user/myPage', {
           session: req.session.userInfo,
           profile: req.session.profile,
@@ -183,12 +191,15 @@ const output = {
           isProfile: true,
           friend: numberOfFriends,
           postNo: post,
-          noti: notification.length + 1,
+          noti: notification.length + 1 + notificationLikes.length,
           postCount: postCount,
           postNoti: eachNoti,
+          likesWho: likesWho,
           sender: sender,
+          postLikes: eachLikes,
         });
       } else {
+        console.log('->@@@@', likesWho);
         return res.render('user/myPage', {
           session: req.session.userInfo,
           profile: req.session.profile,
@@ -197,10 +208,12 @@ const output = {
           isProfile: true,
           postNo: post,
           friend: 0,
-          noti: notification.length,
+          noti: notification.length + notificationLikes.length,
           postCount: postCount,
           postNoti: eachNoti,
+          likesWho: likesWho,
           sender: sender,
+          postLikes: eachLikes,
         });
       }
     } else {
