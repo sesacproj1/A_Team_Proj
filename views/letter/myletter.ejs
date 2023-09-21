@@ -27,6 +27,7 @@
           <img src="/img/background/moon.png" alt="" id="moon" />
           <!-- 편지 : 페이징 시 nickname.length로 바꾸기 -->
           <% for (let i=0; i< nickname.length; i++ ){ %>
+
           <div class="letters" id="letter<%= i+1 %>" data-bs-toggle="modal" data-bs-target="#letterModal" onclick="showPost('<%= id %>','<%= i%>')">
             <img src="<%=postDesign[i]%>" alt="" class="letterImg" id="letterImg<%=i%>"  data-bs-toggle="tooltip"
             data-bs-placement="top"
@@ -57,6 +58,7 @@
                     <input type="text" class="form-control" id="recipient-name" readonly/>
                   </div>
                   <div class="mb-3">
+
                     <label for="message-text" class="col-form-label">편지 내용</label>
                     <textarea class="form-control" id="message-text" readonly></textarea>
                   </div>
@@ -103,8 +105,8 @@
                 <div class="modal-body">
                   <form>
                     <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label"
-                        >비밀번호
+                      <label for="recipient-name" class="col-form-label">
+                        비밀번호
                         </label>
                       <input type="text" class="form-control pw" id="recipient-name"/>
                     </div>
@@ -120,14 +122,10 @@
           </div>
 
       <div class="btnDiv">
-        <button id="btnLeft" onclick="prevPage()"  data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        title="이전 송편지 보기">
+        <button id="btnLeft" onclick="prevPage()"  data-bs-toggle="tooltip" data-bs-placement="top" title="이전 송편지 보기">
           <img src="/img/header/left.png" alt="" />
         </button>
-        <button id="btnRight" onclick="nextPage()" data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        title="다음 송편지 보기">
+        <button id="btnRight" onclick="nextPage()" data-bs-toggle="tooltip" data-bs-placement="top" title="다음 송편지 보기">
           <img src="/img/header/right.png" alt="" />
         </button>
       </div>
@@ -187,24 +185,25 @@
           </button>
         </div>
 
+        <div class="addFriendDiv">
+          <button id="btnAddFriend" onclick="addFriend()">
+            <%if( checkFriend ||  checkRequest){%>
+            <img src="/img/header/check.png" alt="" id="imgAddFriend" />
+            <%}else{%>
+              <img src="/img/header/add.png" alt="" id="imgAddFriend" />
+            <%}%>
+          </button>
+          <input type="text" id="lordid" value="<%= lord.id%>">
+        <p>친구 신청</p>
+      </div>
+
+
         <div class="friendsDiv">
           <a href="/letter/friends/<%=lord.id%>">
             <button id="btnFriends" >
               <img src="/img/header/friends.png" alt="" id="imgFriends"  />
             </button>
               <p>친구 목록</p>
-        </div>
-
-        <div class="addFriendDiv">
-            <button id="btnAddFriend" onclick="addFriend()">
-              <%if( checkFriend ||  checkRequest){%>
-              <img src="/img/header/check.png" alt="" id="imgAddFriend" />
-              <%}else{%>
-                <img src="/img/header/add.png" alt="" id="imgAddFriend" />
-              <%}%>
-            </button>
-            <input type="text" id="lordid" value="<%= lord.id%>">
-          <p>친구 신청</p>
         </div>
 
         <div class="writeLetterDiv">

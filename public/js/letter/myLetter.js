@@ -47,7 +47,7 @@ function prevPage() {
           const dataIndex = i;
           console.log('data design', data[dataIndex]);
           if (data[dataIndex]) {
-            const designNumber = data[dataIndex].postDesign;
+            const designNumber = data[dataIndex].postDesign - 1;
             const imagePath = designMap[designNumber];
 
             if (imagePath) {
@@ -112,6 +112,7 @@ function nextPage() {
         14: '/img/letterIcons/px_squirrel.png',
         15: '/img/letterIcons/px_tree.png',
       };
+
       // step 1) 각자 다른 이미지 path 가져오기
       for (let i = 0; i < letterImg.length; i++) {
         const dataIndex = i;
@@ -314,6 +315,7 @@ function addFriend() {
   } else {
     console.log('다시변경!!!');
     imgAddFriend.src = '/img/header/add.png';
+
     return reqFriendCancel();
   }
 }
