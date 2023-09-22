@@ -8,11 +8,6 @@
   src: url('../fonts/DungGeunMo.ttf') format('truetype');
 }
 
-@font-face {
-  font-family: 'pixel2';
-  src: url('../fonts/pixelroborobo.otf') format('truetype');
-}
-
 .friendsList > p {
   font-size: 30px;
   text-align: center;
