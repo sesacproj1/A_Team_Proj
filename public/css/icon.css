@@ -33,7 +33,6 @@
   background-size: cover; /* 배경 이미지 크기 설정 */
   background-clip: content-box; /* 배경 이미지를 내용까지 확장 */
   font-family: 'pixel1';
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +40,6 @@
 
 #toContent > textarea {
   width: 90%;
-
   font-family: 'pixel1';
   font-size: 2.5vh;
   font-weight: 700;
