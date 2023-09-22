@@ -134,6 +134,6 @@ async function userUpdate() {
       },
     });
     alert(`${res.data.message}`);
-    document.location.href = '/user/mypage';
+    document.location.href = `/user/mypage/${id}`;
   }
 }

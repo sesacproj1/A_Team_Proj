@@ -228,7 +228,11 @@ const input = {
             { nickname: req.body.nickname, password: secretPw },
             { where: { userId: req.body.id } }
           );
-          res.send({ result: true, message: '마이페이지 수정완료' });
+          res.send({
+            result: true,
+            message: '마이페이지 수정완료',
+            id: req.session.userInfo.id,
+          });
         }
       } else {
         //원래닉네임이랑 같다면
@@ -236,7 +240,11 @@ const input = {
           { password: secretPw },
           { where: { userId: req.body.id } }
         );
-        res.send({ result: true, message: '마이페이지 수정완료' });
+        res.send({
+          result: true,
+          message: '마이페이지 수정완료',
+          id: req.session.userInfo.id,
+        });
       }
     } catch (err) {
       console.error(err);
