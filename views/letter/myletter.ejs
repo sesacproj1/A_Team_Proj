@@ -223,7 +223,6 @@
             <button id="btnProfilePic" disabled>
               <%if (profile.profileLocation !== 'null'){%>
                 <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />
-                
                 <%}else{%>
                   <img src="/img/header/user.png" alt="" id="imgProfilePic" />
                 <%}%>
@@ -231,19 +230,14 @@
           </div>
     
           <div class="writeLetterDiv">
-
             <a href="/letter/select/<%=lord.id%>"> 
-
               <button id="btnWriteLetter">
                 <img src="/img/header/pen.png" alt="" id="imgWriteLetter" />
               </button>
               <p>편지 쓰기</p>
             </a>
           </div>
-    
-          
         <% } %>
-        
       </div>
       
     <script src="/js/letter/myLetter.js"></script>
