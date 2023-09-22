@@ -34,6 +34,10 @@ function checkValidity() {
   return true;
 }
 const nickname = document.getElementById('isNickname');
+const id = document.getElementById('isId');
+id.addEventListener('click', () => {
+  isId();
+});
 
 nickname.addEventListener('click', () => {
   isNickname();
