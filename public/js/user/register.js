@@ -33,8 +33,22 @@ function checkValidity() {
   }
   return true;
 }
+const nickname = document.getElementById('isNickname');
 
-async function isId(obj) {
+nickname.addEventListener('click', () => {
+  isNickname();
+});
+
+const email = document.getElementById('isEmail');
+
+email.addEventListener('click', () => {
+  isEmail();
+});
+
+const form = document.forms['registerForm'];
+async function isId() {
+  const obj = document.getElementById('userId');
+  console.log(obj);
   const response = await axios({
     method: 'POST',
     url: '/isId',
@@ -49,20 +63,22 @@ async function isId(obj) {
     $('#idConfirm').text('사용할 수 있는 아이디입니다.');
     idResult = true;
   } else {
-    console.log('아이디 중복!');
+    form.userId.value = '';
+    // event.preventDefault(); // 기본 이벤트(폼 제출) 막기
     $('#idConfirm').css('color', 'red'); // id가 idConfirm 인 태그 css 설정
-    $('#idConfirm').text('사용할 수 없는 아이디입니다.');
+    $('#idConfirm').text('이미 사용중인 아이디입니다.');
     idResult = false;
   }
 }
 
 // 이메일 중복검사
-async function isEmail(obj) {
+async function isEmail() {
+  const obj = document.getElementById('email').value;
   const response = await axios({
     method: 'POST',
     url: '/register/isEmail',
     data: {
-      email: obj.value,
+      email: obj,
     },
   });
   const data = await response.data;
@@ -71,8 +87,9 @@ async function isEmail(obj) {
     $('#emailConfirm').text('사용할 수 있는 이메일입니다.');
     emailResult = true;
   } else {
+    form.email.value = '';
     $('#emailConfirm').css('color', 'red'); // id가 emailConfirm 인 태그 css 설정
-    $('#emailConfirm').text('사용할 수 없는 이메일입니다.');
+    $('#emailConfirm').text('이미 사용중인 이메일입니다.');
     emailResult = false;
   }
 }
@@ -141,12 +158,13 @@ function isPw() {
   }
 }
 //닉네임 중복검사
-async function isNickname(obj) {
+async function isNickname() {
+  const obj = document.getElementById('nickname').value;
   const result = await axios({
     method: 'POST',
     url: '/isNickname',
     data: {
-      nickname: obj.value,
+      nickname: obj,
     },
   });
   const data = result.data;
@@ -155,19 +173,16 @@ async function isNickname(obj) {
     $('#nicknameConfirm').text('사용할 수 있는 닉네임입니다.');
     nicknameResult = true;
   } else {
+    form.nickname.value = '';
     $('#nicknameConfirm').css('color', 'red'); // id가 nicknameConfirm 인 태그 css 설정
-    $('#nicknameConfirm').text('사용할 수 없는 닉네임입니다.');
+    $('#nicknameConfirm').text('이미 사용중인 닉네임입니다.');
     nicknameResult = false;
   }
 }
 async function register() {
-  // console.log('register함수 실행시작!!');
   const form = document.forms['registerForm'];
   const isCheck = checkValidity();
   pwResult = isPw() && isPwValidity();
-  // console.log('pwResult는', pwResult);
-
-  // console.log('idresult는 -> ', idResult);
   if (isCheck == true) {
     const result = await axios({
       method: 'POST',
