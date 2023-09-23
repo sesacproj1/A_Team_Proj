@@ -136,7 +136,7 @@
         <!-- 1. 로그인 했고 내 페이지일 때 -->
         <% if (isMine && isLogin) { %>
         <div class="myPageDiv">
-          <a href="/user/myPage">
+          <a href="/user/myPage/<%= lord.id%>">
             <%if (profile.profileLocation !== 'null'){%>
               <button id="btnMypage">
                 <img src="<%= profile.profileLocation%>" alt="" id="imgMypage" />

@@ -44,7 +44,7 @@
             <div class="container login_container2">
               <div style="margin-top: 150px">
                 <p id="register_name">회원 가입</p>
-                <form name="registerForm">
+                <form name="registerForm" >
                   <div style="display: flex">
                     <div><i class="bi bi-person-circle"></i></div>
                     <input
@@ -52,12 +52,12 @@
                       placeholder="아이디"
                       name="userId"
                       id="userId"
-                      onkeyup="isId(this);"
                       required
-                    />
+                    /> 
+                    <button type="button" id="isId">중복확인</button>
+                  </div>
                   </div>
                   <div id="idConfirm"></div>
-                  </div>
                   <div style="display: flex">
                     <div><i class="bi bi-key-fill"></i></div>
                     <input
@@ -91,9 +91,9 @@
                       id="nickname"
                       name="nickname"
                       placeholder="닉네임"
-                      onkeyup="isNickname(this);"
                       required
                     />
+                    <button type="button" id="isNickname">중복확인</button>
                   </div>
                   <div id="nicknameConfirm"></div>
                   <div style="display: flex">
@@ -103,9 +103,9 @@
                       name="email"
                       id="email"
                       placeholder="이메일"
-                      onkeyup="isEmail(this);"
                       required
                     />
+                    <button type="button" id="isEmail">중복확인</button>
                   </div>
                   <div id="emailConfirm"></div>
                   <div style="margin-top: 2vh;">

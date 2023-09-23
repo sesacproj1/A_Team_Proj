@@ -396,46 +396,20 @@ const input = {
     }
     const { id, postNumber } = req.params;
 
-    const isLikes = await PostLikes.findAll({
-      where: {
-        postNo: postNumber,
-        letterNo: id,
-      },
+    await PostLikes.create({
+      postNo: postNumber,
+      letterNo: id,
+      id: req.session.userInfo.id,
+      likesNum: 1,
     });
-    console.log('isLikes는', isLikes);
-    if (isLikes.length !== 0) {
-      console.log('이미 좋아요 누름 ');
-      //이미 좋아요 눌렀다면
-      await PostLikes.destroy({
-        where: { postNo: postNumber, letterNo: id },
-      });
-      //좋아요 취소하기
-      const count = await PostLikes.count({
-        where: {
-          postNo: postNumber,
-          letterNo: id,
-        },
-      });
-      return res.send({
-        isLike: true,
-        count: count,
-        src: '/img/header/heart1.png',
-      });
-    } else {
-      await PostLikes.create({
-        postNo: postNumber,
-        letterNo: id,
-        id: req.session.userInfo.id,
-        likesNum: 1,
-      });
 
-      await NotificationLikes.create({
-        postNo: postNumber,
-        letterNo: id,
-        id: req.session.userInfo.id,
-        likesWho: req.session.userInfo.userId,
-      });
-    }
+    await NotificationLikes.create({
+      postNo: postNumber,
+      letterNo: id,
+      id: req.session.userInfo.id,
+      likesWho: req.session.userInfo.userId,
+    });
+
     const count = await PostLikes.count({
       where: {
         postNo: postNumber,
