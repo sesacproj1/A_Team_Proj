@@ -34,7 +34,6 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
-  /* margin-top: 5%; */
 }
 
 @media (max-width: 480px) {
@@ -42,7 +41,6 @@
   .imgDiv {
     flex-grow: 1;
     height: 60vh;
-    /* background-color: #eee; */
   }
   #moon {
     position: absolute;
@@ -91,9 +89,6 @@
     position: absolute;
     width: 100%;
     height: 80%;
-    /* left: 0;
-    top: 50%;
-    transform: translateY(-50%); */
   }
   .letterImg {
     position: absolute;
@@ -107,7 +102,6 @@
     flex-grow: 1;
     height: 60vh;
     margin-top: 3%;
-    /* background-color: #eeeeee; */
   }
   #moon {
     width: 85%;
@@ -132,7 +126,6 @@
     flex-grow: 1;
     height: 60vh;
     margin-top: 3%;
-    /* background-color: #eeeeee; */
   }
   #moon {
     width: 90%;
@@ -159,10 +152,6 @@
 .letterP {
   color: #337ccf;
   position: absolute;
-  /* top: 80%;
-  left: 50%;
-  transform: translateX(-50%); */
-  /* 그림 밑으로 두면 글자 깨짐 ㅠㅠ */
   font-size: 18px;
   font-weight: bold;
   letter-spacing: -2;
@@ -211,6 +200,7 @@
   left: 60%;
   top: 50%;
 }
+
 /* 편지 모달 */
 #letterModal {
   color: #feffac;

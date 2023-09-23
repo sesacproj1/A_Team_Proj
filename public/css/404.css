@@ -5,12 +5,10 @@
 * {
   margin: 0;
   padding: 0;
-  /* background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%); */
 }
 
 .background {
   letter-spacing: -2;
-  /* background: linear-gradient(to bottom, #201c2f 0%, #0c356a 100%); */
   background: #fb2576;
   height: 100vh;
   font-family: 'pixel1';
@@ -40,17 +38,6 @@
   margin: 1%;
   text-shadow: 15px 20px #3f0071;
 }
-/* .spanDiv span:nth-child(1) {
-  transform: rotate(10deg) skew(-10deg);
-}
-.spanDiv span:nth-child(2) {
-  /* transform: rotate(30deg) skew(-10deg); */
-/* text-shadow: 15px 20px #3f0071; */
-/* }
-.spanDiv span:nth-child(3) { */
-/* transform: rotateX(40deg) rotateY(40deg) skew(-10deg); */
-/* text-shadow: 15px 20px #3f0071;
-} */
 
 /* 버블보블 */
 .boggleDiv {
@@ -93,16 +80,3 @@
       0 8px 0 transparent, 0 9px 0 transparent, 0 50px 25px rgba(0, 0, 0, 0.4);
   }
 }
-
-/* 포토샵 로고 버전 */
-/* .logoDiv {
-  display: flex;
-  justify-content: center;
-}
-
-.logoDiv img {
-  width: 50%;
-  height: 20%;
-}
-
- */

@@ -8,10 +8,6 @@
   src: url('../fonts/DungGeunMo.ttf') format('truetype');
 }
 
-@font-face {
-  font-family: 'pixel2';
-  src: url('../font/PF스타더스트\ Bold.ttf') format('truetype');
-}
 .friendsBox1 a {
   text-decoration-line: none;
   color: black;

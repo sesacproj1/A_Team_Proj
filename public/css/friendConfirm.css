@@ -1,29 +1,22 @@
 * {
-    letter-spacing: -2px;
-    font-family: 'pixel1';
-  }
-  
-  @font-face {
-    font-family: 'pixel1';
-    src: url('../fonts/DungGeunMo.ttf') format('truetype');
-  }
-  
-  @font-face {
-    font-family: 'pixel2';
-    src: url('../fonts/pixelroborobo.otf') format('truetype');
-  }
+  letter-spacing: -2px;
+  font-family: 'pixel1';
+}
 
-  .friendsList > p {
-    font-size: 30px;
-    text-align: center;
-    margin-top: 10px;
-  }
+@font-face {
+  font-family: 'pixel1';
+  src: url('../fonts/DungGeunMo.ttf') format('truetype');
+}
+.friendsList > p {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 10px;
+}
 
-  .friendsList2 {
+.friendsList2 {
   gap: 10px;
   margin-left: 2vw;
   margin-top: 0.5vh;
-
 }
 
 .col-md-4 > div {
@@ -31,9 +24,9 @@
   background: white;
   height: 90px;
   width: 90px;
-  border-radius: 50%; 
-  overflow: hidden; 
-  cursor: pointer; 
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
   transition: transform 0.3s;
 }
 
@@ -51,5 +44,5 @@
 }
 
 .reject {
-    margin-top: 1vh;
-  }
+  margin-top: 1vh;
+}
