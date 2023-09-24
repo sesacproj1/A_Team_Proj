@@ -11,6 +11,7 @@ const {
   User,
 } = require('../models');
 const Sequelize = require('sequelize');
+const { Op } = require('sequelize');
 
 const output = {
   index: async (req, res) => {
@@ -151,7 +152,10 @@ const output = {
         where: { letterNo: req.session.userInfo.id },
       });
       const notificationLikes = await NotificationLikes.findAll({
-        where: { letterNo: req.session.userInfo.id },
+        where: {
+          letterNo: req.session.userInfo.id,
+          id: { [Op.ne]: req.session.userInfo.id },
+        },
       });
       console.log('likes ->@@', notificationLikes);
       const isFriend = await Friend.findOne({
