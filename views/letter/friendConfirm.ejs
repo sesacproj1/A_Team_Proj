@@ -25,29 +25,6 @@
     </div>
     <div class="container" style="border: 3px solid black">
       <div class="row">
-        <!-- <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames" name="nickname">lobster100</p>
-          <button
-            type="button"
-            onclick="confirm()"
-            id="confirm"
-            class="confirm"
-          >
-            수락
-          </button>
-          <button type="button" onclick="reject()" id="reject" class="reject">
-            거절
-          </button>
-        </div>
-         -->
         <% requestData.forEach(profile => { %> <% if (profile.profileLocation ===
         'null') { %>
         <div class="col-md-4 col-6">
@@ -69,11 +46,9 @@
             value="<%= profile.userId%>"
           >
             수락
-            <!-- <input type="text" id="requestId" value="<%= profile.userId%>"> -->
           </button>
           <button type="button" onclick="reject(this)" id="reject" class="reject" value="<%= profile.userId%>">
             거절
-            <!-- <input type="text" id="requestId" value="<%= profile.userId%>"> -->
           </button>
         </div>
       </form>
@@ -97,171 +72,12 @@
             value="<%= profile.userId%>"
           >
             수락
-            <!-- <input type="text" id="requestId" value="<%= profile.userId%>"> -->
           </button>
           <button type="button" onclick="reject(this)" id="reject" class="reject" value="<%= profile.userId%>">
             거절
-            <!-- <input type="text" id="requestId" value="<%= profile.userId%>"> -->
           </button>
         </div>
         <% } %>
          <% }); %>
-        <!-- <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames" name="nickname">lobster100</p>
-          <button
-            type="button"
-            onclick="confirm()"
-            id="confirm"
-            class="confirm"
-          >
-            수락
-          </button>
-          <button type="button" onclick="reject()" id="reject" class="reject">
-            거절
-          </button>
-        </div>
-        <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames" name="nickname">lobster100</p>
-          <button
-            type="button"
-            onclick="confirm()"
-            id="confirm"
-            class="confirm"
-          >
-            수락
-          </button>
-          <button type="button" onclick="reject()" id="reject" class="reject">
-            거절
-          </button>
-        </div>
-        <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames" name="nickname">lobster100</p>
-          <button
-            type="button"
-            onclick="confirm()"
-            id="confirm"
-            class="confirm"
-          >
-            수락
-          </button>
-          <button type="button" onclick="reject()" id="reject" class="reject">
-            거절
-          </button>
-        </div>
-        <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames" name="nickname">lobster100</p>
-          <button
-            type="button"
-            onclick="confirm()"
-            id="confirm"
-            class="confirm"
-          >
-            수락
-          </button>
-          <button type="button" onclick="reject()" id="reject" class="reject">
-            거절
-          </button>
-        </div>
-        <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames" name="nickname">lobster100</p>
-          <button
-            type="button"
-            onclick="confirm()"
-            id="confirm"
-            class="confirm"
-          >
-            수락
-          </button>
-          <button type="button" onclick="reject()" id="reject" class="reject">
-            거절
-          </button>
-        </div>
-        <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames" name="nickname">lobster100</p>
-          <button
-            type="button"
-            onclick="confirm()"
-            id="confirm"
-            class="confirm"
-          >
-            수락
-          </button>
-          <button type="button" onclick="reject()" id="reject" class="reject">
-            거절
-          </button>
-        </div>
-        <div class="col-md-4 col-6">
-          <div>
-            <a href="#"
-              ><img
-                src="/img/추석3.png"
-                alt=""
-                style="width: 100%; height: 100%"
-            /></a>
-          </div>
-          <p class="nicknames" name="nickname">lobster100</p>
-          <button
-            type="button"
-            onclick="confirm()"
-            id="confirm"
-            class="confirm"
-          >
-            수락
-          </button>
-          <button type="button" onclick="reject()" id="reject" class="reject">
-            거절
-          </button>
-        </div>
-      </div>
-    </div> -->
-    
   </body>
 </html>

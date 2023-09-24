@@ -8,11 +8,6 @@
   src: url('../fonts/DungGeunMo.ttf') format('truetype');
 }
 
-@font-face {
-  font-family: 'pixel2';
-  src: url('../fonts/pixelroborobo.otf') format('truetype');
-}
-
 .friendsList > p {
   font-size: 30px;
   text-align: center;
@@ -65,7 +60,6 @@
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    /* height: 20%; */
   }
   .btnDiv button {
     width: 50px;
@@ -74,13 +68,11 @@
     border-radius: 50%;
     margin: 3vw;
     background-color: #7091f5;
-    /* background-color: #27e1c1; */
     color: #eeeeee;
   }
   button img {
     width: 30px;
     height: 30px;
-    /* object-fit: fill; */
   }
   button span {
     font-size: x-small;
@@ -97,7 +89,6 @@
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    /* height: 20%; */
   }
   .btnDiv button {
     width: 80px;
@@ -106,13 +97,11 @@
     border-radius: 50%;
     margin: 3vw;
     background-color: #7091f5;
-    /* background-color: #27e1c1; */
     color: #eeeeee;
   }
   button img {
     width: 50px;
     height: 50px;
-    /* object-fit: fill; */
   }
   button span {
     font-size: medium;
