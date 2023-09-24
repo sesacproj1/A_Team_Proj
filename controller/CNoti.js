@@ -118,6 +118,9 @@ const input = {
     await Notification.destroy({
       where: { letterNo: req.params.id },
     });
+    await NotificationLikes.destroy({
+      where: { letterNo: req.params.id },
+    });
     res.send('true');
   },
 };
