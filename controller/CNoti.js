@@ -5,14 +5,13 @@ const {
   NotificationLikes,
 } = require('../models');
 
-// 알람 시간 나타내는 함수
 function times(date) {
   let mon = date.getMonth() + 1;
   let day = date.getDate();
-  let ti; // AM , PM
-  let hh = date.getHours(); // 시간
-  let mm = date.getMinutes(); // 분
-  let ss = date.getSeconds(); // 초
+  let ti;
+  let hh = date.getHours();
+  let mm = date.getMinutes();
+  let ss = date.getSeconds();
 
   ti = hh < 12 ? '오전' : '오후';
   hh = hh > 12 ? hh - 12 : hh;
@@ -50,9 +49,7 @@ const output = {
 
     const postNum = showLikes.map((num) => num.postNo);
     const likesWho = showLikes.map((who) => who.likesWho);
-    // const timeAt = showNoti.map((time) => time.createdAt);
-    // const createdAt = parseISODateStrings(timeAt);
-    // console.log(createdAt);
+
     const reqFriend = await RequestList.findOne({
       where: { id: receiver },
     });
@@ -62,7 +59,6 @@ const output = {
         res.send({
           sender: sender,
           postNo: postNo,
-          // postTime: times(createdAt),
           isFriend: 'true',
           postNum: postNum,
           likesWho: likesWho,
@@ -71,7 +67,6 @@ const output = {
         res.send({
           sender: sender,
           postNo: postNo,
-          // postTime: times(createdAt),
           isFriend: 'true',
         });
       }
@@ -80,7 +75,6 @@ const output = {
         res.send({
           sender: sender,
           postNo: postNo,
-          // postTime: times(createdAt),
           isFriend: 'false',
           postNum: postNum,
           likesWho: likesWho,
@@ -89,7 +83,6 @@ const output = {
         res.send({
           sender: sender,
           postNo: postNo,
-          // postTime: times(createdAt),
           isFriend: 'false',
         });
       }
