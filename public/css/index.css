@@ -34,6 +34,78 @@
   opacity: 0.8;
 }
 
+@media (max-width: 480px) {
+  /* 모바일 */
+}
+@media (min-width: 480px) and (max-width: 768px) {
+  /* iPads, Tablets */
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Small screens, laptops */
+}
+@media (min-width: 1025px) and (max-width: 1201px) {
+  /* pc */
+
+  /* 가이드 */
+  #guideOne {
+    position: absolute;
+    left: 15%;
+    top: 28%;
+    font-size: 20px;
+    background-color: #4d3c77;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  #guideOne:after {
+    content: '';
+    position: absolute;
+    border-top: 25px solid #4d3c77;
+    border-right: 25px solid transparent;
+    border-left: 25px solid transparent;
+    bottom: -9px;
+    left: 5px;
+  }
+  #guideTwo {
+    position: absolute;
+    left: 67%;
+    top: 77%;
+    font-size: 20px;
+    background-color: #4d3c77;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  #guideTwo:after {
+    content: '';
+    position: absolute;
+    border-top: 25px solid #4d3c77;
+    border-right: 25px solid transparent;
+    border-left: 25px solid transparent;
+    bottom: -9px;
+    left: 5px;
+  }
+  #guideThree {
+    position: absolute;
+    left: 36%;
+    top: 31%;
+    font-size: 20px;
+    background-color: #4d3c77;
+    border-radius: 10px;
+    padding: 12px;
+  }
+  #guideThree:after {
+    content: '';
+    position: absolute;
+    border-top: 25px solid #4d3c77;
+    border-right: 25px solid transparent;
+    border-left: 25px solid transparent;
+    bottom: -9px;
+    left: 5px;
+  }
+}
+@media (min-width: 1201px) {
+  /* Extra large screens, TV */
+}
+
 /* 로딩 화면 */
 .loading {
   width: 100%;
