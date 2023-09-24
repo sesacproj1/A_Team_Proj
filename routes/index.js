@@ -52,7 +52,6 @@ router.post(
 );
 
 //로그인
-// router.get('/login', controllerUser.output.login);
 router.post('/login', controllerUser.input.postLogin);
 router.get('/logout', controllerUser.output.logout); //로그아웃
 
@@ -60,13 +59,10 @@ router.get('/logout', controllerUser.output.logout); //로그아웃
 router.delete('/users/:id', controllerUser.input.deleteUser);
 
 /* 로그인 및 비밀 번호 찾기 관련 */
-// router.get('/find', controllerUser.output.findPassword); // 비밀번호 찾기
 router.post('/find/password', controllerUser.input.postFindPassword); // 비밀번호 찾기 실행
 router.post('/find/id', controllerUser.input.postFindId); // 아이디 찾기 실행
-// router.get('/logout', controllerUser.output.logout); //로그아웃
 
 //TODO 마이페이지에서 닉네임 /pw 수정
-// router.get('/profile', controllerUser.output.profile);
 router.patch('/profile/edit', controllerUser.input.patchProfile);
 
 //view단 부분
@@ -114,7 +110,6 @@ router.delete(
 );
 
 // 글남기기
-// router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
 router.post(
   '/letter/select/:id/postLetter',
   controllerPost.input.contentRegister
@@ -123,12 +118,6 @@ router.post('/letter/select/:id/icon', controllerPost.input.contentRegister);
 
 // 편지보기
 router.get('/letter/MyLetter/:id/:postNo', controllerPost.output.showPost);
-
-// 편지함 페이지 - 기능 부분
-// router.delete(
-//   '/MyLetter/:letterNo/:postNo/delete',
-//   controllerPost.input.contentDelete
-// );
 
 // 좋아요
 router.patch(
@@ -142,8 +131,6 @@ router.delete(
 );
 
 // 친구기능
-// router.get('/friend/:id', controllerFriend.output.showFriend);
-
 router.post('/MyLetter/:id/reqFriend', controllerFriend.input.reqFriend);
 
 router.get('/showRequest/:id', controllerFriend.output.showRequest);
