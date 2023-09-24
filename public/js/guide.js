@@ -34,3 +34,34 @@ guideDiv.addEventListener('click', () => {
       break;
   }
 });
+
+// 2. 가이드 화면 30일 동안 안 뜨게 하기
+
+function bakeCookie(name, value, expDay) {
+  let today = new Date();
+  today.setDate(today.getDate() + expDay);
+  document.cookie = name + '=' + value + ';expires=' + today.toGMTString();
+}
+
+function getCookie(name) {
+  let cookie = document.cookie;
+
+  if (document.cookie != '') {
+    // 쿠키 있으면
+    let cookieArr = cookie.split('; ');
+
+    for (let idx in cookieArr) {
+      let cookieName = cookieArr[idx].split('=');
+      if (cookieName[0] == 'bensCookie') {
+        return cookieName[1];
+      }
+    }
+  }
+  return;
+}
+let checkCookie = getCookie('bensCookie');
+bakeCookie('bensCookie', 'guideCookie', 30);
+
+if (checkCookie == 'guideCookie') {
+  guideDiv.style.display = 'none';
+}
