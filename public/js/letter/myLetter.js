@@ -249,6 +249,7 @@ btnLike.addEventListener('click', like);
 function like() {
   console.log('src값은', likeHeart.src);
   if (likeHeart.src !== 'http://49.50.162.160:8000/img/header/heart2.png') {
+    //로컬용
     // if (likeHeart.src !== 'http://localhost:8000/img/header/heart2.png') {
     console.log('좋아요실행!');
     //하트가 꽉찬하트가 아니라면

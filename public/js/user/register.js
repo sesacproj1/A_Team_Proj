@@ -23,10 +23,15 @@ function checkValidity() {
     alert('비밀번호를 입력해주세요!');
     return false;
   }
-  if (form.email.value != '' && !form.email.value.includes('@')) {
+  if (!form.email.value.includes('@')) {
+    if (form.email.value != '') {
+      alert('이메일을 입력해주세요! ');
+      return false;
+    }
     alert('올바른 이메일 형식이 아닙니다.');
     return false;
   }
+
   if (form.passwordConfirm.value == '') {
     alert('비밀번호 확인해주세요');
     return false;
