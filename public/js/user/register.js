@@ -91,15 +91,23 @@ async function isEmail() {
     },
   });
   const data = await response.data;
-  if (data) {
-    $('#emailConfirm').css('color', 'green'); // id가 emailConfirm 인 태그 css 설정
-    $('#emailConfirm').text('사용할 수 있는 이메일입니다.');
-    emailResult = true;
+  if (
+    document.getElementById('email').value !== undefined &&
+    document.getElementById('email').value !== ''
+  ) {
+    if (data) {
+      $('#emailConfirm').css('color', 'green'); // id가 emailConfirm 인 태그 css 설정
+      $('#emailConfirm').text('사용할 수 있는 이메일입니다.');
+      emailResult = true;
+    } else {
+      form.email.value = '';
+      $('#emailConfirm').css('color', 'red'); // id가 emailConfirm 인 태그 css 설정
+      $('#emailConfirm').text('이미 사용중인 이메일입니다.');
+      emailResult = false;
+    }
   } else {
-    form.email.value = '';
-    $('#emailConfirm').css('color', 'red'); // id가 emailConfirm 인 태그 css 설정
-    $('#emailConfirm').text('이미 사용중인 이메일입니다.');
-    emailResult = false;
+    $('#emailConfirm').css('color', 'red'); //공란으로 작성시
+    $('#emailConfirm').text('이메일이 입력되지 않았습니다.');
   }
 }
 // 비밀번호 유효성
