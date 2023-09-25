@@ -16,18 +16,13 @@ const { Op } = require('sequelize');
 const output = {
   index: async (req, res) => {
     const curPage = 1 | req.query.curPage;
-    console.log(req.query.curPage);
 
     const result = await User.findAll({
-      // offset: 7 * (req.query.curPage - 1),
       order: [['id', 'ASC']],
       limit: 7,
     });
-    console.log('req.body.curPage', req.body);
 
-    // index.ejs 랜더 (data 키로 session 객체의 userInfo 전달)
     const userSession = req.session.userInfo;
-    console.log(userSession);
     if (userSession !== undefined) {
       //로그인 했을때
       res.render('index', {
@@ -37,13 +32,11 @@ const output = {
       });
     } else {
       //로그인 안했을 때
-      // id: result2,
       res.render('index', {
         isLogin: false,
         session: req.session.userInfo,
         data: result,
       });
-      // id: result2,
     }
   },
 
@@ -79,7 +72,6 @@ const output = {
 
   noticeMain: async (req, res) => {
     // 공지사항 페이지에서 전체 글들 리스트 불러오기
-
     if (req.session.userInfo) {
       const result1 = await Notice.findAll();
       const result2 = await Admin.findOne({
@@ -87,13 +79,12 @@ const output = {
           id: req.session.userInfo.id,
         },
       });
-      // adminData가 없을 경우 빈 객체로 설정
       const adminData = result2 || {};
 
       return res.render('notice/notice', {
         data: result1,
         admin: true,
-        adminData: adminData, // 항상 객체가 존재하도록 함
+        adminData: adminData,
         session: req.session.userInfo,
       });
     } else {
@@ -112,7 +103,6 @@ const output = {
   },
 
   findUser: async (req, res) => {
-    // 유저 찾는 곳
     return res.render('user/findUser', { session: req.session.userInfo });
   },
 
@@ -130,15 +120,11 @@ const output = {
   },
 
   myPage: async (req, res) => {
-    // 1. userInfo 세션에 저장된 id를 이용해 현재 로그인한 유저의 id 값으로 특정 유저 정보 하나를 조회
-    // 2. mypage.ejs 랜더 + data 키로 특정 유저를 찾은 결과를 넘김
-
     if (req.session.userInfo !== undefined) {
       //로그인해서 세션있을 때
       const user = await User.findOne({
         where: { userId: req.session.userInfo.userId },
       });
-      console.log('req.session.userInfo는~~ ', req.session.userInfo);
       const profile = await Profile.findOne({
         where: { id: req.session.userInfo.id },
       });
@@ -157,7 +143,6 @@ const output = {
           id: { [Op.ne]: req.session.userInfo.id },
         },
       });
-      console.log('likes ->@@', notificationLikes);
       const isFriend = await Friend.findOne({
         where: { id: req.session.userInfo.id },
       });
@@ -176,29 +161,20 @@ const output = {
       const likesWho = notificationLikes.map((send) => send.likesWho);
 
       let notiLength = notification.length;
-      console.log('이즈리퀘스트', isRequest);
       if (isRequest) {
         notiLength = notification.length + 1;
       } else {
         notiLength = notification.length;
       }
-      console.log('노티렝스', notification.length);
       const post = postData.map((data) => data.postNo);
 
-      console.log('profile', profile);
-
       req.session.profile = profile;
-      console.log('포스트넘버는', eachNoti);
-      console.log('센더는', sender);
-      console.log('req.session.profile~~ ', req.session.profile);
       if (isFriend) {
-        //friend있으면
         const friend = await Friend.findAll({
           where: { id: req.session.userInfo.id },
         });
 
         const numberOfFriends = friend.length;
-        console.log('->@@@@', likesWho);
         return res.render('user/myPage', {
           session: req.session.userInfo,
           profile: req.session.profile,
@@ -215,7 +191,6 @@ const output = {
           postLikes: eachLikes,
         });
       } else {
-        console.log('->@@@@', likesWho);
         return res.render('user/myPage', {
           session: req.session.userInfo,
           profile: req.session.profile,
@@ -251,7 +226,6 @@ const input = {
       id: req.body.id,
       adminId: req.body.id,
     });
-    console.log(result2);
     return res.send(result2);
   },
 
@@ -262,7 +236,6 @@ const input = {
         noticeNo: req.params.noticeNo,
       },
     });
-    console.log(result);
     if (result === 1) {
       return res.redirect('/notice');
     }
@@ -282,7 +255,6 @@ const input = {
       }
     );
 
-    console.log(result);
     return res.send(result);
   },
 
