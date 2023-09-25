@@ -19,8 +19,6 @@ const output = {
 
   nextPage: async (req, res) => {
     let curPage = req.query.curPage;
-    console.log('paramsPage next', req.query.curPage);
-    console.log('curpage next', curPage);
 
     const postData = await Post.findAll({
       where: { letterNo: req.params.id },
@@ -29,15 +27,12 @@ const output = {
       limit: 5,
       order: [['letterNo', 'ASC']],
     });
-    console.log('다음 편지', postData);
 
     res.send({ postData: postData });
   },
 
   prevPage: async (req, res) => {
     let curPage = 1 | req.query.curPage;
-    console.log('paramsPage prev', req.query.curPage);
-    console.log('curpage prev', curPage);
     const postData2 = await Post.findAll({
       where: { letterNo: req.params.id },
       attributes: ['postNickname', 'postDesign'],
@@ -52,14 +47,7 @@ const output = {
 
   showMyLetter: async (req, res) => {
     const userInfo = req.session.userInfo;
-    // const { id, userId, nickname } = userInfo;
-    // await MyLetter.create({
-    //   id: id,
-    // });
-    // res.render('letter/myletter', { nickname: nickname });
-    console.log('userInfo', userInfo);
-    const idParam = req.params.id; //n
-    // console.log(idParam);
+    const idParam = req.params.id;
 
     const userData = await User.findAll({
       where: { id: idParam },
@@ -83,12 +71,9 @@ const output = {
     });
     const postIds = postNo3.map((post) => post.postNo);
 
-    console.log('포스트데이터 ->', postData);
     const nickname = postData.map((nick) => nick.postNickname);
     const postNo = postData.map((post) => post.postNo);
     const postDesign = postData.map((design) => design.postDesign);
-    console.log('postData는', postData);
-    console.log('닉네임은', nickname);
     let designSrc = [];
     for (let design of postDesign) {
       const srcValue = await Design.findOne({
@@ -99,25 +84,19 @@ const output = {
     }
     console.log(designSrc);
 
-    console.log('profile은', profile);
     req.session.profile = profile;
     const lord = userData.map((user) => user.dataValues);
-    console.log('lord는', lord[0]);
-    // console.log('req.', req.params.id);
     const count = await PostLikes.count({
       where: {
         postNo: postNo,
         letterNo: req.params.id,
       },
     });
-    console.log('count는', count);
 
     if (userInfo) {
       //로그인 했을 때
       if (userInfo.id == idParam) {
         const isMine = true;
-        console.log('isMine', isMine);
-        // 둘이 같으면 myletter
         res.render('letter/myletter', {
           profile: req.session.profile,
           lord: lord[0],
@@ -130,7 +109,6 @@ const output = {
           postNo: postNo,
           postDesign: designSrc,
           count: count,
-          // isLike: isLike,
         });
       } else {
         try {
@@ -146,13 +124,7 @@ const output = {
             where: { id: friend.id, nickname: req.session.userInfo.userId },
           });
 
-          // 작업 결과를 사용할 수 있음
-          console.log('friend:', friend);
-          console.log('checkFriend:', checkFriend);
-          console.log('checkRequest:', checkRequest);
-          // 아니면 yourLetter
           const isMine = false;
-          console.log('isMine', isMine);
           res.render('letter/myletter', {
             profile: req.session.profile,
             lord: lord[0],
@@ -167,7 +139,6 @@ const output = {
             checkFriend: checkFriend,
             checkRequest: checkRequest,
             count: count,
-            // isLike: isLike,
           });
         } catch (error) {
           console.error('오류 발생:', error);
@@ -176,7 +147,6 @@ const output = {
     } else {
       //로그인 x
       const isLogin = false;
-      console.log('isLogin', isLogin);
       res.render('letter/myletter', {
         profile: req.session.profile,
         lord: lord[0],
@@ -194,23 +164,15 @@ const output = {
   },
   showPost: async (req, res) => {
     const { id, postNo } = req.params;
-    console.log('id는', id);
-    console.log('postNo는', postNo);
     try {
       const showPost = await Post.findOne({
         where: { letterNo: id, postNo },
       });
-      console.log('showpost는 -> ', showPost);
-      // const showLikes = await PostLikes.findOne({
-      //   where: { id, postNo },
-      //   attributes: ['likesNum'],
-      // });
       const postData = await Post.findAll({
         where: { id: req.params.id },
         attributes: ['postNickname', 'postNo', 'postDesign', 'postContent'],
       });
 
-      console.log('postData -> ', postData);
       const count = await PostLikes.count({
         where: {
           postNo: postNo,
@@ -234,7 +196,6 @@ const output = {
             id: req.session.userInfo.id,
           },
         });
-        console.log('isLike의 like는', like);
         let isLike;
         if (like.length !== 0) {
           //이미 좋아요를 눌렀다면
@@ -257,10 +218,7 @@ const output = {
           //편지를쓴사람이 지우려할때
           where: { id: 0, postNo: postNo },
         });
-        // const isDeletelord = await Post.findOne({
-        //   //편지함 주인이 지우려할때
-        //   where: { letterNo: id, postNo: postNo },
-        // });
+        //편지함 주인이 지우려할때
         res.send({
           postContent: showPost.postContent,
           postNickname: showPost.postNickname,
@@ -274,51 +232,12 @@ const output = {
       res.status(500).send('게시물을 조회하는 동안 오류가 발생했습니다.');
     }
   },
-  // showPost: async (req, res) => {
-  //   const { id, postNo } = req.params;
-  //   console.log('req.params ', req.params);
-  //   try {
-  //     await Promise.all([
-  //       const showPost = await Post.findOne({
-  //         where: { id: id, postNo: postNo },
-  //       }),
-  //       const showLikes = await PostLikes.findOne({
-  //         where: { id: id, postNo: postNo },
-  //         attributes: ['likesNum'],
-  //       }),
-  //     ]);
-  //     if (showLikes !== null) {
-  //       res.send({
-  //         postContent: showPost.postContent,
-  //         postNickname: showPost.postNickname,
-  //         likesNo: showLikes.likesNum,
-  //       });
-  //     } else {
-  //       res.send({
-  //         postContent: showPost.postContent,
-  //         postNickname: showPost.postNickname,
-  //         likesNo: 0,
-  //       });
-  //   } }catch (error) {
-  //     console.error('친구 삭제 중 오류 발생:', error);
-  //   }
-  // },
-  // const showPost = await Post.findOne({
-  //   where: { id: id, postNo: postNo },
-  // });
-
-  // const showLikes = await PostLikes.findOne({
-  //   where: { id: id, postNo: postNo },
-  //   attributes: ['likesNum'],
-  // });
 };
 
 const input = {
   contentRegister: async (req, res) => {
     const letterNo = req.params.id;
-    console.log(letterNo);
     const { postDesign, postContent, postNickname, postIp, pw } = req.body;
-    console.log(req.body);
     if (req.session.userInfo !== undefined) {
       await Post.create({
         letterNo: letterNo,
@@ -347,7 +266,7 @@ const input = {
       //익명일때
       await Post.create({
         letterNo: letterNo,
-        id: 0, //익명의 id 인덱스는 0
+        id: 0,
         postContent: postContent,
         postNickname: postNickname,
         postIp: postIp,
@@ -370,25 +289,8 @@ const input = {
       });
     }
 
-    // 글작성시 좋아요 개수 0으로 default값 설정.
-    // await PostLikes.create({
-    //   id: req.params.id,
-    //   letterNo: letterNo,
-    //   likesNum: 0,
-    //   postNo: postInfo.postNo,
-    // });
-
     res.send({ result: 'true', id: letterNo });
   },
-
-  // contentDelete: async (req, res) => {
-  //   const { letterNo, postNo } = req.params;
-  //   await Post.destroy({
-  //     where: { letterNo: letterNo, postNo: postNo },
-  //   });
-
-  //   res.send({ result: 'true' });
-  // },
 
   updateLikes: async (req, res) => {
     if (req.session.userInfo === undefined) {
@@ -447,9 +349,7 @@ const input = {
       src: '/img/header/heart1.png',
     });
   },
-  // router.delete('/post/delete', controllerFriend.input.postDelete);
   postDelete: async (req, res) => {
-    console.log('req.body는', req.body.pw);
     if (req.body.pw !== '') {
       if (isDeleteSender !== null) {
         //익명일때
@@ -466,8 +366,6 @@ const input = {
       }
     } else {
       //편지주인일때
-      // console.log('지울 postNo는', postNo);
-      console.log('여기까지는실행');
       if (isDeletelord === null) {
         await Post.destroy({
           where: {
@@ -476,7 +374,6 @@ const input = {
           },
         });
       } else {
-        console.log('실행', isDeletelord.id);
         await Post.destroy({
           where: {
             id: isDeletelord.id,

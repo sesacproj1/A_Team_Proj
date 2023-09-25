@@ -1,15 +1,10 @@
 // ~~~~~~~~~~~~~~아이디 찾기시 메일관련 코드  ~~~~~~~~~~~~
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
-// import nodemailer from 'nodemailer';
-// import dotenv from 'dotenv';
 dotenv.config();
 
 // ~~~~~~~~~~~~~~ 유저 관련 controller ~~~~~~~~~~~~
-//TODO 유저값 자체를 담는 세션생성
 
-//User 모델 모듈 불러오기
-//bcrypt 패키지 불러오기
 const { User, Profile } = require('../models');
 const bcrypt = require('bcrypt');
 // 비밀번호 암호화 함수
@@ -24,11 +19,7 @@ function comparePassword(password, hashedPassword) {
   return bcrypt.compareSync(password, hashedPassword);
 }
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~
 const output = {
-  // login: (req, res) => {
-  //   res.render('login', { user: req.session.userInfo.userId });
-  // },
   findPassword: (req, res) => {
     res.render('findPassword');
   },
@@ -44,8 +35,6 @@ const output = {
     res.render('user/register');
   },
   logout: (req, res) => {
-    // TODO: 세션 삭제
-    console.log(req.session);
     req.session.destroy((err) => {
       if (err) {
         console.log(err);
@@ -54,17 +43,11 @@ const output = {
       res.redirect('/');
     });
   },
-  // profile: (req, res) => {
-
-  //   res.render('profile');
-  // },
 };
 
 const input = {
   //프로필이미지
   postProfileImage: (req, res) => {
-    console.log('req.session.profile는 ', req.session.profile);
-    // [profile_db] -> id,profileLocation,profileName
     if (req.session.profile.profileName === 'null') {
       //userprofile에 정보가 없을때
       Profile.update(
@@ -83,31 +66,21 @@ const input = {
         { where: { id: req.session.userInfo.id } }
       );
     }
-    // console.log('req.session.userInfo는', req.session.userInfo);
-    // console.log('req.file.path는', req.file.path);
-    // console.log('req.file.filename은', req.file.filename);
-    //세션에 프로필테이블 저장
-    // req.session.profile = userProfile;
     res.send(req.file);
   },
   //로그인
   postLogin: async (req, res) => {
     try {
-      // Step1. 아이디를 찾아서 사용자 존재 유무 체크
       const user = await User.findOne({
         where: { userId: req.body.userId },
       });
-      // Step2. 입력된 비밀번호 암호화하여 기존 데이터와 비교
 
       // 2-1. 유저 있는경우
       if (user) {
         const result = await comparePassword(req.body.pw, user.password);
         if (result) {
           //비밀번호 일치할 경우
-          //    userInfo 키 값으로 세션 생성 (userInfo는  "객체")
           req.session.userInfo = user;
-
-          // console.log(req.session.userInfo); //{ userId: 'alsdud1240', nickname: '로그인확인용' }
           res.send({
             result: true,
             data: user,
@@ -169,7 +142,6 @@ const input = {
   },
   //   회원가입
   postRegister: async (req, res) => {
-    //TODO id중복처리
     const {
       userId,
       pw,
@@ -181,11 +153,8 @@ const input = {
       nicknameResult,
       emailResult,
     } = req.body;
-    console.log('req.body는', req.body);
     if (idResult && isPw && nicknameResult && emailResult && pwConfirm) {
-      console.log('패스워드 암호화 전 ', pw);
       const secretPw = hashPassword(pw);
-      console.log('패스워드 암호화 후 ', secretPw);
 
       const user = await User.create({
         userId: userId,
@@ -213,10 +182,7 @@ const input = {
   //마이페이지에서 수정하기
   patchProfile: async (req, res) => {
     try {
-      console.log('req.body는 >>>>>>', req.body);
       const secretPw = hashPassword(req.body.pw);
-      //만약에 수정할 닉네임과 원래닉네임 다르다면
-      console.log('original nickname은', req.body.originNickname);
       if (req.body.nickname !== req.body.originNickname) {
         const isNickname = await User.findOne({
           where: { nickname: req.body.nickname },
