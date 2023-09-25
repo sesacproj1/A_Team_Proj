@@ -249,16 +249,17 @@ btnLike.addEventListener('click', like);
 function like() {
   console.log('src값은', likeHeart.src);
   if (likeHeart.src !== 'http://49.50.162.160:8000/img/header/heart2.png') {
-    console.log('꽉찬하트 실행');
+    // if (likeHeart.src !== 'http://localhost:8000/img/header/heart2.png') {
+    console.log('좋아요실행!');
+    //하트가 꽉찬하트가 아니라면
     updateLikes(heartId);
-    likeHeart.src = '/img/header/heart2.png';
   } else {
-    console.log('다시변경!!!');
+    //하트가 빈하트라면
     likeCancel(heartId);
-    likeHeart.src = '/img/header/heart1.png';
   }
 }
 function updateLikes(id) {
+  //postNumber -> 68
   axios({
     method: 'patch',
     url: `/letter/MyLetter/${id}/${postNumber}/likes`,
@@ -268,6 +269,7 @@ function updateLikes(id) {
       return alert(`${res.data.message}`);
     }
     if (res.data.isLike !== undefined) {
+      likeHeart.src = `${res.data.src}`;
       console.log('좋아요갯수는', res.data.count);
       likesNum.innerText = res.data.count;
     }
@@ -288,6 +290,7 @@ function likeCancel(id) {
         return alert(`${res.data.message}`);
       }
       likesNum.innerText = response.data.count;
+      likeHeart.src = `${response.data.src}`;
     })
     .catch((error) => {
       console.error(error); // 오류 처리
@@ -299,7 +302,7 @@ function likeCancel(id) {
 const btnAddFriend = document.querySelector('#btnAddFriend');
 // btnAddFriend.addEventListener('click', addFriend);
 const imgAddFriend = document.querySelector('#imgAddFriend');
-console.log(imgAddFriend.src);
+
 function addFriend() {
   if (imgAddFriend.src === 'http://49.50.162.160:8000/img/header/add.png') {
     console.log('check실행');
