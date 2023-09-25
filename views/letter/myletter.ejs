@@ -58,7 +58,6 @@
                     <input type="text" class="form-control" id="recipient-name" readonly/>
                   </div>
                   <div class="mb-3">
-
                     <label for="message-text" class="col-form-label">편지 내용</label>
                     <textarea class="form-control" id="message-text" readonly></textarea>
                   </div>
@@ -66,9 +65,6 @@
               </div>
 
               <div class="modal-footer">
-
-                
-
                 <button type="button" class="btn btnLike"  data-bs-toggle="tooltip" data-bs-placement="top" title="하트 누르기">
                   <input type="hidden" value="<%= id%>" id="heart">
 
@@ -79,7 +75,6 @@
                     <img src="" alt="" id="likeHeart" />
                     <%}%>
                   <div class="likesNum">
-                  
                   </div>
                 </button>
 
@@ -147,8 +142,6 @@
                   <img src="/img/header/user.png" alt="" id="imgProfilePic" />
                 </button>
               <%}%>
-          
-
           </a>
         </div>
 
@@ -161,7 +154,6 @@
           </a>
       </div>
 
-
         <div class="friendsDiv">
         <a href="/letter/friends/<%=lord.id%>">
             <button id="btnFriends">
@@ -173,7 +165,6 @@
         <% } %>
 
         <!-- 2. 로그인 했고 남의 페이지일 때 -->
-        
         <% if(isLogin && !isMine ) { %>
         <div class="profilePicDiv">
           <button id="btnProfilePic" disabled>
@@ -196,7 +187,6 @@
           <input type="text" id="lordid" value="<%= lord.id%>">
         <p>친구 신청</p>
       </div>
-
 
         <div class="friendsDiv">
           <a href="/letter/friends/<%=lord.id%>">
@@ -236,7 +226,7 @@
               </button>
               <p>편지 쓰기</p>
             </a>
-          </div>
+          </div>      
         <% } %>
       </div>
       

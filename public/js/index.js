@@ -5,7 +5,6 @@ const btnLeft = document.querySelector('#btnLeft');
 const btnRight = document.querySelector('#btnRight');
 const btnResister = document.querySelector('#btnResister');
 const btnLogin = document.querySelector('#btnLogin');
-// const btnLogout = document.querySelector('#btnLogout');
 
 // 상단 멘트 랜덤 배치
 const cmt = document.querySelector('#cmt');
