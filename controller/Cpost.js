@@ -395,32 +395,42 @@ const input = {
       return res.send({ message: '로그인해주세요!' });
     }
     const { id, postNumber } = req.params;
-
-    await PostLikes.create({
-      postNo: postNumber,
-      letterNo: id,
-      id: req.session.userInfo.id,
-      likesNum: 1,
-    });
-
-    await NotificationLikes.create({
-      postNo: postNumber,
-      letterNo: id,
-      id: req.session.userInfo.id,
-      likesWho: req.session.userInfo.userId,
-    });
-
-    const count = await PostLikes.count({
+    const isLike = await PostLikes.findOne({
       where: {
         postNo: postNumber,
-        letterNo: id,
+        id: req.session.userInfo.id,
       },
     });
-    return res.send({
-      isLike: false,
-      count: count,
-      src: '/img/header/heart2.png',
-    });
+
+    if (!isLike) {
+      await PostLikes.create({
+        postNo: postNumber,
+        letterNo: id,
+        id: req.session.userInfo.id,
+        likesNum: 1,
+      });
+
+      await NotificationLikes.create({
+        postNo: postNumber,
+        letterNo: id,
+        id: req.session.userInfo.id,
+        likesWho: req.session.userInfo.userId,
+      });
+
+      const count = await PostLikes.count({
+        where: {
+          postNo: postNumber,
+          letterNo: id,
+        },
+      });
+      return res.send({
+        isLike: false,
+        count: count,
+        src: '/img/header/heart2.png',
+      });
+    } else {
+      console.log('이미 좋아요누름');
+    }
   },
   likeCancel: async (req, res) => {
     if (req.session.userInfo === undefined) {
