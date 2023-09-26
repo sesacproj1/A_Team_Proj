@@ -35,65 +35,60 @@ const uploadDetail = multer({
 router.get('/', controller.output.index);
 router.get('/prevPage', controller.output.prevPage);
 router.get('/nextPage', controller.output.nextPage);
+// 검색
+router.get('/search', controller.input.search);
 
 // ~~~~~~~~~~~~~~ 유저 관련 API ~~~~~~~~~~~~
 // 전체회원 확인
-router.get('/users', controllerUser.output.getUser);
-router.get('/user/register', controllerUser.output.register);
-/*회원가입 관련 */
-router.post('/isId', controllerUser.input.isId);
-router.post('/isNickname', controllerUser.input.isNickname);
-router.post('/register/isEmail', controllerUser.input.isEmail);
-router.post('/register', controllerUser.input.postRegister);
-router.post(
-  '/profileImage',
-  uploadDetail.single('fileInput'),
-  controllerUser.input.postProfileImage
-);
+// router.get('/users', controllerUser.output.getUser);
+// router.get('/user/register', controllerUser.output.register);
+// /*회원가입 관련 */
+// router.post('/isId', controllerUser.input.isId);
+// router.post('/isNickname', controllerUser.input.isNickname);
+// router.post('/register/isEmail', controllerUser.input.isEmail);
+// router.post('/register', controllerUser.input.postRegister);
+// router.post(
+//   '/profileImage',
+//   uploadDetail.single('fileInput'),
+//   controllerUser.input.postProfileImage
+// );
 
 //로그인
 // router.get('/login', controllerUser.output.login);
-router.post('/login', controllerUser.input.postLogin);
-router.get('/logout', controllerUser.output.logout); //로그아웃
+// router.post('/login', controllerUser.input.postLogin);
+// router.get('/logout', controllerUser.output.logout); //로그아웃
 
 //회원 삭제
-router.delete('/users/:id', controllerUser.input.deleteUser);
+// router.delete('/users/:id', controllerUser.input.deleteUser);
 
 /* 로그인 및 비밀 번호 찾기 관련 */
 // router.get('/find', controllerUser.output.findPassword); // 비밀번호 찾기
-router.post('/find/password', controllerUser.input.postFindPassword); // 비밀번호 찾기 실행
-router.post('/find/id', controllerUser.input.postFindId); // 아이디 찾기 실행
+// router.post('/find/password', controllerUser.input.postFindPassword); // 비밀번호 찾기 실행
+// router.post('/find/id', controllerUser.input.postFindId); // 아이디 찾기 실행
 // router.get('/logout', controllerUser.output.logout); //로그아웃
 
 //TODO 마이페이지에서 닉네임 /pw 수정
 // router.get('/profile', controllerUser.output.profile);
-router.patch('/profile/edit', controllerUser.input.patchProfile);
+// router.patch('/profile/edit', controllerUser.input.patchProfile);
 
 //view단 부분
-router.get('/user/login', controller.output.userLogin);
-router.get('/user/register', controller.output.userRegister);
-router.get('/user/findUser', controller.output.findUser);
-router.get('/notice', controller.output.noticeMain);
-router.get('/notice/post', controller.output.noticePost);
-router.get('/user/myPage/:id', controller.output.myPage);
-router.get('/notice/update/:noticeNo', controller.output.noticeUpdate);
+// router.get('/user/login', controller.output.userLogin);
+// router.get('/user/register', controller.output.userRegister);
+// router.get('/user/findUser', controller.output.findUser);
+// router.get('/user/myPage/:id', controller.output.myPage);
 
-router.get('/letter/friends/:id', controllerLetter.output.friends);
 
-router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
+// router.get('/letter/friends/:id', controllerLetter.output.friends);
+// router.get('/letter/friendConfirm', controllerLetter.output.friendConfirm);
+// router.get('/letter/select/:id', controllerLetter.output.icon);
 
-router.get('/letter/select/:id', controllerLetter.output.icon);
-// 검색
-router.get('/search', controller.input.search);
 // 편지함 페이지 출력
-router.get('/letter/MyLetter/:id', controllerPost.output.showMyLetter);
+// router.get('/letter/MyLetter/:id', controllerPost.output.showMyLetter);
 //기능부분 (api)
-router.get('/letter/MyLetter/:id/nextPage', controllerPost.output.nextPage);
-router.get('/letter/MyLetter/:id/prevPage', controllerPost.output.prevPage);
+// router.get('/letter/MyLetter/:id/nextPage', controllerPost.output.nextPage);
+// router.get('/letter/MyLetter/:id/prevPage', controllerPost.output.prevPage);
 
-router.post('/noticePost', controller.input.noticePost);
-router.get('/notice/delete/:noticeNo', controller.input.noticeDelete);
-router.patch('/notice/update/:noticeNo', controller.input.noticeUpdate);
+
 
 // 알림기능
 router.get(
@@ -113,16 +108,16 @@ router.delete(
   controllerNoti.input.deleteNoti
 );
 
-// 글남기기
-// router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
-router.post(
-  '/letter/select/:id/postLetter',
-  controllerPost.input.contentRegister
-);
-router.post('/letter/select/:id/icon', controllerPost.input.contentRegister);
+// // 글남기기
+// // router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
+// router.post(
+//   '/letter/select/:id/postLetter',
+//   controllerPost.input.contentRegister
+// );
+// router.post('/letter/select/:id/icon', controllerPost.input.contentRegister);
 
-// 편지보기
-router.get('/letter/MyLetter/:id/:postNo', controllerPost.output.showPost);
+// // 편지보기
+// router.get('/letter/MyLetter/:id/:postNo', controllerPost.output.showPost);
 
 // 편지함 페이지 - 기능 부분
 // router.delete(
@@ -130,27 +125,27 @@ router.get('/letter/MyLetter/:id/:postNo', controllerPost.output.showPost);
 //   controllerPost.input.contentDelete
 // );
 
-// 좋아요
-router.patch(
-  '/letter/MyLetter/:id/:postNumber/likes',
-  controllerPost.input.updateLikes
-);
-//좋아요취소
-router.delete(
-  '/letter/MyLetter/:id/:postNumber/likes/cancel',
-  controllerPost.input.likeCancel
-);
+// // 좋아요
+// router.patch(
+//   '/letter/MyLetter/:id/:postNumber/likes',
+//   controllerPost.input.updateLikes
+// );
+// //좋아요취소
+// router.delete(
+//   '/letter/MyLetter/:id/:postNumber/likes/cancel',
+//   controllerPost.input.likeCancel
+// );
 
 // 친구기능
 // router.get('/friend/:id', controllerFriend.output.showFriend);
 
-router.post('/MyLetter/:id/reqFriend', controllerFriend.input.reqFriend);
+// router.post('/MyLetter/:id/reqFriend', controllerFriend.input.reqFriend);
 
-router.get('/showRequest/:id', controllerFriend.output.showRequest);
-router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
-router.delete('/showRequest/:id/reject', controllerFriend.input.rejectRequest);
-router.delete('/friend/delete', controllerFriend.input.delFriend);
-router.delete('/reqFriend/cancel', controllerFriend.input.reqFriendCancel);
-router.delete('/post/delete/:postNo', controllerPost.input.postDelete);
+// router.get('/showRequest/:id', controllerFriend.output.showRequest);
+// router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);
+// router.delete('/showRequest/:id/reject', controllerFriend.input.rejectRequest);
+// router.delete('/friend/delete', controllerFriend.input.delFriend);
+// router.delete('/reqFriend/cancel', controllerFriend.input.reqFriendCancel);
+// router.delete('/post/delete/:postNo', controllerPost.input.postDelete);
 
 module.exports = router;
