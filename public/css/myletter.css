@@ -307,6 +307,10 @@
     width: 100%;
     height: 100%;
   }
+  #imgShare {
+    width: 70%;
+    height: 70%;
+  }
   #imgProfilePic {
     width: 80%;
     height: 80%;
@@ -373,6 +377,10 @@
   #imgFriends {
     width: 100%;
     height: 100%;
+  }
+  #imgShare {
+    width: 70%;
+    height: 70%;
   }
   #imgProfilePic {
     width: 85%;
