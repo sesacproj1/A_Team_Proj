@@ -147,7 +147,7 @@
   color: #eeeeee;
   position: absolute;
   display: block;
-  font-size: large;
+  font-size: 1.8vh;
 }
 
 .star img:hover {
