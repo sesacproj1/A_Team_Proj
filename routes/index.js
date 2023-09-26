@@ -54,14 +54,17 @@ router.get('/search', controller.input.search);
 // );
 
 //로그인
+
 // router.get('/login', controllerUser.output.login);
 // router.post('/login', controllerUser.input.postLogin);
 // router.get('/logout', controllerUser.output.logout); //로그아웃
+
 
 //회원 삭제
 // router.delete('/users/:id', controllerUser.input.deleteUser);
 
 /* 로그인 및 비밀 번호 찾기 관련 */
+
 // router.get('/find', controllerUser.output.findPassword); // 비밀번호 찾기
 // router.post('/find/password', controllerUser.input.postFindPassword); // 비밀번호 찾기 실행
 // router.post('/find/id', controllerUser.input.postFindId); // 아이디 찾기 실행
@@ -70,6 +73,7 @@ router.get('/search', controller.input.search);
 //TODO 마이페이지에서 닉네임 /pw 수정
 // router.get('/profile', controllerUser.output.profile);
 // router.patch('/profile/edit', controllerUser.input.patchProfile);
+
 
 //view단 부분
 // router.get('/user/login', controller.output.userLogin);
@@ -91,22 +95,23 @@ router.get('/search', controller.input.search);
 
 
 // 알림기능
-router.get(
-  '/user/myPage/notification/:letterNo',
-  controllerNoti.output.showNoti
-);
-router.delete(
-  '/user/myPage/notification/:postNo',
-  controllerNoti.output.postNoti
-);
-router.delete(
-  '/user/myPage/notification/:postNo/likes',
-  controllerNoti.output.likesNoti
-);
-router.delete(
-  '/user/myPage/notification/:id/delete',
-  controllerNoti.input.deleteNoti
-);
+//router.get(
+//  '/user/myPage/notification/:letterNo',
+//  controllerNoti.output.showNoti
+//);
+//router.delete(
+//  '/user/myPage/notification/:postNo',
+//  controllerNoti.output.postNoti
+//);
+//router.delete(
+//  '/user/myPage/notification/:postLikes/likes',
+//  controllerNoti.output.likesNoti
+//);
+//router.delete(
+//  '/user/myPage/notification/:id/delete',
+//  controllerNoti.input.deleteNoti
+//);
+
 
 // // 글남기기
 // // router.get('MyLetter/:letterNo/contentWrite'.controllerPost.output.content);
@@ -116,8 +121,10 @@ router.delete(
 // );
 // router.post('/letter/select/:id/icon', controllerPost.input.contentRegister);
 
+
 // // 편지보기
 // router.get('/letter/MyLetter/:id/:postNo', controllerPost.output.showPost);
+
 
 // 편지함 페이지 - 기능 부분
 // router.delete(
@@ -140,6 +147,7 @@ router.delete(
 // router.get('/friend/:id', controllerFriend.output.showFriend);
 
 // router.post('/MyLetter/:id/reqFriend', controllerFriend.input.reqFriend);
+
 
 // router.get('/showRequest/:id', controllerFriend.output.showRequest);
 // router.post('/showRequest/:id/confirm', controllerFriend.output.confirmRequest);

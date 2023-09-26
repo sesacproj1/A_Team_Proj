@@ -24,7 +24,7 @@ function getCookie(name) {
 
     for (let idx in cookieArr) {
       let cookieName = cookieArr[idx].split('=');
-      if (cookieName[0] == 'bensCookie') {
+      if (cookieName[0] == 'bensCookie2') {
         return cookieName[1];
       }
     }
@@ -32,8 +32,8 @@ function getCookie(name) {
   return;
 }
 
-let checkCookie = getCookie('bensCookie');
-setCookie('bensCookie', 'end', 1);
+let checkCookie = getCookie('bensCookie2');
+setCookie('bensCookie2', 'end', 1);
 
 if (checkCookie == 'end') {
   loading.style.display = 'none';

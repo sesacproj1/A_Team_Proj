@@ -3,16 +3,6 @@
   src: url('../fonts/DungGeunMo.ttf') format('truetype');
 }
 
-@font-face {
-  font-family: 'pixel2';
-  src: url('../fonts/pixelroborobo.otf') format('truetype');
-}
-
-@font-face {
-  font-family: 'pixel3';
-  src: url('../fonts/W95FA.otf') format('truetype');
-}
-
 #navbar {
   background: #00007f;
   display: flex;

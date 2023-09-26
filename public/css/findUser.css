@@ -8,11 +8,6 @@
   src: url('../fonts/DungGeunMo.ttf') format('truetype');
 }
 
-@font-face {
-  font-family: 'pixel2';
-  src: url('../fonts/pixelroborobo.otf') format('truetype');
-}
-
 #main-container {
   height: 100vh;
 }
@@ -180,7 +175,6 @@
 }
 
 /* 여기부터 로고부분 */
-
 .logo_container2 > div > div > p {
   font-size: 4vh;
   font-weight: 700;
@@ -227,7 +221,3 @@ i {
   color: white;
   font-family: 'pixel1';
 }
-
-/* #findUser {
-  visibility: hidden;
-} */

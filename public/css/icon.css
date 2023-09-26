@@ -1,62 +1,54 @@
 * {
-    letter-spacing: -2px;
-    font-family: 'pixel1';
-  }
-  
-  @font-face {
-    font-family: 'pixel1';
-    src: url('../fonts/DungGeunMo.ttf') format('truetype');
-  }
-  
-  @font-face {
-    font-family: 'pixel2';
-    src: url('../fonts/pixelroborobo.otf') format('truetype');
-  }
+  letter-spacing: -2px;
+  font-family: 'pixel1';
+}
 
-  @font-face {
-    font-family: 'yeonsung';
-    src: url('../fonts/BMYEONSUNG_ttf.ttf') format('truetype');
-    }
+@font-face {
+  font-family: 'pixel1';
+  src: url('../fonts/DungGeunMo.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'yeonsung';
+  src: url('../fonts/BMYEONSUNG_ttf.ttf') format('truetype');
+}
 
 #backgrounds {
-    background:
-      #008081;
-    height : 100vh;
+  background: #008081;
+  height: 100vh;
 }
-#toUser > p{
- font-size: 2.5vh;
- font-family: 'pixel1';
- font-weight: 700;
- text-decoration: underline;
+#toUser > p {
+  font-size: 2.5vh;
+  font-family: 'pixel1';
+  font-weight: 700;
+  text-decoration: underline;
 }
 #postBox {
-    width: 95%;
-    height: 50vh;
-    margin: 0 auto;
-    border: 2px solid white; 
-    background-color: #bdbdbd;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1); 
-    background-size: cover; /* 배경 이미지 크기 설정 */
-    background-clip: content-box; /* 배경 이미지를 내용까지 확장 */
-    font-family: 'pixel1';
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 95%;
+  height: 50vh;
+  margin: 0 auto;
+  border: 2px solid white;
+  background-color: #bdbdbd;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  background-size: cover; /* 배경 이미지 크기 설정 */
+  background-clip: content-box; /* 배경 이미지를 내용까지 확장 */
+  font-family: 'pixel1';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #toContent > textarea {
   width: 90%;
-
   font-family: 'pixel1';
-  font-size : 2.5vh;
+  font-size: 2.5vh;
   font-weight: 700;
   text-decoration: underline;
   width: 90%;
   border: none;
   resize: none;
-  min-height: 280px; 
-  max-height: 500px; 
+  min-height: 280px;
+  max-height: 500px;
   background: white;
   border: 2px solid black;
 }
@@ -67,26 +59,24 @@
 }
 
 #toUser {
-  color : white;
-  
+  color: white;
 }
 
 #toUser > p {
   margin-bottom: 0px;
 }
 
-
 #nicknamesBox {
   margin-top: 2vh;
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 9vh;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 9vh;
 }
 
 #nicknamesBox > input {
-  border: 1px solid  white;
+  border: 1px solid white;
   width: 95%;
   height: 60%;
   font-family: 'pixel1';
@@ -96,26 +86,26 @@
   background: #bdbdbd;
 }
 
-.beforeSelect , .messageBox {
+.beforeSelect,
+.messageBox {
   margin-left: 3vw;
 }
 
 .beforeSelect > p {
   text-decoration: none;
-  color : black;
+  color: black;
   font-family: 'pixel1';
 }
 
 .beforeSelect > a {
   text-decoration: none;
-  color : black;
+  color: black;
   font-family: 'pixel1';
   border-bottom: 1rem;
 }
 
-
-.messageBox > p{
-  color : white;
+.messageBox > p {
+  color: white;
   font-size: 4vh;
   font-family: 'yeonsung';
 }
@@ -133,19 +123,18 @@
   height: 85%;
 }
 
-.col-4 > div{
+.col-4 > div {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 1vh;
-  cursor : pointer;
+  cursor: pointer;
 }
 
 .col-4 {
   display: flex;
   align-items: center;
   justify-content: center;
- 
 }
 
 #selectBtns {
@@ -183,9 +172,8 @@
 
 #buttonBox > button > a {
   text-decoration: none;
-  color : black;
+  color: black;
 }
-
 
 /* 800px 이하의 뷰포트에서 postMan 숨기기 */
 @media (max-width: 800px) {
@@ -213,11 +201,13 @@
   align-items: center;
 }
 
-#iconBox1, #iconBox2 {
+#iconBox1,
+#iconBox2 {
   width: 37.5px;
 }
 
-#iconBox1 > img, #iconBox2 > img {
+#iconBox1 > img,
+#iconBox2 > img {
   width: 100%;
 }
 
@@ -227,14 +217,14 @@
 
 #passwordBox {
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 9vh;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 9vh;
 }
 
 #passwordBox > input {
-  border: 1px solid  white;
+  border: 1px solid white;
   width: 95%;
   height: 60%;
   font-family: 'pixel1';
