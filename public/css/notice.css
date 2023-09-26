@@ -60,7 +60,7 @@
 
 .notice-title {
     width: 100%;
-    font-size: 3vh; 
+    font-size: 4vh; 
     margin-bottom: 10px; 
     color: #333; 
     text-align: center;
@@ -72,7 +72,7 @@
     color: #555; 
     word-wrap: break-word;
     padding: 10px;
-    font-size: 2.2vh;
+    font-size: 4vh;
 }
 
 .notice-author {
