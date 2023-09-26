@@ -12,6 +12,7 @@
     <div class="container-fluid topMain">
       <div style="text-align: center; margin-top: 10px">
         <h1 id="noticeHeader">공지사항</h1>
+        <h5 style="font-family: 'yeonsung';">* 관리자만 글 생성,수정,삭제가 가능합니다</h5>
       </div>
       <% for(let i=0; i<data.length; i++) { %>
       <div class="container" style="margin-top: 15px">
@@ -20,7 +21,7 @@
             <div class="notice-no" name="noticeNo" value="<%= data[i].noticeNo %>"><%= data[i].noticeNo %></div>
             <div class="notice-title"><%= data[i].noticeHeader %></div>
             <div class="notice-time">2023-09-27</div>
-            <div class="notice-content" style="white-space: pre;"><%= data[i].noticeContent %></div>
+            <div class="notice-content" style="white-space: pre-line;"><%= data[i].noticeContent %></div>
             <div class="notice-author">송편지 드림</div>
             <div class="notice-update">
               
