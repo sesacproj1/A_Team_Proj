@@ -150,7 +150,7 @@ const output = {
         where: { letterNo: req.session.userInfo.id },
       });
 
-      const isRequest = await RequestList.findOne({
+      const isRequest = await RequestList.findAll({
         where: { id: req.params.id },
       });
 
@@ -160,9 +160,12 @@ const output = {
       const eachLikes = notificationLikes.map((like) => like.postNo);
       const likesWho = notificationLikes.map((send) => send.likesWho);
 
+      const eachRequest = isRequest.map((request) => request.nickname);
+      const requestId = isRequest.map((reqId) => reqId.requestId);
+
       let notiLength = notification.length;
       if (isRequest) {
-        notiLength = notification.length + 1;
+        notiLength = notification.length + isRequest.length;
       } else {
         notiLength = notification.length;
       }
@@ -188,6 +191,8 @@ const output = {
           postNoti: eachNoti,
           likesWho: likesWho,
           sender: sender,
+          eachRequest: eachRequest,
+          requestId: requestId,
           postLikes: eachLikes,
         });
       } else {
@@ -204,6 +209,8 @@ const output = {
           postNoti: eachNoti,
           likesWho: likesWho,
           sender: sender,
+          eachRequest: eachRequest,
+          requestId: requestId,
           postLikes: eachLikes,
         });
       }

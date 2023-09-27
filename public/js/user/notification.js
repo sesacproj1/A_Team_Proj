@@ -9,25 +9,18 @@ function notiModal(letterNo) {
     url: `/user/myPage/notification/${letterNo}`,
   }).then((res) => {
     console.log('레스데이터', res.data);
-    const { postNo, isFriend } = res.data;
-    if (postNo.length !== 0) {
+
+    const { isNoti, isFriend } = res.data;
+    if (isNoti === 'true') {
       noAlarm.style.display = 'none';
-      if (isFriend === 'false') {
-        console.log('친구없어');
-        friendAlarm.style.display = 'none';
-      } else {
-        console.log('친구있어');
+      if (isFriend === 'true') {
         friendAlarm.style.display = 'block';
+      } else if (isFriend === 'false') {
+        friendAlarm.style.display = 'none';
       }
-    } else {
+    } else if (isNoti === 'false') {
       noAlarm.style.display = 'block';
-      if (isFriend === 'false') {
-        console.log('친구없어');
-        friendAlarm.style.display = 'none';
-      } else {
-        console.log('친구있어');
-        friendAlarm.style.display = 'block';
-      }
+      friendAlarm.style.display = 'none';
     }
   });
 }
@@ -64,8 +57,9 @@ function goLikes(postLikes) {
   });
 }
 
-function goFriendReq() {
-  friendAlarm.style.display = 'none';
+function goFriendReq(requestId) {
+  const goReq = friendAlarm.querySelector(`requestId${requestId}`);
+  goReq.style.display = 'none';
   document.location.href = `/letter/friendConfirm`;
 }
 
@@ -78,5 +72,6 @@ function alarmDel(id) {
     divs.forEach((div) => div.remove());
     friendAlarm.style.display = 'none';
     noAlarm.style.display = 'block';
+    window.location.reload();
   });
 }
