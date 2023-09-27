@@ -24,8 +24,19 @@ app.use(
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const home = require('./routes');
+const home = require('./routes/index');
 app.use('/', home);
+const notice = require('./routes/noticeindex');
+app.use('/', notice);
+const users = require('./routes/userindex');
+app.use('/', users);
+const letter = require('./routes/letterindex');
+app.use('/', letter);
+const friend = require('./routes/friendindex');
+app.use('/', friend);
+const notification = require('./routes/notificationindex');
+app.use('/', notification);
+
 
 app.get('/', (req, res) => {
   res.render('index');

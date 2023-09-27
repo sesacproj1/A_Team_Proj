@@ -206,9 +206,16 @@
                 </div>
                 <div class="noAlarm">알람이 없어요.</div>
                 <div class="contentBox2">
-                  <div onclick="goFriendReq('<%= data.id%>')">
-                    친구요청이 있습니다
+                  <%if(requestId.length !== 0) {%> <%for (let i=1; i<=
+                  requestId.length; i++ ){ %>
+                  <div
+                    id="requestId<%= requestId[i-1]%>"
+                    onclick="goFriendReq('<%= requestId[i-1]%>')"
+                    style="cursor: pointer"
+                  >
+                    [<%= eachRequest[i-1]%>] 님이 친구요청 했어요.
                   </div>
+                  <%}%><%}%>
                 </div>
               </div>
               <button

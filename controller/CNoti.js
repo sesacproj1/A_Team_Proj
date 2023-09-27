@@ -4,6 +4,7 @@ const {
   RequestList,
   NotificationLikes,
 } = require('../models');
+const { Op } = require('sequelize');
 
 // 알람 시간 나타내는 함수
 function times(date) {
@@ -43,6 +44,7 @@ const output = {
     });
     const showLikes = await NotificationLikes.findAll({
       where: { letterNo: receiver },
+      id: { [Op.ne]: req.session.userInfo.id },
     });
 
     const sender = showNoti.map((send) => send.sender);
@@ -53,36 +55,29 @@ const output = {
     const reqFriend = await RequestList.findOne({
       where: { id: receiver },
     });
+    console.log('showNoti.length', showNoti.length);
 
-    if (showNoti && reqFriend) {
-      if (showLikes) {
+    if (showNoti.length !== 0 || showLikes.length !== 0) {
+      if (reqFriend)
         res.send({
-          sender: sender,
-          postNo: postNo,
+          isNoti: 'true',
           isFriend: 'true',
-          postNum: postNum,
-          likesWho: likesWho,
         });
-      } else {
+      else {
         res.send({
-          sender: sender,
-          postNo: postNo,
-          isFriend: 'true',
+          isNoti: 'true',
+          isFriend: 'false',
         });
       }
-    } else if (showNoti) {
-      if (showLikes) {
+    } else {
+      if (reqFriend)
         res.send({
-          sender: sender,
-          postNo: postNo,
-          isFriend: 'false',
-          postNum: postNum,
-          likesWho: likesWho,
+          isNoti: 'true',
+          isFriend: 'true',
         });
-      } else {
+      else {
         res.send({
-          sender: sender,
-          postNo: postNo,
+          isNoti: 'false',
           isFriend: 'false',
         });
       }
@@ -113,6 +108,9 @@ const input = {
     });
     await NotificationLikes.destroy({
       where: { letterNo: req.params.id },
+    });
+    await RequestList.destroy({
+      where: { id: req.params.id },
     });
     res.send('true');
   },

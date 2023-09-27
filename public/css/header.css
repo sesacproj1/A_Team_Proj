@@ -133,7 +133,7 @@
 }
 
 .scrolling-text {
-  animation: scroll-up 15s linear;
+  animation: scroll-up 8s linear;
 }
 
 @keyframes scroll-up {

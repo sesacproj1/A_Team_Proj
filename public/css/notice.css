@@ -60,17 +60,19 @@
 
 .notice-title {
     width: 100%;
-    font-size: 3vh; 
+    font-size: 4vh; 
     margin-bottom: 10px; 
     color: #333; 
     text-align: center;
     border-bottom: 1px solid #e9e9e9;
+    white-space: pre-line;
 }
 
 .notice-content {
-    font-size: 2.5vh; 
     color: #555; 
-    text-decoration: underline;
+    word-wrap: break-word;
+    padding: 10px;
+    font-size: 4vh;
 }
 
 .notice-author {
