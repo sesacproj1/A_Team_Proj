@@ -4,6 +4,7 @@ const {
   RequestList,
   NotificationLikes,
 } = require('../models');
+const { Op } = require('sequelize');
 
 // 알람 시간 나타내는 함수
 function times(date) {
@@ -43,6 +44,7 @@ const output = {
     });
     const showLikes = await NotificationLikes.findAll({
       where: { letterNo: receiver },
+      id: { [Op.ne]: req.session.userInfo.id },
     });
 
     const sender = showNoti.map((send) => send.sender);
@@ -54,38 +56,26 @@ const output = {
       where: { id: receiver },
     });
 
-    if (showNoti && reqFriend) {
-      if (showLikes) {
+    console.log('reqFriend', reqFriend);
+
+    // 알람 있음: showNoti or Friend or likes
+    if (showNoti || reqFriend || showLikes) {
+      if (reqFriend)
         res.send({
-          sender: sender,
-          postNo: postNo,
-          isFriend: 'true',
-          postNum: postNum,
-          likesWho: likesWho,
-        });
-      } else {
-        res.send({
-          sender: sender,
-          postNo: postNo,
+          isNoti: 'true',
           isFriend: 'true',
         });
-      }
-    } else if (showNoti) {
-      if (showLikes) {
+      else {
         res.send({
-          sender: sender,
-          postNo: postNo,
-          isFriend: 'false',
-          postNum: postNum,
-          likesWho: likesWho,
-        });
-      } else {
-        res.send({
-          sender: sender,
-          postNo: postNo,
+          isNoti: 'true',
           isFriend: 'false',
         });
       }
+    } else if (!showNoti && !reqFriend && !showLikes) {
+      res.send({
+        isNoti: 'false',
+        isFriend: 'false',
+      });
     }
   },
 

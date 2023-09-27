@@ -9,25 +9,17 @@ function notiModal(letterNo) {
     url: `/user/myPage/notification/${letterNo}`,
   }).then((res) => {
     console.log('레스데이터', res.data);
-    const { postNo, isFriend } = res.data;
-    if (postNo.length !== 0) {
+    const { isNoti, isFriend } = res.data;
+    if (isNoti) {
       noAlarm.style.display = 'none';
-      if (isFriend === 'false') {
-        console.log('친구없어');
-        friendAlarm.style.display = 'none';
-      } else {
-        console.log('친구있어');
+      if (isFriend) {
         friendAlarm.style.display = 'block';
+      } else {
+        friendAlarm.style.display = 'none';
       }
     } else {
       noAlarm.style.display = 'block';
-      if (isFriend === 'false') {
-        console.log('친구없어');
-        friendAlarm.style.display = 'none';
-      } else {
-        console.log('친구있어');
-        friendAlarm.style.display = 'block';
-      }
+      friendAlarm.style.display = 'none';
     }
   });
 }
