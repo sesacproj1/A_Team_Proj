@@ -57,8 +57,9 @@ function goLikes(postLikes) {
   });
 }
 
-function goFriendReq() {
-  friendAlarm.style.display = 'none';
+function goFriendReq(requestId) {
+  const goReq = friendAlarm.querySelector(`requestId${requestId}`);
+  goReq.style.display = 'none';
   document.location.href = `/letter/friendConfirm`;
 }
 
