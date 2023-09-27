@@ -9,15 +9,16 @@ function notiModal(letterNo) {
     url: `/user/myPage/notification/${letterNo}`,
   }).then((res) => {
     console.log('레스데이터', res.data);
+
     const { isNoti, isFriend } = res.data;
-    if (isNoti) {
+    if (isNoti === 'true') {
       noAlarm.style.display = 'none';
-      if (isFriend) {
+      if (isFriend === 'true') {
         friendAlarm.style.display = 'block';
-      } else {
+      } else if (isFriend === 'false') {
         friendAlarm.style.display = 'none';
       }
-    } else {
+    } else if (isNoti === 'false') {
       noAlarm.style.display = 'block';
       friendAlarm.style.display = 'none';
     }
@@ -70,5 +71,6 @@ function alarmDel(id) {
     divs.forEach((div) => div.remove());
     friendAlarm.style.display = 'none';
     noAlarm.style.display = 'block';
+    window.location.reload();
   });
 }

@@ -55,11 +55,9 @@ const output = {
     const reqFriend = await RequestList.findOne({
       where: { id: receiver },
     });
+    console.log('showNoti.length', showNoti.length);
 
-    console.log('reqFriend', reqFriend);
-
-    // 알람 있음: showNoti or Friend or likes
-    if (showNoti || reqFriend || showLikes) {
+    if (showNoti.length !== 0 || showLikes.length !== 0) {
       if (reqFriend)
         res.send({
           isNoti: 'true',
@@ -71,11 +69,18 @@ const output = {
           isFriend: 'false',
         });
       }
-    } else if (!showNoti && !reqFriend && !showLikes) {
-      res.send({
-        isNoti: 'false',
-        isFriend: 'false',
-      });
+    } else {
+      if (reqFriend)
+        res.send({
+          isNoti: 'true',
+          isFriend: 'true',
+        });
+      else {
+        res.send({
+          isNoti: 'false',
+          isFriend: 'false',
+        });
+      }
     }
   },
 
@@ -103,6 +108,9 @@ const input = {
     });
     await NotificationLikes.destroy({
       where: { letterNo: req.params.id },
+    });
+    await RequestList.destroy({
+      where: { id: req.params.id },
     });
     res.send('true');
   },
