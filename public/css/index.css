@@ -360,7 +360,6 @@
   position: absolute;
   width: 100%;
 }
-
 @media (max-width: 480px) {
   /* 모바일 */
   .star img {
@@ -368,6 +367,12 @@
     height: 85%;
     position: absolute;
     text-align: center;
+  }
+  .star p {
+    color: #eeeeee;
+    position: absolute;
+    display: block;
+    font-size: 1.3vh;
   }
 }
 
@@ -379,13 +384,12 @@
     position: absolute;
     text-align: center;
   }
-}
-
-.star p {
-  color: #eeeeee;
-  position: absolute;
-  display: block;
-  font-size: 1.8vh;
+  .star p {
+    color: #eeeeee;
+    position: absolute;
+    display: block;
+    font-size: 2vh;
+  }
 }
 
 .star img:hover {

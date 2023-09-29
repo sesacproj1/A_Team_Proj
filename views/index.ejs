@@ -42,9 +42,19 @@
             title="송편지별을 둘러보세요"
           >
             <% if ( i%3==0 ) {%>
-            <img src="../img/background/kbStar.png" alt="" id="star<%=i+1%>" />
+            <img
+              src="../img/background/kbStar.png"
+              alt=""
+              id="star<%=i+1%>"
+              class="starImg"
+            />
             <% } else { %>
-            <img src="../img/background/px_star.png" alt="" id="star<%=i+1%>" />
+            <img
+              src="../img/background/px_star.png"
+              alt=""
+              id="star<%=i+1%>"
+              class="starImg"
+            />
             <% } %>
             <p id="p<%=i+1%>" class="pname"><%=data[i].nickname%></p>
           </div>

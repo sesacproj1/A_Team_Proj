@@ -369,11 +369,19 @@ async function postDelete() {
   }
 }
 
+// 5. 공유하기
+const btnShare = document.querySelector('#btnShare');
+// btnShare.addEventListener('click', copyUrl);
+
+function copyUrl() {
+  navigator.clipboard.writeText(window.location.href);
+  alert('편지함 링크가 복사됐어요!');
+}
+
 // 툴팁 js
 let tooltipTriggerList = [].slice.call(
   document.querySelectorAll('[data-bs-toggle="tooltip"]')
 );
-console.log(tooltipTriggerList);
 let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl);
 });
