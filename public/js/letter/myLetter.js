@@ -162,14 +162,9 @@ function showPost(id, i) {
   const combinedValue = parseInt(deserver) + parseInt(i);
 
   const postNo = postNoArray[combinedValue];
-  console.log(postNo);
+
   postNumber = postNo;
-  // const postNoInput = document.getElementById(`postNo${i}`);
-  // let postNo = postNoInput.value;
-  // console.log('postNoINput은 ', postNoInput);
-  // postNo = (curPage - 1) * 5 + parseInt(postNo);
-  // console.log('포스트넘버', postNo);
-  // postNumber = postNo;
+
   try {
     axios({
       method: 'get',
@@ -182,7 +177,7 @@ function showPost(id, i) {
       modalBodyInput.value = postNickname;
       modalBodyTextarea.innerText = postContent;
       likesNum.innerText = count;
-      console.log('res.data.isLike는', res.data.isLike);
+
       if (res.data.isLike !== undefined) {
         if (res.data.isLike) {
           likeHeart.src = '/img/header/heart2.png';
@@ -199,13 +194,12 @@ function showPost(id, i) {
       buttonElement.setAttribute('data-bs-dismiss', 'modal');
       buttonElement.textContent = '삭제';
       if (isDeletelord === null && isDeleteSender === null) {
-        console.log('둘다널!');
         return;
       }
 
       if (isDeletelord !== null) {
         //편지주인일때
-        console.log('주인실행');
+
         if (document.querySelector('.btnDelete')) {
           //버튼 이미 있다면 버튼 추가하지않음
         } else {
@@ -213,25 +207,21 @@ function showPost(id, i) {
         }
         //주인은바로 삭제
         buttonElement.addEventListener('click', function () {
-          console.log('삭제실행!');
           postDelete();
         });
       }
       if (isDeleteSender !== null) {
+        deleteBtn.insertBefore(buttonElement, deleteBtn.firstChild);
         //편지쓴사람이 열었을 때
         if (isDeleteSender.id === 0) {
-          //쓴사람이 익명일 때
-          if (document.querySelector('.btnDelete')) {
-            //버튼 이미 있다면 버튼 추가하지않음
-            return;
-          } else {
-            deleteBtn.insertBefore(buttonElement, deleteBtn.firstChild);
-          }
-          //익명이용자 모달창 띄움
           buttonElement.addEventListener('click', function () {
             // 클릭 시 실행할 동작을 여기에 작성
             const myModal = new bootstrap.Modal('#deleteModal');
             myModal.show();
+          });
+        } else {
+          buttonElement.addEventListener('click', function () {
+            postDelete();
           });
         }
       }
@@ -348,7 +338,6 @@ async function reqFriendCancel() {
 }
 
 async function postDelete() {
-  console.log('postDelete 실행!!');
   if (document.querySelector('.pw') !== undefined) {
     pw = document.querySelector('.pw').value;
   }
@@ -361,7 +350,6 @@ async function postDelete() {
         pw: pw,
       },
     });
-    console.log('response.data는', response.data);
     alert(`${response.data.message}`);
     location.reload();
   } catch (error) {

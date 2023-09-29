@@ -380,7 +380,7 @@ const input = {
         await Post.destroy({
           where: {
             id: isDeleteSender.id,
-            postNo: isDeletelord.postNo,
+            postNo: isDeleteSender.postNo,
           },
         });
       } else {
