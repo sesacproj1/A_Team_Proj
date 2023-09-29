@@ -215,6 +215,7 @@ function prevPage() {
 function nextPage() {
   const a = document.querySelectorAll('.a');
   const p = document.querySelectorAll('p');
+  const star = document.querySelectorAll(`.star`);
   const starImg = document.querySelectorAll(`.starImg`);
 
   try {
@@ -258,7 +259,6 @@ function nextPage() {
           starImg[i].style.display = 'block';
         } else {
           starImg[i].style.display = 'none';
-          starImg[i].disabled = 'true';
         }
       }
 
