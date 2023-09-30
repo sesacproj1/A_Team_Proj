@@ -15,6 +15,10 @@
     #meuserId {
       display:none;
     }
+    a {
+    color: gray; 
+    text-decoration: none; 
+}
 </style>
 <input type="text" id="meid" value="<%= lord.id%>">
 <input type="text" id="meuserId" value="<%= lord.userId%>">
@@ -37,7 +41,12 @@
             /></a>
           </div>
           <p class="nicknames"><%= data.postNickname %></p>
-          <p class="contents"><%= data.postContent %></p>
+          <p class="contents">  <% if (data.postContent.length > 20) { %>
+            <%= data.postContent.slice(0, 20) + '...' %><a href="/letter/myLetter/<%= data.ownerInfo.id %>">더보기</a>
+        <% } else { %>
+            <%= data.postContent %>
+        <% } %>
+    </p>
         
         </div>
         <% }); %>
