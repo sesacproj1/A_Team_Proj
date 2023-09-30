@@ -16,7 +16,6 @@ const cmtArr = [
   '"2023년도 벌써..."',
 ];
 let randCmtNum = Math.floor(Math.random() * cmtArr.length);
-// console.log('randCmtNum', randCmtNum); // 0~3
 cmt.innerText = cmtArr[randCmtNum];
 
 // star position /size 정의
@@ -44,8 +43,6 @@ for (let i = 1; i <= starCnt; i++) {
       star.style.top = myHeight / 10 + 'px';
       star.style.left = (myWidth / 10) * i + 'px';
     }
-    // console.log('star.style.top', i, star.style.top);
-    // console.log(i, star.style.left);
   }
 
   if (myWidth <= 480) {
@@ -103,7 +100,6 @@ function resizeStars() {
 function twinkle() {
   let randNum1 = Math.floor(Math.random() * (starCnt + 1 - 1) + 1);
   let randNum2 = Math.floor(Math.random() * (starCnt + 1 - 1) + 1);
-  // console.log('randNum', randNum1, randNum2);
   const star1 = document.querySelector(`.star${randNum1}`);
   const star2 = document.querySelector(`.star${randNum2}`);
 
@@ -144,25 +140,11 @@ const stStar = document.querySelector('#stStar');
 
 stStar.addEventListener('animationend', () => {
   //css 애니메이션에 적용되는 animationend 속성
-  // console.log("animation end");
   stStar.style.display = 'none';
 });
 
 // 개인 편지함으로 id 보내기
 const stars = document.querySelectorAll('.star');
-// for (let i = 0; i < stars.length; i++) {
-//   stars[i].addEventListener('click', a);
-// }
-// function a() {
-//   axios({
-//     method: 'POST',
-//     url: '/',
-//     data: { curPage: 1 },
-//   }).then((res) => {
-//     console.log('33', res);
-//     curPage++;
-//   });
-// }
 
 //버튼 js
 // 1. 페이징
@@ -177,6 +159,8 @@ function prevPage() {
     // 데이터 -7(별 개수)
     const p = document.querySelectorAll('p');
     const a = document.querySelectorAll('.a');
+    const starImg = document.querySelectorAll('.starImg');
+
     try {
       axios({
         method: 'GET',
@@ -184,38 +168,41 @@ function prevPage() {
       }).then((res) => {
         curPage--; //앞에서 빼주어야 올바른 현재 페이지(이전 페이지)로 이동
         const data = res.data.data;
-        // console.log(data.length);
         const startIndex = (curPage - 1) * starCnt; //0
         console.log('start prev', startIndex); //0
 
         // step 1) a태그 내 링크 수정
         for (let i = 0; i < a.length; i++) {
-          const dataIndex = startIndex + i + 7; //0~6
-          // console.log('prev startIdx', startIndex, i);
-          // console.log('prev dataIdx', dataIndex);
+          const dataIndex = startIndex + i + starCnt;
 
           if (data[dataIndex]) {
             a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
-            // console.log('a[i].href', a[i].href);
           } else {
             a[i].href = '#';
           }
         }
 
         // step 2) p태그 내 닉네임 수정
-        // console.log('curPage', curPage);
         for (let i = 0; i < p.length; i++) {
           //data.length는 8이라 p 인덱스에러 나니까 p.length로 수정
-          const dataIndex = startIndex + i; //0~6
+          const dataIndex = startIndex + i;
 
           if (data[dataIndex]) {
             //데이터 있을 때 출력
-            // console.log(i, data[i]);
-            // console.log(i, p[i]); //7 undefined
             p[i].innerText = data[dataIndex].nickname;
           } else {
             p[i].innerText = '';
-            // star[i].innerHTML = '';
+          }
+        }
+
+        // step 3) data 있을 때만 img 보이도록
+        for (let i = 0; i < starImg.length; i++) {
+          const dataIndex = startIndex + i + starCnt;
+
+          if (data[dataIndex]) {
+            starImg[i].style.display = 'block';
+          } else {
+            starImg[i].style.display = 'none';
           }
         }
       });
@@ -229,11 +216,11 @@ function nextPage() {
   const a = document.querySelectorAll('.a');
   const p = document.querySelectorAll('p');
   const star = document.querySelectorAll(`.star`);
+  const starImg = document.querySelectorAll(`.starImg`);
 
   try {
     axios({
       method: 'GET',
-
       url: `/nextPage?page=${curPage}`,
     }).then((res) => {
       const data = res.data.data;
@@ -242,17 +229,14 @@ function nextPage() {
 
       // step 1) a태그 내 링크 수정
       for (let i = 0; i < a.length; i++) {
-        const dataIndex = startIndex + i + 7; //0~6
-        // console.log('next startIdx', startIndex, i);
-        console.log('next dataIdx', dataIndex);
-        // console.log('data[dataIndex]', data[dataIndex]);
-        console.log(data[dataIndex]);
+        const dataIndex = startIndex + i + starCnt;
+
         if (data[dataIndex]) {
           a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
-          console.log(`a${i}.href`, a[i].href);
+          // console.log(`a${i}.href`, a[i].href);
         } else {
           a[i].href = '#';
-          console.log(`${i},aa`);
+          // console.log(`${i},aa`);
         }
       }
 
@@ -260,19 +244,24 @@ function nextPage() {
       for (let i = 0; i < p.length; i++) {
         const dataIndex = startIndex + i;
 
-        console.log('data[dataIndex]', data[dataIndex]);
-        console.log('p[i]', p[i]);
-        console.log('i,dataIdx', i, dataIndex);
-
         if (data[dataIndex]) {
-          console.log(data[dataIndex].nickname);
-          console.log(p[i]);
           p[i].innerText = data[dataIndex].nickname;
         } else {
           p[i].innerText = '';
-          // star[i].innerHTML = ''; //별 없애면 이전 페이지도 별이 없어짐
         }
       }
+
+      // step 3) data 있을 때만 img 보이도록
+      for (let i = 0; i < starImg.length; i++) {
+        const dataIndex = startIndex + i + starCnt;
+
+        if (data[dataIndex]) {
+          starImg[i].style.display = 'block';
+        } else {
+          starImg[i].style.display = 'none';
+        }
+      }
+
       curPage++;
       console.log('curPage', curPage);
     });
