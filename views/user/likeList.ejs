@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>좋아요목록</title>
+    <link rel="stylesheet" href="/css/friends.css" />
+    <script defer src="/js/user/likeList.js"></script>
+    <%- include('../header')%>
+  </head>
+  <style>
+    #meid {
+      display:none;
+    }
+    #meuserId {
+      display:none;
+    }
+</style>
+<input type="text" id="meid" value="<%= lord.id%>">
+<input type="text" id="meuserId" value="<%= lord.userId%>">
+  <body>
+    <div>
+      <div class="friendsList">
+        <p><%= lord.nickname%>님의 좋아요 목록</p>
+      </div>
+    </div>
+    <div class="container" style="border: 3px solid black">
+      <div class="row">
+        <% likeData.forEach(data => { %>
+        <div class="col-md-4 col-6">
+          <div>
+            <a href="/letter/myLetter/<%= data.ownerInfo.id %>"
+              ><img
+                src="<%= data.designLocation%>"
+                alt=""
+                style="width: 100%; height: 100%"
+            /></a>
+          </div>
+          <p class="nicknames"><%= data.postNickname %></p>
+          <p class="contents"><%= data.postContent %></p>
+        
+        </div>
+        <% }); %>
+  </body>
+</html>

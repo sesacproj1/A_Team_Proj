@@ -7,6 +7,8 @@ const {
   NotificationLikes,
   RequestList,
   Post,
+  PostLikes,
+  Design,
   Profile,
   User,
 } = require('../models');
@@ -150,6 +152,10 @@ const output = {
         where: { letterNo: req.session.userInfo.id },
       });
 
+      const likeCount = await PostLikes.count({
+        where: { id: req.session.userInfo.id },
+      });
+
       const isRequest = await RequestList.findAll({
         where: { id: req.params.id },
       });
@@ -188,6 +194,7 @@ const output = {
           postNo: post,
           noti: notiLength + notificationLikes.length,
           postCount: postCount,
+          likeCount: likeCount,
           postNoti: eachNoti,
           likesWho: likesWho,
           sender: sender,
@@ -206,6 +213,7 @@ const output = {
           friend: 0,
           noti: notiLength + notificationLikes.length,
           postCount: postCount,
+          likeCount: likeCount,
           postNoti: eachNoti,
           likesWho: likesWho,
           sender: sender,
@@ -221,6 +229,83 @@ const output = {
         isProfile: false,
         message: '로그인해주세요!',
       });
+    }
+  },
+  likeList: async (req, res) => {
+    const id = req.params.id;
+
+    try {
+      // 사용자 정보 조회
+      const userData = await User.findAll({
+        where: { id: id },
+      });
+
+      // 좋아요목록 주인 정보 추출
+      const lord = userData.map((user) => user.dataValues);
+
+      // 비로그인 상태일 때 처리
+      if (req.session.userInfo !== undefined) {
+        // 좋아요 정보 조회
+        const like = await PostLikes.findAll({
+          where: { id: id },
+        });
+        req.session.like = like; // 좋아요 정보 저장
+
+        // 좋아요로부터 postNo 추출
+        const postNos = req.session.like.map((like) => like.postNo);
+
+        // Post 테이블에서 좋아요로 선택한 글들 조회
+        const likePost = await Post.findAll({
+          where: {
+            postNo: postNos,
+          },
+        });
+
+        // 좋아요 데이터 가공
+        const likeData = await Promise.all(
+          likePost.map(async (data) => {
+            // 좋아요 누른 편지의 주인 정보 조회
+            const ownerInfo = await User.findOne({
+              where: { id: data.letterNo },
+            });
+
+            // Design 테이블과 연결하여 designLocation 값을 가져오기
+            const design = await Design.findOne({
+              where: { designNo: data.postDesign },
+            });
+
+            return {
+              designLocation: design ? design.designLocation : null,
+              postNickname: data.postNickname,
+              postContent: data.postContent,
+              postDesign: data.postDesign,
+              id: data.letterNo,
+              ownerInfo: ownerInfo ? ownerInfo.dataValues : null,
+            };
+          })
+        );
+
+        // 좋아요 데이터 출력
+        console.log('likeData:', likeData);
+
+        res.render('user/likeList', {
+          lord: lord[0],
+          like: req.session.like,
+          isLogin: true,
+          session: req.session.userInfo,
+          likeData: likeData,
+        });
+      } else {
+        // 비로그인 상태일 때 로그인 페이지로 리다이렉트
+        res.render('user/login', {
+          session: req.session.userInfo,
+          isLogin: false,
+          message: '잘못된 접근입니다.!',
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
     }
   },
 };
