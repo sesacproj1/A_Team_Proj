@@ -42,7 +42,7 @@
           </div>
           <p class="nicknames"><%= data.postNickname %></p>
           <p class="contents">  <% if (data.postContent.length > 20) { %>
-            <%= data.postContent.slice(0, 20) + '...' %><a href="/letter/myLetter/<%= data.ownerInfo.id %>">더보기</a>
+            <%= data.postContent.slice(0, 20)  %><a href="/letter/myLetter/<%= data.ownerInfo.id %>">...더보기</a>
         <% } else { %>
             <%= data.postContent %>
         <% } %>
