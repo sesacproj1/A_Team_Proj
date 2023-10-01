@@ -28,14 +28,11 @@ const uploadDetail = multer({
   limits: { fileSize: 5 * 1024 * 1024 }, //5MB
 });
 
-
 //로그인
 
 router.get('/user/login', controller.output.userLogin);
 router.post('/login', controllerUser.input.postLogin);
 router.get('/logout', controllerUser.output.logout); //로그아웃
-
-
 
 // 회원가입
 router.get('/user/register', controller.output.userRegister);
@@ -55,11 +52,12 @@ router.get('/user/findUser', controller.output.findUser);
 router.post('/find/password', controllerUser.input.postFindPassword); // 비밀번호 찾기 실행
 router.post('/find/id', controllerUser.input.postFindId); // 아이디 찾기 실행
 
-
-//마이페이지 
+//마이페이지
 router.get('/user/myPage/:id', controller.output.myPage);
 router.patch('/profile/edit', controllerUser.input.patchProfile);
 
+//마이페이지 - 좋아요 리스트
+router.get('/user/myPage/like/:id', controller.output.likeList);
 
 //회원 삭제
 module.exports = router;

@@ -57,7 +57,6 @@ email.addEventListener('click', () => {
 const form = document.forms['registerForm'];
 async function isId() {
   const obj = document.getElementById('userId');
-  console.log(obj);
   const response = await axios({
     method: 'POST',
     url: '/isId',
@@ -69,13 +68,12 @@ async function isId() {
 
   if (data.result) {
     $('#idConfirm').css('color', 'green'); // id가 idConfirm 인 태그 css 설정
-    $('#idConfirm').text('사용할 수 있는 아이디입니다.');
+    $('#idConfirm').text(`'${obj.value}'는 사용할 수 있는 아이디입니다.`);
     idResult = true;
   } else {
     form.userId.value = '';
-    // event.preventDefault(); // 기본 이벤트(폼 제출) 막기
     $('#idConfirm').css('color', 'red'); // id가 idConfirm 인 태그 css 설정
-    $('#idConfirm').text('이미 사용중인 아이디입니다.');
+    $('#idConfirm').text(`'${obj.value}'는 이미 사용중인 아이디입니다.`);
     idResult = false;
   }
 }
@@ -97,12 +95,12 @@ async function isEmail() {
   ) {
     if (data) {
       $('#emailConfirm').css('color', 'green'); // id가 emailConfirm 인 태그 css 설정
-      $('#emailConfirm').text('사용할 수 있는 이메일입니다.');
+      $('#emailConfirm').text(`'${obj}'는 사용할 수 있는 이메일입니다.`);
       emailResult = true;
     } else {
       form.email.value = '';
       $('#emailConfirm').css('color', 'red'); // id가 emailConfirm 인 태그 css 설정
-      $('#emailConfirm').text('이미 사용중인 이메일입니다.');
+      $('#emailConfirm').text(`'${obj}'는이미 사용중인 이메일입니다.`);
       emailResult = false;
     }
   } else {
@@ -187,12 +185,12 @@ async function isNickname() {
   const data = result.data;
   if (data) {
     $('#nicknameConfirm').css('color', 'green'); // id가 nicknameConfirm 인 태그 css 설정
-    $('#nicknameConfirm').text('사용할 수 있는 닉네임입니다.');
+    $('#nicknameConfirm').text(`'${obj}' (은/는) 사용할 수 있는 닉네임입니다.`);
     nicknameResult = true;
   } else {
     form.nickname.value = '';
     $('#nicknameConfirm').css('color', 'red'); // id가 nicknameConfirm 인 태그 css 설정
-    $('#nicknameConfirm').text('이미 사용중인 닉네임입니다.');
+    $('#nicknameConfirm').text(`'${obj}' (은/는) 이미 사용중인 닉네임입니다.`);
     nicknameResult = false;
   }
 }
