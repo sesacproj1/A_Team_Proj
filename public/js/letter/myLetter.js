@@ -362,9 +362,17 @@ async function postDelete() {
 const btnShare = document.querySelector('#btnShare');
 // btnShare.addEventListener('click', copyUrl);
 
-function copyUrl() {
-  navigator.clipboard.writeText(window.location.href);
-  alert('편지함 링크가 복사됐어요!');
+async function copyUrl() {
+  try {
+    //개발자도구 오류 -> 문서에 포커스 주기
+    document.body.focus();
+
+    await navigator.clipboard.writeText(window.location.href);
+
+    alert('편지함 링크가 복사됐어요!');
+  } catch (error) {
+    console.error('복사 중 오류 발생:', error);
+  }
 }
 
 // 툴팁 js
