@@ -25,7 +25,6 @@
         <div class="imgDiv">
           <input type="hidden" value="<%=postNo1%>" id="postNo3">
           <img src="/img/background/moon.png" alt="" id="moon" />
-          <!-- 편지 : 페이징 시 nickname.length로 바꾸기 -->
           <% for (let i=0; i< nickname.length; i++ ){ %>
 
           <div class="letters" id="letter<%= i+1 %>" data-bs-toggle="modal" data-bs-target="#letterModal" onclick="showPost('<%= id %>','<%= i%>')">
