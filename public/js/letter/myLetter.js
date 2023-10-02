@@ -185,8 +185,6 @@ function showPost(id, i) {
           likeHeart.src = '/img/header/heart1.png';
         }
       }
-      console.log('isDeletelord는', isDeletelord);
-      console.log('isDeleteSender는', isDeleteSender);
       const deleteBtn = document.querySelector('.modal-footer');
       const buttonElement = document.createElement('button');
       buttonElement.setAttribute('type', 'button');
@@ -199,7 +197,6 @@ function showPost(id, i) {
 
       if (isDeletelord !== null) {
         //편지주인일때
-
         if (document.querySelector('.btnDelete')) {
           //버튼 이미 있다면 버튼 추가하지않음
         } else {
@@ -211,7 +208,11 @@ function showPost(id, i) {
         });
       }
       if (isDeleteSender !== null) {
-        deleteBtn.insertBefore(buttonElement, deleteBtn.firstChild);
+        if (document.querySelector('.btnDelete')) {
+          //버튼 이미 있다면 버튼 추가하지않음
+        } else {
+          deleteBtn.insertBefore(buttonElement, deleteBtn.firstChild);
+        }
         //편지쓴사람이 열었을 때
         if (isDeleteSender.id === 0) {
           buttonElement.addEventListener('click', function () {
@@ -361,9 +362,17 @@ async function postDelete() {
 const btnShare = document.querySelector('#btnShare');
 // btnShare.addEventListener('click', copyUrl);
 
-function copyUrl() {
-  navigator.clipboard.writeText(window.location.href);
-  alert('편지함 링크가 복사됐어요!');
+async function copyUrl() {
+  try {
+    //개발자도구 오류 -> 문서에 포커스 주기
+    document.body.focus();
+
+    await navigator.clipboard.writeText(window.location.href);
+
+    alert('편지함 링크가 복사됐어요!');
+  } catch (error) {
+    console.error('복사 중 오류 발생:', error);
+  }
 }
 
 // 툴팁 js
