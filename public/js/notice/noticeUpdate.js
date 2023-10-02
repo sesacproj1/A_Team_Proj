@@ -12,7 +12,7 @@ function noticeUpdate() {
       data: data,
     })
       .then((res) => {
-        console.log(res.data);
+        
         alert('업데이트 변경에 성공했습니다.');
         location.href = '/notice';
       })

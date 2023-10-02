@@ -11,7 +11,7 @@ const noti = document.querySelector('notification');
 
 // friend.addEventListener('click', () => {
 //   // document.location.href = '/letter/friends';
-//   console.log(req.session.userInfo);
+
 //   document.location.href = '/letter/friends/' + `${data.id}`;
 // });
 
@@ -25,14 +25,13 @@ const fileInput = document.getElementById('fileInput');
 
 fileInput.onchange = () => {
   const selectedFile = fileInput.files[0];
-  console.log(selectedFile);
+  
 };
 
 fileInput.addEventListener('change', fileUpload);
 
 function fileUpload() {
-  console.log('동적 파일 업로드');
-  console.log(document.querySelector('#fileInput'));
+ 
   const file = document.querySelector('#fileInput');
   const formData = new FormData();
   // js 만으로 폼을 전송( 파일 데이터를 서버로 전송해야 하는 케이스)
@@ -52,10 +51,9 @@ function fileUpload() {
       'Content-Type': 'multipart/form-data', //enctype="multipart/form-data"
     },
   }).then(function (res) {
-    console.log(res);
+   
     const { data } = res;
-    console.log(data);
-    console.log(data.path);
+    
     document.querySelector('#profileImage').src =
       '/img/profile/' + data.filename;
   });

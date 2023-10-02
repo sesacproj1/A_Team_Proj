@@ -61,7 +61,6 @@ document.querySelector('.beforeSelect p').addEventListener('click', (event) => {
         document.getElementById('designMan').style.display = 'none';
       }
       
-      console.log(document.getElementById('postDesign').value);
     } else {
       alert('이미지를 선택해주세요.');
     }

@@ -37,7 +37,7 @@ const output = {
   logout: (req, res) => {
     req.session.destroy((err) => {
       if (err) {
-        console.log(err);
+        console.error(err);
         return;
       }
       res.redirect('/');
@@ -281,7 +281,6 @@ const input = {
     User.findOne({
       where: { userId: req.body.userId },
     }).then((result) => {
-      console.log('비밀번호 찾기 실행: ', result);
       if (!result) {
         return res.send({ message: '존재하지 않는 회원입니다.' });
       } else {
@@ -303,7 +302,6 @@ const input = {
       const isDeleted = await User.destroy({
         where: { id: id },
       });
-      console.log(isDeleted); //성공시 1, 실패시 0
       if (isDeleted) {
         res.send(true);
       } else {
