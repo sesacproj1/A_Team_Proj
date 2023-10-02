@@ -176,9 +176,11 @@ function prevPage() {
           const dataIndex = startIndex + i + starCnt;
 
           if (data[dataIndex]) {
-            a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
+            a[i].setAttribute('href', `/letter/MyLetter/${data[dataIndex].id}`);
+            // a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
           } else {
-            a[i].href = '#';
+            // a[i].href = '#';
+            a[i].removeAttribute('href');
           }
         }
 
@@ -205,6 +207,24 @@ function prevPage() {
             starImg[i].style.display = 'none';
           }
         }
+
+        // step 4) data 있을 때만 tooltip 보이도록
+        for (let i = 0; i < starImg.length; i++) {
+          const dataIndex = startIndex + i + starCnt;
+
+          if (data[dataIndex]) {
+            stars[i].setAttribute('data-bs-toggle', 'tooltip');
+            stars[i].setAttribute('data-bs-placement', 'top');
+            stars[i].setAttribute(
+              'data-bs-original-title',
+              '송편지별을 둘러보세요'
+            );
+          } else {
+            stars[i].removeAttribute('data-bs-toggle');
+            stars[i].removeAttribute('data-bs-placement');
+            stars[i].removeAttribute('data-bs-original-title');
+          }
+        }
       });
     } catch (err) {
       console.log('Error', err);
@@ -215,7 +235,6 @@ function prevPage() {
 function nextPage() {
   const a = document.querySelectorAll('.a');
   const p = document.querySelectorAll('p');
-  const star = document.querySelectorAll(`.star`);
   const starImg = document.querySelectorAll(`.starImg`);
 
   try {
@@ -232,11 +251,9 @@ function nextPage() {
         const dataIndex = startIndex + i + starCnt;
 
         if (data[dataIndex]) {
-          a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
-          // console.log(`a${i}.href`, a[i].href);
+          a[i].setAttribute('href', `/letter/MyLetter/${data[dataIndex].id}`);
         } else {
-          a[i].href = '#';
-          // console.log(`${i},aa`);
+          a[i].removeAttribute('href');
         }
       }
 
@@ -259,6 +276,23 @@ function nextPage() {
           starImg[i].style.display = 'block';
         } else {
           starImg[i].style.display = 'none';
+        }
+      }
+
+      for (let i = 0; i < starImg.length; i++) {
+        const dataIndex = startIndex + i + starCnt;
+
+        if (data[dataIndex]) {
+          stars[i].setAttribute('data-bs-toggle', 'tooltip');
+          stars[i].setAttribute('data-bs-placement', 'top');
+          stars[i].setAttribute(
+            'data-bs-original-title',
+            '송편지별을 둘러보세요'
+          );
+        } else {
+          stars[i].removeAttribute('data-bs-toggle');
+          stars[i].removeAttribute('data-bs-placement');
+          stars[i].removeAttribute('data-bs-original-title');
         }
       }
 
