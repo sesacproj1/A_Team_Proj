@@ -169,8 +169,7 @@ function prevPage() {
         curPage--; //앞에서 빼주어야 올바른 현재 페이지(이전 페이지)로 이동
         const data = res.data.data;
         const startIndex = (curPage - 1) * starCnt; //0
-        console.log('start prev', startIndex); //0
-
+      
         // step 1) a태그 내 링크 수정
         for (let i = 0; i < a.length; i++) {
           const dataIndex = startIndex + i + starCnt;
@@ -227,7 +226,7 @@ function prevPage() {
         }
       });
     } catch (err) {
-      console.log('Error', err);
+      console.error('Error', err);
     }
   }
 }
@@ -297,10 +296,10 @@ function nextPage() {
       }
 
       curPage++;
-      console.log('curPage', curPage);
+      
     });
   } catch (err) {
-    console.log('Error', err);
+    console.error('Error', err);
   }
 }
 
@@ -328,7 +327,7 @@ function realSearch() {
   const aElements = document.querySelectorAll('.a');
   for (let search of aElements) {
     search.href = '#';
-    console.log(search);
+   
   }
 
   const pElements = document.querySelectorAll('.pname');
@@ -351,7 +350,7 @@ function realSearch() {
       // 검색 결과가 있을 때만 변경
       if (numResults > 0) {
         for (let i = 0; i < numResults; i++) {
-          console.log(searchData[i].nickname);
+         
           pElements[i].innerText = searchData[i].nickname;
           aElements[i].href = `/letter/MyLetter/${searchData[i].id}`;
           pElements[i].style.color = '#37e2d5';
@@ -369,7 +368,7 @@ function realSearch() {
 let tooltipTriggerList = [].slice.call(
   document.querySelectorAll('[data-bs-toggle="tooltip"]')
 );
-// console.log(tooltipTriggerList);
+
 let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl);
 });

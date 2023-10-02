@@ -14,11 +14,11 @@ guideThree.style.visibility = 'hidden';
 let touchCnt = 0;
 guideDiv.addEventListener('click', () => {
   touchCnt += 1;
-  console.log('touchCnt', touchCnt);
+  
 
   switch (touchCnt) {
     case 1:
-      console.log('switch', touchCnt);
+     
       guideOne.style.display = 'none';
       guideTwo.style.visibility = 'visible';
       break;

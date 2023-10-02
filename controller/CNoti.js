@@ -55,7 +55,7 @@ const output = {
     const reqFriend = await RequestList.findOne({
       where: { id: receiver },
     });
-    console.log('showNoti.length', showNoti.length);
+    
 
     if (showNoti.length !== 0 || showLikes.length !== 0) {
       if (reqFriend)

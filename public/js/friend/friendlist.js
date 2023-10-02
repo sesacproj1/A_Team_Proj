@@ -1,9 +1,7 @@
 function deleted(obj) {
   const myid = document.getElementById('meid');
   const myuserId = document.getElementById('meuserId');
-  console.log(myid.value);
-  console.log(myuserId.value);
-  console.log(obj.value);
+  
   axios({
     method: 'delete',
     url: `/friend/delete`,

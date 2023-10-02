@@ -54,7 +54,6 @@ const output = {
   },
 
   userLogin: (req, res) => {
-    console.log('세션있나요~~~ ', req.session.userInfo);
     if (req.session.userInfo !== undefined) {
       return res.render('user/login', {
         message: '잘못된 접근입니다.',
@@ -114,7 +113,6 @@ const output = {
         noticeNo: req.params.noticeNo,
       },
     });
-    console.log('시작' + result);
     return res.render('notice/noticeUpdate', {
       data: result,
       session: req.session.userInfo,
@@ -286,7 +284,6 @@ const output = {
         );
 
         // 좋아요 데이터 출력
-        console.log('likeData:', likeData);
 
         res.render('user/likeList', {
           lord: lord[0],

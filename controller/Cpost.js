@@ -41,7 +41,7 @@ const output = {
       order: [['letterNo', 'ASC']],
     });
 
-    console.log('편지', postData2);
+    
     res.send({ postData: postData2 });
   },
 
@@ -79,10 +79,10 @@ const output = {
       const srcValue = await Design.findOne({
         where: { designNo: design },
       });
-      console.log(srcValue);
+     
       designSrc.push(srcValue.designLocation);
     }
-    console.log(designSrc);
+  
 
     req.session.profile = profile;
     const lord = userData.map((user) => user.dataValues);
