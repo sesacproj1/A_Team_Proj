@@ -10,6 +10,7 @@ function prevPage() {
   if (curPage > 1) {
     const letterImg = document.querySelectorAll('.letterImg');
     const letterP = document.querySelectorAll('.letterP');
+    const letters = document.querySelectorAll('.letters');
     let id = document.querySelector('#personId').value;
     
     try {
@@ -70,6 +71,22 @@ function prevPage() {
             letterP[i].innerText = '';
           }
         }
+        // step 3) 데이터 있을 때에만 편지 내용 보여주기
+        for (let i = 0; i < letters.length; i++) {
+          let dataIndex = i;
+
+          if (data[dataIndex]) {
+            letters[i].setAttribute('data-bs-target', '#letterModal');
+            letters[i].setAttribute('data-bs-toggle', 'modal');
+            letters[i].setAttribute('onclick', `showPost(${id}, ${i})`);
+            letters[i].style.cursor = 'pointer';
+          } else {
+            letters[i].removeAttribute('data-bs-target');
+            letters[i].removeAttribute('data-bs-toggle');
+            letters[i].removeAttribute('onclick');
+            letters[i].style.cursor = 'default';
+          }
+        }
       });
     } catch (err) {
       console.error('Error', err);
@@ -79,7 +96,8 @@ function prevPage() {
 function nextPage() {
   const letterImg = document.querySelectorAll('.letterImg');
   const letterP = document.querySelectorAll('.letterP');
-  
+  const letters = document.querySelectorAll('.letters');
+
   let id = document.querySelector('#personId').value;
   
 
@@ -136,6 +154,22 @@ function nextPage() {
           letterP[i].innerText = data[dataIndex].postNickname;
         } else {
           letterP[i].innerText = '';
+        }
+      }
+      // step 3) 데이터 있을 때에만 편지 내용 보여주기
+      for (let i = 0; i < letters.length; i++) {
+        let dataIndex = i;
+
+        if (data[dataIndex]) {
+          letters[i].setAttribute('data-bs-target', '#letterModal');
+          letters[i].setAttribute('data-bs-toggle', 'modal');
+          letters[i].setAttribute('onclick', `showPost(${id}, ${i})`);
+          letters[i].style.cursor = 'pointer';
+        } else {
+          letters[i].removeAttribute('data-bs-target');
+          letters[i].removeAttribute('data-bs-toggle');
+          letters[i].removeAttribute('onclick');
+          letters[i].style.cursor = 'default';
         }
       }
       curPage++;
