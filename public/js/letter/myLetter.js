@@ -1,5 +1,5 @@
 const moon = document.querySelector('#moon'); //배경 달
-// console.log('moon', moon.width);
+
 const btnLeft = document.querySelector('#btnLeft');
 const btnRight = document.querySelector('#btnRight');
 const letterCnt = document.querySelectorAll('.letters').length;
@@ -11,16 +11,16 @@ function prevPage() {
     const letterImg = document.querySelectorAll('.letterImg');
     const letterP = document.querySelectorAll('.letterP');
     let id = document.querySelector('#personId').value;
-    console.log('id', id);
+    
     try {
       axios({
         method: 'GET',
         url: `/letter/myLetter/${id}/prevPage?curPage=${curPage}`,
       }).then((res) => {
         curPage--;
-        console.log('curPage prev', curPage);
+      
         const data = res.data.postData;
-        console.log('data prev', data);
+      
         const designMap = {
           1: '/img/letterIcons/px_acorn.png',
           2: '/img/letterIcons/px_apple.png',
@@ -40,12 +40,11 @@ function prevPage() {
         };
         const startIndex = (curPage - 1) * letterCnt;
         document.querySelector('#postNo5').value = startIndex;
-        console.log('start prev', startIndex); //5
-        // console.log('letter Cnt', letterCnt);
+       
         // step 1) 각자 다른 이미지 path 가져오기
         for (let i = 0; i < letterImg.length; i++) {
           const dataIndex = i;
-          console.log('data design', data[dataIndex]);
+         
           if (data[dataIndex]) {
             const designNumber = data[dataIndex].postDesign;
             const imagePath = designMap[designNumber];
@@ -64,9 +63,7 @@ function prevPage() {
         // step 2) 각자 다른 이름 가져오기
         for (let i = 0; i < letterP.length; i++) {
           let dataIndex = i;
-          console.log('i dataIndex prev', i, dataIndex); //5~9
-          // console.log('letterP.length prev', letterP.length);
-          // console.log(data[dataIndex].postNickname);
+        
           if (data[dataIndex]) {
             letterP[i].innerText = data[dataIndex].postNickname;
           } else {
@@ -75,16 +72,16 @@ function prevPage() {
         }
       });
     } catch (err) {
-      console.log('Error', err);
+      console.error('Error', err);
     }
   }
 }
 function nextPage() {
   const letterImg = document.querySelectorAll('.letterImg');
   const letterP = document.querySelectorAll('.letterP');
-  // console.log('letterP', letterP);
+  
   let id = document.querySelector('#personId').value;
-  console.log('id', id);
+  
 
   try {
     axios({
@@ -92,7 +89,7 @@ function nextPage() {
       url: `/letter/myLetter/${id}/nextPage?curPage=${curPage}`,
     }).then((res) => {
       const data = res.data.postData;
-      console.log('data next', data);
+      
       const startIndex = curPage * letterCnt;
       document.querySelector('#postNo5').value = startIndex;
       const designMap = {
@@ -116,7 +113,7 @@ function nextPage() {
       // step 1) 각자 다른 이미지 path 가져오기
       for (let i = 0; i < letterImg.length; i++) {
         const dataIndex = i;
-        console.log('data design', data[dataIndex]);
+       
         if (data[dataIndex]) {
           const designNumber = data[dataIndex].postDesign;
           const imagePath = designMap[designNumber];
@@ -134,9 +131,7 @@ function nextPage() {
       // step 2) 각자 다른 이름 가져오기
       for (let i = 0; i < letterP.length; i++) {
         let dataIndex = i;
-        console.log('dataIndex', dataIndex); //5~9
-        // console.log('letterP.length', letterP.length);
-        // console.log(data[dataIndex].postNickname);
+     
         if (data[dataIndex]) {
           letterP[i].innerText = data[dataIndex].postNickname;
         } else {
@@ -144,10 +139,10 @@ function nextPage() {
         }
       }
       curPage++;
-      console.log('curPage next', curPage);
+   
     });
   } catch (err) {
-    console.log('Error', err);
+    console.error('Error', err);
   }
 }
 // 2. 편지 보여주기 - 각자 다른 내용 가져오기
@@ -158,7 +153,7 @@ function showPost(id, i) {
   const postNo3 = document.getElementById('postNo3').value;
   const postNoArray = postNo3.split(',').map(Number);
   const deserver = document.getElementById('postNo5').value;
-  console.log('deserver', deserver);
+ 
   const combinedValue = parseInt(deserver) + parseInt(i);
 
   const postNo = postNoArray[combinedValue];
@@ -170,7 +165,7 @@ function showPost(id, i) {
       method: 'get',
       url: `/letter/MyLetter/${id}/${postNo}`,
     }).then((res) => {
-      console.log(res.data);
+   
 
       const { postContent, postNickname, count, isDeleteSender, isDeletelord } =
         res.data;
@@ -228,7 +223,7 @@ function showPost(id, i) {
       }
     });
   } catch (err) {
-    console.log('Err', err);
+    console.error('Err', err);
   }
 }
 // 3. 좋아요 처리
@@ -238,11 +233,11 @@ const likesNum = document.querySelector('.likesNum');
 const heartId = document.getElementById('heart').value;
 btnLike.addEventListener('click', like);
 function like() {
-  console.log('src값은', likeHeart.src);
+  
   if (likeHeart.src !== 'http://49.50.162.160:8000/img/header/heart2.png') {
     //로컬용
     // if (likeHeart.src !== 'http://localhost:8000/img/header/heart2.png') {
-    console.log('좋아요실행!');
+   
     //하트가 꽉찬하트가 아니라면
     updateLikes(heartId);
   } else {
@@ -256,28 +251,27 @@ function updateLikes(id) {
     method: 'patch',
     url: `/letter/MyLetter/${id}/${postNumber}/likes`,
   }).then((res) => {
-    console.log(res);
+    
     if (res.data.message) {
       return alert(`${res.data.message}`);
     }
     if (res.data.isLike !== undefined) {
       likeHeart.src = `${res.data.src}`;
-      console.log('좋아요갯수는', res.data.count);
+      
       likesNum.innerText = res.data.count;
     }
   });
 }
 
 function likeCancel(id) {
-  console.log('취소함수실행!');
-  // const likesNum2 = parseInt(likesNum.innerText);
+  
 
   axios({
     method: 'delete',
     url: `/letter/MyLetter/${id}/${postNumber}/likes/cancel`,
   })
     .then((response) => {
-      console.log(response); // 응답 내용을 콘솔에 출력 (디버깅용)
+     
       if (response.data.message) {
         return alert(`${res.data.message}`);
       }
@@ -297,26 +291,25 @@ const imgAddFriend = document.querySelector('#imgAddFriend');
 
 function addFriend() {
   if (imgAddFriend.src === 'http://49.50.162.160:8000/img/header/add.png') {
-    console.log('check실행');
+   
     imgAddFriend.src = '/img/header/check.png';
     return reqFriend();
     // btnAddFriend.disabled = 'true';
     // btnAddFriend.style.pointerEvents = ' none';
   } else {
-    console.log('다시변경!!!');
+    
     imgAddFriend.src = '/img/header/add.png';
 
     return reqFriendCancel();
   }
 }
 let id = document.getElementById('lordid');
-// console.log('id는~', id.value);
-// const lordid = id.value;
-// console.log(lordid);
+
+
 // 4. 친구 신청 날리기 :
 // const btnAddFriend = document.querySelector('.btnAddFriend');
 async function reqFriend() {
-  console.log('함수실행!');
+
   const res = await axios({
     method: 'post',
     url: `/MyLetter/${id.value}/reqFriend`,

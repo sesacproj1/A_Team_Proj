@@ -21,15 +21,10 @@ async function finduserId() {
 //userId,nickname
 const myModal = new bootstrap.Modal('#exampleModal');
 function findPw() {
-  console.log(
-    'idResult는 -> ',
-    idResult,
-    'nicknameResult는 -> ',
-    nicknameResult
-  );
-  //idResult, nicknameResult -> true 일때
+ 
+  
   if ((idResult, nicknameResult)) {
-    console.log('if문 통과!');
+    
     myModal.show();
   } else {
     myModal.hide();
@@ -63,7 +58,7 @@ async function isId(obj) {
   //data.result = true면 존재하지않는 아이디
   user = data.user;
   if (!user) {
-    console.log(user);
+   
     $('#isUser').css('color', 'red');
     $('#isUser').text('존재하지 않지않는 아이디입니다.');
     idResult = false;
@@ -74,7 +69,7 @@ async function isId(obj) {
   }
 }
 async function isNickname(obj) {
-  console.log(obj.value);
+
   if (!user) {
     $('#isNickname').text('');
   } else {

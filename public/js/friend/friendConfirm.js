@@ -1,9 +1,9 @@
 //수락버튼 누르면 friend db에 추가
 const id = document.getElementById('lordid');
 function confirm(obj) {
-  console.log(obj.value);
+  
   //수락
-  console.log('수락 함수실행!');
+  
   axios({
     method: 'post',
     url: `/showRequest/${id.value}/confirm`,
@@ -26,8 +26,7 @@ function confirm(obj) {
 
 function reject(obj) {
   //거절함수 실행!!!
-  console.log('거절 함수실행!');
-  console.log(obj.value);
+ 
   axios({
     method: 'post',
     url: `/showRequest/${id.value}/confirm`,
