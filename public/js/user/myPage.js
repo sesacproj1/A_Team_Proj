@@ -1,59 +1,42 @@
-// 동적 파일 업로드
-//프로필 사진 이미지 클릭시 파일
+// 프로필 사진 업로드 버튼을 클릭하면 파일 입력(input)을 클릭하는 이벤트를 추가.
 const btn = document.querySelector('#profileBtn');
 const mail = document.querySelector('.mailBox');
 const friend = document.querySelector('.friendList');
 const noti = document.querySelector('notification');
 
-// mail.addEventListener('click', () => {
-//   document.location.href = '/letter/myLetter';
-// });
-
-// friend.addEventListener('click', () => {
-//   // document.location.href = '/letter/friends';
-
-//   document.location.href = '/letter/friends/' + `${data.id}`;
-// });
-
-// noti.addEventListener('click', () => {
-//   document.location.href = '/letter/myLetter';
-// });
 btn.addEventListener('click', () => {
   document.querySelector('#fileInput').click();
 });
+// 파일 입력(input) 요소의 변경 이벤트를 감지하고 선택된 파일 정보를 가져옴.
 const fileInput = document.getElementById('fileInput');
 
 fileInput.onchange = () => {
   const selectedFile = fileInput.files[0];
-  
 };
 
+// 파일 입력(input) 요소의 변경 이벤트를 다시 처리하는 함수를 정의.
 fileInput.addEventListener('change', fileUpload);
 
 function fileUpload() {
- 
   const file = document.querySelector('#fileInput');
   const formData = new FormData();
-  // js 만으로 폼을 전송( 파일 데이터를 서버로 전송해야 하는 케이스)
-  //formData 객체를 활용하면 쉽게 전송 가능 !
   console.dir(fileInput);
   console.dir(fileInput.files); //업로드한 파일 객체
   console.dir(fileInput.files[0]); //업로드한 첫 파일
 
-  // append(key, value)
+  // 선택된 파일 formData에 추가
   formData.append('fileInput', file.files[0]);
 
   axios({
     method: 'POST',
     url: '/profileImage',
-    data: formData, //백으로 보낼 데이터
+    data: formData,
     headers: {
-      'Content-Type': 'multipart/form-data', //enctype="multipart/form-data"
+      'Content-Type': 'multipart/form-data',
     },
   }).then(function (res) {
-   
     const { data } = res;
-    
+
     document.querySelector('#profileImage').src =
       '/img/profile/' + data.filename;
   });
@@ -116,7 +99,7 @@ function isPwValidity() {
   document.getElementById('pwCheck1').innerHTML = '';
   return true;
 }
-
+//사용자 정보 업데이트 함수
 async function userUpdate() {
   const isCheck = checkValidity();
   if (isCheck) {
