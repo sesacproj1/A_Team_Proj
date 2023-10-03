@@ -1,7 +1,8 @@
-let idResult = false,
-  nicknameResult = false,
-  user;
-//email
+let idResult = false, // 아이디 중복 검사 결과
+  nicknameResult = false, //닉네임 일치 검사 결과
+  user; //사용자 정보 저장변수
+
+//email이용 아이디 찾기 함수
 async function finduserId() {
   const form = document.forms['findId'];
   const result = await axios({
@@ -18,13 +19,11 @@ async function finduserId() {
     document.location.href = '/user/findUser';
   }
 }
-//userId,nickname
+//패스워드 찾기 버튼 클릭시 모달 띄우기
 const myModal = new bootstrap.Modal('#exampleModal');
 function findPw() {
- 
-  
-  if ((idResult, nicknameResult)) {
-    
+  if (idResult && nicknameResult) {
+    //아이디, 닉네임 일치시 모달띄우기
     myModal.show();
   } else {
     myModal.hide();
@@ -32,6 +31,8 @@ function findPw() {
     document.location.href = '/user/findUser';
   }
 }
+
+//패스워드 업데이트 함수
 async function updatePassword() {
   const form = document.forms['passwordForm'];
   const result = await axios({
@@ -45,6 +46,8 @@ async function updatePassword() {
   alert(`${result.data.message}`);
   document.location.href = '/';
 }
+
+//아이디 중복 검사 함수
 async function isId(obj) {
   $('#isUser').text('');
   const response = await axios({
@@ -58,7 +61,6 @@ async function isId(obj) {
   //data.result = true면 존재하지않는 아이디
   user = data.user;
   if (!user) {
-   
     $('#isUser').css('color', 'red');
     $('#isUser').text('존재하지 않지않는 아이디입니다.');
     idResult = false;
@@ -68,8 +70,9 @@ async function isId(obj) {
     idResult = true;
   }
 }
-async function isNickname(obj) {
 
+// 닉네임 일치 검사 함수
+async function isNickname(obj) {
   if (!user) {
     $('#isNickname').text('');
   } else {
@@ -86,7 +89,7 @@ async function isNickname(obj) {
   }
 }
 
-// 비밀번호 유효성
+// 비밀번호 유효성 검사 함수
 function isPwValidity() {
   const form = document.forms['passwordForm'];
   //문자열체크
@@ -129,7 +132,7 @@ function isPwValidity() {
   document.getElementById('pwCheck1').innerHTML = '';
   return true;
 }
-//비밀번호 일치
+//비밀번호 일치 검사 함수
 function isPw() {
   if (
     document.getElementById('password').value != '' &&
