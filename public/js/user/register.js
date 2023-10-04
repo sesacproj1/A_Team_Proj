@@ -1,4 +1,6 @@
 let idResult, emailResult, nicknameResult, pwResult;
+
+// Enter 키를 누를 때 등록 버튼을 클릭하도록 이벤트 처리
 document.addEventListener('keydown', function (event) {
   if (event.key === 'Enter') {
     // 엔터 키가 눌렸을 때 로그인 버튼 클릭
@@ -38,23 +40,28 @@ function checkValidity() {
   }
   return true;
 }
-const nickname = document.getElementById('isNickname');
+
+//아이디 중복 검사
 const id = document.getElementById('isId');
 id.addEventListener('click', () => {
   isId();
 });
 
+// 닉네임 중복 검사
+const nickname = document.getElementById('isNickname');
 nickname.addEventListener('click', () => {
   isNickname();
 });
 
+// 이메일 중복 검사
 const email = document.getElementById('isEmail');
-
 email.addEventListener('click', () => {
   isEmail();
 });
 
 const form = document.forms['registerForm'];
+
+// 아이디 중복 확인 함수
 async function isId() {
   const obj = document.getElementById('userId');
   const response = await axios({
@@ -78,7 +85,7 @@ async function isId() {
   }
 }
 
-// 이메일 중복검사
+// 이메일 중복 확인 함수
 async function isEmail() {
   const obj = document.getElementById('email').value;
   const response = await axios({
@@ -108,7 +115,7 @@ async function isEmail() {
     $('#emailConfirm').text('이메일이 입력되지 않았습니다.');
   }
 }
-// 비밀번호 유효성
+// 비밀번호 유효성 검사 함수
 function isPwValidity() {
   const form = document.forms['registerForm'];
   //문자열체크
@@ -151,7 +158,7 @@ function isPwValidity() {
   document.getElementById('pwCheck1').innerHTML = '';
   return true;
 }
-//비밀번호 일치
+//비밀번호 일치확인 함수
 function isPw() {
   if (
     document.getElementById('password').value != '' &&
@@ -172,7 +179,7 @@ function isPw() {
     }
   }
 }
-//닉네임 중복검사
+//닉네임 중복검사 함수
 async function isNickname() {
   const obj = document.getElementById('nickname').value;
   const result = await axios({
@@ -194,6 +201,8 @@ async function isNickname() {
     nicknameResult = false;
   }
 }
+
+//회원 가입 함수
 async function register() {
   const form = document.forms['registerForm'];
   const isCheck = checkValidity();

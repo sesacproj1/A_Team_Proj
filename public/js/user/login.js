@@ -1,7 +1,3 @@
-// if (!data.data.isProfile) {
-//   alert(`${data.data.message}`);
-// }
-
 // 쿠키 값을 가져오는 함수
 
 function getCookie(name) {

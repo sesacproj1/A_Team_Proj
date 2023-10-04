@@ -12,16 +12,16 @@ function prevPage() {
     const letterP = document.querySelectorAll('.letterP');
     const letters = document.querySelectorAll('.letters');
     let id = document.querySelector('#personId').value;
-    
+
     try {
       axios({
         method: 'GET',
         url: `/letter/myLetter/${id}/prevPage?curPage=${curPage}`,
       }).then((res) => {
         curPage--;
-      
+
         const data = res.data.postData;
-      
+
         const designMap = {
           1: '/img/letterIcons/px_acorn.png',
           2: '/img/letterIcons/px_apple.png',
@@ -41,11 +41,11 @@ function prevPage() {
         };
         const startIndex = (curPage - 1) * letterCnt;
         document.querySelector('#postNo5').value = startIndex;
-       
+
         // step 1) 각자 다른 이미지 path 가져오기
         for (let i = 0; i < letterImg.length; i++) {
           const dataIndex = i;
-         
+
           if (data[dataIndex]) {
             const designNumber = data[dataIndex].postDesign;
             const imagePath = designMap[designNumber];
@@ -64,7 +64,7 @@ function prevPage() {
         // step 2) 각자 다른 이름 가져오기
         for (let i = 0; i < letterP.length; i++) {
           let dataIndex = i;
-        
+
           if (data[dataIndex]) {
             letterP[i].innerText = data[dataIndex].postNickname;
           } else {
@@ -99,7 +99,6 @@ function nextPage() {
   const letters = document.querySelectorAll('.letters');
 
   let id = document.querySelector('#personId').value;
-  
 
   try {
     axios({
@@ -107,7 +106,7 @@ function nextPage() {
       url: `/letter/myLetter/${id}/nextPage?curPage=${curPage}`,
     }).then((res) => {
       const data = res.data.postData;
-      
+
       const startIndex = curPage * letterCnt;
       document.querySelector('#postNo5').value = startIndex;
       const designMap = {
@@ -131,7 +130,7 @@ function nextPage() {
       // step 1) 각자 다른 이미지 path 가져오기
       for (let i = 0; i < letterImg.length; i++) {
         const dataIndex = i;
-       
+
         if (data[dataIndex]) {
           const designNumber = data[dataIndex].postDesign;
           const imagePath = designMap[designNumber];
@@ -149,7 +148,7 @@ function nextPage() {
       // step 2) 각자 다른 이름 가져오기
       for (let i = 0; i < letterP.length; i++) {
         let dataIndex = i;
-     
+
         if (data[dataIndex]) {
           letterP[i].innerText = data[dataIndex].postNickname;
         } else {
@@ -173,7 +172,6 @@ function nextPage() {
         }
       }
       curPage++;
-   
     });
   } catch (err) {
     console.error('Error', err);
@@ -187,7 +185,7 @@ function showPost(id, i) {
   const postNo3 = document.getElementById('postNo3').value;
   const postNoArray = postNo3.split(',').map(Number);
   const deserver = document.getElementById('postNo5').value;
- 
+
   const combinedValue = parseInt(deserver) + parseInt(i);
 
   const postNo = postNoArray[combinedValue];
@@ -199,8 +197,6 @@ function showPost(id, i) {
       method: 'get',
       url: `/letter/MyLetter/${id}/${postNo}`,
     }).then((res) => {
-   
-
       const { postContent, postNickname, count, isDeleteSender, isDeletelord } =
         res.data;
       modalBodyInput.value = postNickname;
@@ -267,11 +263,10 @@ const likesNum = document.querySelector('.likesNum');
 const heartId = document.getElementById('heart').value;
 btnLike.addEventListener('click', like);
 function like() {
-  
   if (likeHeart.src !== 'http://49.50.162.160:8000/img/header/heart2.png') {
     //로컬용
     // if (likeHeart.src !== 'http://localhost:8000/img/header/heart2.png') {
-   
+
     //하트가 꽉찬하트가 아니라면
     updateLikes(heartId);
   } else {
@@ -285,27 +280,23 @@ function updateLikes(id) {
     method: 'patch',
     url: `/letter/MyLetter/${id}/${postNumber}/likes`,
   }).then((res) => {
-    
     if (res.data.message) {
       return alert(`${res.data.message}`);
     }
     if (res.data.isLike !== undefined) {
       likeHeart.src = `${res.data.src}`;
-      
+
       likesNum.innerText = res.data.count;
     }
   });
 }
-
+// 4. 좋아요 취소 처리
 function likeCancel(id) {
-  
-
   axios({
     method: 'delete',
     url: `/letter/MyLetter/${id}/${postNumber}/likes/cancel`,
   })
     .then((response) => {
-     
       if (response.data.message) {
         return alert(`${res.data.message}`);
       }
@@ -313,25 +304,19 @@ function likeCancel(id) {
       likeHeart.src = `${response.data.src}`;
     })
     .catch((error) => {
-      console.error(error); // 오류 처리
+      console.error(error);
       alert('요청 중 오류가 발생했습니다.');
     });
 }
 
-// 4. 친구 신청 날렸을 때
 const btnAddFriend = document.querySelector('#btnAddFriend');
-// btnAddFriend.addEventListener('click', addFriend);
 const imgAddFriend = document.querySelector('#imgAddFriend');
-
+// 5. 친구 신청
 function addFriend() {
   if (imgAddFriend.src === 'http://49.50.162.160:8000/img/header/add.png') {
-   
     imgAddFriend.src = '/img/header/check.png';
     return reqFriend();
-    // btnAddFriend.disabled = 'true';
-    // btnAddFriend.style.pointerEvents = ' none';
   } else {
-    
     imgAddFriend.src = '/img/header/add.png';
 
     return reqFriendCancel();
@@ -339,11 +324,8 @@ function addFriend() {
 }
 let id = document.getElementById('lordid');
 
-
-// 4. 친구 신청 날리기 :
-// const btnAddFriend = document.querySelector('.btnAddFriend');
+// 5-1. 친구 신청 날리기 :
 async function reqFriend() {
-
   const res = await axios({
     method: 'post',
     url: `/MyLetter/${id.value}/reqFriend`,
@@ -353,7 +335,7 @@ async function reqFriend() {
   });
   alert(`${res.data.message}`);
 }
-//TODO 친구신청취소
+//5-2.  친구신청취소 함수
 async function reqFriendCancel() {
   const res = await axios({
     method: 'delete',
@@ -365,11 +347,12 @@ async function reqFriendCancel() {
   alert(`${res.data.message}`);
 }
 
+//6. 편지 삭제
 async function postDelete() {
   if (document.querySelector('.pw') !== undefined) {
+    //편지 pw 가 존재한다면
     pw = document.querySelector('.pw').value;
   }
-
   try {
     const response = await axios({
       method: 'delete',
@@ -385,10 +368,8 @@ async function postDelete() {
   }
 }
 
-// 5. 공유하기
+// 7. 공유하기
 const btnShare = document.querySelector('#btnShare');
-// btnShare.addEventListener('click', copyUrl);
-
 async function copyUrl() {
   try {
     //개발자도구 오류 -> 문서에 포커스 주기
