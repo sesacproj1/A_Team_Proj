@@ -71,19 +71,28 @@
         <!--  -->
         <div id="friends">
           <div>
-            <p class="friendsBox1 mailBox" style="cursor: pointer">
+            <p
+              class="friendsBox1 mailBox"
+              style="cursor: pointer; font-size: 25px"
+            >
               <a href="/letter/myLetter/<%=data.id%>"><%= postCount%></a>
             </p>
             <p>편지함</p>
           </div>
           <div>
-            <p class="friendsBox1 friendList" style="cursor: pointer">
+            <p
+              class="friendsBox1 friendList"
+              style="cursor: pointer; font-size: 25px"
+            >
               <a href="/letter/friends/<%=data.id%>"><%= friend%></a>
             </p>
             <p>친구목록</p>
           </div>
           <div>
-            <p class="friendsBox1 likeList" style="cursor: pointer">
+            <p
+              class="friendsBox1 likeList"
+              style="cursor: pointer; font-size: 25px"
+            >
               <a href="/user/myPage/like/<%=data.id%>"><%= likeCount%></a>
             </p>
             <p>좋아요한 글</p>
@@ -91,7 +100,7 @@
           <div>
             <p
               class="friendsBox1 notification"
-              style="cursor: pointer"
+              style="cursor: pointer; font-size: 25px"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
               onclick="notiModal('<%=data.id%>')"
