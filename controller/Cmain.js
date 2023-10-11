@@ -182,6 +182,12 @@ const output = {
         });
 
         const numberOfFriends = friend.length;
+
+        let isAlarmDel = 'false';
+        if (req.session.alarmDel) {
+          isAlarmDel = 'true';
+        }
+
         return res.render('user/myPage', {
           session: req.session.userInfo,
           profile: req.session.profile,
@@ -199,6 +205,7 @@ const output = {
           eachRequest: eachRequest,
           requestId: requestId,
           postLikes: eachLikes,
+          isAlarmDel: isAlarmDel,
         });
       } else {
         return res.render('user/myPage', {
@@ -218,6 +225,7 @@ const output = {
           eachRequest: eachRequest,
           requestId: requestId,
           postLikes: eachLikes,
+          isAlarmDel: isAlarmDel,
         });
       }
     } else {

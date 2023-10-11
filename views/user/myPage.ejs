@@ -98,6 +98,7 @@
             <p>좋아요한 글</p>
           </div>
           <div>
+            <% if(isAlarmDel === 'false') {%>
             <p
               class="friendsBox1 notification"
               style="cursor: pointer; font-size: 25px"
@@ -107,6 +108,17 @@
             >
               <%= noti %>
             </p>
+            <%} else {%>
+            <p
+              class="friendsBox1 notification"
+              style="cursor: pointer; font-size: 25px"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              onclick="notiModal('<%=data.id%>')"
+            >
+              0
+            </p>
+            <% }%>
             <p>알림</p>
           </div>
         </div>
@@ -196,6 +208,7 @@
           </div>
           <div class="modal-body">
             <form name="alarmForm">
+              <%if(isAlarmDel ==='false') {%>
               <div class="container-fluid">
                 <div class="contentBox1">
                   <%if(postNoti.length !== 0) {%> <%for (let i=1; i<=
@@ -219,7 +232,6 @@
                   <%}%><%}%>
                   <input type="hidden" value="<%= data.id %>" id="ID" />
                 </div>
-                <div class="noAlarm">알람이 없어요.</div>
                 <div class="contentBox2">
                   <%if(requestId.length !== 0) {%> <%for (let i=1; i<=
                   requestId.length; i++ ){ %>
@@ -229,10 +241,15 @@
                     style="cursor: pointer"
                   >
                     [<%= eachRequest[i-1]%>] 님이 친구요청 했어요.
+                    <div class="noAlarm">알람이 없어요.</div>
                   </div>
                   <%}%><%}%>
                 </div>
               </div>
+              <%}else{%>
+              <div>알람이 없어요.</div>
+              <%}%>
+
               <button
                 type="button"
                 id="alarmBtn"

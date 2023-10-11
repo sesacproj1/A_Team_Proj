@@ -55,32 +55,35 @@ const output = {
     const reqFriend = await RequestList.findOne({
       where: { id: receiver },
     });
-    
 
-    if (showNoti.length !== 0 || showLikes.length !== 0) {
-      if (reqFriend)
-        res.send({
-          isNoti: 'true',
-          isFriend: 'true',
-        });
-      else {
-        res.send({
-          isNoti: 'true',
-          isFriend: 'false',
-        });
+    if (!req.session.alarmDel) {
+      if (showNoti.length !== 0 || showLikes.length !== 0) {
+        if (reqFriend)
+          res.send({
+            isNoti: 'true',
+            isFriend: 'true',
+          });
+        else {
+          res.send({
+            isNoti: 'true',
+            isFriend: 'false',
+          });
+        }
+      } else {
+        if (reqFriend)
+          res.send({
+            isNoti: 'true',
+            isFriend: 'true',
+          });
+        else {
+          res.send({
+            isNoti: 'false',
+            isFriend: 'false',
+          });
+        }
       }
     } else {
-      if (reqFriend)
-        res.send({
-          isNoti: 'true',
-          isFriend: 'true',
-        });
-      else {
-        res.send({
-          isNoti: 'false',
-          isFriend: 'false',
-        });
-      }
+      res.send({ isAlarmDel: 'true' });
     }
   },
 
@@ -103,14 +106,12 @@ const output = {
 
 const input = {
   deleteNoti: async (req, res) => {
+    req.session.alarmDel = 'alarmDel';
     await Notification.destroy({
       where: { letterNo: req.params.id },
     });
     await NotificationLikes.destroy({
       where: { letterNo: req.params.id },
-    });
-    await RequestList.destroy({
-      where: { id: req.params.id },
     });
     res.send('true');
   },

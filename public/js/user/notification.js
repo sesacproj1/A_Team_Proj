@@ -8,19 +8,20 @@ function notiModal(letterNo) {
     method: 'get',
     url: `/user/myPage/notification/${letterNo}`,
   }).then((res) => {
-    
-
     const { isNoti, isFriend } = res.data;
-    if (isNoti === 'true') {
-      noAlarm.style.display = 'none';
-      if (isFriend === 'true') {
-        friendAlarm.style.display = 'block';
-      } else if (isFriend === 'false') {
+
+    if (!res.data.isAlarmDel) {
+      if (isNoti === 'true') {
+        noAlarm.style.display = 'none';
+        if (isFriend === 'true') {
+          friendAlarm.style.display = 'block';
+        } else if (isFriend === 'false') {
+          friendAlarm.style.display = 'none';
+        }
+      } else if (isNoti === 'false') {
+        noAlarm.style.display = 'block';
         friendAlarm.style.display = 'none';
       }
-    } else if (isNoti === 'false') {
-      noAlarm.style.display = 'block';
-      friendAlarm.style.display = 'none';
     }
   });
 }
@@ -35,7 +36,6 @@ function goPost(postNo) {
       letterNo: id,
     },
   }).then((res) => {
-    
     document.getElementById(`post${postNo}`).remove();
     document.location.href = `/letter/MyLetter/${id}`;
   });
@@ -51,7 +51,6 @@ function goLikes(postLikes) {
       letterNo: id,
     },
   }).then((res) => {
-    
     document.getElementById(`likes${postLikes}`).remove();
     document.location.href = `/letter/MyLetter/${id}`;
   });
@@ -67,11 +66,12 @@ function alarmDel(id) {
   axios({
     method: 'delete',
     url: `/user/myPage/notification/${id}/delete`,
-  }).then(() => {
+  }).then((res) => {
     const divs = postAlarm.querySelectorAll('div');
     divs.forEach((div) => div.remove());
     friendAlarm.style.display = 'none';
     noAlarm.style.display = 'block';
+
     window.location.reload();
   });
 }
