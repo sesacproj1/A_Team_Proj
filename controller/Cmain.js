@@ -176,17 +176,18 @@ const output = {
       const post = postData.map((data) => data.postNo);
 
       req.session.profile = profile;
+
+      let isAlarmDel = 'false';
+      if (req.session.alarmDel) {
+        isAlarmDel = 'true';
+      }
+
       if (isFriend) {
         const friend = await Friend.findAll({
           where: { id: req.session.userInfo.id },
         });
 
         const numberOfFriends = friend.length;
-
-        let isAlarmDel = 'false';
-        if (req.session.alarmDel) {
-          isAlarmDel = 'true';
-        }
 
         return res.render('user/myPage', {
           session: req.session.userInfo,
