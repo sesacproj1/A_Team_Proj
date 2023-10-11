@@ -167,6 +167,10 @@
   background: #faffbc;
 }
 
+.dupCheck {
+  white-space: nowrap;
+}
+
 /* 여기부터 로고부분 */
 
 .logo_container2 > div > div > p {
