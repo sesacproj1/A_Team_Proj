@@ -57,7 +57,9 @@ function goLikes(postLikes) {
 }
 
 function goFriendReq(requestId) {
-  const goReq = friendAlarm.querySelector(`requestId${requestId}`);
+  console.log(requestId);
+  const goReq = document.querySelector(`#requestId${requestId}`);
+  console.log(goReq);
   goReq.style.display = 'none';
   document.location.href = `/letter/friendConfirm`;
 }
