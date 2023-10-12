@@ -169,16 +169,14 @@ function prevPage() {
         curPage--; //앞에서 빼주어야 올바른 현재 페이지(이전 페이지)로 이동
         const data = res.data.data;
         const startIndex = (curPage - 1) * starCnt; //0
-      
+
         // step 1) a태그 내 링크 수정
         for (let i = 0; i < a.length; i++) {
           const dataIndex = startIndex + i + starCnt;
 
           if (data[dataIndex]) {
             a[i].setAttribute('href', `/letter/MyLetter/${data[dataIndex].id}`);
-            // a[i].href = `/letter/MyLetter/${data[dataIndex].id}`;
           } else {
-            // a[i].href = '#';
             a[i].removeAttribute('href');
           }
         }
@@ -296,7 +294,6 @@ function nextPage() {
       }
 
       curPage++;
-      
     });
   } catch (err) {
     console.error('Error', err);
@@ -327,7 +324,6 @@ function realSearch() {
   const aElements = document.querySelectorAll('.a');
   for (let search of aElements) {
     search.href = '#';
-   
   }
 
   const pElements = document.querySelectorAll('.pname');
@@ -350,7 +346,6 @@ function realSearch() {
       // 검색 결과가 있을 때만 변경
       if (numResults > 0) {
         for (let i = 0; i < numResults; i++) {
-         
           pElements[i].innerText = searchData[i].nickname;
           aElements[i].href = `/letter/MyLetter/${searchData[i].id}`;
           pElements[i].style.color = '#37e2d5';
