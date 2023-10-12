@@ -84,21 +84,6 @@ const input = {
 };
 
 const output = {
-  showRequest: async (req, res) => {
-    const userInfo = req.session.userInfo;
-    const id = userInfo.id;
-    const requests = await RequestList.findAll({
-      where: { id: id },
-      attributes: ['nickname'],
-      raw: true,
-    });
-
-    res.render('letter/friendConfirm', {
-      requests: requests,
-      session: req.session.userInfo,
-    });
-  },
-
   confirmRequest: async (req, res) => {
     const userId = req.body.id;
     const userInfo = req.session.userInfo;
