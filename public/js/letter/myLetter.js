@@ -263,10 +263,9 @@ const likesNum = document.querySelector('.likesNum');
 const heartId = document.getElementById('heart').value;
 btnLike.addEventListener('click', like);
 function like() {
-  if (likeHeart.src !== 'http://49.50.162.160:8000/img/header/heart2.png') {
-    //로컬용
-    // if (likeHeart.src !== 'http://localhost:8000/img/header/heart2.png') {
-
+  // if (likeHeart.src !== 'http://49.50.162.160:8000/img/header/heart2.png') {
+  //로컬용
+  if (likeHeart.src !== 'http://localhost:8000/img/header/heart2.png') {
     //하트가 꽉찬하트가 아니라면
     updateLikes(heartId);
   } else {
@@ -313,7 +312,7 @@ const btnAddFriend = document.querySelector('#btnAddFriend');
 const imgAddFriend = document.querySelector('#imgAddFriend');
 // 5. 친구 신청
 function addFriend() {
-  if (imgAddFriend.src === 'http://49.50.162.160:8000/img/header/add.png') {
+  if (imgAddFriend.src === 'http://localhost:8000/img/header/add.png') {
     imgAddFriend.src = '/img/header/check.png';
     return reqFriend();
   } else {
