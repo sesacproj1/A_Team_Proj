@@ -57,12 +57,10 @@ function goLikes(postLikes) {
 }
 
 function goFriendReq(requestId) {
+  console.log(requestId);
   axios({
     method: 'delete',
-    url: `/user/myPage/notification/${requestId}`,
-    data: {
-      letterNo: id,
-    },
+    url: `/user/myPage/notification/friends/${requestId}`,
   }).then((res) => {
     document.getElementById(`requestId${requestId}`).remove();
     document.location.href = `/letter/friendConfirm`;

@@ -230,14 +230,14 @@
                     [<%= likesWho[i-1]%>] 님이 좋아요를 눌렀어요.
                   </div>
                   <%}%><%}%>
-                  <input type="hidden" value="<%= data.id %>" id="ID" />
                 </div>
+                <input type="hidden" value="<%= data.id %>" id="ID" />
                 <div class="contentBox2">
                   <%if(requestId.length !== 0) {%> <%for (let i=1; i<=
                   requestId.length; i++ ){ %>
                   <div
-                    id="requestId<%= requestId[i-1]%>"
                     onclick="goFriendReq('<%= requestId[i-1]%>')"
+                    id="requestId<%= requestId[i-1]%>"
                     style="cursor: pointer"
                   >
                     [<%= eachRequest[i-1]%>] 님이 친구요청 했어요.
