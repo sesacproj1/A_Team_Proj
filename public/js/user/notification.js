@@ -57,7 +57,6 @@ function goLikes(postLikes) {
 }
 
 function goFriendReq(requestId) {
-  console.log(requestId);
   axios({
     method: 'delete',
     url: `/user/myPage/notification/friends/${requestId}`,

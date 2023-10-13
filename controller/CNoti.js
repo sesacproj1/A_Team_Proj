@@ -89,7 +89,6 @@ const output = {
   },
 
   postNoti: async (req, res) => {
-    console.log('>>>>>>>>>>이게 왜 실행돼?');
     await Notification.destroy({
       where: { letterNo: req.body.letterNo, postNo: req.params.postNo },
     });
@@ -106,7 +105,6 @@ const output = {
   },
 
   friendsNoti: async (req, res) => {
-    console.log('>>>>>>>>>>>>>>', req.params);
     await NotificationFriends.destroy({
       where: { notificationId: req.params.requestId },
     });
