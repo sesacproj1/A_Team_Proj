@@ -57,11 +57,16 @@ function goLikes(postLikes) {
 }
 
 function goFriendReq(requestId) {
-  console.log(requestId);
-  const goReq = document.querySelector(`#requestId${requestId}`);
-  console.log(goReq);
-  goReq.style.display = 'none';
-  document.location.href = `/letter/friendConfirm`;
+  axios({
+    method: 'delete',
+    url: `/user/myPage/notification/${requestId}`,
+    data: {
+      letterNo: id,
+    },
+  }).then((res) => {
+    document.getElementById(`requestId${requestId}`).remove();
+    document.location.href = `/letter/friendConfirm`;
+  });
 }
 
 function alarmDel(id) {

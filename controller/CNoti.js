@@ -103,6 +103,14 @@ const output = {
 
     res.send('true');
   },
+
+  friendsNoti: async (req, res) => {
+    await NotificationFriends.destroy({
+      where: { notificationId: req.params.requestId },
+    });
+
+    res.send('true');
+  },
 };
 
 const input = {

@@ -17,6 +17,10 @@ router.delete(
   controllerNoti.output.likesNoti
 );
 router.delete(
+  '/user/myPage/notification/:requestId',
+  controllerNoti.output.friendsNoti
+);
+router.delete(
   '/user/myPage/notification/:id/delete',
   controllerNoti.input.deleteNoti
 );
