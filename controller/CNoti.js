@@ -3,6 +3,7 @@ const {
   Notification,
   RequestList,
   NotificationLikes,
+  NotificationFriends,
 } = require('../models');
 const { Op } = require('sequelize');
 
@@ -52,7 +53,7 @@ const output = {
 
     const postNum = showLikes.map((num) => num.postNo);
     const likesWho = showLikes.map((who) => who.likesWho);
-    const reqFriend = await RequestList.findOne({
+    const reqFriend = await NotificationFriends.findOne({
       where: { id: receiver },
     });
 
@@ -102,6 +103,14 @@ const output = {
 
     res.send('true');
   },
+
+  friendsNoti: async (req, res) => {
+    await NotificationFriends.destroy({
+      where: { notificationId: req.params.requestId },
+    });
+
+    res.send('true');
+  },
 };
 
 const input = {
@@ -112,6 +121,9 @@ const input = {
     });
     await NotificationLikes.destroy({
       where: { letterNo: req.params.id },
+    });
+    await NotificationFriends.destroy({
+      where: { id: req.params.id },
     });
     res.send('true');
   },

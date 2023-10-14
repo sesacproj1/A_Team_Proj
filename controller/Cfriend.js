@@ -1,4 +1,4 @@
-const { User, Friend, toFriend, RequestList } = require('../models');
+const { User, Friend, NotificationFriends, RequestList } = require('../models');
 
 const input = {
   reqFriend: async (req, res) => {
@@ -15,6 +15,10 @@ const input = {
     });
 
     if (!checkFriend && !checkRequest) {
+      await NotificationFriends.create({
+        id: id,
+        requestWho: fromUserId,
+      });
       await RequestList.create({
         id: id,
         nickname: fromUserId,

@@ -5,6 +5,7 @@ const {
   Notice,
   Notification,
   NotificationLikes,
+  NotificationFriends,
   RequestList,
   Post,
   PostLikes,
@@ -154,7 +155,7 @@ const output = {
         where: { id: req.session.userInfo.id },
       });
 
-      const isRequest = await RequestList.findAll({
+      const isRequest = await NotificationFriends.findAll({
         where: { id: req.params.id },
       });
 
@@ -164,8 +165,8 @@ const output = {
       const eachLikes = notificationLikes.map((like) => like.postNo);
       const likesWho = notificationLikes.map((send) => send.likesWho);
 
-      const eachRequest = isRequest.map((request) => request.nickname);
-      const requestId = isRequest.map((reqId) => reqId.requestId);
+      const eachRequest = isRequest.map((request) => request.requestWho);
+      const requestId = isRequest.map((reqId) => reqId.notificationId);
 
       let notiLength = notification.length;
       if (isRequest) {
