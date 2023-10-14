@@ -42,7 +42,7 @@
 
 
 ## ⚙개발환경
- * Java : <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/> Java 11
+ * Javascript : <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/> Javascript
  * IDE : <img src="https://img.shields.io/badge/VSC-000000?style=flat-square&logo=visualstudiocode idea&logoColor=white"/> Visual Studio Code 1.81
  * Framework : <img src="https://img.shields.io/badge/nodedotjs-339933?style=flat-square&logo=nodedotjs&logoColor=white"/> Node.js (20.5.0)
  * Database : <img src="https://img.shields.io/badge/mysql-4479A1?style=flat-square&logo=mysql&logoColor=white"/> Mysql (workbench 8.0)
