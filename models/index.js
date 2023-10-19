@@ -26,7 +26,6 @@ const NotificationFriends = require('./NotificationFriends')(
   Sequelize
 );
 const Notice = require('./Notice')(sequelize, Sequelize);
-const toFriend = require('./toFriend')(sequelize, Sequelize);
 const RequestList = require('./RequestList')(sequelize, Sequelize);
 const Design = require('./Design')(sequelize, Sequelize);
 
@@ -43,13 +42,6 @@ User.hasMany(Friend, {
   onDelete: 'CASCADE',
 });
 Friend.belongsTo(User, { foreignKey: 'id', targetKey: 'id' });
-
-User.hasMany(toFriend, {
-  foreignKey: 'id',
-  sourceKey: 'id',
-  onDelete: 'CASCADE',
-});
-toFriend.belongsTo(User, { foreignKey: 'id', targetKey: 'id' });
 
 User.hasMany(RequestList, {
   foreignKey: 'id',
@@ -122,7 +114,6 @@ NotificationLikes.belongsTo(Post, {
 db.User = User;
 db.Profile = Profile;
 db.Friend = Friend;
-db.toFriend = toFriend;
 db.RequestList = RequestList;
 db.MyLetter = MyLetter;
 db.Admin = Admin;
