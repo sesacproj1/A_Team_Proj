@@ -74,13 +74,13 @@ async function isId() {
   const data = await response.data;
 
   if (data.result) {
-    $('#idConfirm').css('color', 'green'); // id가 idConfirm 인 태그 css 설정
+    $('#idConfirm').css('color', 'green');
     $('#idConfirm').text(`'${obj.value}'는 사용할 수 있는 아이디입니다.`);
     idResult = true;
   } else {
-    form.userId.value = '';
-    $('#idConfirm').css('color', 'red'); // id가 idConfirm 인 태그 css 설정
+    $('#idConfirm').css('color', 'red');
     $('#idConfirm').text(`'${obj.value}'는 이미 사용중인 아이디입니다.`);
+    obj.value = ''; // 아이디 input 태그의 값을 비움
     idResult = false;
   }
 }
