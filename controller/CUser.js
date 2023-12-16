@@ -5,7 +5,7 @@ dotenv.config();
 
 // ~~~~~~~~~~~~~~ 유저 관련 controller ~~~~~~~~~~~~
 
-const { User, Profile } = require('../models');
+const { User, Profile, MyLetter } = require('../models');
 const bcrypt = require('bcrypt');
 // 비밀번호 암호화 함수
 const saltRounds = 11;
@@ -161,6 +161,9 @@ const input = {
         password: secretPw,
         nickname: nickname,
         email: email,
+      });
+      await MyLetter.create({
+        id: user.id,
       });
       await Profile.create({
         id: user.id,
